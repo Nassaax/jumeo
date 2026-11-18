@@ -10,7 +10,7 @@ const path = require('path');
   await p.waitForLoadState('networkidle'); await p.evaluate(() => document.fonts.ready);
   await p.screenshot({ path: path.join(root, 'og-image.jpg'), type: 'jpeg', quality: 88 });
   const i = await b.newPage({ viewport: { width: 180, height: 180 } });
-  await i.setContent('<body style="margin:0;background:#fff;display:grid;place-items:center;height:180px"><svg width="150" height="150" viewBox="0 0 64 64"><path d="M7 28L22 11L37 28V54H7Z" fill="#12355b"/><path d="M27 28L42 11L57 28V54H27Z" fill="#ff7a45"/><path d="M27 28L32 22.333L37 28V54H27Z" fill="#c4503a"/></svg></body>');
+  await i.setContent('<body style="margin:0;background:#fff;display:grid;place-items:center;height:180px"><svg width="150" height="150" viewBox="0 0 64 64"><circle cx="23" cy="32" r="15" fill="none" stroke="#12355b" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#12355b" stroke-width="7"/></svg></body>');
   await i.screenshot({ path: path.join(root, 'apple-touch-icon.png') });
   await b.close();
   console.log('OK : og-image.jpg + apple-touch-icon.png');

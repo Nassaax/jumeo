@@ -1,7 +1,7 @@
 # CLAUDE.md : mémoire du projet Jumeo
 
 ## Contexte
-- Marque : **Jumeo**. Logo « maisons jumelles » choisi le 2026-11-18 : deux maisons qui se chevauchent, bleu marine `#12355b` + orange `#ff7a45`, zone commune `#c4503a` (sur fond foncé : blanc + orange, zone `#ffc2a6`). Fichiers dans `brand/` (SVG + PNG transparents), générés par `tools/make-logo.js` puis `tools/make-images.js`. Ancien logo à deux cercles abandonné. Alternatives de nom écartées : DuoHabitat, Unisson Immo.
+- Marque : **Jumeo**. Logo choisi par Nasser : piste 3 « Le lien », deux anneaux entrelacés (client et professionnel reliés), bleu marine `#12355b` + orange `#ff7a45` (sur fond foncé : blanc + orange). Fichiers dans `brand/` (SVG + PNG transparents), générés par `tools/make-logo.js` puis `tools/make-images.js`. Écartés : deux cercles, maisons jumelles ; noms DuoHabitat, Unisson Immo.
 - Modèle : **apporteur d'affaires multi-partenaires**. Jumeo reçoit les demandes, coordonne et facture sa commission au partenaire. Jumeo ne réalise aucune prestation.
 - Fondateurs : Nasser et son frère jumeau. Nasser est amateur : pas de jargon, tu fais les manipulations à sa place.
 - Cibles : particuliers (vente, location, rénovation) et professionnels (agences, notaires, promoteurs, investisseurs). Zone : province de Liège puis toute la Wallonie.
