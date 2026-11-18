@@ -297,6 +297,11 @@ for f, pairs in {
         s = re.sub(r'  <url>\n    <loc>[^<]*/(?:devenir-partenaire|notre-histoire)</loc>\n    <lastmod>[^<]*</lastmod>\n  </url>\n', '', s)
     open(p, 'w', encoding='utf-8').write(s)
 
+# ── 3 bis. Page « Formations » + bouton (menu, pied de page, accueil) ────────
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+import demo_lux_formations
+demo_lux_formations.build(OUT, DEMO_URL, WA, MAIL)
+
 # ── 4. Contrôle : plus aucune trace du modèle Jumeo ──────────────────────────
 FORBIDDEN = ['Jumeo', 'jumeo', 'apporteur', 'jumeaux', 'Seraing, installés', 'devenir-partenaire', 'notre-histoire', 'Rejoignez le réseau', 'rejoignez le réseau', 'Lancement officiel', 'Nos partenaires', 'mise en relation', 'met en relation', 'en cours de création']
 problems = []
