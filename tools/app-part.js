@@ -157,4 +157,79 @@ function launch(text) {
   return `<div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en ${text}</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en ${text}</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>`;
 }
 
-module.exports = { css, html, js, head, launch };
+
+// ── Écran d'ouverture « les anneaux s'unissent » (1 fois par visite) ──
+// Le script du <head> ajoute html.intro AVANT l'affichage (pas de flash), sauf si :
+// déjà vu pendant cette visite, ou animations réduites demandées par l'appareil.
+const introHead = `<script>try{if(!sessionStorage.getItem('jumeo-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('jumeo-intro','1')}}catch(e){}</script>`;
+
+const splashCss = `
+/* ═════════ ÉCRAN D'OUVERTURE ═════════ */
+.intro-splash{display:none}
+html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#12355b 0%,#0b2441 60%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
+html.intro .intro-splash.skip{animation:sp-out .3s ease forwards}
+.sp-in{display:grid;justify-items:center;gap:22px;padding:24px}
+.sp-logo{width:min(78vw,440px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
+.sp-l,.sp-r{transform-box:view-box}
+.sp-l{animation:sp-left 1s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-r{animation:sp-right 1s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-ring{stroke-dasharray:95;animation:sp-draw 1.05s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-weave{animation:sp-fade .18s ease 1.08s both}
+.sp-mark{transform-box:fill-box;transform-origin:center;animation:sp-pulse .55s cubic-bezier(.34,1.56,.64,1) 1.08s both}
+.sp-word{animation:sp-word .75s cubic-bezier(.16,1,.3,1) 1.3s both}
+.sp-tag{font:500 15px/1.4 'Inter',system-ui,sans-serif;color:rgba(255,255,255,.72);letter-spacing:.01em;text-align:center;animation:sp-tag .7s cubic-bezier(.16,1,.3,1) 1.55s both}
+.sp-tag b{color:#ff7a45;font-weight:600}
+@keyframes sp-left{from{transform:translateX(-48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
+@keyframes sp-right{from{transform:translateX(48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
+@keyframes sp-draw{from{stroke-dashoffset:95}to{stroke-dashoffset:0}}
+@keyframes sp-fade{from{opacity:0}to{opacity:1}}
+@keyframes sp-pulse{0%{transform:none}45%{transform:scale(1.14)}100%{transform:none}}
+@keyframes sp-center{from{transform:translateX(35%)}to{transform:none}}
+@keyframes sp-word{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sp-tag{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes sp-out{to{opacity:0;visibility:hidden}}
+/* le contenu de la page entre en scène juste après l'ouverture */
+html.intro .appear{animation-delay:calc(var(--d,.08s) + 2.3s)}
+html.intro .hl>span{animation-delay:2.55s}
+html.intro .hl+.hl>span{animation-delay:2.7s}
+html.intro .swap .hl>span{animation-delay:0s}
+html.intro .swap .hl+.hl>span{animation-delay:.08s}
+html.intro .ghost-rings circle{animation-delay:2.45s}
+html.intro .ghost-rings circle+circle{animation-delay:2.7s}
+html.intro .rise{animation-delay:2.3s}
+html.intro .rise.d1{animation-delay:2.4s}
+html.intro .rise.d2{animation-delay:2.5s}
+html.intro .rise.d3{animation-delay:2.6s}
+@media(prefers-reduced-motion:reduce){html.intro .intro-splash{display:none}}
+`;
+
+// wordD : tracé du mot « Jumeo » (repris de brand/jumeo-logo-blanc.svg, même repère que les anneaux)
+function splash(wordD) {
+  return `<div class="intro-splash" id="introSplash" aria-hidden="true">
+  <div class="sp-in">
+    <svg class="sp-logo" viewBox="3 12 192 39">
+      <g class="sp-mark">
+        <g class="sp-l"><circle class="sp-ring" cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/></g>
+        <g class="sp-r"><circle class="sp-ring" cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/></g>
+        <path class="sp-weave" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/>
+      </g>
+      <path class="sp-word" d="${wordD}" fill="#fff"/>
+    </svg>
+    <p class="sp-tag">Vous. Le bon professionnel. <b>Un seul lien.</b></p>
+  </div>
+</div>`;
+}
+
+const splashJs = `
+/* ── Écran d'ouverture : retrait à la fin, clic pour passer, sécurité ── */
+(function () {
+  const sp = document.getElementById('introSplash');
+  if (!sp || !document.documentElement.classList.contains('intro')) { if (sp) sp.remove(); return; }
+  const done = () => { if (sp.isConnected) sp.remove(); };
+  sp.addEventListener('animationend', e => { if (e.target === sp) done(); });
+  sp.addEventListener('click', () => sp.classList.add('skip'));
+  setTimeout(done, 4000);
+})();
+`;
+
+module.exports = { css: css + splashCss, html, js: js + splashJs, head: head + '\n' + introHead, launch, splash };

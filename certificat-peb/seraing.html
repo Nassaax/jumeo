@@ -22,6 +22,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-title" content="Jumeo" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<script>try{if(!sessionStorage.getItem('jumeo-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('jumeo-intro','1')}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
@@ -205,6 +206,44 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 .sheet-legal{margin-top:14px;font-size:12px;color:rgba(11,36,65,.6)}
 @media(prefers-reduced-motion:reduce){dialog.sheet[open]{animation:none}.tabbar{transition:none}}
 
+/* ═════════ ÉCRAN D'OUVERTURE ═════════ */
+.intro-splash{display:none}
+html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#12355b 0%,#0b2441 60%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
+html.intro .intro-splash.skip{animation:sp-out .3s ease forwards}
+.sp-in{display:grid;justify-items:center;gap:22px;padding:24px}
+.sp-logo{width:min(78vw,440px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
+.sp-l,.sp-r{transform-box:view-box}
+.sp-l{animation:sp-left 1s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-r{animation:sp-right 1s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-ring{stroke-dasharray:95;animation:sp-draw 1.05s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-weave{animation:sp-fade .18s ease 1.08s both}
+.sp-mark{transform-box:fill-box;transform-origin:center;animation:sp-pulse .55s cubic-bezier(.34,1.56,.64,1) 1.08s both}
+.sp-word{animation:sp-word .75s cubic-bezier(.16,1,.3,1) 1.3s both}
+.sp-tag{font:500 15px/1.4 'Inter',system-ui,sans-serif;color:rgba(255,255,255,.72);letter-spacing:.01em;text-align:center;animation:sp-tag .7s cubic-bezier(.16,1,.3,1) 1.55s both}
+.sp-tag b{color:#ff7a45;font-weight:600}
+@keyframes sp-left{from{transform:translateX(-48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
+@keyframes sp-right{from{transform:translateX(48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
+@keyframes sp-draw{from{stroke-dashoffset:95}to{stroke-dashoffset:0}}
+@keyframes sp-fade{from{opacity:0}to{opacity:1}}
+@keyframes sp-pulse{0%{transform:none}45%{transform:scale(1.14)}100%{transform:none}}
+@keyframes sp-center{from{transform:translateX(35%)}to{transform:none}}
+@keyframes sp-word{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes sp-tag{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes sp-out{to{opacity:0;visibility:hidden}}
+/* le contenu de la page entre en scène juste après l'ouverture */
+html.intro .appear{animation-delay:calc(var(--d,.08s) + 2.3s)}
+html.intro .hl>span{animation-delay:2.55s}
+html.intro .hl+.hl>span{animation-delay:2.7s}
+html.intro .swap .hl>span{animation-delay:0s}
+html.intro .swap .hl+.hl>span{animation-delay:.08s}
+html.intro .ghost-rings circle{animation-delay:2.45s}
+html.intro .ghost-rings circle+circle{animation-delay:2.7s}
+html.intro .rise{animation-delay:2.3s}
+html.intro .rise.d1{animation-delay:2.4s}
+html.intro .rise.d2{animation-delay:2.5s}
+html.intro .rise.d3{animation-delay:2.6s}
+@media(prefers-reduced-motion:reduce){html.intro .intro-splash{display:none}}
+
 /* ═════════ PARTENAIRES ═════════ */
 .partners-band{background:var(--paper,#f7f5f0);padding:0 0 72px}
 .pb{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding:40px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--line)}
@@ -230,6 +269,19 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 </style>
 </head>
 <body>
+<div class="intro-splash" id="introSplash" aria-hidden="true">
+  <div class="sp-in">
+    <svg class="sp-logo" viewBox="3 12 192 39">
+      <g class="sp-mark">
+        <g class="sp-l"><circle class="sp-ring" cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/></g>
+        <g class="sp-r"><circle class="sp-ring" cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/></g>
+        <path class="sp-weave" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/>
+      </g>
+      <path class="sp-word" d="M74.93 46L73.24 46L73.24 40.74L74.93 40.74Q76.62 40.74 77.66 39.78Q78.69 38.82 78.69 37.24L78.69 37.24L78.69 18.00L84.52 18.00L84.52 36.98Q84.52 39.69 83.35 41.72Q82.19 43.74 80.02 44.87Q77.86 46 74.93 46L74.93 46ZM95.00 46.45L95.00 46.45Q92.52 46.45 90.77 45.38Q89.03 44.31 88.12 42.39Q87.22 40.48 87.22 37.92L87.22 37.92L87.22 25.48L92.86 25.48L92.86 37.47Q92.86 38.63 93.33 39.52Q93.80 40.40 94.66 40.89Q95.53 41.38 96.62 41.38L96.62 41.38Q97.74 41.38 98.59 40.89Q99.44 40.40 99.91 39.52Q100.38 38.63 100.38 37.47L100.38 37.47L100.38 25.48L106.01 25.48L106.01 46L100.75 46L100.75 41.94L101.05 42.84Q100.34 44.68 98.74 45.57Q97.14 46.45 95.00 46.45ZM114.47 46L108.83 46L108.83 25.48L114.09 25.48L114.09 30.48L113.53 29.65Q113.98 27.28 115.71 26.16Q117.44 25.03 119.84 25.03L119.84 25.03Q122.40 25.03 124.34 26.32Q126.27 27.62 126.76 29.80L126.76 29.80L125.14 29.95Q126.16 27.43 128.04 26.23Q129.92 25.03 132.43 25.03L132.43 25.03Q134.65 25.03 136.36 26.01Q138.07 26.98 139.05 28.73Q140.03 30.48 140.03 32.81L140.03 32.81L140.03 46L134.39 46L134.39 34.01Q134.39 32.81 133.96 31.94Q133.52 31.08 132.74 30.59Q131.95 30.10 130.82 30.10L130.82 30.10Q129.73 30.10 128.92 30.59Q128.11 31.08 127.68 31.94Q127.25 32.81 127.25 34.01L127.25 34.01L127.25 46L121.61 46L121.61 34.01Q121.61 32.81 121.18 31.94Q120.75 31.08 119.96 30.59Q119.17 30.10 118.04 30.10L118.04 30.10Q116.95 30.10 116.14 30.59Q115.33 31.08 114.90 31.94Q114.47 32.81 114.47 34.01L114.47 34.01L114.47 46ZM152.32 46.45L152.32 46.45Q149.05 46.45 146.64 45.00Q144.24 43.56 142.92 41.11Q141.61 38.67 141.61 35.70L141.61 35.70Q141.61 32.62 142.98 30.21Q144.35 27.81 146.68 26.42Q149.01 25.03 151.94 25.03L151.94 25.03Q154.38 25.03 156.26 25.80Q158.14 26.57 159.44 27.96Q160.74 29.35 161.41 31.17Q162.09 33.00 162.09 35.14L162.09 35.14Q162.09 35.74 162.03 36.32Q161.98 36.90 161.83 37.32L161.83 37.32L146.45 37.32L146.45 33.18L158.63 33.18L155.96 35.14Q156.34 33.52 155.92 32.26Q155.51 31.00 154.48 30.27Q153.44 29.54 151.94 29.54L151.94 29.54Q150.48 29.54 149.42 30.25Q148.37 30.97 147.84 32.36Q147.32 33.75 147.43 35.74L147.43 35.74Q147.28 37.47 147.84 38.78Q148.41 40.10 149.57 40.83Q150.74 41.57 152.39 41.57L152.39 41.57Q153.90 41.57 154.97 40.96Q156.04 40.36 156.64 39.31L156.64 39.31L161.15 41.45Q160.55 42.96 159.25 44.08Q157.95 45.21 156.19 45.83Q154.42 46.45 152.32 46.45ZM174.27 46.45L174.27 46.45Q171.22 46.45 168.72 45.06Q166.22 43.67 164.74 41.25Q163.25 38.82 163.25 35.74L163.25 35.74Q163.25 32.62 164.74 30.21Q166.22 27.81 168.72 26.42Q171.22 25.03 174.27 25.03L174.27 25.03Q177.31 25.03 179.79 26.42Q182.27 27.81 183.76 30.21Q185.24 32.62 185.24 35.74L185.24 35.74Q185.24 38.82 183.76 41.25Q182.27 43.67 179.79 45.06Q177.31 46.45 174.27 46.45ZM174.27 41.38L174.27 41.38Q175.81 41.38 176.95 40.66Q178.10 39.95 178.76 38.67Q179.41 37.39 179.41 35.74L179.41 35.74Q179.41 34.09 178.76 32.83Q178.10 31.57 176.95 30.83Q175.81 30.10 174.27 30.10L174.27 30.10Q172.72 30.10 171.56 30.83Q170.39 31.57 169.74 32.83Q169.08 34.09 169.08 35.74L169.08 35.74Q169.08 37.39 169.74 38.67Q170.39 39.95 171.56 40.66Q172.72 41.38 174.27 41.38Z" fill="#fff"/>
+    </svg>
+    <p class="sp-tag">Vous. Le bon professionnel. <b>Un seul lien.</b></p>
+  </div>
+</div>
 <!-- Page générée par build.js : ne pas modifier à la main -->
 <header class="header">
   <div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en janvier 2027</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en janvier 2027</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>
@@ -412,6 +464,16 @@ addEventListener('scroll', onScroll, { passive: true }); onScroll();
   document.addEventListener('focusin', e => { if (isField(e.target)) document.body.classList.add('typing'); });
   document.addEventListener('focusout', () => setTimeout(() => { if (!isField(document.activeElement)) document.body.classList.remove('typing'); }, 60));
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('/sw.js').catch(() => {});
+})();
+
+/* ── Écran d'ouverture : retrait à la fin, clic pour passer, sécurité ── */
+(function () {
+  const sp = document.getElementById('introSplash');
+  if (!sp || !document.documentElement.classList.contains('intro')) { if (sp) sp.remove(); return; }
+  const done = () => { if (sp.isConnected) sp.remove(); };
+  sp.addEventListener('animationend', e => { if (e.target === sp) done(); });
+  sp.addEventListener('click', () => sp.classList.add('skip'));
+  setTimeout(done, 4000);
 })();
 
 

@@ -84,3 +84,8 @@
 - Cadre « Ils nous font confiance, on leur fait confiance » au-dessus du pied de page de toutes les pages : `tools/partners-part.js`, généré depuis `CONFIG.partners` (`logo`, `officiel`, `metiers`). Jamais de téléphone, d'e-mail ni de lien vers le site du partenaire. Logo dans `partenaires/`.
 - Bandeau « Lancement officiel en … » : `CONFIG.launch` (`'janvier 2027'`) ; le vider le jour du lancement puis `node build.js`. Il se replie au défilement. Ne pas écrire que des devis sont réalisés avant le lancement.
 - Tests en local (`file://`) : les adresses `/…` sont redirigées vers le projet par `mapRoot` dans les scripts de test.
+
+## Écran d'ouverture (effet « waw »)
+- Dans `tools/app-part.js` (`splash`, `splashCss`, `splashJs`, `introHead`) : les deux anneaux arrivent chacun d'un côté en se dessinant, se rejoignent, s'entrelacent (petit battement), puis le mot « Jumeo » (tracé repris de `brand/jumeo-logo-blanc.svg`) et la phrase « Vous. Le bon professionnel. Un seul lien. ». Durée ≈ 2,9 s, clic pour passer.
+- Une seule fois par visite (sessionStorage `jumeo-intro`), jamais si l'appareil demande des animations réduites, jamais sans JavaScript. Le contenu de la page entre en scène juste après (`html.intro …` décale les animations).
+- Inséré sur toutes les pages (pages générées + `index.html`, marqueur `APP:SPLASH`). Les tests le sautent (`addInitScript` dans `mapRoot`).

@@ -147,6 +147,9 @@ footer .logo{color:#fff;margin-bottom:14px}
 `;
 
 const APP = require('./tools/app-part.js');
+// Tracé du mot « Jumeo » pour l'écran d'ouverture (4e tracé du logo blanc).
+const WORD_D = [...fs.readFileSync(path.join(ROOT, 'brand', 'jumeo-logo-blanc.svg'), 'utf8').matchAll(/<path d="([^"]+)"/g)].map(m => m[1]).find(d => d.length > 200);
+if (!WORD_D) throw new Error('Tracé du mot Jumeo introuvable dans brand/jumeo-logo-blanc.svg');
 const PARTNERS = require('./tools/partners-part.js');
 
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
@@ -192,6 +195,7 @@ ${ld.map(jsonLd).join('\n')}
 <style>${CSS}${css}${APP.css}${PARTNERS.css}</style>
 </head>
 <body>
+${APP.splash(WORD_D)}
 <!-- Page générée par build.js : ne pas modifier à la main -->
 <header class="header">
   ${APP.launch(CONFIG.launch)}
@@ -520,7 +524,7 @@ out.unshift(...G.urls);
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
-for (const [k, v] of [['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.partners, esc)], ['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
+for (const [k, v] of [['APP:SPLASH', APP.splash(WORD_D)], ['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.partners, esc)], ['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
   const re = new RegExp(`<!-- ${k}:START[\\s\\S]*?<!-- ${k}:END -->`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, `<!-- ${k}:START (généré par build.js) -->\n${v}\n<!-- ${k}:END -->`);
