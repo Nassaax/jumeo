@@ -14,6 +14,12 @@ OUT = os.path.join(ROOT, 'demo-lux')
 BRAND = 'Lux Energie Solution'
 DEMO_URL = 'https://lux-energie-demo.vercel.app'
 LOGO_SRC = os.path.join(ROOT, 'partenaires', 'lux-energie-solution.png')
+# Coordonnées PUBLIQUES de Lux, telles qu'affichées sur luxenergiesolution.com (lues le 2026-11-18).
+TEL_DISPLAY, TEL_LINK, WA = '0466 09 03 84', 'tel:+32466090384', '32466090384'
+MAIL = 'contact@luxenergiesolution.com'
+ADDRESS = 'Rue du Pont 6, 4460 Grâce-Hollogne'
+PHONE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>'
+WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-.8.8a4 4 0 0 1-2.3-2.3l.8-.8-1-2z"/></svg>'
 
 os.chdir(ROOT)
 subprocess.run(['node', 'build.js'], check=True, stdout=subprocess.DEVNULL)
@@ -48,6 +54,28 @@ html.intro .intro-splash{background:#fff}
 .lx-tag{color:#0b2441!important}.lx-tag b{color:#b8860b!important}
 @keyframes lx-draw{from{stroke-dashoffset:560;opacity:0}12%{opacity:1}to{stroke-dashoffset:0;opacity:.9}}
 @keyframes lx-logo{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+/* Appeler / WhatsApp */
+.hdr-call{display:inline-flex;align-items:center;gap:8px;margin-left:18px;padding:0 14px;min-height:40px;border-radius:999px;border:1px solid currentColor;border-color:color-mix(in srgb,currentColor 35%,transparent);color:inherit;text-decoration:none;font:600 14px 'Inter',sans-serif;white-space:nowrap}
+.hdr-call svg,.hero-actions svg,.trust4 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hdr-call:hover{border-color:currentColor}
+@media(max-width:1180px){.hdr-call span{display:none}.hdr-call{padding:0 11px}}
+@media(max-width:760px){.hdr-call{margin-left:auto;min-height:38px;background:#f2b705;color:#0b2441;border:0}.hdr-call span{display:inline;font-size:13px}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-actions a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;font:600 15px 'Inter',sans-serif;text-decoration:none;transition:transform .2s}
+.hero-actions a:active{transform:scale(.97)}
+.btn-call{background:#fff;color:#0b2441}
+.btn-wa2{background:#1fa855;color:#fff}.btn-wa2:hover{background:#178a45}
+.hero-sim{margin-top:22px!important}
+/* Pourquoi nous choisir */
+.trust4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.trust4{grid-template-columns:1fr 1fr}}
+.trust4 div{display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px rgba(11,36,65,.12)}
+.trust4 i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#fff6d6;color:#0b2441;flex:none}
+.trust4 b{display:block;font:600 16px 'Plus Jakarta Sans',sans-serif;color:#0b2441}
+.trust4 small{display:block;font-size:13.5px;color:rgba(11,36,65,.66);margin-top:2px}
+.lx-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lx-values span{font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:#fff6d6;color:#0b2441}
+footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
 </style>"""
 
 SPLASH = """<div class="intro-splash" id="introSplash" aria-hidden="true">
@@ -113,6 +141,10 @@ REGEX = [
     (r"jumeo-intro", "lux-intro"),
     (r"contact@jumeo\.be", "contact@exemple.be"),
     (r"Jumeo", BRAND),
+    # Appeler : en-tête (après le menu), onglet mobile à la place de « Simus », WhatsApp dans le panneau Menu
+    (r'(<nav class="nav[^"]*"[\s\S]*?</nav>)', r'\1\n    <a class="hdr-call" href="' + TEL_LINK + '" aria-label="Appeler ' + TEL_DISPLAY + '">' + PHONE_SVG.replace('\\', '\\\\') + '<span>' + TEL_DISPLAY + '</span></a>'),
+    (r'<a class="tab" href="/guides#simulateurs"[^>]*>[\s\S]*?<span>Simus</span></a>', '<a class="tab" href="' + TEL_LINK + '">' + PHONE_SVG.replace('aria-hidden="true"', 'aria-hidden="true"') + '<span>Appeler</span></a>'),
+    (r'<a id="mWa" class="hide" href="#"', '<a id="mWa" class="" href="https://wa.me/' + WA + '"'),
     # le style de la démo, juste avant </head>
     (r"</head>", DEMO_CSS + "\n</head>"),
 ]
@@ -120,12 +152,33 @@ REGEX = [
 # Accueil seulement : réglages et sections réécrites (texte exact, contrôlé)
 INDEX = [
     ("  brand: 'Jumeo',", "  brand: 'Lux Energie Solution',"),
-    ("company: { legalName: '', bce: '', address: '', status: 'Structure en cours de création.' },", "company: { legalName: 'Lux Energie Solution', bce: '', address: '', status: '' },"),
+    ("  phone: '',", "  phone: '" + TEL_DISPLAY + "',"),
+    ("  whatsapp: '',", "  whatsapp: '" + WA + "',"),
+    ("  email: '',          // ex : 'contact@jumeo.be'", "  email: '" + MAIL + "',"),
+    ('<li><svg class="ico"><use href="#i-check"/></svg>Devis gratuit, sans engagement</li>\n        <li><svg class="ico"><use href="#i-check"/></svg>Toute la Wallonie</li>',
+     '<li><svg class="ico"><use href="#i-check"/></svg>Entreprise déclarée &amp; assurée</li>\n        <li><svg class="ico"><use href="#i-check"/></svg>Conformité + rapport fourni</li>\n        <li><svg class="ico"><use href="#i-check"/></svg>Basés à Grâce-Hollogne, toute la Wallonie</li>'),
+    ('<a class="hero-sim appear" style="--d:.9s" href="/simulateur-peb">',
+     '<div class="hero-actions appear" style="--d:.84s"><a class="btn-call" href="' + TEL_LINK + '">' + PHONE_SVG + 'Appeler le ' + TEL_DISPLAY + '</a><a class="btn-wa2" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">' + WA_SVG + 'WhatsApp</a></div>\n      <a class="hero-sim appear" style="--d:.9s" href="/simulateur-peb">'),
+    ('<!-- ═════════ TARIFS ═════════ -->', '''<!-- ═════════ POURQUOI NOUS CHOISIR ═════════ -->
+<section class="sec" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="trust4 reveal">
+      <div><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><b>Réponse rapide</b><small>On vous rappelle vite, rendez-vous planifié sans attendre.</small></span></div>
+      <div><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg></i><span><b>Devis clair</b><small>Un prix connu d'avance, confirmé avant toute intervention.</small></span></div>
+      <div><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><span><b>Travaux conformes</b><small>Conformité, rapports et certificats fournis.</small></span></div>
+      <div><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-1v-6h3M4 13v4a2 2 0 0 0 2 2h1v-6H4"/></svg></i><span><b>Suivi sérieux</b><small>Un seul interlocuteur, du diagnostic à la finition.</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ TARIFS ═════════ -->'''),
+    ('<link rel="apple-touch-icon" href="/apple-touch-icon.png" />', '<link rel="apple-touch-icon" href="/apple-touch-icon.png" />\n<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "Lux Energie Solution", "url": DEMO_URL + "/", "logo": DEMO_URL + "/logo-lux.png", "image": DEMO_URL + "/og-image.jpg", "telephone": "+32 466 09 03 84", "email": MAIL, "address": {"@type": "PostalAddress", "streetAddress": "Rue du Pont 6", "postalCode": "4460", "addressLocality": "Grâce-Hollogne", "addressCountry": "BE"}, "areaServed": {"@type": "AdministrativeArea", "name": "Wallonie"}, "description": "Certification PEB, électricité, chauffage et sanitaire, pompes à chaleur, climatisation et photovoltaïque en Wallonie."}, ensure_ascii=False) + '</script>'),
+    ("company: { legalName: '', bce: '', address: '', status: 'Structure en cours de création.' },", "company: { legalName: 'Lux Energie Solution', bce: '', address: '" + ADDRESS + "', status: '' },"),
     ("  launch: 'janvier 2027', // bandeau « Lancement officiel en … » en haut de page ; mettre '' le jour du lancement", "  launch: '', // pas de bandeau : entreprise déjà en activité"),
     ("lines.push('<p>' + esc(CONFIG.brand) + ' agit en qualité d\\'apporteur d\\'affaires indépendant. Il n\\'est pas certificateur PEB. Les prestations (certificat PEB, contrôle électrique, travaux) sont réalisées par des partenaires indépendants. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne.</p>');",
      "lines.push('<p>Site de démonstration. Les certificats PEB sont établis par un certificateur agréé par la Région wallonne. Prix indicatifs, devis confirmé avant intervention.</p>');"),
     ("PEB, chauffage, électricité, solaire, rénovation : des professionnels compétents, un devis clair, un seul contact. Partout en Wallonie.",
-     "PEB, électricité, chauffage, photovoltaïque : une seule entreprise, du diagnostic à la finition. Un devis clair, partout en Wallonie."),
+     "Devis clair. Délais tenus. Rapports et certificats fournis. Un seul interlocuteur, du diagnostic à la finition : PEB, électricité, chauffage, photovoltaïque."),
     ("Professionnels agréés Région wallonne", "Certificateur PEB agréé Région wallonne"),
     # section « Qui fait quoi » → « Notre métier »
     ('<span class="eyebrow">Transparence</span>', '<span class="eyebrow">Notre métier</span>'),
@@ -153,12 +206,21 @@ INDEX = [
     # bloc « À propos »
     ("<h2>Deux frères jumeaux, un seul objectif.</h2>", "<h2>L'énergie de votre logement, de A à Z.</h2>"),
     ("<p>Nés à Seraing, installés à Liège : l'un est comptable et a été agent immobilier, l'autre est électricien et a installé des systèmes d'énergie renouvelable. On a créé <span data-brand>Jumeo</span> pour simplifier vos projets : vous nous parlez, on vous met en relation avec le bon professionnel, et on suit votre dossier jusqu'au bout.</p>",
-     "<p>Lux Energie Solution est une entreprise wallonne spécialisée dans l'installation, la maintenance et le dépannage des systèmes de chauffage, d'électricité et de photovoltaïque, et dans la certification PEB. Un seul interlocuteur, du diagnostic à la finition.</p>"),
+     "<p>Lux Energie Solution est une entreprise wallonne spécialisée dans l'installation, la maintenance et le dépannage des systèmes de chauffage, d'électricité et de photovoltaïque, et dans la certification PEB. Basés à Grâce-Hollogne, nous intervenons partout en Wallonie. Un seul interlocuteur, du diagnostic à la finition.</p><div class=\"lx-values\"><span>Performance énergétique</span><span>Conformité réglementaire</span><span>Réduction des coûts</span></div>"),
 ]
+
+
+FOOT_CONTACT = ('<h4>Contact</h4><a href="' + TEL_LINK + '">' + TEL_DISPLAY + '</a><a href="mailto:' + MAIL + '">' + MAIL + '</a>'
+                '<a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>')
 
 
 def apply(path, extra=()):
     s = open(path, encoding='utf-8').read()
+    if not extra:  # pages générées : coordonnées (l'accueil les affiche via CONFIG)
+        s = s.replace('<h4>Contact</h4>', FOOT_CONTACT, 1)
+    if True:  # toutes les pages : présentation + adresse dans le pied de page
+        s = s.replace('<p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>',
+                      '<p>PEB, électricité, chauffage, photovoltaïque en Wallonie.</p><p class="addr">' + ADDRESS.replace(', ', '<br>') + '</p>', 1)
     for a, b in extra:
         n = s.count(a)
         if n < 1:

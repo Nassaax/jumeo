@@ -45,5 +45,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/demo-lux/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/demo-lux",
+      "destination": "/",
+      "permanent": false
+    }
   ]
 }

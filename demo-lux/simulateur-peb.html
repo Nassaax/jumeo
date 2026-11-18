@@ -320,6 +320,28 @@ html.intro .intro-splash{background:#fff}
 .lx-tag{color:#0b2441!important}.lx-tag b{color:#b8860b!important}
 @keyframes lx-draw{from{stroke-dashoffset:560;opacity:0}12%{opacity:1}to{stroke-dashoffset:0;opacity:.9}}
 @keyframes lx-logo{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+/* Appeler / WhatsApp */
+.hdr-call{display:inline-flex;align-items:center;gap:8px;margin-left:18px;padding:0 14px;min-height:40px;border-radius:999px;border:1px solid currentColor;border-color:color-mix(in srgb,currentColor 35%,transparent);color:inherit;text-decoration:none;font:600 14px 'Inter',sans-serif;white-space:nowrap}
+.hdr-call svg,.hero-actions svg,.trust4 svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hdr-call:hover{border-color:currentColor}
+@media(max-width:1180px){.hdr-call span{display:none}.hdr-call{padding:0 11px}}
+@media(max-width:760px){.hdr-call{margin-left:auto;min-height:38px;background:#f2b705;color:#0b2441;border:0}.hdr-call span{display:inline;font-size:13px}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-actions a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;font:600 15px 'Inter',sans-serif;text-decoration:none;transition:transform .2s}
+.hero-actions a:active{transform:scale(.97)}
+.btn-call{background:#fff;color:#0b2441}
+.btn-wa2{background:#1fa855;color:#fff}.btn-wa2:hover{background:#178a45}
+.hero-sim{margin-top:22px!important}
+/* Pourquoi nous choisir */
+.trust4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.trust4{grid-template-columns:1fr 1fr}}
+.trust4 div{display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px rgba(11,36,65,.12)}
+.trust4 i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#fff6d6;color:#0b2441;flex:none}
+.trust4 b{display:block;font:600 16px 'Plus Jakarta Sans',sans-serif;color:#0b2441}
+.trust4 small{display:block;font-size:13.5px;color:rgba(11,36,65,.66);margin-top:2px}
+.lx-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lx-values span{font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:#fff6d6;color:#0b2441}
+footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
 </style>
 </head>
 <body>
@@ -344,6 +366,7 @@ html.intro .intro-splash{background:#fff}
       <a href="/#pros">Professionnels</a>
       
     </nav>
+    <a class="hdr-call" href="tel:+32466090384" aria-label="Appeler 0466 09 03 84"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>0466 09 03 84</span></a>
     <a class="btn btn-primary" href="/#devis"><span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span><span class="chip-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
   </div>
 </header>
@@ -440,10 +463,10 @@ html.intro .intro-splash{background:#fff}
     <div class="foot">
       <div>
         <div class="logo"><span class="logo-chip"><img src="/logo-lux.png" alt="Lux Energie Solution" width="150" height="40" /></span></div>
-        <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
+        <p>PEB, électricité, chauffage, photovoltaïque en Wallonie.</p><p class="addr">Rue du Pont 6<br>4460 Grâce-Hollogne</p>
       </div>
       <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/simulateur-recharge">Simulateur recharge</a><a href="/guides">Guides</a><a href="/#transparence">Notre métier</a><a href="/#faq">FAQ</a></div>
-      <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
+      <div><h4>Contact</h4><a href="tel:+32466090384">0466 09 03 84</a><a href="mailto:contact@luxenergiesolution.com">contact@luxenergiesolution.com</a><a href="https://wa.me/32466090384" target="_blank" rel="noopener">WhatsApp</a><a href="/#devis">Demander un devis</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones"><a href="/certificat-peb/liege">PEB à Liège</a><a href="/certificat-peb/seraing">PEB à Seraing</a><a href="/certificat-peb/herstal">PEB à Herstal</a><a href="/certificat-peb/ans">PEB à Ans</a><a href="/certificat-peb/verviers">PEB à Verviers</a><a href="/certificat-peb/huy">PEB à Huy</a><a href="/certificat-peb/namur">PEB à Namur</a><a href="/certificat-peb/charleroi">PEB à Charleroi</a><a href="/certificat-peb/mons">PEB à Mons</a><a href="/certificat-peb/waremme">PEB à Waremme</a><a href="/certificat-peb/spa">PEB à Spa</a><a href="/certificat-peb/flemalle">PEB à Flémalle</a><a href="/certificat-peb/saint-nicolas">PEB à Saint-Nicolas</a><a href="/certificat-peb/chaudfontaine">PEB à Chaudfontaine</a><a href="/certificat-peb/vise">PEB à Visé</a></div></div>
     </div>
     <div class="legal">Lux Energie Solution réalise vos certificats PEB et vos travaux d'électricité, de chauffage et de photovoltaïque. Les certificats PEB sont établis par un certificateur agréé par la Région wallonne. Site de démonstration. Prix indicatifs TVAC, devis confirmé avant intervention.</div>
@@ -453,7 +476,7 @@ html.intro .intro-splash{background:#fff}
   <a class="tab" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
   <a class="tab" href="/guides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21a2 2 0 0 1 2-2h12v2"/><path d="M8 7h6M8 11h6"/></svg><span>Guides</span></a>
   <a class="tab tab-fab" href="/#devis"><span class="fab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span>Devis</span></a>
-  <a class="tab" href="/guides#simulateurs" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg><span>Simus</span></a>
+  <a class="tab" href="tel:+32466090384"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Appeler</span></a>
   <button class="tab" type="button" id="tabMenu" aria-haspopup="dialog" aria-controls="appSheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span></button>
 </nav>
 <dialog class="sheet" id="appSheet" aria-label="Menu">
@@ -474,7 +497,7 @@ html.intro .intro-splash{background:#fff}
     <div class="sheet-small">
       <a href="/#mentions-legales" data-dlg="legal">Mentions légales</a>
       <a href="/#confidentialite" data-dlg="privacy">Confidentialité</a>
-      <a id="mWa" class="hide" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="mWa" class="" href="https://wa.me/32466090384" target="_blank" rel="noopener">WhatsApp</a>
     </div>
     <p class="sheet-legal">Site de démonstration réalisé pour Lux Energie Solution.</p>
   </div>
