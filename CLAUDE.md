@@ -89,3 +89,8 @@
 - Dans `tools/app-part.js` (`splash`, `splashCss`, `splashJs`, `introHead`) : les deux anneaux arrivent chacun d'un côté en se dessinant, se rejoignent, s'entrelacent (petit battement), puis le mot « Jumeo » (tracé repris de `brand/jumeo-logo-blanc.svg`) et la phrase « Vous. Le bon professionnel. Un seul lien. ». Durée ≈ 2,9 s, clic pour passer.
 - Une seule fois par visite (sessionStorage `jumeo-intro`), jamais si l'appareil demande des animations réduites, jamais sans JavaScript. Le contenu de la page entre en scène juste après (`html.intro …` décale les animations).
 - Inséré sur toutes les pages (pages générées + `index.html`, marqueur `APP:SPLASH`). Les tests le sautent (`addInitScript` dans `mapRoot`).
+
+## Démo « Lux Energie Solution » (demo-lux/)
+- Site complet de démonstration pour le partenaire, généré par `python3 tools/make_demo_lux.py` (relance `node build.js`, copie le site, remplace marque/logo/couleurs jaunes, réécrit les textes « apporteur d'affaires » en « entreprise qui réalise », retire partenaires, devenir partenaire, notre histoire, bandeau de lancement — Lux est déjà en activité). Le script échoue s'il reste une trace de Jumeo. Test : `node tools/test-demo-lux.js`.
+- Formulaires en mode aperçu (aucun numéro de Lux publié), noindex. Publié comme projet Vercel séparé (dossier racine `demo-lux`), exclu du site Jumeo par `.vercelignore`.
+- Ne jamais modifier `demo-lux/` à la main : changer le site Jumeo ou le script, puis régénérer.
