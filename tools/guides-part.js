@@ -33,6 +33,17 @@ const CSS = `
 .guide-card h3{font-size:20px;letter-spacing:-.025em;margin-bottom:10px}
 .guide-card p{color:var(--muted);font-size:15px;margin-bottom:18px}
 .guide-card small{margin-top:auto;color:var(--muted);font-size:13px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{border:0;cursor:pointer;font:600 14px 'Inter',sans-serif;min-height:40px;padding:0 16px;border-radius:999px;background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line);transition:background-color .2s,color .2s}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.one-contact{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px}
+@media(max-width:900px){.one-contact{grid-template-columns:1fr}}
+.one-contact div{background:var(--card);border-radius:24px;padding:24px;box-shadow:0 0 0 1px var(--line)}
+.one-contact b{display:block;font:600 17px 'Plus Jakarta Sans',sans-serif;margin-bottom:6px}
+.one-contact p{color:var(--muted);font-size:15px}
+.contact-box{margin-top:40px;background:var(--paper-2);border-radius:24px;padding:26px 28px}
+.contact-box h2{font-size:20px;margin:0 0 8px}
+.contact-box p{font-size:16px;margin-bottom:16px}
 `;
 
 module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT }) {
@@ -40,10 +51,12 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
   fs.mkdirSync(path.join(ROOT, 'guides'), { recursive: true });
   const urls = [];
   const GHOST = '<svg class="ghost" viewBox="0 0 400 240" aria-hidden="true"><circle cx="150" cy="120" r="100"/><circle cx="250" cy="120" r="100"/></svg>';
-  const card = a => `<a class="guide-card" href="/guides/${a.slug}"><span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
+  const CATS = ['PEB', 'Énergie renouvelable', 'Rénovation', 'Électricité'];
+  const card = a => `<a class="guide-card" href="/guides/${a.slug}" data-cat="${esc(a.cat || '')}"><span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
 
   for (const a of articles) {
-    const others = articles.filter(o => o.slug !== a.slug).slice(0, 3);
+    const others = [...articles.filter(o => o.slug !== a.slug && o.cat === a.cat), ...articles.filter(o => o.slug !== a.slug && o.cat !== a.cat)].slice(0, 3);
+    const devis = a.service ? `/?service=${a.service}#devis` : '/#devis';
     const body = `
 <section class="sub-hero">
   ${GHOST}
@@ -59,6 +72,11 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
     <article class="article-body">
       <p class="lead">${esc(a.lead)}</p>
       ${a.body}
+      <div class="contact-box">
+        <h2>Un projet ? Un seul interlocuteur.</h2>
+        <p>${esc(CONFIG.brand)} vous met en relation avec des professionnels compétents et en règle, et suit votre dossier du début à la fin. Vous n'avez qu'un contact.</p>
+        ${btn(devis, 'Parler de mon projet')}
+      </div>
       <div class="sources">
         <h2>Sources</h2>
         <ul>${a.sources.map(([t, u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join('')}</ul>
@@ -66,7 +84,9 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
       </div>
     </article>
     <aside class="side-card">
-      <div class="card dark"><h3>Besoin d'un certificat PEB ?</h3><p>Un devis clair, un certificateur agréé, un seul contact.</p>${btn('/#devis', 'Devis gratuit')}</div>
+      ${a.cat === 'PEB'
+        ? `<div class="card dark"><h3>Besoin d'un certificat PEB ?</h3><p>Un devis clair, un certificateur agréé, un seul contact.</p>${btn(devis, 'Devis gratuit')}</div>`
+        : `<div class="card dark"><h3>On s'occupe de trouver le bon pro</h3><p>Décrivez votre projet : on vous met en relation avec un professionnel compétent de votre région.</p>${btn(devis, 'Devis gratuit')}</div>`}
       <div class="card"><h3>Quel label pour votre bien ?</h3><p>Une première estimation en 1 minute, gratuite.</p><a class="btn btn-ghost" href="/simulateur-peb">Simulateur PEB</a></div>
     </aside>
   </div>
@@ -87,19 +107,37 @@ ${others.length ? `<section class="sec" style="padding-top:0"><div class="wrap">
   <div class="wrap">
     <ol class="crumbs rise"><li><a href="/">Accueil</a></li><li aria-current="page">Guides</li></ol>
     <h1 class="rise d1">Nos guides, <span>sans jargon.</span></h1>
-    <p class="rise d2">PEB, vente, location, énergie : des réponses claires et vérifiées, avec leurs sources officielles.</p>
+    <p class="rise d2">PEB, énergie renouvelable, rénovation, électricité : des réponses claires et vérifiées, avec leurs sources. Et quand vous êtes prêt, un seul interlocuteur pour tout votre projet.</p>
   </div>
 </section>
-<section class="sec"><div class="wrap"><div class="guide-list">${articles.map(card).join('')}</div></div></section>`;
+<section class="sec">
+  <div class="wrap">
+    <div class="one-contact">
+      <div><b>Vous comprenez</b><p>Nos guides expliquent les règles et les bonnes questions à poser, sources officielles à l'appui.</p></div>
+      <div><b>On trouve le bon pro</b><p>Certificateur, électricien, installateur, entrepreneur : des professionnels compétents, avec n° d'entreprise, assurance et agréments.</p></div>
+      <div><b>Un seul contact</b><p>On coordonne et on suit votre dossier du début à la fin. Vous n'avez pas à jongler entre les corps de métier.</p></div>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrer par sujet">
+      <button type="button" data-f="" aria-pressed="true">Tous</button>
+      ${CATS.filter(c => articles.some(a => a.cat === c)).map(c => `<button type="button" data-f="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('')}
+    </div>
+    <div class="guide-list" id="guideList">${articles.map(card).join('')}</div>
+  </div>
+</section>`;
+  const listScript = `
+document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  document.querySelectorAll('#guideList .guide-card').forEach(c => { c.style.display = !b.dataset.f || c.dataset.cat === b.dataset.f ? '' : 'none'; });
+}));`;
   fs.writeFileSync(path.join(ROOT, 'guides', 'index.html'), page({
-    title: `Guides PEB et énergie en Wallonie | ${CONFIG.brand}`,
-    description: 'Guides clairs et sourcés : certificat PEB, vente, location, preuves à préparer, nouveau certificat 2026. Pour les propriétaires et acheteurs en Wallonie.',
-    canonical: '/guides', body: listBody, css: CSS, current: '/guides',
+    title: `Guides PEB, énergie et rénovation en Wallonie | ${CONFIG.brand}`,
+    description: 'Guides clairs et sourcés en Wallonie : certificat PEB, panneaux photovoltaïques, borne de recharge, rénovation. Et un seul interlocuteur pour votre projet.',
+    canonical: '/guides', body: listBody, css: CSS, current: '/guides', script: listScript,
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE + '/guides' }] }]
   }));
   urls.unshift('/guides');
 
   // Bloc « derniers guides » pour l'accueil
-  const homeBlock = articles.slice(0, 3).map(card).join('');
+  const homeBlock = ['PEB', 'Énergie renouvelable', 'Rénovation', 'Électricité'].map(c => articles.find(a => a.cat === c)).filter(Boolean).slice(0, 3).map(card).join('');
   return { urls, homeBlock };
 };

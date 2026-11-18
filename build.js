@@ -151,7 +151,7 @@ footer .logo{color:#fff;margin-bottom:14px}
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
 function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
-  const nav = [['/#tarifs', 'Tarifs'], ['/guides', 'Guides'], ['/#pros', 'Agences & notaires'], ['/certificat-peb', 'Nos zones'], ['/devenir-partenaire', 'Devenir partenaire']]
+  const nav = [['/#tarifs', 'Tarifs'], ['/guides', 'Guides'], ['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels'], ['/devenir-partenaire', 'Devenir partenaire']]
     .map(([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`).join('\n      ');
   return `<!DOCTYPE html>
 <html lang="fr-BE">
@@ -199,7 +199,7 @@ ${body}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('#fff')}</svg><b>${esc(CONFIG.brand)}</b></div>
         <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/notre-histoire">Notre histoire</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/devenir-partenaire">Devenir partenaire</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
@@ -472,6 +472,17 @@ $('#partnerForm').addEventListener('submit', e => {
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Simulateur PEB', item: SITE + sim.url }] }]
   }));
   out.unshift(sim.url);
+}
+
+/* ── Page « Notre histoire » ───────────────────────────── */
+{
+  const h = require('./tools/histoire-part.js')({ esc, btn, CONFIG });
+  fs.writeFileSync(path.join(ROOT, h.file), page({
+    title: h.title, description: h.description, canonical: h.url, body: h.body, css: h.css,
+    ld: [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Notre histoire', url: SITE + h.url, about: provider },
+         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Notre histoire', item: SITE + h.url }] }]
+  }));
+  out.unshift(h.url);
 }
 
 /* ── Guides (articles) ─────────────────────────────────── */
