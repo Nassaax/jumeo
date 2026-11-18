@@ -40,3 +40,9 @@
 - **Mode test** : `vercel.json` envoie `X-Robots-Tag: noindex` tant que les infos bloquantes (coordonnées Jumeo, identité légale) manquent. À retirer le jour du lancement officiel, avec le remplacement de l'adresse provisoire `https://jumeo.vercel.app` par le vrai domaine dans `sitemap.xml`, `robots.txt` et les balises `canonical`, `og:url` et `og:image` de `index.html`.
 - Tests : `node tools/test-site.js` (variable `BASE` = URL ou `file://…/index.html`). Images : `node tools/make-images.js`.
 - Contrôle électrique : la ligne « réalisé par le partenaire » ne s'affiche que si `controleElec.organisme` et `controleElec.numero` sont remplis dans `CONFIG`.
+
+## Design (refonte du 2026-11-18, skill motionsites)
+- Fiche complète : `tools/design-spec.md`. Signature : le schéma « Le lien » dans « Qui fait quoi ? » (deux anneaux qui se dessinent au défilement : Jumeo ↔ professionnel agréé, « Votre dossier » au croisement).
+- Couleurs : fond papier `#f7f5f0`, encre `#0b2441`, accent orange `#ff7a45` réservé aux CTA, aux puces et à l'anneau. Boutons orange avec texte encre (contraste suffisant, pas de texte blanc sur orange). Pas d'orange pour du petit texte sur fond clair.
+- Pas de vidéo ni de photo d'ambiance (règle 3 + aucun suivi). Icônes en SVG inline, jamais d'emoji.
+- Captures de relecture : `node tools/shoot.js <dossier>` (ordinateur, mobile, première image, section « le lien », page entière).
