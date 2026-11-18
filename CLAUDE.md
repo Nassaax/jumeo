@@ -46,3 +46,11 @@
 - Couleurs : fond papier `#f7f5f0`, encre `#0b2441`, accent orange `#ff7a45` réservé aux CTA, aux puces et à l'anneau. Boutons orange avec texte encre (contraste suffisant, pas de texte blanc sur orange). Pas d'orange pour du petit texte sur fond clair.
 - Pas de vidéo ni de photo d'ambiance (règle 3 + aucun suivi). Icônes en SVG inline, jamais d'emoji.
 - Captures de relecture : `node tools/shoot.js <dossier>` (ordinateur, mobile, première image, section « le lien », page entière).
+
+## Pages générées (build.js)
+- `node build.js` génère `certificat-peb/<commune>.html` (une page par commune de `data/communes.json`), `certificat-peb/index.html` (« Nos zones »), `devenir-partenaire.html`, la liste des zones dans le pied de page de `index.html` (entre les marqueurs `ZONES:START/END`) et `sitemap.xml`.
+- Les réglages (coordonnées, prix, TVA) sont lus dans le bloc `CONFIG` de `index.html` : **après toute modification de CONFIG ou de `data/communes.json`, relancer `node build.js`** puis `node tools/test-pages.js`.
+- Ne jamais modifier les pages générées à la main. Pour ajouter une commune : une entrée dans `data/communes.json` avec des textes propres (intro, bâti, conseil), jamais copiés d'une autre.
+- Les pages communes renvoient vers `/?commune=<Nom>#devis` (commune pré-remplie). Les liens `/#mentions-legales` et `/#confidentialite` ouvrent les fenêtres légales de l'accueil.
+- Page partenaire : formulaire candidature (métier, zone, agréments, RC pro, BCE, site) → WhatsApp / e-mail / aperçu, comme le formulaire client. Aucune commission affichée.
+- Au lancement sur jumeo.be : changer `SITE` en haut de `build.js`, puis relancer.

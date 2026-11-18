@@ -87,13 +87,13 @@ img,svg{display:block;max-width:100%}
 .logo svg{width:36px;height:36px}
 .logo b{font:700 21px 'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em}
 .logo .ring-a{stroke:currentColor}
-.nav{display:flex;gap:28px;margin-left:auto}
+.nav{display:flex;gap:24px;margin-left:auto}
 .nav a{position:relative;text-decoration:none;font-size:14px;font-weight:500;opacity:.82;transition:opacity .2s}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--e-std)}
 .nav a:hover{opacity:1}.nav a:hover::after{transform:scaleX(1)}
 .header .btn{min-height:40px;font-size:14px;padding:6px 6px 6px 18px}
 .header .chip-arrow{width:28px;height:28px}
-@media(max-width:900px){.nav{display:none}.header .btn{margin-left:auto}}
+@media(max-width:1080px){.nav{display:none}.header .btn{margin-left:auto}}
 
 /* ═════════ HERO ═════════ */
 .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,#0b2441 0%,#0f2f55 100%)}
@@ -259,9 +259,14 @@ img,svg{display:block;max-width:100%}
 .pro p{color:var(--muted);font-size:15px}
 .pro-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
 .pro-cta span{color:var(--muted);font-size:14.5px}
-.join{margin-top:56px;background:var(--paper-2);border-radius:var(--r-card);padding:32px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.join h3{font-size:22px;letter-spacing:-.03em;margin-bottom:6px}
-.join p{color:var(--muted);font-size:15px;max-width:620px}
+.join{margin-top:56px;background:var(--ink);color:#fff;border-radius:var(--r-card);padding:40px;display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+@media(max-width:600px){.join{padding:30px 22px}}
+.join .eyebrow{color:var(--w60)}
+.join h3{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.035em;margin-bottom:10px}
+.join p{color:var(--w78);font-size:15.5px;max-width:620px}
+.join-points{list-style:none;display:grid;gap:8px;margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.88)}
+.join-points li{display:flex;gap:10px;align-items:center}
+.join-points li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
 
 /* ═════════ À PROPOS ═════════ */
 .about{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:48px;border-radius:var(--r-block);background:var(--card);box-shadow:0 0 0 1px var(--line)}
@@ -281,8 +286,10 @@ details p{padding:0 48px 22px 0;color:var(--muted);font-size:15.5px}
 
 /* ═════════ PIED DE PAGE ═════════ */
 footer{background:var(--ink)!important;color:var(--w78);padding:64px 0 36px;font-size:14px}
-.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:36px}
-@media(max-width:760px){.foot{grid-template-columns:1fr}}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:32px;margin-bottom:36px}
+@media(max-width:900px){.foot{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot{grid-template-columns:1fr}}
+.zones{columns:2;column-gap:18px}
 footer h4{color:#fff;font:600 14px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
 footer a{text-decoration:none;display:block;margin-bottom:8px}
 footer a:hover{color:#fff}
@@ -338,10 +345,10 @@ dialog .btn{margin-top:8px}
     </a>
     <nav class="nav appear" style="--d:.12s" aria-label="Navigation principale">
       <a href="#tarifs">Tarifs</a>
-      <a href="#etapes">Comment ça marche</a>
       <a href="#transparence">Qui fait quoi</a>
-      <a href="#pros">Professionnels</a>
-      <a href="#faq">FAQ</a>
+      <a href="#pros">Agences &amp; notaires</a>
+      <a href="/certificat-peb">Nos zones</a>
+      <a href="/devenir-partenaire">Devenir partenaire</a>
     </nav>
     <a class="btn btn-primary appear" style="--d:.2s" href="#devis">
       <span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span>
@@ -592,18 +599,27 @@ dialog .btn{margin-top:8px}
     </div>
     <div class="pro-cta reveal">
       <a class="btn btn-primary" href="#devis" data-pick="pebelec" data-aud="pro">
-        <span class="roll"><span><span>Devenir client partenaire</span><span aria-hidden="true">Devenir client partenaire</span></span></span>
+        <span class="roll"><span><span>Demander un devis pro</span><span aria-hidden="true">Demander un devis pro</span></span></span>
         <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
       </a>
-      <span>Conditions partenaires sur demande.</span>
+      <span>Conditions pour les professionnels de l'immobilier sur demande.</span>
     </div>
 
     <div class="join reveal" id="rejoindre">
       <div>
-        <h3>Vous êtes une entreprise ?</h3>
-        <p>Électricien, chauffagiste, installateur, architecte, entrepreneur : rejoignez le réseau <span data-brand>Jumeo</span> et recevez des demandes de clients qualifiés en Wallonie.</p>
+        <span class="eyebrow">Entreprises</span>
+        <h3>Vous êtes entrepreneur ? Travaillons ensemble.</h3>
+        <p>Électricien, chauffagiste, installateur, certificateur, architecte, entrepreneur : nous trouvons les clients et préparons leur demande, vous réalisez la prestation. Des règles claires, fixées par un contrat écrit.</p>
+        <ul class="join-points">
+          <li>Des demandes qualifiées dans votre zone</li>
+          <li>Pas de prospection : on s'occupe du premier contact</li>
+          <li>Vous gardez la relation technique et la facturation</li>
+        </ul>
       </div>
-      <a class="btn btn-ghost" href="#devis" data-pick="partner">Rejoindre le réseau</a>
+      <a class="btn btn-primary" href="/devenir-partenaire">
+        <span class="roll"><span><span>Devenir partenaire</span><span aria-hidden="true">Devenir partenaire</span></span></span>
+        <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
@@ -634,7 +650,7 @@ dialog .btn{margin-top:8px}
       <details><summary>Faut-il un label minimum pour louer ?</summary><p>Aucun label minimum n'est exigé aujourd'hui en Wallonie pour mettre un logement en location. Des évolutions sont annoncées, mais elles ne sont pas toutes votées : renseignez-vous avant de vous engager dans des travaux.</p></details>
       <details><summary>Quand faut-il un contrôle électrique ?</summary><p>Notamment avant une mise en usage, après une modification ou extension importante, de façon périodique, lors d'un renforcement de puissance, et dans certains cas lors de la vente d'une habitation. Après un contrôle conforme, il est généralement à refaire tous les 25 ans.</p></details>
       <details><summary>Quels documents préparer ?</summary><p>Plans, factures d'isolation, de châssis, de chauffage et de ventilation, fiches techniques, photos de travaux et attestations. Voir la liste plus haut.</p></details>
-      <details><summary>Je suis une entreprise : puis-je rejoindre le réseau ?</summary><p>Oui, nous cherchons des professionnels sérieux en Wallonie (électricité, chauffage, photovoltaïque, rénovation…). Choisissez « Je suis une entreprise » dans le formulaire : on revient vers vous pour échanger sur les conditions.</p></details>
+      <details><summary>Je suis une entreprise : puis-je rejoindre le réseau ?</summary><p>Oui, nous cherchons des professionnels sérieux en Wallonie (électricité, chauffage, photovoltaïque, rénovation…). Proposez votre candidature sur la page <a href="/devenir-partenaire">Devenir partenaire</a> : on revient vers vous pour échanger sur les conditions, fixées par un contrat écrit.</p></details>
       <details><summary>Dans quelles communes intervenez-vous ?</summary><p>Partout en Wallonie, province de Liège comprise. Indiquez votre commune dans le formulaire : on confirme rapidement la faisabilité et le créneau.</p></details>
     </div>
   </div>
@@ -654,11 +670,16 @@ dialog .btn{margin-top:8px}
         <a href="#tarifs">Tarifs</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
       </div>
       <div>
+        <h4>Nos zones</h4>
+        <div class="zones"><!-- ZONES:START (généré par build.js) --><a href="/certificat-peb/liege">PEB à Liège</a><a href="/certificat-peb/seraing">PEB à Seraing</a><a href="/certificat-peb/herstal">PEB à Herstal</a><a href="/certificat-peb/ans">PEB à Ans</a><a href="/certificat-peb/verviers">PEB à Verviers</a><a href="/certificat-peb/huy">PEB à Huy</a><a href="/certificat-peb/namur">PEB à Namur</a><a href="/certificat-peb/charleroi">PEB à Charleroi</a><a href="/certificat-peb/mons">PEB à Mons</a><a href="/certificat-peb/waremme">PEB à Waremme</a><a href="/certificat-peb/spa">PEB à Spa</a><a href="/certificat-peb/flemalle">PEB à Flémalle</a><a href="/certificat-peb/saint-nicolas">PEB à Saint-Nicolas</a><a href="/certificat-peb/chaudfontaine">PEB à Chaudfontaine</a><a href="/certificat-peb/vise">PEB à Visé</a><!-- ZONES:END --></div>
+      </div>
+      <div>
         <h4>Contact</h4>
         <a id="fPhone" class="hide" href="#"></a>
         <a id="fWa" class="hide" href="#" target="_blank" rel="noopener">WhatsApp</a>
         <a id="fMail" class="hide" href="#"></a>
         <a href="#devis">Demander un devis</a>
+        <a href="/devenir-partenaire">Devenir partenaire</a>
         <a href="#" data-open="legal">Mentions légales</a>
         <a href="#" data-open="privacy">Confidentialité</a>
       </div>
@@ -850,6 +871,12 @@ $('#quoteForm').addEventListener('submit', e => {
 
 /* ── Fenêtres légales ──────────────────────────────────── */
 $$('[data-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); $('#dlg-' + a.dataset.open).showModal(); }));
+const DLG_HASH = { '#mentions-legales': 'legal', '#confidentialite': 'privacy' };
+if (DLG_HASH[location.hash]) $('#dlg-' + DLG_HASH[location.hash]).showModal();
+
+/* ── Commune pré-remplie depuis une page locale (?commune=Liège) */
+const qCommune = new URLSearchParams(location.search).get('commune');
+if (qCommune) $('#commune').value = qCommune.slice(0, 80);
 
 /* ── Mouvement : en-tête, entrées, apparitions, schéma « le lien » ── */
 const header = $('.header');

@@ -1,0 +1,125 @@
+{
+  "_note": "Une entrée = une page « Certificat PEB à [commune] ». Textes propres à chaque commune (pas de copier-coller). Générer avec : node build.js",
+  "communes": [
+    {
+      "slug": "liege", "name": "Liège", "cp": "4000", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Liège centre", "Angleur", "Bressoux", "Chênée", "Glain", "Grivegnée", "Jupille-sur-Meuse", "Rocourt", "Wandre"],
+      "proches": ["seraing", "herstal", "ans", "saint-nicolas", "chaudfontaine"],
+      "intro": "Entre les maisons de rangée d'Outremeuse, les appartements du centre et les quartiers plus verts de Rocourt ou de Chênée, chaque bien liégeois a son histoire énergétique.",
+      "bati": "Une grande partie du bâti liégeois date d'avant les premières exigences d'isolation : maisons mitoyennes en briques, façades à rue, toitures rénovées par étapes. Le certificat tient compte de chaque amélioration que vous pouvez prouver : une facture d'isolation de toiture ou de nouveaux châssis peut peser sur le résultat.",
+      "conseil": "Vous vendez un appartement ? Rassemblez aussi les informations de la copropriété (chauffage commun, travaux réalisés) : le certificateur en a besoin pour décrire les équipements partagés."
+    },
+    {
+      "slug": "seraing", "name": "Seraing", "cp": "4100", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Seraing", "Boncelles", "Jemeppe-sur-Meuse", "Ougrée"],
+      "proches": ["liege", "flemalle", "saint-nicolas", "chaudfontaine"],
+      "intro": "Des rues ouvrières de la vallée aux quartiers résidentiels de Boncelles, les biens sérésiens sont très variés.",
+      "bati": "Dans la vallée, on trouve beaucoup de maisons ouvrières mitoyennes héritées de l'époque industrielle, souvent rénovées pièce par pièce. Sur les hauteurs de Boncelles, davantage de villas et de maisons quatre façades, plus récentes mais avec plus de murs exposés. Deux profils de biens, deux façons d'aborder le certificat.",
+      "conseil": "Maison rénovée par étapes ? Classez vos factures par poste (toiture, châssis, chauffage) : ce sont ces preuves qui permettent au certificateur de valoriser chaque travail."
+    },
+    {
+      "slug": "herstal", "name": "Herstal", "cp": "4040", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Herstal", "Liers", "Milmort", "Vottem"],
+      "proches": ["liege", "vise", "ans"],
+      "intro": "À Herstal, Vottem, Milmort ou Liers, de nombreux biens changent de propriétaire ou sont mis en location chaque année.",
+      "bati": "Le centre de Herstal compte beaucoup de maisons mitoyennes anciennes, tandis que Vottem, Milmort et Liers offrent davantage de maisons des années 1960 à 2000, avec jardin. L'époque de construction et les rénovations faites depuis influencent fortement le label.",
+      "conseil": "Vous louez ? Le certificat doit exister avant la publication de l'annonce, et ses indicateurs doivent y figurer. Commandez-le avant de mettre le bien en ligne."
+    },
+    {
+      "slug": "ans", "name": "Ans", "cp": "4430", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Ans", "Alleur", "Loncin", "Xhendremael"],
+      "proches": ["liege", "saint-nicolas", "herstal", "waremme"],
+      "intro": "Aux portes de Liège, Ans, Alleur, Loncin et Xhendremael forment une commune résidentielle où beaucoup achètent leur première maison.",
+      "bati": "Maisons de rangée près du centre d'Ans, quartiers de maisons trois et quatre façades à Alleur et Loncin, caractère plus rural vers Xhendremael. Une maison isolée a plus de murs extérieurs : l'isolation des murs et de la toiture y pèse davantage sur le résultat.",
+      "conseil": "Vous achetez ? Depuis septembre 2026, le certificat comprend une feuille de route de rénovation : elle indique les travaux prioritaires, un bon point de départ pour planifier votre budget."
+    },
+    {
+      "slug": "verviers", "name": "Verviers", "cp": "4800", "province": "Liège", "arrondissement": "Verviers",
+      "sections": ["Verviers", "Ensival", "Heusy", "Lambermont", "Petit-Rechain", "Stembert"],
+      "proches": ["spa"],
+      "intro": "Verviers, Heusy, Stembert, Ensival, Lambermont, Petit-Rechain : l'ancienne cité lainière a un patrimoine bâti remarquable.",
+      "bati": "Maisons de maître, anciennes demeures de fabricants, rangées de maisons ouvrières à flanc de colline : le bâti verviétois est souvent ancien, avec de hauts plafonds et de grands volumes. Ces biens ont du caractère, et leur certificat dépend beaucoup des rénovations déjà réalisées.",
+      "conseil": "Grande maison divisée en appartements ? Chaque logement vendu ou loué a besoin de son propre certificat. Indiquez le nombre de logements dans votre demande."
+    },
+    {
+      "slug": "huy", "name": "Huy", "cp": "4500", "province": "Liège", "arrondissement": "Huy",
+      "sections": ["Huy", "Ben-Ahin", "Tihange"],
+      "proches": ["waremme", "namur", "flemalle"],
+      "intro": "Entre Meuse et collines, Huy, Ben-Ahin et Tihange réunissent des biens de toutes les époques.",
+      "bati": "Le centre historique compte de nombreuses maisons anciennes et des immeubles à appartements, parfois au-dessus d'un commerce. Sur les hauteurs et à Ben-Ahin, on trouve davantage de maisons individuelles.",
+      "conseil": "Maison ancienne du centre ? Retrouvez les preuves des travaux passés (factures, photos) : sans preuve, le certificateur doit appliquer des valeurs par défaut, en général moins favorables."
+    },
+    {
+      "slug": "namur", "name": "Namur", "cp": "5000", "province": "Namur", "arrondissement": "Namur",
+      "sections": ["Namur centre", "Salzinnes", "Jambes", "Saint-Servais", "Bouge", "Wépion", "Malonne", "Erpent", "Flawinne", "Vedrin"],
+      "proches": ["huy", "charleroi"],
+      "intro": "Capitale de la Wallonie, Namur est une ville étendue : Jambes, Saint-Servais, Bouge, Wépion, Malonne… autant de quartiers aux visages différents.",
+      "bati": "Immeubles et maisons anciennes dans le centre et à Salzinnes, quartiers résidentiels à Jambes et à Bouge, villas sur les hauteurs de Wépion ou de Malonne : à Namur, un certificat peut concerner aussi bien un appartement en ville qu'une grande maison quatre façades.",
+      "conseil": "Beaucoup de logements namurois sont mis en location. Un certificat est valable 10 ans : vérifiez sa date avant de remettre le bien sur le marché."
+    },
+    {
+      "slug": "charleroi", "name": "Charleroi", "cp": "6000", "province": "Hainaut", "arrondissement": "Charleroi",
+      "sections": ["Charleroi", "Couillet", "Dampremy", "Gilly", "Gosselies", "Goutroux", "Jumet", "Lodelinsart", "Marchienne-au-Pont", "Marcinelle", "Monceau-sur-Sambre", "Montignies-sur-Sambre", "Mont-sur-Marchienne", "Ransart", "Roux"],
+      "proches": ["namur", "mons"],
+      "intro": "Charleroi et ses quinze anciennes communes, de Marcinelle à Gosselies, forment l'une des plus grandes villes de Wallonie.",
+      "bati": "Le Pays de Charleroi compte de très nombreuses maisons ouvrières mitoyennes, héritage du charbon et de l'industrie, à côté de quartiers plus récents. Une maison de rangée partage ses murs avec ses voisines, ce qui limite les pertes de chaleur. La toiture et les fenêtres font alors souvent la différence.",
+      "conseil": "Plusieurs maisons à certifier (investissement, succession) ? Regroupez-les dans une seule demande : on organise les visites ensemble."
+    },
+    {
+      "slug": "mons", "name": "Mons", "cp": "7000", "province": "Hainaut", "arrondissement": "Mons",
+      "sections": ["Mons centre", "Jemappes", "Cuesmes", "Ghlin", "Nimy", "Havré", "Obourg", "Saint-Symphorien", "Hyon", "Flénu"],
+      "proches": ["charleroi"],
+      "intro": "Mons, Jemappes, Cuesmes, Ghlin, Nimy, Havré… la cité du Doudou s'étend bien au-delà de son centre historique.",
+      "bati": "Le centre concentre des maisons anciennes et des immeubles à appartements, souvent loués à des étudiants ou à de jeunes actifs. Les anciennes communes offrent plutôt des maisons de rangée et des quartiers résidentiels plus récents.",
+      "conseil": "Vous louez à des étudiants ? Les règles dépendent de la configuration du bien (logement entier, chambres…). Décrivez-le dans votre demande : on vérifie avec le certificateur ce qui s'applique."
+    },
+    {
+      "slug": "waremme", "name": "Waremme", "cp": "4300", "province": "Liège", "arrondissement": "Waremme",
+      "sections": ["Waremme", "Bettincourt", "Bleret", "Bovenistier", "Grand-Axhe", "Lantremange", "Oleye"],
+      "proches": ["ans", "huy"],
+      "intro": "Au cœur de la Hesbaye, Waremme et ses villages (Bleret, Oleye, Bettincourt, Grand-Axhe…) mêlent vie de petite ville et campagne.",
+      "bati": "Fermettes rénovées, maisons de village, lotissements plus récents : en Hesbaye, beaucoup de biens sont des maisons quatre façades, plus exposées au vent et au froid. Le chauffage et l'isolation y jouent un grand rôle dans le résultat.",
+      "conseil": "Chauffage au mazout, au pellet ou pompe à chaleur ? Gardez la fiche technique et la facture de l'installation : elles aident le certificateur à décrire précisément votre système."
+    },
+    {
+      "slug": "spa", "name": "Spa", "cp": "4900", "province": "Liège", "arrondissement": "Verviers",
+      "sections": ["Spa et ses hameaux"],
+      "proches": ["verviers"],
+      "intro": "Ville d'eaux aux portes des Fagnes, Spa réunit maisons de maître, villas, appartements et secondes résidences.",
+      "bati": "Spa a conservé un riche patrimoine du 19e siècle : villas, anciens hôtels, maisons de maître. On y trouve aussi de nombreuses secondes résidences. Ces biens anciens, souvent spacieux, demandent une visite attentive.",
+      "conseil": "Location de vacances ou location classique ? Avant de mettre votre bien en location, demandez-nous si un certificat est requis dans votre situation."
+    },
+    {
+      "slug": "flemalle", "name": "Flémalle", "cp": "4400", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Flémalle-Grande", "Flémalle-Haute", "Ivoz-Ramet", "Mons-lez-Liège", "Awirs", "Chokier", "Gleixhe"],
+      "proches": ["seraing", "saint-nicolas", "huy"],
+      "intro": "Flémalle-Grande, Flémalle-Haute, Ivoz-Ramet, Mons-lez-Liège, Awirs, Chokier, Gleixhe : une commune entre Meuse et plateau.",
+      "bati": "Maisons ouvrières au bord de la Meuse, quartiers résidentiels sur les hauteurs, maisons de village : le bâti flémallois est varié. Un bien rénové récemment peut gagner en label si les travaux sont bien documentés.",
+      "conseil": "Vous avez remplacé votre chaudière ? Conservez la facture et la fiche technique : un équipement récent et performant peut améliorer le résultat."
+    },
+    {
+      "slug": "saint-nicolas", "name": "Saint-Nicolas", "cp": "4420", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Saint-Nicolas", "Montegnée", "Tilleur"],
+      "proches": ["liege", "ans", "seraing", "flemalle"],
+      "intro": "Saint-Nicolas, Montegnée et Tilleur forment une commune dense, juste à côté de Liège.",
+      "bati": "On y trouve surtout des maisons mitoyennes et de petits immeubles, souvent construits avant les premières exigences d'isolation. Leurs murs partagés limitent les pertes, mais la toiture et les fenêtres font souvent la différence.",
+      "conseil": "Vous préparez une vente ? Commandez le certificat dès que la décision est prise : le bien ne peut pas être annoncé sans lui."
+    },
+    {
+      "slug": "chaudfontaine", "name": "Chaudfontaine", "cp": "4050", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Chaudfontaine", "Beaufays", "Embourg", "Vaux-sous-Chèvremont"],
+      "proches": ["liege", "seraing"],
+      "intro": "Chaudfontaine, Embourg, Beaufays, Vaux-sous-Chèvremont : une commune verte et résidentielle au sud-est de Liège.",
+      "bati": "Villas, maisons quatre façades et quartiers résidentiels sur les coteaux : de grands biens, souvent avec jardin, où l'isolation des murs et de la toiture compte beaucoup.",
+      "conseil": "Plusieurs chauffages dans la maison (poêle, pompe à chaleur, chaudière) ? Listez-les dans votre demande pour que la visite soit complète."
+    },
+    {
+      "slug": "vise", "name": "Visé", "cp": "4600", "province": "Liège", "arrondissement": "Liège",
+      "sections": ["Visé", "Argenteau", "Cheratte", "Lanaye", "Lixhe", "Richelle"],
+      "proches": ["herstal", "liege"],
+      "intro": "Visé, Argenteau, Cheratte, Lanaye, Lixhe, Richelle : la Basse-Meuse, à deux pas de la frontière néerlandaise.",
+      "bati": "Centre-ville ancien, anciennes cités ouvrières de Cheratte, villages de Lanaye et de Richelle : la commune mélange maisons de rangée, maisons de village et constructions plus récentes.",
+      "conseil": "Vous avez des panneaux photovoltaïques ? Ils sont pris en compte dans le certificat : gardez la fiche technique et la facture d'installation."
+    }
+  ]
+}
