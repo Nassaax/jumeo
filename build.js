@@ -151,7 +151,7 @@ footer .logo{color:#fff;margin-bottom:14px}
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
 function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
-  const nav = [['/#tarifs', 'Tarifs'], ['/#transparence', 'Qui fait quoi'], ['/#pros', 'Agences & notaires'], ['/certificat-peb', 'Nos zones'], ['/devenir-partenaire', 'Devenir partenaire']]
+  const nav = [['/#tarifs', 'Tarifs'], ['/guides', 'Guides'], ['/#pros', 'Agences & notaires'], ['/certificat-peb', 'Nos zones'], ['/devenir-partenaire', 'Devenir partenaire']]
     .map(([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`).join('\n      ');
   return `<!DOCTYPE html>
 <html lang="fr-BE">
@@ -199,7 +199,7 @@ ${body}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('#fff')}</svg><b>${esc(CONFIG.brand)}</b></div>
         <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/devenir-partenaire">Devenir partenaire</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
@@ -474,10 +474,16 @@ $('#partnerForm').addEventListener('submit', e => {
   out.unshift(sim.url);
 }
 
+/* ── Guides (articles) ─────────────────────────────────── */
+const G = require('./tools/guides-part.js')({ esc, btn, CONFIG, SITE, page, fs, path, ROOT });
+out.unshift(...G.urls);
+
 /* ── Liste des zones dans le pied de page de l'accueil ─── */
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
+if (!/<!-- GUIDES:START[\s\S]*?<!-- GUIDES:END -->/.test(indexHtml)) throw new Error('Marqueurs GUIDES absents de index.html');
+indexHtml = indexHtml.replace(/<!-- GUIDES:START[\s\S]*?<!-- GUIDES:END -->/, `<!-- GUIDES:START (généré par build.js) -->${G.homeBlock}<!-- GUIDES:END -->`);
 fs.writeFileSync(indexPath, indexHtml);
 
 /* ── Sitemap ───────────────────────────────────────────── */
@@ -487,4 +493,4 @@ fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
   urls.map(u => `  <url>\n    <loc>${SITE}${u === '/' ? '/' : u}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`).join('\n') +
   '\n</urlset>\n');
 
-console.log(`OK : ${communes.length} pages communes, page « Nos zones », page partenaire, simulateur, sitemap (${urls.length} adresses).`);
+console.log(`OK : ${communes.length} pages communes, page « Nos zones », page partenaire, simulateur, ${G.urls.length - 1} guides, sitemap (${urls.length} adresses).`);

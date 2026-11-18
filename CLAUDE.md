@@ -60,3 +60,7 @@
 - 7 questions → fourchette de label A–G (±20 %), jamais de chiffre en kWh affiché. Avertissement « ce n'est pas un certificat » visible avant et avec le résultat. Aucune donnée enregistrée.
 - Le bouton du résultat ouvre `/?commune=…&sim=C-D#devis` : l'accueil pré-remplit la commune, le service « Certificat PEB » et le message « Estimation du simulateur : entre C et D (indicatif) ».
 - Les coefficients sont des ordres de grandeur, pas une méthode officielle : ne jamais présenter le résultat comme un label, ni promettre un gain de label.
+
+## Guides (articles)
+- Articles dans `contenu/guides.js` (titre, `seo` facultatif ≤ 60 car., date, étiquette, chapô, corps HTML, sources). Rendu par `tools/guides-part.js` via `node build.js` : `/guides/<slug>`, page `/guides`, 3 derniers articles sur l'accueil (marqueurs `GUIDES:START/END`).
+- Chaque affirmation PEB/légale doit être ✅ dans `data/regles-peb.md` et sourcée en bas d'article. Signature actuelle : « l'équipe Jumeo » (en attente des infos sur Nasser et son frère).

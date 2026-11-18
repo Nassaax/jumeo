@@ -6,7 +6,8 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 
 const files = ['simulateur-peb.html', 'devenir-partenaire.html', 'certificat-peb/index.html',
-  ...fs.readdirSync(path.join(root, 'certificat-peb')).filter(f => f !== 'index.html').map(f => 'certificat-peb/' + f)];
+  ...fs.readdirSync(path.join(root, 'certificat-peb')).filter(f => f !== 'index.html').map(f => 'certificat-peb/' + f),
+  ...fs.readdirSync(path.join(root, 'guides')).map(f => 'guides/' + f)];
 
 (async () => {
   const b = await chromium.launch();
