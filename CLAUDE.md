@@ -37,6 +37,6 @@
 ## Dépôt et mise en ligne
 - Le dépôt GitHub `Nassaax/jumeo` est **public** : rien de confidentiel dedans. Les coordonnées privées des partenaires, l'état des contrats, la stratégie et la liste « à compléter » sont dans `prive/` (ignoré par git, à garder en local). Si le dépôt passe en privé, on pourra les y remettre.
 - `.vercelignore` empêche la mise en ligne de `data/`, `tools/`, `prive/` et des fichiers `.md`.
-- **Mode test** : `vercel.json` envoie `X-Robots-Tag: noindex` tant que les infos bloquantes (coordonnées Jumeo, identité légale) manquent. À retirer le jour du lancement officiel, avec la mise à jour de l'URL dans `sitemap.xml`, `robots.txt` et `og:image`.
+- **Mode test** : `vercel.json` envoie `X-Robots-Tag: noindex` tant que les infos bloquantes (coordonnées Jumeo, identité légale) manquent. À retirer le jour du lancement officiel, avec le remplacement de l'adresse provisoire `https://jumeo.vercel.app` par le vrai domaine dans `sitemap.xml`, `robots.txt` et les balises `canonical`, `og:url` et `og:image` de `index.html`.
 - Tests : `node tools/test-site.js` (variable `BASE` = URL ou `file://…/index.html`). Images : `node tools/make-images.js`.
 - Contrôle électrique : la ligne « réalisé par le partenaire » ne s'affiche que si `controleElec.organisme` et `controleElec.numero` sont remplis dans `CONFIG`.
