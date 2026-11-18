@@ -65,6 +65,14 @@ CSS = """<style id="formations">
 .fm-teaser li{display:flex;align-items:center;gap:10px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);font-weight:600;font-size:14.5px}
 .fm-teaser li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent)}
 .nav a{white-space:nowrap}
+.app-title{display:none!important}
+.tile-fm span{justify-content:flex-start;min-height:48px;background:var(--ink);color:#fff;font-weight:600;box-shadow:none}
+.tile-fm .ico{color:var(--accent)}
+.tile-fm b{white-space:nowrap}
+.tile-fm small{margin-left:auto;text-align:right;font:500 12.5px/1.3 'Inter',sans-serif;color:rgba(255,255,255,.75)}
+.tile-fm:hover span{box-shadow:0 0 0 2px var(--accent)}
+.tile-fm:focus-visible{outline:none}.tile-fm:focus-visible span{outline:3px solid var(--accent);outline-offset:2px}
+.tile-fm .ico.cap{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nav-new{display:inline-block;width:7px;height:7px;margin-left:6px;border-radius:50%;background:var(--accent);vertical-align:3px}
 @media(max-width:1400px){.hdr-call span{display:none}.hdr-call{padding:0 11px}}
 @media(max-width:760px){.hdr-call span{display:inline}}
@@ -217,7 +225,12 @@ def build(out, demo_url, wa, mail):
             t = t.replace('<style id="demo-lux">', CSS + '\n<style id="demo-lux">', 1)
             if f == 'index.html' and dirpath == out:
                 t = t.replace('<!-- ═════════ SIMULATEUR (encart) ═════════ -->', TEASER + '<!-- ═════════ SIMULATEUR (encart) ═════════ -->', 1)
-                assert 'fm-teaser' in t
+                tile = ('<label class="tile tile-wide"><input type="radio" name="service" value="autre" /><span><svg class="ico"><use href="#i-dots"/></svg>Autre projet immobilier</span></label>')
+                assert tile in t
+                t = t.replace(tile, tile + '\n            <a class="tile tile-wide tile-fm" href="/formations">' + '<span>' + CAP.replace('<svg ', '<svg class="ico cap" ') + '<b>Formations</b><small>PEB · électricité · solaire · chauffage →</small></span></a>', 1)
+                assert 'fm-teaser' in t and 'tile-fm' in t
+            if f == 'formations.html' and dirpath == out:
+                t = t.replace('<a class="tab" href="/formations">', '<a class="tab" href="/formations" aria-current="page">', 1)
             for need in ('href="/formations">Formations<span', '>Formations</a>', 'id="formations"'):
                 assert need in t, (p, need)
             open(p, 'w', encoding='utf-8').write(t)

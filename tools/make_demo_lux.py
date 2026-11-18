@@ -168,9 +168,9 @@ REGEX = [
     (r"jumeo-intro", "lux-intro"),
     (r"contact@jumeo\.be", "contact@exemple.be"),
     (r"Jumeo", BRAND),
-    # Appeler : en-tête (après le menu), onglet mobile à la place de « Simus », WhatsApp dans le panneau Menu
+    # Appeler : en-tête (après le menu) ; onglet mobile « Formations » à la place de « Simus » ; WhatsApp dans le panneau Menu
     (r'(<nav class="nav[^"]*"[\s\S]*?</nav>)', r'\1\n    <a class="hdr-call" href="' + TEL_LINK + '" aria-label="Appeler ' + TEL_DISPLAY + '">' + PHONE_SVG.replace('\\', '\\\\') + '<span>' + TEL_DISPLAY + '</span></a>'),
-    (r'<a class="tab" href="/guides#simulateurs"[^>]*>[\s\S]*?<span>Simus</span></a>', '<a class="tab" href="' + TEL_LINK + '">' + PHONE_SVG.replace('aria-hidden="true"', 'aria-hidden="true"') + '<span>Appeler</span></a>'),
+    (r'<a class="tab" href="/guides#simulateurs"[^>]*>[\s\S]*?<span>Simus</span></a>', '<a class="tab" href="/formations"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 9v6"/></svg><span>Formations</span></a>'),
     (r'<a id="mWa" class="hide" href="#"', '<a id="mWa" class="" href="https://wa.me/' + WA + '"'),
     # le style de la démo, juste avant </head>
     (r"</head>", DEMO_CSS + "\n</head>"),
