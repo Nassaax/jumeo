@@ -54,3 +54,9 @@
 - Les pages communes renvoient vers `/?commune=<Nom>#devis` (commune pré-remplie). Les liens `/#mentions-legales` et `/#confidentialite` ouvrent les fenêtres légales de l'accueil.
 - Page partenaire : formulaire candidature (métier, zone, agréments, RC pro, BCE, site) → WhatsApp / e-mail / aperçu, comme le formulaire client. Aucune commission affichée.
 - Au lancement sur jumeo.be : changer `SITE` en haut de `build.js`, puis relancer.
+
+## Simulateur PEB (/simulateur-peb)
+- Code : `tools/simulateur-part.js` (questions, coefficients, conseils), assemblé par `build.js`. Test : `node tools/test-simulateur.js` (5 profils de biens).
+- 7 questions → fourchette de label A–G (±20 %), jamais de chiffre en kWh affiché. Avertissement « ce n'est pas un certificat » visible avant et avec le résultat. Aucune donnée enregistrée.
+- Le bouton du résultat ouvre `/?commune=…&sim=C-D#devis` : l'accueil pré-remplit la commune, le service « Certificat PEB » et le message « Estimation du simulateur : entre C et D (indicatif) ».
+- Les coefficients sont des ordres de grandeur, pas une méthode officielle : ne jamais présenter le résultat comme un label, ni promettre un gain de label.

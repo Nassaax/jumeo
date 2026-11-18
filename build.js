@@ -99,6 +99,8 @@ h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em;margin-bottom:16px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:18px}
 .chips li{font-size:14px;padding:7px 14px;border-radius:999px;background:var(--card);box-shadow:0 0 0 1px var(--line)}
 .chips a{text-decoration:none}.chips a:hover{text-decoration:underline}
+.text-link{display:inline-flex;gap:6px;align-items:center;font-size:15px;font-weight:600;text-decoration:none;margin-top:22px}
+.text-link span{color:var(--accent-d);transition:transform .2s}.text-link:hover span{transform:translateX(3px)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;counter-reset:s;margin-top:32px}
 @media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}@media(max-width:520px){.steps{grid-template-columns:1fr}}
 .steps li{counter-increment:s;border-top:1px solid var(--line);padding-top:18px;font-size:15px;color:var(--muted)}
@@ -148,7 +150,7 @@ footer .logo{color:#fff;margin-bottom:14px}
 
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
-function page({ title, description, canonical, body, ld = [], current = '', script = '' }) {
+function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
   const nav = [['/#tarifs', 'Tarifs'], ['/#transparence', 'Qui fait quoi'], ['/#pros', 'Agences & notaires'], ['/certificat-peb', 'Nos zones'], ['/devenir-partenaire', 'Devenir partenaire']]
     .map(([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`).join('\n      ');
   return `<!DOCTYPE html>
@@ -174,7 +176,7 @@ function page({ title, description, canonical, body, ld = [], current = '', scri
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
-<style>${CSS}</style>
+<style>${CSS}${css}</style>
 </head>
 <body>
 <!-- Page générée par build.js : ne pas modifier à la main -->
@@ -197,7 +199,7 @@ ${body}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('#fff')}</svg><b>${esc(CONFIG.brand)}</b></div>
         <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/devenir-partenaire">Devenir partenaire</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
@@ -271,6 +273,7 @@ for (const c of communes) {
       <p>${esc(c.bati)}</p>
       <p>Le certificat est obligatoire pour vendre ou louer : il doit exister avant la publication de l'annonce, et il reste valable 10 ans.</p>
       ${c.sections.length > 1 ? `<h3 style="font-size:17px;margin-top:26px">Sections couvertes</h3><ul class="chips">${c.sections.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
+      <a class="text-link" href="/simulateur-peb">Estimer le label de mon bien en 1 minute <span>→</span></a>
     </div>
     <aside class="tip"><b>Conseil ${esc(c.name)}</b><p>${esc(c.conseil)}</p></aside>
   </div>
@@ -461,6 +464,16 @@ $('#partnerForm').addEventListener('submit', e => {
   out.unshift('/devenir-partenaire');
 }
 
+/* ── Page « Simulateur PEB » ───────────────────────────── */
+{
+  const sim = require('./tools/simulateur-part.js')({ esc, btn, CONFIG });
+  fs.writeFileSync(path.join(ROOT, sim.file), page({
+    title: sim.title, description: sim.description, canonical: sim.url, body: sim.body, css: sim.css, script: sim.script,
+    ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Simulateur PEB', item: SITE + sim.url }] }]
+  }));
+  out.unshift(sim.url);
+}
+
 /* ── Liste des zones dans le pied de page de l'accueil ─── */
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
@@ -474,4 +487,4 @@ fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
   urls.map(u => `  <url>\n    <loc>${SITE}${u === '/' ? '/' : u}</loc>\n    <lastmod>${TODAY}</lastmod>\n  </url>`).join('\n') +
   '\n</urlset>\n');
 
-console.log(`OK : ${communes.length} pages communes, page « Nos zones », page partenaire, sitemap (${urls.length} adresses).`);
+console.log(`OK : ${communes.length} pages communes, page « Nos zones », page partenaire, simulateur, sitemap (${urls.length} adresses).`);

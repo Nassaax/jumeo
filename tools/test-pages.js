@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
 
-const files = ['devenir-partenaire.html', 'certificat-peb/index.html',
+const files = ['simulateur-peb.html', 'devenir-partenaire.html', 'certificat-peb/index.html',
   ...fs.readdirSync(path.join(root, 'certificat-peb')).filter(f => f !== 'index.html').map(f => 'certificat-peb/' + f)];
 
 (async () => {

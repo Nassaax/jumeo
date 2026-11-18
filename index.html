@@ -118,6 +118,9 @@ img,svg{display:block;max-width:100%}
 .promise{list-style:none;display:flex;flex-wrap:wrap;gap:12px 26px;font-size:14px;color:rgba(255,255,255,.84)}
 .promise li{display:flex;align-items:center;gap:8px}
 .promise svg{width:16px;height:16px;color:var(--accent);stroke-width:3}
+.hero-sim{display:inline-flex;gap:8px;margin-top:26px;font-size:15px;font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:3px}
+.hero-sim span{color:var(--accent);transition:transform .2s var(--e-std)}
+.hero-sim:hover{border-color:#fff}.hero-sim:hover span{transform:translateX(3px)}
 
 /* entrées du hero (état final visible si l'animation ne tourne pas) */
 .appear{animation:in-soft 1s var(--e-out) var(--d,.08s) both}
@@ -185,6 +188,14 @@ img,svg{display:block;max-width:100%}
 .svc .s a,.text-link{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;gap:6px;align-items:center;margin-top:6px}
 .svc .s a span,.text-link span{color:var(--accent-d);transition:transform .2s var(--e-std)}
 .svc .s a:hover span,.text-link:hover span{transform:translateX(3px)}
+
+/* ═════════ SIMULATEUR (encart) ═════════ */
+.sim-teaser{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:var(--card);border-radius:var(--r-block);padding:44px;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:800px){.sim-teaser{grid-template-columns:1fr;padding:30px 22px;gap:28px}}
+.sim-teaser h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em;margin-bottom:12px}
+.sim-teaser p{color:var(--muted);font-size:16.5px;margin-bottom:22px;max-width:32rem}
+.sim-mini{display:grid;gap:6px}
+.sim-mini span{width:var(--w);height:30px;border-radius:6px 15px 15px 6px;color:#fff;font:700 14px 'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;padding-left:12px}
 
 /* ═════════ ÉTAPES ═════════ */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s;list-style:none}
@@ -376,6 +387,7 @@ dialog .btn{margin-top:8px}
         <li><svg class="ico"><use href="#i-check"/></svg>Devis gratuit, sans engagement</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Toute la Wallonie</li>
       </ul>
+      <a class="hero-sim appear" style="--d:.9s" href="/simulateur-peb">Pas encore prêt ? Estimez votre label en 1 minute <span>→</span></a>
     </div>
 
     <!-- FORMULAIRE -->
@@ -480,6 +492,23 @@ dialog .btn{margin-top:8px}
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité &amp; plan électrique</h3><p>Électricité générale, plan électrique, étude de projet énergétique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-home"/></svg></span><h3>Rénovation &amp; projet immo</h3><p>Décrivez votre projet : on vous met en relation avec le bon professionnel.</p><a href="#devis" data-pick="reno">Parler de mon projet <span>→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ SIMULATEUR (encart) ═════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sim-teaser reveal">
+      <div>
+        <span class="eyebrow">Simulateur PEB</span>
+        <h2>Quel label pour votre bien ?</h2>
+        <p>Sept questions, une minute, et une première idée de la fourchette de label de votre logement. Estimation indicative : ce n'est pas un certificat.</p>
+        <a class="btn btn-ghost" href="/simulateur-peb">Estimer mon label</a>
+      </div>
+      <div class="sim-mini" aria-hidden="true">
+        <span style="--w:46%;background:#1a7f45">A</span><span style="--w:56%;background:#3f8f3a">B</span><span style="--w:66%;background:#6c8f22">C</span><span style="--w:76%;background:#a07d00">D</span><span style="--w:86%;background:#c0631a">E</span><span style="--w:94%;background:#cf4a2a">F</span><span style="--w:100%;background:#b8261e">G</span>
+      </div>
     </div>
   </div>
 </section>
@@ -667,7 +696,7 @@ dialog .btn{margin-top:8px}
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="#tarifs">Tarifs</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
+        <a href="#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
       </div>
       <div>
         <h4>Nos zones</h4>
@@ -877,6 +906,11 @@ if (DLG_HASH[location.hash]) $('#dlg-' + DLG_HASH[location.hash]).showModal();
 /* ── Commune pré-remplie depuis une page locale (?commune=Liège) */
 const qCommune = new URLSearchParams(location.search).get('commune');
 if (qCommune) $('#commune').value = qCommune.slice(0, 80);
+const qSim = new URLSearchParams(location.search).get('sim');
+if (qSim && /^[A-G](-[A-G])?$/.test(qSim)) {
+  sel.value = 'peb'; updatePrice();
+  $('#msg').value = 'Estimation du simulateur : ' + (qSim.length > 1 ? 'entre ' + qSim[0] + ' et ' + qSim[2] : qSim) + ' (indicatif).';
+}
 
 /* ── Mouvement : en-tête, entrées, apparitions, schéma « le lien » ── */
 const header = $('.header');

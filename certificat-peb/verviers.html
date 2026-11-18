@@ -89,6 +89,8 @@ h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em;margin-bottom:16px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:18px}
 .chips li{font-size:14px;padding:7px 14px;border-radius:999px;background:var(--card);box-shadow:0 0 0 1px var(--line)}
 .chips a{text-decoration:none}.chips a:hover{text-decoration:underline}
+.text-link{display:inline-flex;gap:6px;align-items:center;font-size:15px;font-weight:600;text-decoration:none;margin-top:22px}
+.text-link span{color:var(--accent-d);transition:transform .2s}.text-link:hover span{transform:translateX(3px)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;counter-reset:s;margin-top:32px}
 @media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}@media(max-width:520px){.steps{grid-template-columns:1fr}}
 .steps li{counter-increment:s;border-top:1px solid var(--line);padding-top:18px;font-size:15px;color:var(--muted)}
@@ -186,6 +188,7 @@ footer .logo{color:#fff;margin-bottom:14px}
       <p>Maisons de maître, anciennes demeures de fabricants, rangées de maisons ouvrières à flanc de colline : le bâti verviétois est souvent ancien, avec de hauts plafonds et de grands volumes. Ces biens ont du caractère, et leur certificat dépend beaucoup des rénovations déjà réalisées.</p>
       <p>Le certificat est obligatoire pour vendre ou louer : il doit exister avant la publication de l'annonce, et il reste valable 10 ans.</p>
       <h3 style="font-size:17px;margin-top:26px">Sections couvertes</h3><ul class="chips"><li>Verviers</li><li>Ensival</li><li>Heusy</li><li>Lambermont</li><li>Petit-Rechain</li><li>Stembert</li></ul>
+      <a class="text-link" href="/simulateur-peb">Estimer le label de mon bien en 1 minute <span>→</span></a>
     </div>
     <aside class="tip"><b>Conseil Verviers</b><p>Grande maison divisée en appartements ? Chaque logement vendu ou loué a besoin de son propre certificat. Indiquez le nombre de logements dans votre demande.</p></aside>
   </div>
@@ -233,7 +236,7 @@ footer .logo{color:#fff;margin-bottom:14px}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/></svg><b>Jumeo</b></div>
         <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/devenir-partenaire">Devenir partenaire</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones"><a href="/certificat-peb/liege">PEB à Liège</a><a href="/certificat-peb/seraing">PEB à Seraing</a><a href="/certificat-peb/herstal">PEB à Herstal</a><a href="/certificat-peb/ans">PEB à Ans</a><a href="/certificat-peb/verviers">PEB à Verviers</a><a href="/certificat-peb/huy">PEB à Huy</a><a href="/certificat-peb/namur">PEB à Namur</a><a href="/certificat-peb/charleroi">PEB à Charleroi</a><a href="/certificat-peb/mons">PEB à Mons</a><a href="/certificat-peb/waremme">PEB à Waremme</a><a href="/certificat-peb/spa">PEB à Spa</a><a href="/certificat-peb/flemalle">PEB à Flémalle</a><a href="/certificat-peb/saint-nicolas">PEB à Saint-Nicolas</a><a href="/certificat-peb/chaudfontaine">PEB à Chaudfontaine</a><a href="/certificat-peb/vise">PEB à Visé</a></div></div>
     </div>
