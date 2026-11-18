@@ -142,22 +142,33 @@ footer a{text-decoration:none;display:block;margin-bottom:8px}footer a:hover{col
 footer .logo{color:#fff;margin-bottom:14px}
 .zones{columns:2;column-gap:18px}
 .legal{border-top:1px solid var(--wline);padding-top:22px;font-size:12.5px;line-height:1.7;color:var(--w60)}
-.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(247,245,240,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 14px max(10px,env(safe-area-inset-bottom));display:none}
-.mbar .btn{flex:1;justify-content:space-between}
-@media(max-width:760px){.mbar{display:flex}}@media(min-width:761px){body{padding-bottom:0}}
+@media(min-width:761px){body{padding-bottom:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 `;
 
+const APP = require('./tools/app-part.js');
+
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
+// Onglet actif et titre de la barre du haut (mobile), déduits de l'adresse de la page.
+function appInfo(canonical, title) {
+  const tab = canonical.startsWith('/guides') ? 'guides' : canonical.startsWith('/simulateur') ? 'simus' : '';
+  const T = { '/certificat-peb': 'Nos zones', '/devenir-partenaire': 'Partenaires', '/simulateur-peb': 'Simulateur PEB', '/simulateur-recharge': 'Simulateur recharge', '/notre-histoire': 'Notre histoire', '/guides': 'Guides & simulateurs' };
+  let appTitle = T[canonical];
+  if (!appTitle && canonical.startsWith('/certificat-peb/')) appTitle = title.split(' :')[0].replace(/^Certificat /, '');
+  if (!appTitle && canonical.startsWith('/guides/')) appTitle = 'Guide';
+  return { tab, appTitle: appTitle || '' };
+}
+
 function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
-  const nav = [['/#tarifs', 'Tarifs'], ['/guides', 'Guides'], ['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels'], ['/devenir-partenaire', 'Devenir partenaire']]
+  const app = appInfo(canonical, title);
+  const nav = [['/#tarifs', 'Tarifs'], ['/guides', 'Guides<span class="nav-slash" aria-hidden="true">/</span>Simulateurs'], ['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels'], ['/devenir-partenaire', 'Devenir partenaire']]
     .map(([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`).join('\n      ');
   return `<!DOCTYPE html>
 <html lang="fr-BE">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}" />
 <meta name="theme-color" content="#0b2441" />
@@ -172,17 +183,19 @@ function page({ title, description, canonical, body, ld = [], current = '', scri
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+${APP.head}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
-<style>${CSS}${css}</style>
+<style>${CSS}${css}${APP.css}</style>
 </head>
 <body>
 <!-- Page générée par build.js : ne pas modifier à la main -->
 <header class="header">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Jumeo, accueil"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('currentColor').replace(/stroke="currentColor"/g, 'class="ring-a"')}</svg><b>${esc(CONFIG.brand)}</b></a>
+    ${app.appTitle ? `<span class="app-title">${esc(app.appTitle)}</span>` : ''}
     <nav class="nav" aria-label="Navigation principale">
       ${nav}
     </nav>
@@ -206,12 +219,13 @@ ${body}
     <div class="legal">${esc(CONFIG.brand)} est un apporteur d'affaires indépendant et n'est pas certificateur PEB. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne. Les prestations sont réalisées par nos partenaires. Prix indicatifs ${esc(VAT)}, devis confirmé avant intervention.</div>
   </div>
 </footer>
-<div class="mbar">${btn('/#devis', 'Devis gratuit')}</div>
+${APP.html({ active: app.tab, brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })}
 <script>
 'use strict';
 const header = document.querySelector('.header');
 const onScroll = () => header.classList.toggle('scrolled', scrollY > 40);
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
+${APP.js}
 ${script}
 </script>
 </body>
@@ -503,6 +517,16 @@ out.unshift(...G.urls);
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
+for (const [k, v] of [['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
+  const re = new RegExp(`<!-- ${k}:START[\\s\\S]*?<!-- ${k}:END -->`);
+  if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
+  indexHtml = indexHtml.replace(re, `<!-- ${k}:START (généré par build.js) -->\n${v}\n<!-- ${k}:END -->`);
+}
+for (const [k, v] of [['APP:CSS', APP.css], ['APP:JS', APP.js]]) {
+  const re = new RegExp(`/\\* ${k}:START[\\s\\S]*?/\\* ${k}:END \\*/`);
+  if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
+  indexHtml = indexHtml.replace(re, () => `/* ${k}:START (généré par build.js) */\n${v}\n/* ${k}:END */`);
+}
 if (!/<!-- GUIDES:START[\s\S]*?<!-- GUIDES:END -->/.test(indexHtml)) throw new Error('Marqueurs GUIDES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- GUIDES:START[\s\S]*?<!-- GUIDES:END -->/, `<!-- GUIDES:START (généré par build.js) -->${G.homeBlock}<!-- GUIDES:END -->`);
 fs.writeFileSync(indexPath, indexHtml);

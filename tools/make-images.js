@@ -32,3 +32,20 @@ const path = require('path');
   await b.close();
   console.log('OK : logos PNG dans brand/');
 })();
+
+// Icônes de l'application (écran d'accueil du téléphone) : icons/icon-192, icon-512, maskable-512.
+(async () => {
+  const fs = require('fs');
+  const dir = path.join(__dirname, '..', 'icons');
+  fs.mkdirSync(dir, { recursive: true });
+  const rings = (a, b) => `<circle cx="23" cy="32" r="15" fill="none" stroke="${a}" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="${b}" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="${a}" stroke-width="7"/>`;
+  const b = await chromium.launch();
+  for (const [f, size, bg, a, scale] of [['icon-192', 192, '#ffffff', '#12355b', .78], ['icon-512', 512, '#ffffff', '#12355b', .78], ['maskable-512', 512, '#0b2441', '#ffffff', .58]]) {
+    const p = await b.newPage({ viewport: { width: size, height: size } });
+    const s = Math.round(size * scale);
+    await p.setContent(`<body style="margin:0;background:${bg};display:grid;place-items:center;width:${size}px;height:${size}px"><svg width="${s}" height="${s}" viewBox="0 0 64 64">${rings(a, '#ff7a45')}</svg></body>`);
+    await p.screenshot({ path: path.join(dir, f + '.png') });
+  }
+  await b.close();
+  console.log('OK : icônes dans icons/');
+})();

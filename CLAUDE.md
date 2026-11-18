@@ -5,7 +5,7 @@
 - Modèle : **apporteur d'affaires multi-partenaires**. Jumeo reçoit les demandes, coordonne et facture sa commission au partenaire. Jumeo ne réalise aucune prestation.
 - Fondateurs : Nasser et son frère jumeau. Nasser est amateur : pas de jargon, tu fais les manipulations à sa place.
 - Parcours (validé par Nasser le 18/11/2026, **sans prénoms ni photos pour l'instant**, signature « l'équipe Jumeo ») : grandis à Seraing, vivent à Liège. Nasser : comptable, ex-fiduciaire (entrepreneurs, indépendants), aujourd'hui dans le payroll, ancienne expérience d'agent immobilier ; forces : rigueur, administratif, numérique, réseaux sociaux. Son jumeau : électricien, installation d'énergie renouvelable, facility management ; forces : négociation, relation client, performance des biens. **Le jumeau ne fait pas de chantier** : toutes les installations sont réalisées par les partenaires du réseau. Jumeo = mise en relation (+ peut-être de l'administratif, non confirmé). Ne jamais inventer de durée d'expérience ni de chiffres. Jumeo ne donne pas de conseil comptable ou fiscal.
-- Page `/notre-histoire` générée par `tools/histoire-part.js`. Menu : Tarifs · Guides · Nos zones · Professionnels · Devenir partenaire.
+- Page `/notre-histoire` générée par `tools/histoire-part.js`. Menu ordinateur : Tarifs · Guides / Simulateurs · Nos zones · Professionnels · Devenir partenaire.
 - Cibles : particuliers (vente, location, rénovation) et professionnels (agences, notaires, promoteurs, investisseurs). Zone : province de Liège puis toute la Wallonie.
 - Stack : HTML/CSS/JS vanilla en fichier unique, Google Fonts, `<details>` pour la FAQ, `<dialog>` pour les fenêtres, aucun cookie ni suivi. Déploiement GitHub → Vercel.
 - Formulaire sans serveur : `wa.me` → `mailto:` → aperçu du message.
@@ -71,3 +71,9 @@
 - Code : `tools/recharge-part.js`, assemblé par `build.js`. Test : `node tools/test-recharge.js` (valeurs calculées à la main).
 - Calcul physique : énergie ÷ min(puissance borne, limite voiture), pertes 10 %, 20→80 % pour la « charge complète ». Le prix du kWh est saisi par le visiteur (0,30 € = exemple à remplacer, jamais présenté comme un tarif officiel). Part solaire comptée gratuite (dit sur la page).
 - Proposé dans l'encadré des articles qui ont `sim: 'recharge'` (borne de recharge), et dans le pied de page.
+
+## Application mobile (≤ 760 px) et site installable
+- Module commun `tools/app-part.js` (CSS, barre d'onglets, panneau « Menu », JS, balises head) : inséré par `build.js` dans toutes les pages générées, et dans `index.html` entre les marqueurs `APP:HEAD`, `APP:CSS`, `APP:HTML`, `APP:JS` (ne pas modifier à la main, relancer `node build.js`).
+- Onglets : Accueil · Guides · **Devis** (bouton orange central) · Simus (`/guides#simulateurs`) · Menu (panneau du bas : tarifs, zones, qui fait quoi, pros, partenaire, histoire, FAQ, simulateurs, mentions, confidentialité, WhatsApp si configuré). L'onglet actif et le titre de la barre du haut sont déduits de l'adresse (`appInfo` dans `build.js`). La barre se cache quand le clavier est ouvert.
+- Installable (PWA) : `manifest.webmanifest`, icônes `icons/` (générées par `tools/make-images.js`), `sw.js` (réseau d'abord, copie hors ligne des pages visitées, aucune donnée personnelle ; mentionné dans la confidentialité). Changer `CACHE` dans `sw.js` si la stratégie change.
+- Captures « appli » : `node tools/shoot-app.js <dossier>` (iPhone 13).

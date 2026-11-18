@@ -33,6 +33,23 @@ const CSS = `
 .guide-card h3{font-size:20px;letter-spacing:-.025em;margin-bottom:10px}
 .guide-card p{color:var(--muted);font-size:15px;margin-bottom:18px}
 .guide-card small{margin-top:auto;color:var(--muted);font-size:13px}
+.sims{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:64px}
+@media(max-width:760px){.sims{grid-template-columns:1fr;gap:14px;margin-bottom:44px}}
+.sim{position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start;padding:28px;border-radius:28px;background:var(--ink);color:#fff;text-decoration:none;box-shadow:0 24px 60px rgba(11,36,65,.22);transition:transform .25s var(--e-std)}
+.sim:hover{transform:translateY(-3px)}
+.sim:active{transform:scale(.98)}
+.sim-ico{grid-row:span 3;display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:rgba(255,255,255,.1)}
+.sim-ico svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sim h3{font-size:21px;letter-spacing:-.03em}
+.sim p{color:var(--w78);font-size:15px}
+.sim .go{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:600;font-size:14.5px;color:#fff}
+.sim .go i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--ink);font-style:normal;transition:transform .3s var(--e-std)}
+.sim:hover .go i{transform:rotate(-45deg)}
+.sim .scale-mini{position:absolute;right:-8px;bottom:-8px;display:grid;gap:3px;opacity:.16}
+.sim .scale-mini span{height:7px;border-radius:2px 6px 6px 2px;background:#fff}
+.sec-label{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:18px}
+.sec-label h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.035em;margin:0}
+@media(max-width:760px){.sec-label .tag{display:none}.sim{grid-template-columns:1fr;padding:22px}.sim-ico{grid-row:auto;width:48px;height:48px;border-radius:15px;margin-bottom:8px}}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .filters button{border:0;cursor:pointer;font:600 14px 'Inter',sans-serif;min-height:40px;padding:0 16px;border-radius:999px;background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line);transition:background-color .2s,color .2s}
 .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
@@ -108,12 +125,29 @@ ${others.length ? `<section class="sec" style="padding-top:0"><div class="wrap">
   ${GHOST}
   <div class="wrap">
     <ol class="crumbs rise"><li><a href="/">Accueil</a></li><li aria-current="page">Guides</li></ol>
-    <h1 class="rise d1">Nos guides, <span>sans jargon.</span></h1>
+    <h1 class="rise d1">Guides &amp; simulateurs, <span>sans jargon.</span></h1>
     <p class="rise d2">PEB, énergie renouvelable, rénovation, électricité : des réponses claires et vérifiées, avec leurs sources. Et quand vous êtes prêt, un seul interlocuteur pour tout votre projet.</p>
   </div>
 </section>
 <section class="sec">
   <div class="wrap">
+    <div class="sec-label" id="simulateurs"><h2>Nos simulateurs</h2><span class="tag" style="color:var(--ink)">Gratuits · sans inscription</span></div>
+    <div class="sims">
+      <a class="sim" href="/simulateur-peb">
+        <span class="sim-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg></span>
+        <h3>Simulateur PEB</h3>
+        <p>Quel label pour votre logement ? 7 questions, une fourchette de A à G et des pistes d'amélioration.</p>
+        <span class="go">Estimer mon label <i aria-hidden="true">→</i></span>
+        <span class="scale-mini" aria-hidden="true"><span style="width:40px"></span><span style="width:52px"></span><span style="width:64px"></span><span style="width:76px"></span><span style="width:88px"></span></span>
+      </a>
+      <a class="sim" href="/simulateur-recharge">
+        <span class="sim-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+        <h3>Simulateur de recharge</h3>
+        <p>Combien de temps et combien coûte la recharge de votre voiture électrique à la maison ?</p>
+        <span class="go">Calculer ma recharge <i aria-hidden="true">→</i></span>
+      </a>
+    </div>
+    <div class="sec-label"><h2>Nos guides</h2></div>
     <div class="one-contact">
       <div><b>Vous comprenez</b><p>Nos guides expliquent les règles et les bonnes questions à poser, sources officielles à l'appui.</p></div>
       <div><b>On trouve le bon pro</b><p>Certificateur, électricien, installateur, entrepreneur : des professionnels compétents, avec n° d'entreprise, assurance et agréments.</p></div>
@@ -132,7 +166,7 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
   document.querySelectorAll('#guideList .guide-card').forEach(c => { c.style.display = !b.dataset.f || c.dataset.cat === b.dataset.f ? '' : 'none'; });
 }));`;
   fs.writeFileSync(path.join(ROOT, 'guides', 'index.html'), page({
-    title: `Guides PEB, énergie et rénovation en Wallonie | ${CONFIG.brand}`,
+    title: `Guides et simulateurs PEB, énergie, rénovation | ${CONFIG.brand}`,
     description: 'Guides clairs et sourcés en Wallonie : certificat PEB, panneaux photovoltaïques, borne de recharge, rénovation. Et un seul interlocuteur pour votre projet.',
     canonical: '/guides', body: listBody, css: CSS, current: '/guides', script: listScript,
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE + '/guides' }] }]
