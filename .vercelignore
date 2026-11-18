@@ -1,0 +1,7 @@
+# Ce qui n'est PAS mis en ligne sur le site
+prive/
+data/
+tools/
+CLAUDE.md
+README.md
+.gitignore

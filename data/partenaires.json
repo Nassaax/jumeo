@@ -1,0 +1,71 @@
+{
+  "_note": "Réseau de partenaires de Jumeo. Un partenaire = une entreprise qui réalise la prestation. Ajouter les suivants au même format. Les coordonnées privées et l’état du contrat sont dans prive/partenaires-complet.json (non publié).",
+  "partners": [
+    {
+      "id": "lux",
+      "name": "Lux Energie Solution",
+      "status": "partenaire actif, accepte d'être nommé (déclaré par Nasser)",
+      "website": "https://www.luxenergiesolution.com",
+      "region": "Wallonie",
+      "badgeAffiche": "Agréé par la Région wallonne",
+      "agrementsDeclares": {
+        "_note": "Nasser indique qu'il détient tous les agréments nécessaires. Numéros et intitulés exacts à fournir avant affichage.",
+        "certificateurPEB": {
+          "declare": true,
+          "numero": ""
+        },
+        "controleElectrique": {
+          "declare": true,
+          "realiseParLePartenaire": true,
+          "organisme": "",
+          "numero": ""
+        },
+        "autres": []
+      },
+      "nouveauFormatPEB": {
+        "forme": false,
+        "note": "À confirmer (certificat avec feuille de route de rénovation depuis le 1er sept. 2026)"
+      },
+      "services": [
+        "Certificat PEB",
+        "Étude énergétique PEB et plan",
+        "Réception et contrôle de l'installation électrique",
+        "Électricité générale",
+        "Installation de panneaux photovoltaïques",
+        "Plan électrique et étude de projet énergétique",
+        "Chauffage / ventilation (selon son site)",
+        "Dépannage chauffage et électricité (selon son site)"
+      ],
+      "prices": {
+        "peb": 250,
+        "pebelec": 300,
+        "depannageFrom": 150
+      },
+      "flyer": {
+        "slogan": "Optimisez votre énergie. Réduisez vos coûts. Passez à l'avenir.",
+        "mentions": [
+          "Des solutions énergétiques complètes et performantes",
+          "Performance énergétique",
+          "Conformité réglementaire",
+          "Réduction des coûts",
+          "Ensemble, construisons un avenir meilleur"
+        ],
+        "avertissement": "Le visuel du flyer semble généré par IA (texte de la camionnette incohérent) : ne pas le réutiliser tel quel comme preuve ou illustration."
+      }
+    }
+  ],
+  "futurePartnerTemplate": {
+    "id": "",
+    "name": "",
+    "metier": "",
+    "communesIntervention": [],
+    "agrements": [],
+    "assuranceRC": "",
+    "bce": "",
+    "contactPrive": {
+      "_note": "à remplir dans prive/, jamais ici"
+    },
+    "services": [],
+    "contratSigne": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "_note": "Valeurs vides = à demander à Nasser. Ne rien inventer.",
+  "brand": {
+    "name": "Jumeo",
+    "baseline": "PEB, électricité, photovoltaïque et rénovation en Wallonie",
+    "story": "Deux frères jumeaux, un seul objectif : simplifier l'immobilier.",
+    "colors": { "navy": "#12355b", "navyDark": "#0b2441", "orange": "#ff7a45", "mint": "#0f9d8a" },
+    "fonts": ["Inter", "Plus Jakarta Sans"],
+    "domainCandidates": { "jumeo.be": "libre (vérifié le 2026-11-18)", "jumeo.immo": "libre", "jumeo-immo.be": "libre", "jumeo.com": "pris" },
+    "trademarkCheck": "À faire : BOIP (marques Benelux) et BCE avant d'acheter le domaine et d'imprimer"
+  },
+  "contact": {
+    "phone": "",
+    "whatsapp": "",
+    "email": "",
+    "_note": "Coordonnées de JUMEO uniquement, jamais celles d'un partenaire."
+  },
+  "company": {
+    "legalName": "",
+    "legalForm": "",
+    "bce": "",
+    "address": "",
+    "vat": "",
+    "status": "à créer ou en cours (à confirmer)"
+  },
+  "audiences": ["particuliers", "agences immobilières", "notaires", "promoteurs et investisseurs", "entreprises partenaires (recrutement)"],
+  "zone": "Province de Liège et toute la Wallonie",
+  "prices": {
+    "currency": "EUR",
+    "vatMode": "à confirmer (TTC ou HTVA)",
+    "indicative": true,
+    "source": "Tarifs vus sur luxenergiesolution.com le 2026-11-18, repris avec l'accord de Nasser",
+    "items": {
+      "peb": { "label": "Certificat PEB", "price": 250, "unit": "forfait" },
+      "pebelec": { "label": "PEB + contrôle électrique", "price": 300, "unit": "forfait", "badge": "Le plus demandé" },
+      "depannage": { "label": "Dépannage chauffage et électricité", "priceFrom": 150 },
+      "elec": { "label": "Électricité / plan électrique", "price": null, "mode": "sur devis" },
+      "pv": { "label": "Panneaux photovoltaïques", "price": null, "mode": "sur devis" },
+      "reno": { "label": "Rénovation et travaux", "price": null, "mode": "sur devis" }
+    }
+  },
+  "commission": {
+    "model": "à définir par contrat avec chaque partenaire",
+    "_note": "Montants ou pourcentages à fournir par Nasser. Ne jamais les afficher sur le site."
+  },
+  "contentLocks": {
+    "doNotClaim": [
+      "Rénopack / Rénoprêt et audit logement (non vérifié)",
+      "Montants d'amendes PEB (à reconfirmer)",
+      "PEB pour le neuf (responsable PEB : autre agrément)",
+      "Formation au nouveau format de certificat (septembre 2026) tant que non confirmée",
+      "Label minimum pour louer (n'existe pas aujourd'hui en Wallonie)"
+    ]
+  }
+}

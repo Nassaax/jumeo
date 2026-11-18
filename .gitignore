@@ -1,0 +1,11 @@
+# Données privées (coordonnées partenaires, stratégie, commissions) : jamais sur GitHub
+prive/
+.env
+.env.*
+
+# Outils et systèmes
+node_modules/
+.vercel/
+.DS_Store
+Thumbs.db
+*.log
