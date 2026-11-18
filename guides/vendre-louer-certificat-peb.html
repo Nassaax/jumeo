@@ -196,6 +196,18 @@ footer .logo{color:#fff;margin-bottom:14px}
 .contact-box h2{font-size:20px;margin:0 0 8px}
 .contact-box p{font-size:16px;margin-bottom:16px}
 
+/* ═════════ BANDEAU LANCEMENT ═════════ */
+.launch{height:34px;overflow:hidden;background:var(--accent);color:var(--ink);transition:height .3s cubic-bezier(.4,0,.2,1)}
+.launch a{display:flex;align-items:center;justify-content:center;gap:10px;height:34px;padding:0 16px;font:500 13px 'Inter',sans-serif;color:inherit;text-decoration:none;white-space:nowrap}
+.launch b{font-weight:700}
+.launch .l-long{display:inline}.launch .l-short{display:none}
+.launch i{font-style:normal;transition:transform .2s}
+.launch a:hover i{transform:translateX(3px)}
+.header.scrolled .launch{height:0}
+body:has(.launch) .hero .wrap{padding-top:160px}
+body:has(.launch) .sub-hero .wrap{padding-top:152px}
+@media(max-width:980px){body:has(.launch) .hero .wrap{padding-top:140px}}
+@media(max-width:600px){.launch .l-long{display:none}.launch .l-short{display:inline}}
 /* ═════════ APPLICATION MOBILE ═════════ */
 .tabbar,.app-title{display:none}
 .nav-slash{color:var(--accent);font-weight:700;margin:0 .28em}
@@ -225,6 +237,8 @@ footer .logo{color:#fff;margin-bottom:14px}
   .sub-hero h1{margin-bottom:14px}
   .sub-hero p{font-size:16.5px;margin-bottom:20px}
   .hero .wrap{padding-top:84px;padding-bottom:48px}
+  body:has(.launch) .hero .wrap{padding-top:118px}
+  body:has(.launch) .sub-hero .wrap{padding-top:126px}
   .sec-head{margin-bottom:28px}
 }
 dialog.sheet{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:100%;max-height:88vh;padding:0;border:0;border-radius:26px 26px 0 0;background:var(--paper,#f7f5f0);color:var(--ink);box-shadow:0 -20px 60px rgba(0,0,0,.25);overflow:auto}
@@ -246,11 +260,35 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 .sheet-small a{color:rgba(11,36,65,.66);text-decoration:underline;text-underline-offset:3px}
 .sheet-legal{margin-top:14px;font-size:12px;color:rgba(11,36,65,.6)}
 @media(prefers-reduced-motion:reduce){dialog.sheet[open]{animation:none}.tabbar{transition:none}}
+
+/* ═════════ PARTENAIRES ═════════ */
+.partners-band{background:var(--paper,#f7f5f0);padding:0 0 72px}
+.pb{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding:40px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:860px){.pb{grid-template-columns:1fr;gap:24px;padding:28px 22px}}
+.pb .eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.pb .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.pb h2{font:600 clamp(24px,3vw,34px)/1.1 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em;color:var(--ink);margin-bottom:12px}
+.pb-intro{color:rgba(11,36,65,.66);font-size:15.5px;max-width:30rem}
+.pb-list{display:grid;gap:14px}
+.pb-card{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;margin:0;padding:18px 20px;border-radius:22px;background:var(--paper,#f7f5f0)}
+@media(max-width:520px){.pb-card{grid-template-columns:1fr;gap:12px}}
+.pb-logo{display:grid;place-items:center;height:84px;padding:10px 14px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.pb-logo img{max-width:100%;max-height:64px;width:auto;height:auto}
+.pb-card figcaption{display:grid;gap:4px}
+.pb-card b{font:600 17px 'Plus Jakarta Sans',sans-serif;color:var(--ink)}
+.pb-badge{display:inline-flex;align-items:center;gap:7px;width:max-content;font:600 12px 'Inter',sans-serif;color:var(--ink);padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.pb-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.pb-card small{font-size:13.5px;color:rgba(11,36,65,.66)}
+.pb-join{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-radius:22px;border:1.5px dashed rgba(11,36,65,.22);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;transition:border-color .2s,background-color .2s}
+.pb-join:hover{border-color:var(--ink);background:rgba(255,255,255,.6)}
+.pb-join span{color:var(--accent-d,#f0652e)}
+@media(max-width:760px){.partners-band{padding-bottom:48px}}
 </style>
 </head>
 <body>
 <!-- Page générée par build.js : ne pas modifier à la main -->
 <header class="header">
+  <div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en janvier 2027</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en janvier 2027</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>
   <div class="wrap">
     <a class="logo" href="/" aria-label="Jumeo, accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="23" cy="32" r="15" fill="none" class="ring-a" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" class="ring-a" stroke-width="7"/></svg><b>Jumeo</b></a>
     <span class="app-title">Guide</span>
@@ -316,6 +354,28 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 </section>
 <section class="sec" style="padding-top:0"><div class="wrap"><span class="eyebrow">À lire aussi</span><div class="guide-list" style="margin-top:12px"><a class="guide-card" href="/guides/nouveau-certificat-peb-2026" data-cat="PEB"><span class="tag">Nouveauté</span><h3>Nouveau certificat PEB 2026 : la feuille de route de rénovation expliquée</h3><p>Depuis le 1er septembre 2026, le certificat PEB wallon contient une feuille de route de rénovation. Ce qui change, ce qui ne change pas, et ce que ça veut dire pour vous.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/preuves-certificat-peb" data-cat="PEB"><span class="tag">Préparer la visite</span><h3>Certificat PEB : quelles preuves préparer pour un résultat juste ?</h3><p>Photos de chantier, factures, fiches techniques, permis : ce que le certificateur PEB accepte comme preuve en Wallonie, et pourquoi les plans ne suffisent pas.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/photovoltaique-wallonie-ce-qui-a-change" data-cat="Énergie renouvelable"><span class="tag">Panneaux solaires</span><h3>Panneaux photovoltaïques en Wallonie : ce qui a changé depuis 2024</h3><p>Fin du compteur qui tourne à l&#39;envers, compteur communicant, contrôle avant mise en service : ce qu&#39;il faut savoir avant d&#39;installer des panneaux solaires en Wallonie.</p><small>18 novembre 2026 · 2 min de lecture</small></a></div></div></section>
 </main>
+<section class="partners-band" aria-labelledby="pb-title">
+  <div class="wrap">
+    <div class="pb">
+      <div>
+        <span class="eyebrow">Nos partenaires</span>
+        <h2 id="pb-title">Ils nous font confiance, on leur fait confiance.</h2>
+        <p class="pb-intro">Des professionnels sélectionnés : numéro d'entreprise, assurance professionnelle et agréments exigés pour leur métier. Vous gardez un seul contact : nous.</p>
+      </div>
+      <div class="pb-list">
+        <figure class="pb-card">
+          <div class="pb-logo"><img src="/partenaires/lux-energie-solution.png" alt="Logo Lux Energie Solution" width="390" height="104" loading="lazy" decoding="async" /></div>
+          <figcaption>
+            <b>Lux Energie Solution</b>
+            <span class="pb-badge">Partenaire officiel</span>
+            <small>Agréé par la Région wallonne · PEB · électricité · chauffage · pompes à chaleur · photovoltaïque</small>
+          </figcaption>
+        </figure>
+        <a class="pb-join" href="/devenir-partenaire">Votre entreprise ici ? Rejoignez le réseau <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 <footer>
   <div class="wrap">
     <div class="foot">

@@ -77,3 +77,10 @@
 - Onglets : Accueil · Guides · **Devis** (bouton orange central) · Simus (`/guides#simulateurs`) · Menu (panneau du bas : tarifs, zones, qui fait quoi, pros, partenaire, histoire, FAQ, simulateurs, mentions, confidentialité, WhatsApp si configuré). L'onglet actif et le titre de la barre du haut sont déduits de l'adresse (`appInfo` dans `build.js`). La barre se cache quand le clavier est ouvert.
 - Installable (PWA) : `manifest.webmanifest`, icônes `icons/` (générées par `tools/make-images.js`), `sw.js` (réseau d'abord, copie hors ligne des pages visitées, aucune donnée personnelle ; mentionné dans la confidentialité). Changer `CACHE` dans `sw.js` si la stratégie change.
 - Captures « appli » : `node tools/shoot-app.js <dossier>` (iPhone 13).
+
+## Accueil : formulaire en 2 étapes, services, partenaires, lancement
+- Formulaire de devis : étape 1 = profil + **tuiles de services** (radios `name="service"`, une par clé de `SERVICES`) + prix indicatif ; étape 2 = commune, coordonnées, consentement. Sans JS, tout reste visible. `data-pick` ouvre directement l'étape 2.
+- `SERVICES` (index.html) : peb, pebelec, chauffage, pac, pv, elec, ventilation, borne, depannage, reno, autre (services élargis d'après le site de Lux). Ajouter une clé = ajouter aussi sa tuile.
+- Cadre « Ils nous font confiance, on leur fait confiance » au-dessus du pied de page de toutes les pages : `tools/partners-part.js`, généré depuis `CONFIG.partners` (`logo`, `officiel`, `metiers`). Jamais de téléphone, d'e-mail ni de lien vers le site du partenaire. Logo dans `partenaires/`.
+- Bandeau « Lancement officiel en … » : `CONFIG.launch` (`'janvier 2027'`) ; le vider le jour du lancement puis `node build.js`. Il se replie au défilement. Ne pas écrire que des devis sont réalisés avant le lancement.
+- Tests en local (`file://`) : les adresses `/…` sont redirigées vers le projet par `mapRoot` dans les scripts de test.

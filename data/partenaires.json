@@ -28,13 +28,12 @@
       },
       "services": [
         "Certificat PEB",
-        "Étude énergétique PEB et plan",
         "Réception et contrôle de l'installation électrique",
-        "Électricité générale",
-        "Installation de panneaux photovoltaïques",
-        "Plan électrique et étude de projet énergétique",
-        "Chauffage / ventilation (selon son site)",
-        "Dépannage chauffage et électricité (selon son site)"
+        "Électricité générale, extension et mise en conformité du tableau",
+        "Chauffage : installation, entretien et dépannage (chaudières, pompes à chaleur, unités de ventilation)",
+        "Pompes à chaleur et climatisation",
+        "Panneaux photovoltaïques",
+        "Dépannage urgent chauffage / électricité / plomberie"
       ],
       "prices": {
         "peb": 250,
@@ -51,7 +50,13 @@
           "Ensemble, construisons un avenir meilleur"
         ],
         "avertissement": "Le visuel du flyer semble généré par IA (texte de la camionnette incohérent) : ne pas le réutiliser tel quel comme preuve ou illustration."
-      }
+      },
+      "servicesSource": "Site du partenaire (luxenergiesolution.com), lu via recherche web le 2026-11-18",
+      "logo": {
+        "fichier": "partenaires/lux-energie-solution.png",
+        "note": "Logo fourni par Nasser (capture recadrée, basse résolution) : demander la version HD et l'accord écrit d'utilisation. Le logo dit « Lux Energy Solution » (anglais) : vérifier le nom officiel."
+      },
+      "statut": "partenaire officiel (déclaré par Nasser)"
     }
   ],
   "futurePartnerTemplate": {

@@ -21,6 +21,18 @@ const I = {
 const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${I[k]}</svg>`;
 
 const css = `
+/* ═════════ BANDEAU LANCEMENT ═════════ */
+.launch{height:34px;overflow:hidden;background:var(--accent);color:var(--ink);transition:height .3s cubic-bezier(.4,0,.2,1)}
+.launch a{display:flex;align-items:center;justify-content:center;gap:10px;height:34px;padding:0 16px;font:500 13px 'Inter',sans-serif;color:inherit;text-decoration:none;white-space:nowrap}
+.launch b{font-weight:700}
+.launch .l-long{display:inline}.launch .l-short{display:none}
+.launch i{font-style:normal;transition:transform .2s}
+.launch a:hover i{transform:translateX(3px)}
+.header.scrolled .launch{height:0}
+body:has(.launch) .hero .wrap{padding-top:160px}
+body:has(.launch) .sub-hero .wrap{padding-top:152px}
+@media(max-width:980px){body:has(.launch) .hero .wrap{padding-top:140px}}
+@media(max-width:600px){.launch .l-long{display:none}.launch .l-short{display:inline}}
 /* ═════════ APPLICATION MOBILE ═════════ */
 .tabbar,.app-title{display:none}
 .nav-slash{color:var(--accent);font-weight:700;margin:0 .28em}
@@ -50,6 +62,8 @@ const css = `
   .sub-hero h1{margin-bottom:14px}
   .sub-hero p{font-size:16.5px;margin-bottom:20px}
   .hero .wrap{padding-top:84px;padding-bottom:48px}
+  body:has(.launch) .hero .wrap{padding-top:118px}
+  body:has(.launch) .sub-hero .wrap{padding-top:126px}
   .sec-head{margin-bottom:28px}
 }
 dialog.sheet{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:100%;max-height:88vh;padding:0;border:0;border-radius:26px 26px 0 0;background:var(--paper,#f7f5f0);color:var(--ink);box-shadow:0 -20px 60px rgba(0,0,0,.25);overflow:auto}
@@ -137,4 +151,10 @@ const head = `<link rel="manifest" href="/manifest.webmanifest" />
 <meta name="apple-mobile-web-app-title" content="Jumeo" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />`;
 
-module.exports = { css, html, js, head };
+// Bandeau fin en haut de page (dans l'en-tête fixe). Vide → pas de bandeau.
+function launch(text) {
+  if (!text) return '';
+  return `<div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en ${text}</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en ${text}</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>`;
+}
+
+module.exports = { css, html, js, head, launch };

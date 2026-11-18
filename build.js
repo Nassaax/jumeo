@@ -147,6 +147,7 @@ footer .logo{color:#fff;margin-bottom:14px}
 `;
 
 const APP = require('./tools/app-part.js');
+const PARTNERS = require('./tools/partners-part.js');
 
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
@@ -188,11 +189,12 @@ ${APP.head}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
-<style>${CSS}${css}${APP.css}</style>
+<style>${CSS}${css}${APP.css}${PARTNERS.css}</style>
 </head>
 <body>
 <!-- Page générée par build.js : ne pas modifier à la main -->
 <header class="header">
+  ${APP.launch(CONFIG.launch)}
   <div class="wrap">
     <a class="logo" href="/" aria-label="Jumeo, accueil"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('currentColor').replace(/stroke="currentColor"/g, 'class="ring-a"')}</svg><b>${esc(CONFIG.brand)}</b></a>
     ${app.appTitle ? `<span class="app-title">${esc(app.appTitle)}</span>` : ''}
@@ -205,6 +207,7 @@ ${ld.map(jsonLd).join('\n')}
 <main>
 ${body}
 </main>
+${PARTNERS.html(CONFIG.partners, esc)}
 <footer>
   <div class="wrap">
     <div class="foot">
@@ -517,12 +520,12 @@ out.unshift(...G.urls);
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
-for (const [k, v] of [['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
+for (const [k, v] of [['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.partners, esc)], ['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
   const re = new RegExp(`<!-- ${k}:START[\\s\\S]*?<!-- ${k}:END -->`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, `<!-- ${k}:START (généré par build.js) -->\n${v}\n<!-- ${k}:END -->`);
 }
-for (const [k, v] of [['APP:CSS', APP.css], ['APP:JS', APP.js]]) {
+for (const [k, v] of [['APP:CSS', APP.css + PARTNERS.css], ['APP:JS', APP.js]]) {
   const re = new RegExp(`/\\* ${k}:START[\\s\\S]*?/\\* ${k}:END \\*/`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, () => `/* ${k}:START (généré par build.js) */\n${v}\n/* ${k}:END */`);

@@ -1,6 +1,13 @@
 // Test du site dans un vrai navigateur (ordinateur + mobile 390 px).
 // Usage : lancer un serveur local sur le port 8123, puis : node tools/test-site.js
 const { chromium } = require('playwright');
+// En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
+const ROOT_DIR = require('path').join(__dirname, '..');
+async function mapRoot(p) {
+  await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
+    r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
+}
+
 const BASE = process.env.BASE || 'http://localhost:8123/';
 
 (async () => {
@@ -8,6 +15,7 @@ const BASE = process.env.BASE || 'http://localhost:8123/';
   const errs = [];
   for (const [w, h] of [[1280, 800], [390, 844]]) {
     const p = await b.newPage({ viewport: { width: w, height: h } });
+    await mapRoot(p);
     p.on('console', m => m.type() === 'error' && errs.push(w + ': ' + m.text()));
     p.on('pageerror', e => errs.push(w + ': ' + e.message));
     await p.goto(BASE, { waitUntil: 'networkidle' });
@@ -16,7 +24,7 @@ const BASE = process.env.BASE || 'http://localhost:8123/';
       const src = [...document.scripts].map(s => s.textContent).join('\n');
       const ids = [...src.matchAll(/\$\('#([\w-]+)'/g)].map(m => m[1]).filter(i => !i.endsWith('-')); // ignore les id construits à la volée (ex : '#dlg-' + nom)
       const picks = [...document.querySelectorAll('[data-pick]')].map(a => a.dataset.pick);
-      const opts = [...document.querySelectorAll('#service option')].map(o => o.value);
+      const opts = [...document.querySelectorAll('input[name=service]')].map(o => o.value);
       return {
         defilementHorizontal: document.documentElement.scrollWidth > innerWidth,
         idsManquants: [...new Set(ids)].filter(i => !document.getElementById(i)),
@@ -30,7 +38,7 @@ const BASE = process.env.BASE || 'http://localhost:8123/';
     // Parcours : bouton « Devenir client partenaire » -> formulaire -> envoi (mode aperçu)
     await p.click('[data-aud="pro"][data-pick]');
     await p.waitForTimeout(500);
-    console.log(w + 'px', 'service =', await p.$eval('#service', e => e.value),
+    console.log(w + 'px', 'service =', await p.$eval('input[name=service]:checked', e => e.value),
       '| profil =', await p.$eval('input[name=who]:checked', e => e.value),
       '| prix =', await p.textContent('#priceOut'));
     await p.fill('#commune', 'Liège');

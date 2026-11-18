@@ -1,6 +1,13 @@
 // Test du simulateur de recharge : valeurs calculées à la main, comparées à l'affichage.
 // Usage : node tools/test-recharge.js
 const { chromium } = require('playwright');
+// En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
+const ROOT_DIR = require('path').join(__dirname, '..');
+async function mapRoot(p) {
+  await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
+    r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
+}
+
 const path = require('path');
 const url = 'file://' + path.join(__dirname, '..', 'simulateur-recharge.html');
 
@@ -18,6 +25,7 @@ const CAS = [
   for (const w of [1280, 390]) {
     for (const [nom, set, att] of CAS) {
       const p = await b.newPage({ viewport: { width: w, height: 900 } });
+      await mapRoot(p);
       p.on('pageerror', e => errs.push(e.message));
       p.on('console', m => m.type() === 'error' && errs.push(m.text()));
       await p.goto(url, { waitUntil: 'networkidle' });

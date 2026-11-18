@@ -1,6 +1,13 @@
 // Test des pages générées par build.js (communes, « Nos zones », « Devenir partenaire »).
 // Usage : node tools/test-pages.js
 const { chromium } = require('playwright');
+// En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
+const ROOT_DIR = require('path').join(__dirname, '..');
+async function mapRoot(p) {
+  await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
+    r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
+}
+
 const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
@@ -16,6 +23,7 @@ const files = ['simulateur-recharge.html', 'notre-histoire.html', 'simulateur-pe
   for (const f of files) {
     for (const w of [1280, 390]) {
       const p = await b.newPage({ viewport: { width: w, height: 844 } });
+      await mapRoot(p);
       const errs = [];
       p.on('console', m => m.type() === 'error' && errs.push(m.text()));
       p.on('pageerror', e => errs.push(e.message));

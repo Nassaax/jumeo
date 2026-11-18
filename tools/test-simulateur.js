@@ -1,6 +1,13 @@
 // Test du simulateur PEB : 5 profils de biens, de bout en bout, puis transfert vers le formulaire de devis.
 // Usage : node tools/test-simulateur.js
 const { chromium } = require('playwright');
+// En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
+const ROOT_DIR = require('path').join(__dirname, '..');
+async function mapRoot(p) {
+  await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
+    r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
+}
+
 const path = require('path');
 const root = path.join(__dirname, '..');
 const url = 'file://' + path.join(root, 'simulateur-peb.html');
@@ -20,6 +27,7 @@ const PROFILS = [
   for (const [w, h] of [[1280, 900], [390, 844]]) {
     for (const [nom, rep] of PROFILS) {
       const p = await b.newPage({ viewport: { width: w, height: h } });
+      await mapRoot(p);
       p.on('console', m => m.type() === 'error' && errs.push(m.text()));
       p.on('pageerror', e => errs.push(e.message));
       await p.goto(url, { waitUntil: 'networkidle' });
@@ -52,10 +60,11 @@ const PROFILS = [
   }
   // Transfert vers le formulaire de devis
   const p = await b.newPage();
+  await mapRoot(p);
   const [q, hash] = lastHref.split('#');
   await p.goto('file://' + path.join(root, 'index.html') + q.slice(1) + '#' + hash, { waitUntil: 'networkidle' });
   console.log('Lien du devis :', lastHref);
-  console.log('Formulaire : commune =', await p.inputValue('#commune'), '| service =', await p.inputValue('#service'), '| message =', await p.inputValue('#msg'));
+  console.log('Formulaire : commune =', await p.inputValue('#commune'), '| service =', await p.$eval('input[name=service]:checked', e => e.value), '| message =', await p.inputValue('#msg'));
   console.log('ERREURS :', errs.length ? errs : 'aucune');
   await b.close();
 })();

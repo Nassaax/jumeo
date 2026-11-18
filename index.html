@@ -147,6 +147,26 @@ img,svg{display:block;max-width:100%}
 .pills span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:14px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
 .pills input:checked+span{border-color:var(--ink);background:#eef2f7;color:var(--ink)}
 .pills input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.q-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.qdots{display:flex;gap:6px;flex:none}
+.qdots span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font:700 13px 'Plus Jakarta Sans',sans-serif;color:var(--muted);box-shadow:0 0 0 1px var(--line);transition:background-color .3s,color .3s}
+.qdots span.on{background:var(--ink);color:#fff;box-shadow:none}
+.stepper .qstep:not(.on){display:none}
+.stepper .qstep.on{animation:in-soft .45s var(--e-out) both}
+.tiles{border:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.tiles legend{font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:8px;padding:0}
+.tile{position:relative;cursor:pointer}
+.tile input{position:absolute;opacity:0;inset:0}
+.tile span{display:flex;align-items:center;gap:9px;min-height:46px;padding:8px 12px;border-radius:14px;box-shadow:0 0 0 1px var(--line);background:#fafaf8;font:600 13.5px/1.2 'Inter',sans-serif;color:var(--ink);transition:box-shadow .2s,background-color .2s}
+.tile .ico{width:19px;height:19px;flex:none;color:var(--navy)}
+.tile:hover span{box-shadow:0 0 0 1px var(--ink)}
+.tile input:checked+span{box-shadow:0 0 0 2px var(--ink);background:#eef2f7}
+.tile input:checked+span .ico{color:var(--accent-d)}
+.tile input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.tile-wide{grid-column:1/-1}
+.tile-wide span{min-height:40px;background:transparent;font-weight:500;color:var(--muted)}
+.q-back{display:inline-flex;gap:6px;align-items:center;border:0;background:#eef2f7;color:var(--ink);font:600 13px 'Inter',sans-serif;padding:8px 12px;border-radius:999px;margin-bottom:14px;cursor:pointer}
+.q-back:hover{background:#e3e9f1}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
 .field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;font:15px 'Inter',sans-serif;background:#fafaf8;color:var(--ink);transition:border-color .2s,background-color .2s}
@@ -187,7 +207,7 @@ img,svg{display:block;max-width:100%}
 .svc{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line)}
 @media(max-width:900px){.svc{grid-template-columns:1fr}}
 .svc .s{padding:28px 28px 8px 0;display:grid;grid-template-columns:44px 1fr;gap:4px 16px;align-content:start}
-@media(min-width:901px){.svc .s+.s{padding-left:28px;border-left:1px solid var(--line)}}
+@media(min-width:901px){.svc .s:not(:nth-child(3n+1)){padding-left:28px;border-left:1px solid var(--line)}.svc .s:nth-child(n+4){border-top:1px solid var(--line)}}
 @media(max-width:900px){.svc .s{padding:24px 0;border-bottom:1px solid var(--line)}}
 .icon-disc{grid-row:span 3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);box-shadow:0 0 0 1px var(--line);color:var(--ink)}
 .svc .s h3{font-size:17px;letter-spacing:-.02em}
@@ -327,6 +347,18 @@ footer .logo{color:#fff;margin-bottom:14px}
 /* ═════════ BARRE MOBILE ═════════ */
 /* APP:CSS:START (généré par build.js) */
 
+/* ═════════ BANDEAU LANCEMENT ═════════ */
+.launch{height:34px;overflow:hidden;background:var(--accent);color:var(--ink);transition:height .3s cubic-bezier(.4,0,.2,1)}
+.launch a{display:flex;align-items:center;justify-content:center;gap:10px;height:34px;padding:0 16px;font:500 13px 'Inter',sans-serif;color:inherit;text-decoration:none;white-space:nowrap}
+.launch b{font-weight:700}
+.launch .l-long{display:inline}.launch .l-short{display:none}
+.launch i{font-style:normal;transition:transform .2s}
+.launch a:hover i{transform:translateX(3px)}
+.header.scrolled .launch{height:0}
+body:has(.launch) .hero .wrap{padding-top:160px}
+body:has(.launch) .sub-hero .wrap{padding-top:152px}
+@media(max-width:980px){body:has(.launch) .hero .wrap{padding-top:140px}}
+@media(max-width:600px){.launch .l-long{display:none}.launch .l-short{display:inline}}
 /* ═════════ APPLICATION MOBILE ═════════ */
 .tabbar,.app-title{display:none}
 .nav-slash{color:var(--accent);font-weight:700;margin:0 .28em}
@@ -356,6 +388,8 @@ footer .logo{color:#fff;margin-bottom:14px}
   .sub-hero h1{margin-bottom:14px}
   .sub-hero p{font-size:16.5px;margin-bottom:20px}
   .hero .wrap{padding-top:84px;padding-bottom:48px}
+  body:has(.launch) .hero .wrap{padding-top:118px}
+  body:has(.launch) .sub-hero .wrap{padding-top:126px}
   .sec-head{margin-bottom:28px}
 }
 dialog.sheet{position:fixed;inset:auto 0 0 0;margin:0;width:100%;max-width:100%;max-height:88vh;padding:0;border:0;border-radius:26px 26px 0 0;background:var(--paper,#f7f5f0);color:var(--ink);box-shadow:0 -20px 60px rgba(0,0,0,.25);overflow:auto}
@@ -377,6 +411,29 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 .sheet-small a{color:rgba(11,36,65,.66);text-decoration:underline;text-underline-offset:3px}
 .sheet-legal{margin-top:14px;font-size:12px;color:rgba(11,36,65,.6)}
 @media(prefers-reduced-motion:reduce){dialog.sheet[open]{animation:none}.tabbar{transition:none}}
+
+/* ═════════ PARTENAIRES ═════════ */
+.partners-band{background:var(--paper,#f7f5f0);padding:0 0 72px}
+.pb{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding:40px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:860px){.pb{grid-template-columns:1fr;gap:24px;padding:28px 22px}}
+.pb .eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.pb .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.pb h2{font:600 clamp(24px,3vw,34px)/1.1 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em;color:var(--ink);margin-bottom:12px}
+.pb-intro{color:rgba(11,36,65,.66);font-size:15.5px;max-width:30rem}
+.pb-list{display:grid;gap:14px}
+.pb-card{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;margin:0;padding:18px 20px;border-radius:22px;background:var(--paper,#f7f5f0)}
+@media(max-width:520px){.pb-card{grid-template-columns:1fr;gap:12px}}
+.pb-logo{display:grid;place-items:center;height:84px;padding:10px 14px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.pb-logo img{max-width:100%;max-height:64px;width:auto;height:auto}
+.pb-card figcaption{display:grid;gap:4px}
+.pb-card b{font:600 17px 'Plus Jakarta Sans',sans-serif;color:var(--ink)}
+.pb-badge{display:inline-flex;align-items:center;gap:7px;width:max-content;font:600 12px 'Inter',sans-serif;color:var(--ink);padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.pb-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.pb-card small{font-size:13.5px;color:rgba(11,36,65,.66)}
+.pb-join{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-radius:22px;border:1.5px dashed rgba(11,36,65,.22);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;transition:border-color .2s,background-color .2s}
+.pb-join:hover{border-color:var(--ink);background:rgba(255,255,255,.6)}
+.pb-join span{color:var(--accent-d,#f0652e)}
+@media(max-width:760px){.partners-band{padding-bottom:48px}}
 
 /* APP:CSS:END */
 @media(min-width:761px){body{padding-bottom:0}}
@@ -411,11 +468,22 @@ dialog .btn{margin-top:8px}
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
   <symbol id="i-agency" viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/></symbol>
   <symbol id="i-notary" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-docbolt" viewBox="0 0 24 24"><path d="M13 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h5"/><path d="M13 3v5h5v3"/><path d="M17 13l-3 4h3l-1 4 4-5h-3l1-3z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c-3.9 0-7-2.7-7-6.5 0-3.2 2.3-5 3.5-7.5.6 1.6 1.6 2.6 2.7 3C11.2 7 12.4 4.6 14.5 3c-.3 2.6.7 4.4 2.1 6 1.4 1.6 2.4 3.3 2.4 5.5 0 3.8-3.1 6.5-7 6.5z"/></symbol>
+  <symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 10c0-3 1-6 4-6s3 3 0 5l-4 1"/><path d="M14 12c3 0 6 1 6 4s-3 3-5 0l-1-4"/><path d="M12 14c0 3-1 6-4 6s-3-3 0-5l4-1"/><path d="M10 12c-3 0-6-1-6-4s3-3 5 0l1 4"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h16a3 3 0 1 1-3 3"/><path d="M3 16h8"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4"/><path d="M6 7h12v4a6 6 0 0 1-12 0z"/><path d="M12 17v4"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></symbol>
   <symbol id="i-build" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M9 11h6"/></symbol>
 </svg>
 
 <!-- ═════════ EN-TÊTE ═════════ -->
 <header class="header">
+  <!-- LAUNCH:START (généré par build.js) -->
+<div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en janvier 2027</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en janvier 2027</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>
+<!-- LAUNCH:END -->
   <div class="wrap">
     <a class="logo appear" style="--d:.05s" href="#top" aria-label="Jumeo, accueil">
       <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring-a" cx="23" cy="32" r="15" fill="none" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path class="ring-a" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke-width="7"/></svg>
@@ -448,7 +516,7 @@ dialog .btn{margin-top:8px}
         <button type="button" data-aud="pro" aria-pressed="false">Professionnel</button>
       </div>
       <h1 id="heroTitle"><span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span></h1>
-      <p class="lead appear" style="--d:.62s" id="heroLead">Vente, location, rénovation : des professionnels agréés, un devis clair, un seul contact. Partout en Wallonie.</p>
+      <p class="lead appear" style="--d:.62s" id="heroLead">PEB, chauffage, électricité, solaire, rénovation : des professionnels compétents, un devis clair, un seul contact. Partout en Wallonie.</p>
       <ul class="promise appear" style="--d:.76s">
         <li><svg class="ico"><use href="#i-check"/></svg>Professionnels agréés Région wallonne</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Devis gratuit, sans engagement</li>
@@ -459,27 +527,36 @@ dialog .btn{margin-top:8px}
 
     <!-- FORMULAIRE -->
     <div class="quote appear appear--card" style="--d:.4s" id="devis">
-      <h2>Votre devis en 1 minute</h2>
-      <p class="sub">On vous répond rapidement. Aucun engagement.</p>
+      <div class="q-top"><h2>Votre devis en 1 minute</h2><span class="qdots" aria-hidden="true"><span class="on">1</span><span>2</span></span></div>
+      <p class="sub">Gratuit et sans engagement. On vous répond rapidement.</p>
       <form id="quoteForm" novalidate>
-        <div class="pills" role="radiogroup" aria-label="Vous êtes">
-          <label><input type="radio" name="who" value="Particulier" checked /><span>Particulier</span></label>
-          <label><input type="radio" name="who" value="Professionnel" /><span>Professionnel</span></label>
+        <div class="qstep on" data-n="1">
+          <div class="pills" role="radiogroup" aria-label="Vous êtes">
+            <label><input type="radio" name="who" value="Particulier" checked /><span>Particulier</span></label>
+            <label><input type="radio" name="who" value="Professionnel" /><span>Professionnel</span></label>
+          </div>
+          <fieldset class="tiles">
+            <legend>De quoi avez-vous besoin ?</legend>
+            <label class="tile"><input type="radio" name="service" value="peb" checked /><span><svg class="ico"><use href="#i-doc"/></svg>Certificat PEB</span></label>
+            <label class="tile"><input type="radio" name="service" value="pebelec" /><span><svg class="ico"><use href="#i-docbolt"/></svg>PEB + contrôle électrique</span></label>
+            <label class="tile"><input type="radio" name="service" value="chauffage" /><span><svg class="ico"><use href="#i-flame"/></svg>Chauffage</span></label>
+            <label class="tile"><input type="radio" name="service" value="pac" /><span><svg class="ico"><use href="#i-fan"/></svg>Pompe à chaleur · clim</span></label>
+            <label class="tile"><input type="radio" name="service" value="pv" /><span><svg class="ico"><use href="#i-sun"/></svg>Photovoltaïque</span></label>
+            <label class="tile"><input type="radio" name="service" value="elec" /><span><svg class="ico"><use href="#i-bolt"/></svg>Électricité</span></label>
+            <label class="tile"><input type="radio" name="service" value="ventilation" /><span><svg class="ico"><use href="#i-wind"/></svg>Ventilation</span></label>
+            <label class="tile"><input type="radio" name="service" value="borne" /><span><svg class="ico"><use href="#i-plug"/></svg>Borne de recharge</span></label>
+            <label class="tile"><input type="radio" name="service" value="depannage" /><span><svg class="ico"><use href="#i-wrench"/></svg>Dépannage</span></label>
+            <label class="tile"><input type="radio" name="service" value="reno" /><span><svg class="ico"><use href="#i-home"/></svg>Rénovation</span></label>
+            <label class="tile tile-wide"><input type="radio" name="service" value="autre" /><span><svg class="ico"><use href="#i-dots"/></svg>Autre projet immobilier</span></label>
+          </fieldset>
+          <div class="price-hint" aria-live="polite"><span>Tarif indicatif</span><b id="priceOut">250 €</b></div>
+          <button class="btn btn-primary q-next" type="button" id="qNext">
+            <span class="roll"><span><span>Continuer</span><span aria-hidden="true">Continuer</span></span></span>
+            <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+          </button>
         </div>
-        <div class="field">
-          <label for="service">Je souhaite</label>
-          <select id="service" name="service">
-            <option value="peb">Un certificat PEB</option>
-            <option value="pebelec">PEB + contrôle électrique</option>
-            <option value="elec">Électricité / plan électrique</option>
-            <option value="pv">Des panneaux photovoltaïques</option>
-            <option value="depannage">Un dépannage chauffage / électricité</option>
-            <option value="reno">Des travaux de rénovation</option>
-            <option value="partner">Je suis une entreprise : rejoindre le réseau</option>
-            <option value="autre">Autre projet immobilier</option>
-          </select>
-        </div>
-        <div class="price-hint" aria-live="polite"><span>Tarif indicatif</span><b id="priceOut">250 €</b></div>
+        <div class="qstep" data-n="2">
+          <button type="button" class="q-back" id="qBack"><span aria-hidden="true">←</span> <span id="qChosen">Certificat PEB</span> · modifier</button>
         <div class="row2">
           <div class="field"><label for="commune">Commune</label><input id="commune" name="commune" placeholder="ex : Liège" autocomplete="address-level2" required /></div>
           <div class="field"><label for="bien">Type de bien</label>
@@ -500,6 +577,7 @@ dialog .btn{margin-top:8px}
         <div class="preview-msg" id="previewMsg">
           <b>Mode aperçu :</b> les coordonnées de contact ne sont pas encore configurées. Voici le message qui serait envoyé :
           <textarea id="previewText" readonly></textarea>
+        </div>
         </div>
       </form>
     </div>
@@ -556,9 +634,12 @@ dialog .btn{margin-top:8px}
     </div>
     <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend de la commune, de l'accessibilité, de l'état de l'installation et du matériel. Le devis définitif vous est confirmé avant l'intervention.</p>
     <div class="svc">
+      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3><p>Installation, entretien et dépannage de chaudières, par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="chauffage">Demander un devis <span>→</span></a></div>
+      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-fan"/></svg></span><h3>Pompe à chaleur &amp; climatisation</h3><p>Étude et installation adaptées à votre logement. Sur devis.</p><a href="#devis" data-pick="pac">Demander une étude <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité &amp; plan électrique</h3><p>Électricité générale, plan électrique, étude de projet énergétique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-home"/></svg></span><h3>Rénovation &amp; projet immo</h3><p>Décrivez votre projet : on vous met en relation avec le bon professionnel.</p><a href="#devis" data-pick="reno">Parler de mon projet <span>→</span></a></div>
+      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
+      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-plug"/></svg></span><h3>Borne de recharge</h3><p>Une borne adaptée à votre voiture et à votre installation. Sur devis.</p><a href="#devis" data-pick="borne">Demander un devis <span>→</span></a></div>
+      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-home"/></svg></span><h3>Rénovation &amp; ventilation</h3><p>Décrivez votre projet : on vous met en relation avec le bon professionnel.</p><a href="#devis" data-pick="reno">Parler de mon projet <span>→</span></a></div>
     </div>
   </div>
 </section>
@@ -768,6 +849,31 @@ dialog .btn{margin-top:8px}
 </section>
 </main>
 
+<!-- PARTNERS:START (généré par build.js) -->
+<section class="partners-band" aria-labelledby="pb-title">
+  <div class="wrap">
+    <div class="pb">
+      <div>
+        <span class="eyebrow">Nos partenaires</span>
+        <h2 id="pb-title">Ils nous font confiance, on leur fait confiance.</h2>
+        <p class="pb-intro">Des professionnels sélectionnés : numéro d'entreprise, assurance professionnelle et agréments exigés pour leur métier. Vous gardez un seul contact : nous.</p>
+      </div>
+      <div class="pb-list">
+        <figure class="pb-card">
+          <div class="pb-logo"><img src="/partenaires/lux-energie-solution.png" alt="Logo Lux Energie Solution" width="390" height="104" loading="lazy" decoding="async" /></div>
+          <figcaption>
+            <b>Lux Energie Solution</b>
+            <span class="pb-badge">Partenaire officiel</span>
+            <small>Agréé par la Région wallonne · PEB · électricité · chauffage · pompes à chaleur · photovoltaïque</small>
+          </figcaption>
+        </figure>
+        <a class="pb-join" href="/devenir-partenaire">Votre entreprise ici ? Rejoignez le réseau <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PARTNERS:END -->
+
 <!-- ═════════ PIED DE PAGE ═════════ -->
 <footer>
   <div class="wrap">
@@ -864,6 +970,7 @@ const CONFIG = {
   company: { legalName: '', bce: '', address: '', status: 'Structure en cours de création.' },
   prices: { peb: 250, pebelec: 300, depannage: 150 },
   vat: 'TVAC',        // prix TVA comprise (confirmé par Nasser)
+  launch: 'janvier 2027', // bandeau « Lancement officiel en … » en haut de page ; mettre '' le jour du lancement
   // Réseau de partenaires : on peut en ajouter autant que nécessaire.
   partners: [
     {
@@ -875,20 +982,26 @@ const CONFIG = {
       nouveauFormat: false,  // true si formé au nouveau certificat (sept. 2026)
       // Contrôle électrique : ne s'affiche comme « réalisé par le partenaire » qu'une fois l'organisme et le n° confirmés.
       controleElec: { organisme: '', numero: '' },
-      services: ['Certificat PEB', 'Contrôle de l\'installation électrique', 'Électricité générale', 'Panneaux photovoltaïques', 'Plan électrique & étude de projet énergétique']
+      logo: '/partenaires/lux-energie-solution.png',
+      officiel: true,
+      metiers: ['PEB', 'électricité', 'chauffage', 'pompes à chaleur', 'photovoltaïque'],
+      services: ['Certificat PEB', 'Contrôle de l\'installation électrique', 'Électricité générale et mise en conformité', 'Chauffage : installation, entretien, dépannage', 'Pompes à chaleur et climatisation', 'Ventilation', 'Panneaux photovoltaïques']
     }
   ]
 };
 
 const SERVICES = {
-  peb:       { label: 'Certificat PEB',                       price: () => CONFIG.prices.peb + ' € ' + CONFIG.vat },
-  pebelec:   { label: 'PEB + contrôle électrique',            price: () => CONFIG.prices.pebelec + ' € ' + CONFIG.vat },
-  elec:      { label: 'Électricité / plan électrique',        price: () => 'Sur devis' },
-  pv:        { label: 'Panneaux photovoltaïques',             price: () => 'Sur devis' },
-  depannage: { label: 'Dépannage chauffage / électricité',    price: () => 'dès ' + CONFIG.prices.depannage + ' € ' + CONFIG.vat },
-  reno:      { label: 'Travaux de rénovation',                price: () => 'Sur devis' },
-  partner:   { label: 'Entreprise : rejoindre le réseau',     price: () => 'Sur demande' },
-  autre:     { label: 'Autre projet immobilier',              price: () => 'Sur devis' }
+  peb:         { label: 'Certificat PEB',                         price: () => CONFIG.prices.peb + ' € ' + CONFIG.vat },
+  pebelec:     { label: 'PEB + contrôle électrique',              price: () => CONFIG.prices.pebelec + ' € ' + CONFIG.vat },
+  chauffage:   { label: 'Chauffage (installation, entretien)',    price: () => 'Sur devis' },
+  pac:         { label: 'Pompe à chaleur / climatisation',        price: () => 'Sur devis' },
+  pv:          { label: 'Panneaux photovoltaïques',               price: () => 'Sur devis' },
+  elec:        { label: 'Électricité (tableau, mise en conformité)', price: () => 'Sur devis' },
+  ventilation: { label: 'Ventilation',                            price: () => 'Sur devis' },
+  borne:       { label: 'Borne de recharge',                      price: () => 'Sur devis' },
+  depannage:   { label: 'Dépannage chauffage / électricité',      price: () => 'dès ' + CONFIG.prices.depannage + ' € ' + CONFIG.vat },
+  reno:        { label: 'Travaux de rénovation',                  price: () => 'Sur devis' },
+  autre:       { label: 'Autre projet immobilier',                price: () => 'Sur devis' }
 };
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -939,7 +1052,7 @@ function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<'
 
 /* ── Onglets Particulier / Pro ─────────────────────────── */
 const COPY = {
-  part: { t: '<span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span>', l: 'Vente, location, rénovation : des professionnels agréés, un devis clair, un seul contact. Partout en Wallonie.' },
+  part: { t: '<span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span>', l: 'PEB, chauffage, électricité, solaire, rénovation : des professionnels compétents, un devis clair, un seul contact. Partout en Wallonie.' },
   pro:  { t: '<span class="hl"><span>Un partenaire PEB</span></span><span class="hl"><span class="acc">fiable et réactif.</span></span>', l: 'Agences, notaires, promoteurs : un interlocuteur unique pour le PEB, le contrôle électrique et vos travaux. Des dossiers suivis, un planning coordonné.' }
 };
 function setAudience(a) {
@@ -960,15 +1073,34 @@ $$('.aud button').forEach(b => b.addEventListener('click', () => setAudience(b.d
 $$('input[name="who"]').forEach(r => r.addEventListener('change', () => setAudience(r.value === 'Professionnel' ? 'pro' : 'part')));
 
 /* ── Prix indicatif en direct + boutons "Demander ce devis" */
-const sel = $('#service');
-function updatePrice() { $('#priceOut').textContent = SERVICES[sel.value].price(); }
-sel.addEventListener('change', updatePrice);
+const svcInputs = $$('input[name="service"]');
+const sel = {
+  get value() { const c = svcInputs.find(i => i.checked); return c ? c.value : 'peb'; },
+  set value(v) { if (SERVICES[v]) svcInputs.forEach(i => { i.checked = i.value === v; }); }
+};
+function updatePrice() {
+  $('#priceOut').textContent = SERVICES[sel.value].price();
+  $('#qChosen').textContent = SERVICES[sel.value].label;
+}
+svcInputs.forEach(i => i.addEventListener('change', updatePrice));
 updatePrice();
+
+/* ── Formulaire en 2 étapes (sans JS : tout reste visible) ── */
+const qForm = $('#quoteForm');
+qForm.classList.add('stepper');
+function goStep(n, focusEl) {
+  $$('.qstep', qForm).forEach(st => st.classList.toggle('on', st.dataset.n === String(n)));
+  $$('.qdots span').forEach((d, i) => d.classList.toggle('on', i < n));
+  if (focusEl) setTimeout(() => focusEl.focus({ preventScroll: true }), 60);
+}
+$('#qNext').addEventListener('click', () => goStep(2, $('#commune')));
+$('#qBack').addEventListener('click', () => goStep(1, svcInputs.find(i => i.checked)));
 $$('[data-pick]').forEach(a => a.addEventListener('click', () => {
   const k = a.dataset.pick;
   sel.value = k;
-  if (a.dataset.aud === 'pro' || k === 'partner') setAudience('pro');
+  if (a.dataset.aud === 'pro') setAudience('pro');
   updatePrice();
+  goStep(2);
   setTimeout(() => $('#commune').focus({ preventScroll: true }), 400);
 }));
 
