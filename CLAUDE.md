@@ -92,5 +92,5 @@
 
 ## Démo « Lux Energie Solution » (demo-lux/)
 - Site complet de démonstration pour le partenaire, généré par `python3 tools/make_demo_lux.py` (relance `node build.js`, copie le site, remplace marque/logo/couleurs jaunes, réécrit les textes « apporteur d'affaires » en « entreprise qui réalise », retire partenaires, devenir partenaire, notre histoire, bandeau de lancement — Lux est déjà en activité). Le script échoue s'il reste une trace de Jumeo. Test : `node tools/test-demo-lux.js`.
-- Formulaires en mode aperçu (aucun numéro de Lux publié), noindex. Publié comme projet Vercel séparé (dossier racine `demo-lux`), exclu du site Jumeo par `.vercelignore`.
+- Formulaires en mode aperçu (aucun numéro de Lux publié), noindex. Publié comme projet Vercel séparé `lux-energie-demo` (dossier racine `demo-lux`, https://lux-energie-demo.vercel.app). Le site Jumeo redirige `/demo-lux/…` vers l'accueil (`vercel.json`) ; ne pas exclure `demo-lux/` dans `.vercelignore` (sinon la démo est vide).
 - Ne jamais modifier `demo-lux/` à la main : changer le site Jumeo ou le script, puis régénérer.
