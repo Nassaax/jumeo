@@ -66,3 +66,8 @@
 ## Guides (articles)
 - Articles dans `contenu/guides.js` (titre, `seo` facultatif ≤ 60 car., date, étiquette, chapô, corps HTML, sources). Rendu par `tools/guides-part.js` via `node build.js` : `/guides/<slug>`, page `/guides`, 3 derniers articles sur l'accueil (marqueurs `GUIDES:START/END`).
 - Chaque affirmation PEB/légale doit être ✅ dans `data/regles-peb.md` et sourcée en bas d'article. Signature actuelle : « l'équipe Jumeo » (en attente des infos sur Nasser et son frère).
+
+## Simulateur de recharge (/simulateur-recharge)
+- Code : `tools/recharge-part.js`, assemblé par `build.js`. Test : `node tools/test-recharge.js` (valeurs calculées à la main).
+- Calcul physique : énergie ÷ min(puissance borne, limite voiture), pertes 10 %, 20→80 % pour la « charge complète ». Le prix du kWh est saisi par le visiteur (0,30 € = exemple à remplacer, jamais présenté comme un tarif officiel). Part solaire comptée gratuite (dit sur la page).
+- Proposé dans l'encadré des articles qui ont `sim: 'recharge'` (borne de recharge), et dans le pied de page.

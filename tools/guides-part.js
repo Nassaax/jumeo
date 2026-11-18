@@ -87,7 +87,9 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
       ${a.cat === 'PEB'
         ? `<div class="card dark"><h3>Besoin d'un certificat PEB ?</h3><p>Un devis clair, un certificateur agréé, un seul contact.</p>${btn(devis, 'Devis gratuit')}</div>`
         : `<div class="card dark"><h3>On s'occupe de trouver le bon pro</h3><p>Décrivez votre projet : on vous met en relation avec un professionnel compétent de votre région.</p>${btn(devis, 'Devis gratuit')}</div>`}
-      <div class="card"><h3>Quel label pour votre bien ?</h3><p>Une première estimation en 1 minute, gratuite.</p><a class="btn btn-ghost" href="/simulateur-peb">Simulateur PEB</a></div>
+      ${a.sim === 'recharge'
+        ? `<div class="card"><h3>Combien de temps pour recharger ?</h3><p>Temps et coût de recharge de votre voiture électrique, en quelques clics.</p><a class="btn btn-ghost" href="/simulateur-recharge">Simulateur de recharge</a></div>`
+        : `<div class="card"><h3>Quel label pour votre bien ?</h3><p>Une première estimation en 1 minute, gratuite.</p><a class="btn btn-ghost" href="/simulateur-peb">Simulateur PEB</a></div>`}
     </aside>
   </div>
 </section>

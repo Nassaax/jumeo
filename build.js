@@ -199,7 +199,7 @@ ${body}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true">${RINGS('#fff')}</svg><b>${esc(CONFIG.brand)}</b></div>
         <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/notre-histoire">Notre histoire</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/notre-histoire">Notre histoire</a><a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/simulateur-recharge">Simulateur recharge</a><a href="/guides">Guides</a><a href="/#transparence">Qui fait quoi</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4><a href="/#devis">Demander un devis</a><a href="/devenir-partenaire">Devenir partenaire</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
@@ -472,6 +472,16 @@ $('#partnerForm').addEventListener('submit', e => {
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Simulateur PEB', item: SITE + sim.url }] }]
   }));
   out.unshift(sim.url);
+}
+
+/* ── Page « Simulateur de recharge » ───────────────────── */
+{
+  const r = require('./tools/recharge-part.js')({ esc, btn, CONFIG });
+  fs.writeFileSync(path.join(ROOT, r.file), page({
+    title: r.title, description: r.description, canonical: r.url, body: r.body, css: r.css, script: r.script,
+    ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE + '/guides' }, { '@type': 'ListItem', position: 3, name: 'Simulateur de recharge', item: SITE + r.url }] }]
+  }));
+  out.unshift(r.url);
 }
 
 /* ── Page « Notre histoire » ───────────────────────────── */

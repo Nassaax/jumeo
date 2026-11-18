@@ -1,5 +1,6 @@
 // Articles de la rubrique « Guides » (générés par build.js en /guides/<slug>).
 // Règle : chaque affirmation PEB ou légale doit être confirmée (data/regles-peb.md) et sourcée en bas d'article.
+// « sim » (facultatif) : 'recharge' pour proposer le simulateur de recharge au lieu du simulateur PEB.
 // « cat » : PEB · Énergie renouvelable · Rénovation · Électricité (filtres de la page /guides).
 // « seo » (facultatif) : titre court pour Google (60–70 caractères max avec « | Jumeo »).
 // Le corps est du HTML simple : <h2>, <p>, <ul>, <ol>, <strong>, <a>.
@@ -20,7 +21,14 @@ const SRC = {
   up10: ['Procédure de notification de mise en service d\'une installation photovoltaïque, formulaire UP10 (SPW Énergie, PDF)', 'https://energie.wallonie.be/servlet/Repository/procedure-de-notification-de-mise-en-service-pv-up10-fr-1-04.pdf?ID=86400'],
   notifier: ['Notifier au gestionnaire de réseau la mise en service d\'une installation (Wallonie)', 'https://wallonie.be/fr/demarches/production-delectricite-verte-notifier-au-gestionnaire-de-reseau-de-distribution-la-mise-en-service-dune-installation'],
   rescert: ['Arrêté du Gouvernement wallon du 16/02/2023 : certification des installateurs d\'énergie renouvelable (Wallex, PDF)', "https://wallex.wallonie.be/files/pdfs/19/308_Arr%c3%aat%c3%a9_du_Gouvernement_wallon_mettant_en_place_un_syst%c3%a8me_de_certification_des_installateurs_de_syst%c3%a8mes_de_production_d'%c3%a9nergie_%c3%a0_partir_de_sources_renouvelables_et_des_professionnels_des_travaux_16-02-2023-.pdf"],
-  bce: ['Recherche publique dans la Banque-Carrefour des Entreprises (SPF Économie)', 'https://kbopub.economie.fgov.be/kbopub/zoeknaamfonetischform.html?lang=fr']
+  bce: ['Recherche publique dans la Banque-Carrefour des Entreprises (SPF Économie)', 'https://kbopub.economie.fgov.be/kbopub/zoeknaamfonetischform.html?lang=fr'],
+  mazout2031: ['Chaudières au mazout et au charbon : la Wallonie reporte l\'interdiction à 2031 (Wallonie)', 'https://www.wallonie.be/fr/actualites/chaudieres-au-mazout-et-au-charbon-la-wallonie-reporte-linterdiction-2031'],
+  mazoutEnergie: ['Chaudières au mazout et au charbon : une transition progressive à partir de 2031 (L\'Énergie en Wallonie)', 'https://energie.wallonie.be/actualite/chaudieres-au-mazout-et-au-charbon-une-transition-progressive-a-partir-de-2031'],
+  chauffageChoisir: ['Quel système de chauffage choisir ? (L\'Énergie en Wallonie)', 'https://energie.wallonie.be/home/performance-energetique-des-batiments/batiments-residentiels/renovation-walloreno/conseils-pratiques/se-chauffer-1/quel-systeme-de-chauffage-choisir.html'],
+  notaireVendre: ['Vendre un bien (notaire.be)', 'https://www.notaire.be/immobilier/acheter-et-vendre-un-bien-immobilier/vendre-un-bien'],
+  notaireLexique: ['Contrôle de l\'installation électrique, lexique (notaire.be)', 'https://notaire.be/lexique/C/controle-de-linstallation-electrique?locale=fr'],
+  notaireBrochure: ['Brochure « Je vends mon bien » 2025 (notaire.be, PDF)', 'https://www.notaire.be/sites/default/files/files/2025-07/Brochure-Je-vends-2025-LD.pdf'],
+  peeters: ['Loi du 31 mai 2017 relative à l\'assurance obligatoire de la responsabilité décennale (Justel)', 'https://www.ejustice.just.fgov.be/cgi_loi/change_lg.pl?language=fr&la=F&cn=2017053102&table_name=loi']
 };
 
 module.exports = [
@@ -164,6 +172,7 @@ module.exports = [
   },
   {
     slug: 'borne-de-recharge-maison',
+    sim: 'recharge',
     date: '2026-11-18',
     tag: 'Borne de recharge',
     cat: 'Électricité',
@@ -184,6 +193,7 @@ module.exports = [
 <h2>2. Combien de temps pour recharger ?</h2>
 <p>Un calcul simple donne un ordre de grandeur : <strong>énergie à recharger (kWh) ÷ puissance de charge (kW)</strong>. Par exemple, 30 kWh à 7,4 kW, c'est environ 4 heures. Comptez un peu plus en pratique, à cause des pertes et du ralentissement en fin de charge.</p>
 <p>Repère utile : pour 40 km par jour, une voiture électrique consomme souvent de l'ordre de 6 à 8 kWh. Une recharge de quelques heures la nuit suffit alors largement.</p>
+<p>Faites le calcul pour votre voiture avec notre <a href="/simulateur-recharge">simulateur de recharge</a> : temps de charge et coût, selon votre borne et votre prix du kWh.</p>
 
 <h2>3. Faut-il un contrôle électrique ?</h2>
 <p>Ajouter une borne, c'est <strong>modifier votre installation électrique</strong> : un circuit dédié et une protection adaptée sont nécessaires. Selon la puissance, un <strong>contrôle par un organisme agréé</strong> et une <strong>déclaration au gestionnaire de réseau</strong> peuvent être nécessaires. Demandez à l'électricien de vous dire précisément ce qui s'applique à votre cas, et qui s'en occupe.</p>
@@ -237,5 +247,164 @@ module.exports = [
 <p>Factures détaillées, fiches techniques, <strong>photos de chantier</strong> avant que l'isolant soit caché : gardez tout. Ces preuves comptent pour votre prochain certificat PEB, et souvent pour les demandes d'aides.</p>
 <p>Et si l'installation électrique est modifiée de façon importante, un nouveau contrôle peut être nécessaire : prévoyez-le dans le planning.</p>`,
     sources: [SRC.neven, SRC.deroulement, SRC.bce]
+  },
+  {
+    slug: 'pompe-a-chaleur-adaptee',
+    date: '2026-11-18',
+    tag: 'Pompe à chaleur',
+    cat: 'Énergie renouvelable',
+    service: 'reno',
+    title: 'Pompe à chaleur : est-elle adaptée à votre logement ?',
+    seo: 'Pompe à chaleur : est-elle adaptée à votre logement ?',
+    description: "Isolation, radiateurs, électricité, panneaux solaires : les bonnes questions avant de passer à la pompe à chaleur en Wallonie, et ce que disent les règles sur le mazout.",
+    lead: "La pompe à chaleur a la cote, et pour de bonnes raisons. Mais elle ne donne le meilleur d'elle-même que dans certaines conditions. Voici comment savoir si votre logement est prêt.",
+    body: `
+<h2>Le principe, en deux phrases</h2>
+<p>Une pompe à chaleur prend la chaleur présente dans l'air, le sol ou l'eau, et la « remonte » à une température utile pour chauffer la maison. Elle utilise de l'électricité pour fonctionner, mais restitue plus de chaleur qu'elle ne consomme d'électricité, surtout quand elle travaille à basse température.</p>
+
+<h2>Les 4 questions à se poser</h2>
+<ol>
+  <li><strong>Mon logement est-il assez isolé ?</strong> Plus la maison perd de chaleur, plus la pompe doit forcer. Isoler d'abord (toiture, murs, châssis) permet souvent de choisir une machine plus petite et plus efficace.</li>
+  <li><strong>Mes émetteurs conviennent-ils ?</strong> Le chauffage par le sol ou de grands radiateurs fonctionnent à plus basse température : c'est idéal. De petits radiateurs prévus pour une chaudière très chaude peuvent poser problème.</li>
+  <li><strong>Mon installation électrique suit-elle ?</strong> La pompe ajoute une consommation importante : un électricien vérifie le raccordement et le tableau.</li>
+  <li><strong>Où placer l'unité extérieure ?</strong> Pensez au bruit pour vous et pour les voisins, et à l'accès pour l'entretien.</li>
+</ol>
+
+<h2>Et le mazout dans tout ça ?</h2>
+<ul>
+  <li>Dans les <strong>bâtiments neufs</strong>, installer une chaudière au mazout ou au charbon est <strong>interdit depuis le 1er janvier 2026</strong>.</li>
+  <li>Dans les <strong>bâtiments existants</strong>, l'interdiction d'installer ou de remplacer une chaudière au mazout est <strong>reportée au 1er janvier 2031</strong>. Le remplacement du brûleur reste possible jusqu'au 31 décembre 2034, et des dérogations sont prévues quand il n'existe pas d'alternative réaliste.</li>
+</ul>
+<p>Vous avez donc le temps de préparer le changement, idéalement en même temps que vos travaux d'isolation.</p>
+
+<h2>Avec des panneaux solaires ?</h2>
+<p>Une pompe à chaleur consomme de l'électricité : la produire vous-même est intéressant, d'autant que les nouvelles installations photovoltaïques ne bénéficient plus de la compensation. Mais attention, c'est en hiver que la pompe consomme le plus, quand les panneaux produisent le moins : le calcul doit être fait sérieusement, cas par cas.</p>
+
+<h2>Bien choisir l'installateur</h2>
+<ul>
+  <li>La Wallonie a mis en place une certification des installateurs d'énergie renouvelable (RESCERT) : demandez si l'installateur est certifié.</li>
+  <li>Exigez un dimensionnement basé sur <strong>votre</strong> maison (pertes de chaleur), pas une puissance « au feeling ».</li>
+  <li>Demandez le niveau sonore de l'unité extérieure, la garantie et le contrat d'entretien.</li>
+</ul>`,
+    sources: [SRC.mazout2031, SRC.mazoutEnergie, SRC.chauffageChoisir, SRC.rescert, SRC.finCompensation]
+  },
+  {
+    slug: 'isolation-toiture',
+    date: '2026-11-18',
+    tag: 'Isolation',
+    cat: 'Rénovation',
+    service: 'reno',
+    title: 'Isoler sa toiture : ce qu\'il faut savoir avant de se lancer',
+    seo: 'Isoler sa toiture : ce qu\'il faut savoir',
+    description: "Par l'intérieur, par l'extérieur ou le plancher des combles ? Les options pour isoler une toiture, les points d'attention et les preuves à garder pour votre certificat PEB.",
+    lead: "La toiture est souvent le premier chantier conseillé quand on veut améliorer un logement : la chaleur monte, et une toiture mal isolée en laisse beaucoup s'échapper. Voici comment s'y retrouver.",
+    body: `
+<h2>Trois façons d'isoler</h2>
+<ul>
+  <li><strong>Le plancher des combles</strong> : si le grenier n'est pas habité, on isole le sol du grenier. C'est souvent la solution la plus simple et la moins chère.</li>
+  <li><strong>La toiture par l'intérieur</strong> : l'isolant est placé entre et sous les chevrons, du côté de la pièce. On garde la couverture existante, mais on perd un peu de hauteur.</li>
+  <li><strong>La toiture par l'extérieur</strong> (« sarking ») : l'isolant est posé au-dessus de la charpente, au moment de refaire la couverture. Plus coûteux, mais très efficace et sans perte d'espace intérieur.</li>
+</ul>
+
+<h2>Les points d'attention</h2>
+<ul>
+  <li><strong>L'étanchéité à l'air</strong> : une isolation pleine de fuites d'air perd une grande partie de son intérêt. Le pare-vapeur ou la membrane doivent être continus et bien raccordés.</li>
+  <li><strong>L'humidité</strong> : une mauvaise mise en œuvre peut créer de la condensation dans la toiture. C'est un travail de professionnel.</li>
+  <li><strong>L'état de la charpente et de la couverture</strong> : on vérifie avant d'isoler, pour ne pas devoir tout rouvrir plus tard.</li>
+  <li><strong>La ventilation</strong> : une maison mieux isolée doit rester bien ventilée.</li>
+</ul>
+
+<h2>Les preuves à garder</h2>
+<p>Pour votre prochain certificat PEB, l'isolant caché sous le plafond ne se voit plus. Sans preuve, le certificateur applique des valeurs par défaut, en général moins favorables. Gardez :</p>
+<ul>
+  <li>des <strong>photos de chantier</strong> qui montrent l'isolant avant qu'il soit recouvert, avec un repère (mètre visible) ;</li>
+  <li>la <strong>facture détaillée</strong> avec la référence, le type et l'épaisseur de l'isolant ;</li>
+  <li>la fiche technique du produit.</li>
+</ul>
+
+<h2>Avant de signer</h2>
+<ul>
+  <li>Comparez des devis détaillés : type et épaisseur d'isolant, membrane, finitions, évacuation des déchets.</li>
+  <li>Demandez qui s'occupe de l'étanchéité à l'air et comment elle est vérifiée.</li>
+  <li>Pour une intervention sur la couverture ou la charpente, vérifiez l'assurance de l'entreprise.</li>
+</ul>`,
+    sources: [SRC.deroulement, SRC.pieces]
+  },
+  {
+    slug: 'controle-electrique-vente',
+    date: '2026-11-18',
+    tag: 'Vendre',
+    cat: 'Électricité',
+    service: 'pebelec',
+    title: 'Vendre une maison : le contrôle électrique expliqué simplement',
+    seo: 'Vendre une maison : le contrôle électrique expliqué',
+    description: "Qui doit le faire, quand, qui paie, et que se passe-t-il si l'installation n'est pas conforme ? Le contrôle électrique à la vente d'une habitation, en clair.",
+    lead: "Avec le certificat PEB, le contrôle de l'installation électrique est l'autre document incontournable quand on vend une habitation. Voici comment ça marche, sans jargon.",
+    body: `
+<h2>Est-ce obligatoire ?</h2>
+<p>Oui. Pour toute vente d'une habitation équipée d'une installation électrique, le vendeur doit remettre à l'acheteur :</p>
+<ul>
+  <li>soit un <strong>procès-verbal de conformité de moins de 25 ans</strong> ;</li>
+  <li>soit le procès-verbal d'une <strong>visite de contrôle</strong> réalisée par un <strong>organisme agréé</strong>.</li>
+</ul>
+<p>Le document est remis au plus tard à la signature de l'acte authentique chez le notaire.</p>
+
+<h2>Qui paie ?</h2>
+<p>L'obligation est à charge du vendeur : en principe, les frais aussi. Vendeur et acheteur peuvent toutefois s'entendre autrement.</p>
+
+<h2>Et si l'installation n'est pas conforme ?</h2>
+<p>Pas de panique : la vente reste possible. L'acheteur informe l'organisme de contrôle de son identité et de la date de l'acte, puis fait réaliser une <strong>nouvelle visite</strong>, en principe dans les <strong>18 mois</strong> qui suivent l'acte, par l'organisme agréé de son choix. Entre-temps, il fait réaliser les travaux nécessaires.</p>
+<p>Un procès-verbal non conforme peut toutefois peser dans la négociation : mieux vaut le connaître tôt.</p>
+
+<h2>Et après ?</h2>
+<p>Une installation déclarée conforme doit être recontrôlée au plus tard <strong>25 ans</strong> après la visite, ou plus tôt en cas de <strong>modification ou d'extension importante</strong> (par exemple l'ajout de circuits importants).</p>
+
+<h2>Notre conseil</h2>
+<ol>
+  <li>Faites le contrôle <strong>dès que vous décidez de vendre</strong>, en même temps que le certificat PEB.</li>
+  <li>Rassemblez vos documents : ancien procès-verbal, schémas et plans électriques si vous les avez.</li>
+  <li>Prévenez votre notaire : il vous dira ce qu'il lui faut et quand.</li>
+</ol>`,
+    sources: [SRC.notaireVendre, SRC.notaireLexique, SRC.notaireBrochure]
+  },
+  {
+    slug: 'bien-choisir-son-artisan',
+    date: '2026-11-18',
+    tag: 'Bien choisir',
+    cat: 'Rénovation',
+    service: 'reno',
+    title: 'Bien choisir son artisan : 7 vérifications avant de signer',
+    seo: 'Bien choisir son artisan : 7 vérifications',
+    description: "Numéro d'entreprise, assurances, certifications, devis détaillé : les 7 vérifications simples à faire avant de confier des travaux à une entreprise en Belgique.",
+    lead: "Un bon artisan, c'est un chantier serein. Un mauvais choix peut coûter cher et longtemps. Ces 7 vérifications prennent quelques minutes et évitent bien des soucis.",
+    body: `
+<h2>1. Le numéro d'entreprise</h2>
+<p>Toute entreprise a un numéro dans la <strong>Banque-Carrefour des Entreprises</strong>. Vérifiez-le gratuitement en ligne : l'entreprise existe-t-elle, est-elle active, ses activités correspondent-elles à vos travaux ?</p>
+
+<h2>2. L'assurance responsabilité professionnelle</h2>
+<p>Demandez l'<strong>attestation d'assurance</strong>. En cas de dégât pendant le chantier, c'est elle qui intervient.</p>
+
+<h2>3. L'assurance décennale, pour les gros travaux</h2>
+<p>Depuis le 1er juillet 2018, les entrepreneurs et architectes qui interviennent sur une <strong>habitation</strong> doivent être assurés pour leur <strong>responsabilité décennale</strong> lorsqu'elle peut être engagée : solidité, stabilité et étanchéité du gros œuvre fermé. Pour ce type de travaux, demandez l'attestation.</p>
+
+<h2>4. Les certifications et agréments du métier</h2>
+<p>Certains métiers demandent une certification ou un agrément : certificateur PEB agréé, installateur d'énergie renouvelable certifié, organisme de contrôle électrique agréé… Demandez le numéro et vérifiez-le.</p>
+
+<h2>5. Un devis détaillé et écrit</h2>
+<ul>
+  <li>Description précise des travaux, matériaux, marques, quantités.</li>
+  <li>Prix hors TVA et TVA comprise, avec le taux appliqué.</li>
+  <li>Délais, conditions de paiement, durée de validité du devis.</li>
+</ul>
+
+<h2>6. Des références vérifiables</h2>
+<p>Demandez des réalisations récentes et similaires à votre projet, et si possible un contact de client. Des avis en ligne peuvent aider, mais restez critique.</p>
+
+<h2>7. Un contrat clair, jusqu'à la réception</h2>
+<p>Dates, étapes de paiement liées à l'avancement, conditions de réception des travaux : tout doit être écrit. Méfiez-vous des acomptes très élevés demandés avant le début du chantier.</p>
+
+<h2>Et avec Jumeo ?</h2>
+<p>Nous ne travaillons qu'avec des partenaires qui ont un numéro d'entreprise, une assurance professionnelle et les agréments exigés pour leur métier. Vous gardez évidemment le dernier mot : ces vérifications restent utiles, et nous vous aidons à les faire.</p>`,
+    sources: [SRC.bce, SRC.peeters]
   }
 ];
