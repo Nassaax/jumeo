@@ -3,6 +3,7 @@
 Site vitrine de Jumeo, apporteur d'affaires indépendant (PEB, électricité, photovoltaïque, rénovation) en Wallonie.
 
 - `index.html` : le site complet (HTML/CSS/JS, sans framework). Les réglages sont dans le bloc `CONFIG` du script.
+- `brand/` : le logo (versions couleur et blanche, SVG et PNG transparent) pour cartes de visite, flyers, réseaux.
 - `favicon.svg`, `apple-touch-icon.png`, `og-image.jpg` : icônes et image de partage.
 - `robots.txt`, `sitemap.xml`, `vercel.json` : référencement et hébergement (Vercel).
 - `data/` : données de travail (non mises en ligne).
