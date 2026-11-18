@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1500px;background:#f6f8fb;font-family:Inter,sans-serif;color:#14202e;padding:48px}
+h1{font:800 34px 'Plus Jakarta Sans';color:#0b2441;margin-bottom:6px;letter-spacing:-.02em}
+.sub{color:#52606f;font-size:17px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.col{background:#fff;border:1px solid #e3e8ef;border-radius:22px;overflow:hidden}
+.tag{display:flex;align-items:center;gap:12px;padding:20px 24px 0}
+.tag b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#0b2441;color:#fff;font:800 17px 'Plus Jakarta Sans'}
+.tag span{font:700 20px 'Plus Jakarta Sans';color:#0b2441}
+.idea{padding:6px 24px 0;color:#52606f;font-size:14.5px;min-height:46px}
+.light,.dark{height:200px;display:flex;align-items:center;justify-content:center;gap:16px}
+.dark{background:linear-gradient(160deg,#0b2441,#12355b)}
+.lockup svg{width:84px;height:84px}
+.word{font:800 52px 'Plus Jakarta Sans';letter-spacing:-.035em;color:#0b2441}
+.dark .word{color:#fff}
+.small{display:flex;align-items:center;gap:22px;padding:18px 24px 22px;border-top:1px solid #e3e8ef}
+.small small{color:#52606f;font-size:13px}
+.app{width:64px;height:64px;border-radius:16px;background:#fff;border:1px solid #e3e8ef;display:grid;place-items:center}
+.app.nav{background:#0b2441;border:0}
+</style></head><body>
+<h1>Jumeo : 3 pistes de logo</h1>
+<p class="sub">Chaque piste en version claire, sur fond foncé, puis en petite taille (onglet du navigateur, icône de téléphone).</p>
+<div class="grid" id="grid"></div>
+<script>
+const N = '#12355b', O = '#ff7a45';
+// Piste 1 : deux cercles (les jumeaux) ; la zone commune = la mise en relation.
+function duo(a, b, mid) {
+  return `<svg viewBox="0 0 64 64"><circle cx="24" cy="32" r="18" fill="${a}"/><circle cx="40" cy="32" r="18" fill="${b}"/>
+  <path d="M32 15.876A18 18 0 0 0 32 48.124A18 18 0 0 0 32 15.876Z" fill="${mid}"/></svg>`;
+}
+// Piste 2 : deux maisons jumelles qui se chevauchent.
+function maisons(a, b, mid) {
+  const h = x => `M${x} 28L${x + 15} 11L${x + 30} 28V54H${x}Z`;
+  return `<svg viewBox="0 0 64 64"><defs><clipPath id="c${a.slice(1)}"><path d="${h(7)}"/></clipPath></defs>
+  <path d="${h(7)}" fill="${a}"/>
+  <path d="${h(27)}" fill="${b}"/>
+  <path d="${h(27)}" fill="${mid}" clip-path="url(#c${a.slice(1)})"/></svg>`;
+}
+// Piste 3 : deux anneaux entrelacés (le lien entre client et professionnel).
+function anneaux(a, b) {
+  return `<svg viewBox="0 0 64 64" fill="none" stroke-width="7">
+  <circle cx="23" cy="32" r="15" stroke="${a}"/><circle cx="41" cy="32" r="15" stroke="${b}"/>
+  <path d="M28.13 17.90A15 15 0 0 1 35.14 23.18" stroke="${a}"/></svg>`;
+}
+const pistes = [
+  { n: 1, t: 'Le duo', idea: 'Deux cercles pour les deux frères. La zone commune représente la mise en relation.',
+    light: duo(N, O, '#c4503a'), dark: duo('#fff', O, '#ffc2a6') },
+  { n: 2, t: 'Les maisons jumelles', idea: 'Deux maisons qui se chevauchent : l’immobilier et les jumeaux, compris en un coup d’œil.',
+    light: maisons(N, O, '#c4503a'), dark: maisons('#fff', O, '#ffc2a6') },
+  { n: 3, t: 'Le lien', idea: 'Deux anneaux entrelacés : le client et le professionnel, reliés par Jumeo.',
+    light: anneaux(N, O), dark: anneaux('#fff', O) }
+];
+document.getElementById('grid').innerHTML = pistes.map(p => `
+  <div class="col">
+    <div class="tag"><b>${p.n}</b><span>${p.t}</span></div>
+    <p class="idea">${p.idea}</p>
+    <div class="light lockup">${p.light}<span class="word">Jumeo</span></div>
+    <div class="dark lockup">${p.dark}<span class="word">Jumeo</span></div>
+    <div class="small">
+      <div class="app">${p.light.replace('<svg', '<svg width="44" height="44"')}</div>
+      <div class="app nav">${p.dark.replace('<svg', '<svg width="44" height="44"')}</div>
+      ${p.light.replace('<svg', '<svg width="32" height="32"')}
+      ${p.light.replace('<svg', '<svg width="16" height="16"')}
+      <small>icône · 32 px · 16 px</small>
+    </div>
+  </div>`).join('');
+</script>
+</body></html>

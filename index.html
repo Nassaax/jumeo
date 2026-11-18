@@ -327,7 +327,7 @@ dialog .btn{margin-top:8px}
     <div class="grid3">
       <article class="price">
         <h3>Certificat PEB</h3>
-        <div class="amt"><span data-price="peb">250</span> €<small> forfait</small></div>
+        <div class="amt"><span data-price="peb">250</span> €<small> TVAC · forfait</small></div>
         <p>Visite sur place, relevé du bien, remise du certificat. On vous explique ce qui pèse sur la note.</p>
         <ul class="ticks">
           <li>Rendez-vous planifié rapidement</li>
@@ -340,7 +340,7 @@ dialog .btn{margin-top:8px}
       <article class="price pop">
         <span class="badge">Le plus demandé</span>
         <h3>PEB + contrôle électrique</h3>
-        <div class="amt"><span data-price="pebelec">300</span> €<small> forfait</small></div>
+        <div class="amt"><span data-price="pebelec">300</span> €<small> TVAC · forfait</small></div>
         <p>Un seul rendez-vous pour avancer plus vite : certificat PEB et contrôle électrique selon votre besoin.</p>
         <ul class="ticks">
           <li>Un interlocuteur, un planning</li>
@@ -352,7 +352,7 @@ dialog .btn{margin-top:8px}
 
       <article class="price">
         <h3>Dépannage chauffage &amp; électricité</h3>
-        <div class="amt"><small>dès </small><span data-price="depannage">150</span> €</div>
+        <div class="amt"><small>dès </small><span data-price="depannage">150</span> €<small> TVAC</small></div>
         <p>Diagnostic avant réparation. La sécurité d'abord : gaz, eau, électricité.</p>
         <ul class="ticks">
           <li>Diagnostic + explication avant action</li>
@@ -361,7 +361,7 @@ dialog .btn{margin-top:8px}
         <a class="btn btn-ghost" href="#devis" data-pick="depannage">Demander ce devis</a>
       </article>
     </div>
-    <p class="fine">Tarifs indicatifs. Le prix final dépend de la commune, de l'accessibilité, de l'état de l'installation et du matériel. Le devis définitif vous est confirmé avant l'intervention.</p>
+    <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend de la commune, de l'accessibilité, de l'état de l'installation et du matériel. Le devis définitif vous est confirmé avant l'intervention.</p>
     <div class="svc">
       <div class="s"><div class="ico">☀️</div><h3>Panneaux photovoltaïques</h3><p>Étude et installation par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude →</a></div>
       <div class="s"><div class="ico">⚡</div><h3>Électricité &amp; plan électrique</h3><p>Électricité générale, plan électrique, étude de projet énergétique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis →</a></div>
@@ -533,7 +533,7 @@ dialog .btn{margin-top:8px}
       </div>
     </div>
     <div class="legal" id="legalLine">
-      <span data-brand>Jumeo</span> est un apporteur d'affaires indépendant et n'est pas certificateur PEB. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne. Les prestations sont réalisées par nos partenaires. Prix indicatifs, devis confirmé avant intervention.
+      <span data-brand>Jumeo</span> est un apporteur d'affaires indépendant et n'est pas certificateur PEB. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne. Les prestations sont réalisées par nos partenaires. Prix indicatifs TVAC, devis confirmé avant intervention.
     </div>
   </div>
 </footer>
@@ -570,8 +570,9 @@ const CONFIG = {
   phone: '',          // ex : '+32 4xx xx xx xx'  (numéro de Jumeo, pas celui d'un partenaire)
   whatsapp: '',       // chiffres uniquement, ex : '324xxxxxxxx'
   email: '',          // ex : 'contact@jumeo.be'
-  company: { legalName: '', bce: '', address: '' },
+  company: { legalName: '', bce: '', address: '', status: 'Structure en cours de création.' },
   prices: { peb: 250, pebelec: 300, depannage: 150 },
+  vat: 'TVAC',        // prix TVA comprise (confirmé par Nasser)
   // Réseau de partenaires : on peut en ajouter autant que nécessaire.
   partners: [
     {
@@ -589,11 +590,11 @@ const CONFIG = {
 };
 
 const SERVICES = {
-  peb:       { label: 'Certificat PEB',                       price: () => CONFIG.prices.peb + ' €' },
-  pebelec:   { label: 'PEB + contrôle électrique',            price: () => CONFIG.prices.pebelec + ' €' },
+  peb:       { label: 'Certificat PEB',                       price: () => CONFIG.prices.peb + ' € ' + CONFIG.vat },
+  pebelec:   { label: 'PEB + contrôle électrique',            price: () => CONFIG.prices.pebelec + ' € ' + CONFIG.vat },
   elec:      { label: 'Électricité / plan électrique',        price: () => 'Sur devis' },
   pv:        { label: 'Panneaux photovoltaïques',             price: () => 'Sur devis' },
-  depannage: { label: 'Dépannage chauffage / électricité',    price: () => 'dès ' + CONFIG.prices.depannage + ' €' },
+  depannage: { label: 'Dépannage chauffage / électricité',    price: () => 'dès ' + CONFIG.prices.depannage + ' € ' + CONFIG.vat },
   reno:      { label: 'Travaux de rénovation',                price: () => 'Sur devis' },
   partner:   { label: 'Entreprise : rejoindre le réseau',     price: () => 'Sur demande' },
   autre:     { label: 'Autre projet immobilier',              price: () => 'Sur devis' }
@@ -638,6 +639,7 @@ function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<'
   const c = CONFIG.company;
   const lines = [];
   lines.push('<p><b>' + esc(c.legalName || CONFIG.brand) + '</b>' + (c.address ? ' — ' + esc(c.address) : '') + '</p>');
+  if (!c.bce && c.status) lines.push('<p>' + esc(c.status) + '</p>');
   if (c.bce) lines.push('<p>N° d\'entreprise (BCE) : ' + esc(c.bce) + '</p>');
   if (CONFIG.email) lines.push('<p>Contact : ' + esc(CONFIG.email) + '</p>');
   lines.push('<p>' + esc(CONFIG.brand) + ' agit en qualité d\'apporteur d\'affaires indépendant. Il n\'est pas certificateur PEB. Les prestations (certificat PEB, contrôle électrique, travaux) sont réalisées par des partenaires indépendants. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne.</p>');
