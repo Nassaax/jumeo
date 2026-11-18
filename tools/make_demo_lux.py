@@ -37,6 +37,28 @@ shutil.copy(LOGO_SRC, os.path.join(OUT, 'logo-lux.png'))
 # ── 2. Icônes et image de partage à partir du logo ───────────────────────────
 subprocess.run(['python3', os.path.join(ROOT, 'tools', 'demo_lux_images.py'), LOGO_SRC, OUT], check=True)
 
+# ── 2 bis. Photos des services (reprises du site de Lux, dans tools/demo-lux-photos/) ──
+# Illustrations des services, jamais présentées comme « nos réalisations ».
+# nom de sortie : (fichier source, centre du cadrage x, y). Recadrées en 16:10, 800 × 500.
+from PIL import Image
+PHOTOS = {
+    'peb': ('peb.webp', .5, .5), 'pebelec': ('tableau.webp', .22, .5), 'depannage': ('depannage.webp', .42, .5),
+    'chauffage': ('chaufferie.webp', .5, .42), 'pv': ('photovoltaique.webp', .6, .5), 'elec': ('tableau.webp', .78, .5),
+}
+os.makedirs(os.path.join(OUT, 'photos'))
+for name, (src, fx, fy) in PHOTOS.items():
+    im = Image.open(os.path.join(ROOT, 'tools', 'demo-lux-photos', src)).convert('RGB')
+    w, h = im.size
+    cw, ch = (w, round(w * 10 / 16)) if w * 10 / 16 <= h else (round(h * 16 / 10), h)
+    x = min(max(round(fx * w - cw / 2), 0), w - cw)
+    y = min(max(round(fy * h - ch / 2), 0), h - ch)
+    im.crop((x, y, x + cw, y + ch)).resize((800, 500), Image.LANCZOS).save(os.path.join(OUT, 'photos', name + '.webp'), quality=80)
+
+
+def ph(name, alt):
+    return ('<img class="ph" src="/photos/' + name + '.webp" alt="' + alt +
+            '" width="800" height="500" loading="lazy" decoding="async" />')
+
 # ── 3. Remplacements ─────────────────────────────────────────────────────────
 DEMO_CSS = """<style id="demo-lux">
 /* Démo Lux Energie Solution : logo image, couleurs, écran d'ouverture */
@@ -75,6 +97,11 @@ html.intro .intro-splash{background:#fff}
 .trust4 small{display:block;font-size:13.5px;color:rgba(11,36,65,.66);margin-top:2px}
 .lx-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .lx-values span{font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:#fff6d6;color:#0b2441}
+/* Photos des services */
+.price .ph{display:block;width:calc(100% + 64px);max-width:none;height:auto;aspect-ratio:16/10;object-fit:cover;margin:-32px -32px 22px;border-radius:var(--r-card) var(--r-card) 0 0}
+.price.pop .badge{top:14px;right:14px;background:#0b2441;border-color:rgba(255,255,255,.22);color:#fff}
+.price.pop h3{padding-right:0}
+.svc .s .ph{grid-column:1/-1;display:block;width:100%;max-width:none;height:210px;object-fit:cover;border-radius:16px;margin-bottom:16px}
 footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
 </style>"""
 
@@ -207,6 +234,21 @@ INDEX = [
     ("<h2>Deux frères jumeaux, un seul objectif.</h2>", "<h2>L'énergie de votre logement, de A à Z.</h2>"),
     ("<p>Nés à Seraing, installés à Liège : l'un est comptable et a été agent immobilier, l'autre est électricien et a installé des systèmes d'énergie renouvelable. On a créé <span data-brand>Jumeo</span> pour simplifier vos projets : vous nous parlez, on vous met en relation avec le bon professionnel, et on suit votre dossier jusqu'au bout.</p>",
      "<p>Lux Energie Solution est une entreprise wallonne spécialisée dans l'installation, la maintenance et le dépannage des systèmes de chauffage, d'électricité et de photovoltaïque, et dans la certification PEB. Basés à Grâce-Hollogne, nous intervenons partout en Wallonie. Un seul interlocuteur, du diagnostic à la finition.</p><div class=\"lx-values\"><span>Performance énergétique</span><span>Conformité réglementaire</span><span>Réduction des coûts</span></div>"),
+    # photos des tarifs
+    ('<article class="price reveal">\n        <h3>Certificat PEB</h3>',
+     '<article class="price reveal">\n        ' + ph('peb', 'Certificat PEB tenu en main devant une maison') + '\n        <h3>Certificat PEB</h3>'),
+    ('<span class="badge">Le plus demandé</span>\n        <h3>PEB + contrôle électrique</h3>',
+     ph('pebelec', 'Tableau électrique avec ses disjoncteurs') + '\n        <span class="badge">Le plus demandé</span>\n        <h3>PEB + contrôle électrique</h3>'),
+    ('<article class="price reveal">\n        <h3>Dépannage chauffage &amp; électricité</h3>',
+     '<article class="price reveal">\n        ' + ph('depannage', 'Technicien intervenant sur une chaudière murale') + '\n        <h3>Dépannage chauffage &amp; électricité</h3>'),
+    # services : la première ligne (chauffage, photovoltaïque, électricité) reçoit les photos, la pompe à chaleur passe en 2e ligne
+    ('<div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3>',
+     '<div class="s reveal">' + ph('chauffage', 'Chaufferie : chaudière, ballons et collecteurs') + '<span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3>'),
+    ('<div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-fan"/></svg></span><h3>Pompe à chaleur &amp; climatisation</h3><p>Étude et installation adaptées à votre logement. Sur devis.</p><a href="#devis" data-pick="pac">Demander une étude <span>→</span></a></div>\n', ''),
+    ('<div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation par un professionnel partenaire. Sur devis.</p>',
+     '<div class="s reveal">' + ph('pv', 'Panneaux photovoltaïques sur des toitures, vue du ciel') + '<span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation adaptées à votre toiture. Sur devis.</p>'),
+    ('<div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>',
+     '<div class="s reveal">' + ph('elec', 'Câblage d&#39;une armoire électrique') + '<span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>\n      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-fan"/></svg></span><h3>Pompe à chaleur &amp; climatisation</h3><p>Étude et installation adaptées à votre logement. Sur devis.</p><a href="#devis" data-pick="pac">Demander une étude <span>→</span></a></div>'),
 ]
 
 

@@ -533,6 +533,11 @@ html.intro .intro-splash{background:#fff}
 .trust4 small{display:block;font-size:13.5px;color:rgba(11,36,65,.66);margin-top:2px}
 .lx-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .lx-values span{font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:#fff6d6;color:#0b2441}
+/* Photos des services */
+.price .ph{display:block;width:calc(100% + 64px);max-width:none;height:auto;aspect-ratio:16/10;object-fit:cover;margin:-32px -32px 22px;border-radius:var(--r-card) var(--r-card) 0 0}
+.price.pop .badge{top:14px;right:14px;background:#0b2441;border-color:rgba(255,255,255,.22);color:#fff}
+.price.pop h3{padding-right:0}
+.svc .s .ph{grid-column:1/-1;display:block;width:100%;max-width:none;height:210px;object-fit:cover;border-radius:16px;margin-bottom:16px}
 footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
 </style>
 </head>
@@ -696,6 +701,7 @@ footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,
     </div>
     <div class="grid3">
       <article class="price reveal">
+        <img class="ph" src="/photos/peb.webp" alt="Certificat PEB tenu en main devant une maison" width="800" height="500" loading="lazy" decoding="async" />
         <h3>Certificat PEB</h3>
         <div class="amt"><span data-price="peb">250</span> €<small> TVAC · forfait</small></div>
         <p>Visite sur place, relevé du bien, remise du certificat. On vous explique ce qui pèse sur la note.</p>
@@ -708,6 +714,7 @@ footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,
       </article>
 
       <article class="price pop reveal">
+        <img class="ph" src="/photos/pebelec.webp" alt="Tableau électrique avec ses disjoncteurs" width="800" height="500" loading="lazy" decoding="async" />
         <span class="badge">Le plus demandé</span>
         <h3>PEB + contrôle électrique</h3>
         <div class="amt"><span data-price="pebelec">300</span> €<small> TVAC · forfait</small></div>
@@ -724,6 +731,7 @@ footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,
       </article>
 
       <article class="price reveal">
+        <img class="ph" src="/photos/depannage.webp" alt="Technicien intervenant sur une chaudière murale" width="800" height="500" loading="lazy" decoding="async" />
         <h3>Dépannage chauffage &amp; électricité</h3>
         <div class="amt"><small>dès </small><span data-price="depannage">150</span> €<small> TVAC</small></div>
         <p>Diagnostic avant réparation. La sécurité d'abord : gaz, eau, électricité.</p>
@@ -736,10 +744,10 @@ footer .addr{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(255,255,
     </div>
     <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend de la commune, de l'accessibilité, de l'état de l'installation et du matériel. Le devis définitif vous est confirmé avant l'intervention.</p>
     <div class="svc">
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3><p>Installation, entretien et dépannage de chaudières, par nos techniciens. Sur devis.</p><a href="#devis" data-pick="chauffage">Demander un devis <span>→</span></a></div>
+      <div class="s reveal"><img class="ph" src="/photos/chauffage.webp" alt="Chaufferie : chaudière, ballons et collecteurs" width="800" height="500" loading="lazy" decoding="async" /><span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3><p>Installation, entretien et dépannage de chaudières, par nos techniciens. Sur devis.</p><a href="#devis" data-pick="chauffage">Demander un devis <span>→</span></a></div>
+            <div class="s reveal"><img class="ph" src="/photos/pv.webp" alt="Panneaux photovoltaïques sur des toitures, vue du ciel" width="800" height="500" loading="lazy" decoding="async" /><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation adaptées à votre toiture. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude <span>→</span></a></div>
+      <div class="s reveal"><img class="ph" src="/photos/elec.webp" alt="Câblage d&#39;une armoire électrique" width="800" height="500" loading="lazy" decoding="async" /><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-fan"/></svg></span><h3>Pompe à chaleur &amp; climatisation</h3><p>Étude et installation adaptées à votre logement. Sur devis.</p><a href="#devis" data-pick="pac">Demander une étude <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation par nos techniciens. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-plug"/></svg></span><h3>Borne de recharge</h3><p>Une borne adaptée à votre voiture et à votre installation. Sur devis.</p><a href="#devis" data-pick="borne">Demander un devis <span>→</span></a></div>
       <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-home"/></svg></span><h3>Rénovation &amp; ventilation</h3><p>Décrivez votre projet : nous vous proposons un devis clair.</p><a href="#devis" data-pick="reno">Parler de mon projet <span>→</span></a></div>
     </div>
