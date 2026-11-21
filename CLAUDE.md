@@ -85,6 +85,10 @@
 - Bandeau « Lancement officiel en … » : `CONFIG.launch` (`'janvier 2027'`) ; le vider le jour du lancement puis `node build.js`. Il se replie au défilement. Ne pas écrire que des devis sont réalisés avant le lancement.
 - Tests en local (`file://`) : les adresses `/…` sont redirigées vers le projet par `mapRoot` dans les scripts de test.
 
+## Mention « Site réalisé par » (bas de page)
+- « Site réalisé par NY Visuals » (studio web de Nasser, nom provisoire) sous la ligne légale de toutes les pages : `tools/credit-part.js` (`STUDIO`, `LOGO` vide tant que le logo n'existe pas, `URL` vide tant que le site du studio n'est pas en ligne), inséré par `build.js` (pages générées + marqueurs `CREDIT` dans `index.html`). Changer le nom, ajouter le logo ou le lien : modifier ce fichier puis `node build.js`.
+- Pas dans la démo Lux (choix de Nasser, 2026-11-21) : retirée par `make_demo_lux.py`.
+
 ## Écran d'ouverture (effet « waw »)
 - Dans `tools/app-part.js` (`splash`, `splashCss`, `splashJs`, `introHead`) : les deux anneaux arrivent chacun d'un côté en se dessinant, se rejoignent, s'entrelacent (petit battement), puis le mot « Jumeo » (tracé repris de `brand/jumeo-logo-blanc.svg`) et la phrase « Vous. Le bon professionnel. Un seul lien. ». Durée ≈ 2,9 s, clic pour passer.
 - Une seule fois par visite (sessionStorage `jumeo-intro`), jamais si l'appareil demande des animations réduites, jamais sans JavaScript. Le contenu de la page entre en scène juste après (`html.intro …` décale les animations).

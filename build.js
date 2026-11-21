@@ -151,6 +151,7 @@ const APP = require('./tools/app-part.js');
 const WORD_D = [...fs.readFileSync(path.join(ROOT, 'brand', 'jumeo-logo-blanc.svg'), 'utf8').matchAll(/<path d="([^"]+)"/g)].map(m => m[1]).find(d => d.length > 200);
 if (!WORD_D) throw new Error('Tracé du mot Jumeo introuvable dans brand/jumeo-logo-blanc.svg');
 const PARTNERS = require('./tools/partners-part.js');
+const CREDIT = require('./tools/credit-part.js');
 
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
@@ -192,7 +193,7 @@ ${APP.head}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
-<style>${CSS}${css}${APP.css}${PARTNERS.css}</style>
+<style>${CSS}${css}${APP.css}${PARTNERS.css}${CREDIT.css}</style>
 </head>
 <body>
 ${APP.splash(WORD_D)}
@@ -224,6 +225,7 @@ ${PARTNERS.html(CONFIG.partners, esc)}
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
     <div class="legal">${esc(CONFIG.brand)} est un apporteur d'affaires indépendant et n'est pas certificateur PEB. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne. Les prestations sont réalisées par nos partenaires. Prix indicatifs ${esc(VAT)}, devis confirmé avant intervention.</div>
+    ${CREDIT.html}
   </div>
 </footer>
 ${APP.html({ active: app.tab, brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })}
@@ -524,12 +526,12 @@ out.unshift(...G.urls);
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
-for (const [k, v] of [['APP:SPLASH', APP.splash(WORD_D)], ['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.partners, esc)], ['APP:HEAD', APP.head], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
+for (const [k, v] of [['APP:SPLASH', APP.splash(WORD_D)], ['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.partners, esc)], ['APP:HEAD', APP.head], ['CREDIT', CREDIT.html], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
   const re = new RegExp(`<!-- ${k}:START[\\s\\S]*?<!-- ${k}:END -->`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, `<!-- ${k}:START (généré par build.js) -->\n${v}\n<!-- ${k}:END -->`);
 }
-for (const [k, v] of [['APP:CSS', APP.css + PARTNERS.css], ['APP:JS', APP.js]]) {
+for (const [k, v] of [['APP:CSS', APP.css + PARTNERS.css + CREDIT.css], ['APP:JS', APP.js]]) {
   const re = new RegExp(`/\\* ${k}:START[\\s\\S]*?/\\* ${k}:END \\*/`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, () => `/* ${k}:START (généré par build.js) */\n${v}\n/* ${k}:END */`);

@@ -119,6 +119,9 @@ CHIP = '<span class="logo-chip"><img src="/logo-lux.png" alt="Lux Energie Soluti
 
 # (motif regex, remplacement) : appliqués à toutes les pages HTML, dans l'ordre
 REGEX = [
+    # pas de mention « Site réalisé par » dans la démo Lux (choix de Nasser, 2026-11-21)
+    (r'\s*<!-- CREDIT:START[\s\S]*?<!-- CREDIT:END -->', ''),
+    (r'\s*<div class="credit">[\s\S]*?</div>', ''),
     # structure : blocs propres au modèle « apporteur d'affaires »
     (r'<section class="partners-band"[\s\S]*?</section>\s*', ''),
     (r'<div class="launch"[\s\S]*?</a></div>\s*', ''),
