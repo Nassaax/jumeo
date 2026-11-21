@@ -86,7 +86,7 @@
 - Tests en local (`file://`) : les adresses `/…` sont redirigées vers le projet par `mapRoot` dans les scripts de test.
 
 ## Mention « Site réalisé par » (bas de page)
-- « Site réalisé par NY Visuals » (studio web de Nasser, nom provisoire) sous la ligne légale de toutes les pages : `tools/credit-part.js` (`STUDIO`, `LOGO` vide tant que le logo n'existe pas, `URL` vide tant que le site du studio n'est pas en ligne), inséré par `build.js` (pages générées + marqueurs `CREDIT` dans `index.html`). Changer le nom, ajouter le logo ou le lien : modifier ce fichier puis `node build.js`.
+- « Site réalisé par NY Visuals » (studio web de Nasser, nom provisoire) sous la ligne légale de toutes les pages : `tools/credit-part.js` (`STUDIO`, `LOGO` = pastille ronde « NY » fournie par Nasser le 2026-11-21, dans `studio/` en 96 px et 512 px, `URL` vide tant que le site du studio n'est pas en ligne). Attention : le site Lalla affiche « Nayas Visuals » ; nom définitif à confirmer par Nasser, inséré par `build.js` (pages générées + marqueurs `CREDIT` dans `index.html`). Changer le nom, ajouter le logo ou le lien : modifier ce fichier puis `node build.js`.
 - Pas dans la démo Lux (choix de Nasser, 2026-11-21) : retirée par `make_demo_lux.py`.
 
 ## Écran d'ouverture (effet « waw »)
