@@ -20,11 +20,30 @@ module.exports = function simulateur({ esc, btn, CONFIG }) {
     { id: 'pv', t: 'Avez-vous des panneaux photovoltaïques ?', o: [['oui', 'Oui'], ['non', 'Non']] }
   ];
 
+  // Icônes des réponses (questions affichées en tuiles quand toutes leurs réponses ont une icône).
+  const ICO = {
+    appart: '<path d="M5 21V3h14v18M3 21h18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/>',
+    mitoyenne: '<path d="M2 21V10l5-4 5 4 5-4 5 4v11"/><path d="M12 10v11M1 21h22"/>',
+    '3f': '<path d="M4 21V10l7-6 7 6v11"/><path d="M18 21V12h3v9M2 21h20"/>',
+    '4f': '<path d="M3 11l9-8 9 8"/><path d="M5 10v11h14V10"/><path d="M10 21v-6h4v6"/>',
+    simple: '<rect x="5" y="3" width="14" height="18" rx="1"/>',
+    double_ancien: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18"/>',
+    double_recent: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18M7 7l2-2M15 7l2-2"/>',
+    triple: '<rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 3v18M15 3v18"/>',
+    chaudiere_ancienne: '<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M12 15c-1.5 0-2.5-1-2.5-2.3 0-1.3 1-2 1.6-3 .3.7.7 1 1.2 1.2.2-1 .7-1.9 1.5-2.4-.1 1.1.3 1.8.9 2.5.5.6.8 1.2.8 1.9 0 1.2-1.1 2.1-2.5 2.1z"/>',
+    chaudiere_recente: '<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6"/><path d="M12 17c-1.5 0-2.5-1-2.5-2.3 0-1.3 1-2 1.6-3 .3.7.7 1 1.2 1.2.2-1 .7-1.9 1.5-2.4-.1 1.1.3 1.8.9 2.5.5.6.8 1.2.8 1.9 0 1.2-1.1 2.1-2.5 2.1z"/>',
+    pac: '<rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="10" cy="12.5" r="3.5"/><path d="M10 9v7M6.5 12.5h7M16 10h2M16 13h2"/>',
+    electrique: '<path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/>',
+    bois: '<path d="M12 21c-3.9 0-7-2.7-7-6.5 0-3.2 2.3-5 3.5-7.5.6 1.6 1.6 2.6 2.7 3C11.2 7 12.4 4.6 14.5 3c-.3 2.6.7 4.4 2.1 6 1.4 1.6 2.4 3.3 2.4 5.5 0 3.8-3.1 6.5-7 6.5z"/>',
+    oui: '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M3 10h18M9 4v12M15 4v12M12 16v4M8 20h8"/>',
+    non: '<circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/>'
+  };
+  const iconQ = q => ['type', 'vitrage', 'chauffage', 'pv'].includes(q.id) && q.o.every(([v]) => ICO[v]);
   const fieldsets = QUESTIONS.map((q, i) => `
         <fieldset class="q" data-step="${i}">
           <legend><span class="q-num">Question ${i + 1} sur ${QUESTIONS.length}</span>${esc(q.t)}</legend>
           ${q.h ? `<p class="q-help">${esc(q.h)}</p>` : ''}
-          <div class="opts">${q.o.map(([v, l]) => `<label class="opt"><input type="radio" name="${q.id}" value="${v}" required /><span>${esc(l)}</span></label>`).join('')}</div>
+          <div class="opts${iconQ(q) ? ' opts-ico' : ''}">${q.o.map(([v, l]) => `<label class="opt"><input type="radio" name="${q.id}" value="${v}" required /><span>${iconQ(q) ? `<svg class="o-ico" viewBox="0 0 24 24" aria-hidden="true">${ICO[v]}</svg>` : ''}${esc(l)}</span></label>`).join('')}</div>
         </fieldset>`).join('');
 
   const SCALE = [['A++', '#0e6b3a'], ['A+', '#13753f'], ['A', '#1a7f45'], ['B', '#3f8f3a'], ['C', '#6c8f22'], ['D', '#a07d00'], ['E', '#c0631a'], ['F', '#cf4a2a'], ['G', '#b8261e']];
@@ -103,6 +122,15 @@ module.exports = function simulateur({ esc, btn, CONFIG }) {
 .opt input:checked+span{box-shadow:0 0 0 2px var(--ink);background:#eef2f7}
 .opt input:checked+span::before{box-shadow:inset 0 0 0 6px var(--accent)}
 .opt input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.opts-ico{grid-template-columns:repeat(2,1fr)}
+@media(min-width:620px){.opts-ico{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
+.opts-ico .opt span{position:relative;flex-direction:column;justify-content:center;text-align:center;gap:10px;min-height:118px;padding:16px 10px;font-size:14.5px;line-height:1.3;background:#fafaf8}
+.opts-ico .opt span::before{display:none}
+.opts-ico .opt input{z-index:2;cursor:pointer;margin:0;width:100%;height:100%}
+.opts-ico .o-ico{pointer-events:none;width:44px;height:44px;padding:10px;border-radius:14px;background:#fff6d6;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:background-color .2s}
+.opts-ico .opt input:checked+span{background:#fffbea;box-shadow:0 0 0 2px var(--accent-d)}
+.opts-ico .opt input:checked+span .o-ico{background:var(--accent)}
+.opts-ico .opt input:checked+span::after{content:"";position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;background:#1a7f45 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/11px no-repeat}
 .sim-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .stepper .q{display:none}.stepper .q.on{display:block;animation:rise .45s var(--e-out) both}
 .result h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:22px}

@@ -393,6 +393,25 @@ footer .logo{color:#fff;margin-bottom:14px}
 .bien-txt i span{color:var(--accent)}
 .bien:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:620px){.bien-txt{padding:12px}.bien-txt b{font-size:16px}.bien-txt small{font-size:12px}.bien-txt i{font-size:12.5px}}
+.tiles .tile span{position:relative;display:grid;grid-template-columns:36px 1fr;align-items:center;column-gap:10px;row-gap:0;min-height:62px;padding:10px 28px 10px 10px}
+.tiles .tile .ico{width:36px;height:36px;padding:8px;border-radius:10px;background:#fff6d6;color:var(--ink);grid-row:span 2}
+.tiles .tile small{grid-column:2;font:500 12px 'Inter',sans-serif;color:var(--muted);margin-top:1px}
+.tiles .tile input:checked+span{background:#fffbea;box-shadow:0 0 0 2px var(--accent-d)}
+.tiles .tile input:checked+span .ico{background:var(--accent);color:var(--ink)}
+.tiles .tile input:checked+span::after{content:"";position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;background:#1a7f45 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/10px no-repeat}
+.fhead{display:flex;align-items:center;gap:8px;font:600 15px 'Plus Jakarta Sans',sans-serif;color:var(--ink);margin:4px 0 10px}
+.fhead svg{width:20px;height:20px;fill:none;stroke:var(--accent-d);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btiles{border:0;padding:0;margin:0 0 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.btile{position:relative;cursor:pointer}
+.btile input{position:absolute;opacity:0;inset:0}
+.btile span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:70px;padding:8px 4px;border-radius:14px;background:#fafaf8;box-shadow:0 0 0 1px var(--line);font:600 12.5px/1.2 'Inter',sans-serif;color:var(--ink);text-align:center;transition:box-shadow .2s,background-color .2s}
+.btile svg{width:24px;height:24px;fill:none;stroke:rgba(11,36,65,.55);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.btile:hover span{box-shadow:0 0 0 1px var(--ink)}
+.btile input:checked+span{background:#fffbea;box-shadow:0 0 0 2px var(--accent-d)}
+.btile input:checked+span svg{stroke:var(--ink)}
+.btile input:checked+span::after{content:"";position:absolute;top:6px;right:6px;width:16px;height:16px;border-radius:50%;background:#1a7f45 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/10px no-repeat}
+.btile input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
 /* APP:CSS:START (généré par build.js) */
 
 /* ═════════ BANDEAU LANCEMENT ═════════ */
@@ -729,12 +748,9 @@ dialog .btn{margin-top:8px}
         </div>
         <div class="qstep" data-n="2">
           <button type="button" class="q-back" id="qBack"><span aria-hidden="true">←</span> <span id="qChosen">Certificat PEB</span> · modifier</button>
-        <div class="row2">
-          <div class="field"><label for="commune">Commune</label><input id="commune" name="commune" placeholder="ex : Liège" autocomplete="address-level2" required /></div>
-          <div class="field"><label for="bien">Type de bien</label>
-            <select id="bien" name="bien"><option>Maison</option><option>Appartement</option><option>Studio</option><option>Duplex / loft</option><option>Immeuble</option><option>Commerce / bureau</option><option>Autre</option></select>
-          </div>
-        </div>
+        <p class="fhead"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v11h14V10"/></svg>Votre bien</p>
+        <fieldset class="btiles"><legend class="sr">Type de bien</legend><label class="btile"><input type="radio" name="bien" value="Studio" /><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h11v17M2 21h20"/><path d="M15 6h3v15"/><circle cx="12" cy="13" r=".8" fill="currentColor"/></svg>Studio</span></label><label class="btile"><input type="radio" name="bien" value="Appartement" /><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V3h14v18M3 21h18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>Appartement</span></label><label class="btile"><input type="radio" name="bien" value="Maison" checked /><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v11h14V10"/><path d="M10 21v-6h4v6"/></svg>Maison</span></label><label class="btile"><input type="radio" name="bien" value="Duplex / loft" /><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 4.5 9-4.5"/></svg>Duplex / loft</span></label><label class="btile"><input type="radio" name="bien" value="Immeuble" /><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9h6V3h12v18M1 21h22"/><path d="M13 7h4M13 11h4M13 15h4M5 13h2M5 17h2"/></svg>Immeuble</span></label><label class="btile"><input type="radio" name="bien" value="Autre" /><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>Autre</span></label></fieldset>
+        <div class="field"><label for="commune">Commune</label><input id="commune" name="commune" placeholder="ex : Liège" autocomplete="address-level2" required /></div>
         <div class="row2">
           <div class="field"><label for="surface">Surface approximative</label>
             <select id="surface" name="surface"><option>Je ne sais pas</option><option>Moins de 70 m²</option><option>70 à 150 m²</option><option>150 à 250 m²</option><option>Plus de 250 m²</option></select>
@@ -743,6 +759,7 @@ dialog .btn{margin-top:8px}
             <select id="dispo" name="dispo"><option>Dès que possible</option><option>En semaine, le matin</option><option>En semaine, l'après-midi</option><option>Je précise dans le message</option></select>
           </div>
         </div>
+        <p class="fhead"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Vos coordonnées</p>
         <div class="row2">
           <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required /></div>
           <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" required /></div>
@@ -1298,12 +1315,15 @@ const sel = {
   get value() { const c = svcInputs.find(i => i.checked); return c ? c.value : 'peb'; },
   set value(v) { if (SERVICES[v]) svcInputs.forEach(i => { i.checked = i.value === v; }); }
 };
+$$('.tile input[name="service"]').forEach(i => { const sp = i.nextElementSibling; if (SERVICES[i.value] && !sp.querySelector('small')) sp.insertAdjacentHTML('beforeend', '<small>' + SERVICES[i.value].price() + '</small>'); });
 function updatePrice() {
   $('#priceOut').textContent = SERVICES[sel.value].price();
   $('#qChosen').textContent = SERVICES[sel.value].label;
 }
 svcInputs.forEach(i => i.addEventListener('change', updatePrice));
 updatePrice();
+
+function setBien(v) { $$('input[name="bien"]').forEach(i => { i.checked = i.value === v; }); }
 
 /* ── Formulaire en 2 étapes (sans JS : tout reste visible) ── */
 const qForm = $('#quoteForm');
@@ -1318,7 +1338,7 @@ $('#qBack').addEventListener('click', () => goStep(1, svcInputs.find(i => i.chec
 $$('[data-pick]').forEach(a => a.addEventListener('click', () => {
   const k = a.dataset.pick;
   sel.value = k;
-  if (a.dataset.bien) $('#bien').value = a.dataset.bien;
+  if (a.dataset.bien) setBien(a.dataset.bien);
   if (a.dataset.aud === 'pro') setAudience('pro');
   updatePrice();
   goStep(2);
@@ -1368,7 +1388,7 @@ if (DLG_HASH[location.hash]) $('#dlg-' + DLG_HASH[location.hash]).showModal();
 const qCommune = new URLSearchParams(location.search).get('commune');
 if (qCommune) $('#commune').value = qCommune.slice(0, 80);
 const qBien = new URLSearchParams(location.search).get('bien');
-if (qBien && [...$('#bien').options].some(o => o.value === qBien)) $('#bien').value = qBien;
+if (qBien) setBien(qBien);
 const qService = new URLSearchParams(location.search).get('service');
 if (qService && SERVICES[qService]) { sel.value = qService; updatePrice(); }
 const qSim = new URLSearchParams(location.search).get('sim');
