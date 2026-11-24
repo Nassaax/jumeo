@@ -157,7 +157,7 @@ const PROV_ID = { 'Liège': 'liege', 'Namur': 'namur', 'Hainaut': 'hainaut', 'Lu
 const mapHtml = () => MAP.html({ communes, esc, ROOT });
 
 const FOOT_CONTACT = [CONFIG.phone ? `<a href="tel:${CONFIG.phone.replace(/[^\d+]/g, '')}">${esc(CONFIG.phone)}</a>` : '', CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ''].join('');
-const NEEDS = [['/certificat-peb-vente', 'Vendre un bien'], ['/certificat-peb-location', 'Louer un bien'], ['/pack-peb-controle-electrique', 'PEB + contrôle électrique'], ['/controle-electrique', 'Contrôle électrique'], ['/certificat-peb-immeuble', 'Immeubles et copropriétés']];
+const NEEDS = [['/certificat-peb-vente', 'Vendre un bien'], ['/certificat-peb-location', 'Louer un bien'], ['/pack-peb-controle-electrique', 'PEB + contrôle électrique'], ['/controle-electrique', 'Contrôle électrique'], ['/certificat-peb-studio', 'PEB studio'], ['/certificat-peb-appartement', 'PEB appartement'], ['/certificat-peb-duplex-loft', 'PEB duplex & loft'], ['/certificat-peb-maison', 'PEB maison'], ['/certificat-peb-immeuble', 'PEB immeuble']];
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
 // Onglet actif et titre de la barre du haut (mobile), déduits de l'adresse de la page.
@@ -173,8 +173,7 @@ function appInfo(canonical, title) {
 function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
   const app = appInfo(canonical, title);
   const link = ([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`;
-  const nav = [['/#tarifs', 'Tarifs'], ['/#services', 'PEB + contrôle']].map(link).join('\n      ') + '\n      ' + NAV.html + '\n      ' +
-    [['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels']].map(link).join('\n      ');
+  const nav = link(['/#tarifs', 'Tarifs']) + '\n      ' + NAV.html + '\n      ' + link(['/certificat-peb', 'Nos zones']);
   return `<!DOCTYPE html>
 <html lang="fr-BE">
 <head>

@@ -18,7 +18,7 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
 .sources ul{padding-left:18px;display:grid;gap:6px;margin-top:8px}.sources a{color:var(--muted)}
 .cards.two{grid-template-columns:repeat(2,1fr)}@media(max-width:900px){.cards.two{grid-template-columns:1fr}}
 .card .btn{margin-top:16px}
-.need-photo{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:28px;margin-bottom:20px}
+.need-photo{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;object-position:50% 25%;border-radius:28px;margin-bottom:20px}
 `;
 
   const PAGES = [
@@ -108,7 +108,95 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
       sources: [SRC.notaireVendre, SRC.notaireLexique, SRC.notaireBrochure]
     },
     {
-      slug: 'certificat-peb-immeuble', short: 'Immeubles et copropriétés', service: 'autre',
+      slug: 'certificat-peb-studio', short: 'Studio', group: 'type', service: 'peb', bien: 'Studio',
+      photo: ['/photos/bien-studio.webp', 'Studio aménagé avec lit et coin repas'],
+      title: `Certificat PEB studio en Wallonie : ${P.peb} € TVAC | ${CONFIG.brand}`,
+      description: `Certificat PEB pour un studio ou un petit logement en Wallonie, à vendre ou à louer : ${P.peb} € TVAC (forfait indicatif), certificateur agréé, explications claires.`,
+      h1: 'Un studio à certifier ? <span>Sans prise de tête.</span>',
+      intro: `Même pour un petit logement, le certificat PEB est obligatoire pour vendre ou louer. Forfait indicatif : ${P.peb} € ${VAT}.`,
+      cards: ['peb', 'pebelec'],
+      know: [
+        'Il faut <strong>un certificat par logement</strong> vendu ou loué, quelle que soit sa taille.',
+        'Le label se calcule <strong>par m² de surface chauffée</strong> : sur une petite surface, chaque poste (chauffage, eau chaude, fenêtres) compte.',
+        'Dans un immeuble avec <strong>chauffage ou eau chaude collectifs</strong>, un rapport partiel des parties communes est nécessaire.',
+        'Le certificat est valable <strong>10 ans</strong>, sauf travaux qui modifient la performance.'
+      ],
+      tip: 'Demandez au syndic ou au propriétaire de l\'immeuble les documents des installations communes (chaudière, ventilation) : ce sont souvent eux qui manquent le jour de la visite.',
+      faq: [
+        ['Faut-il un certificat pour un studio loué ?', 'Oui : un certificat par logement vendu ou loué, même petit.'],
+        ['Pourquoi le label d\'un studio peut-il être moins bon ?', 'Le label est calculé par m² de surface chauffée. Sur une petite surface, les besoins fixes (eau chaude, ventilation) pèsent davantage dans le résultat.'],
+        ['Quels documents préparer ?', 'Factures, fiches techniques et photos des travaux, et les documents des installations communes si le chauffage ou l\'eau chaude sont collectifs.']
+      ],
+      sources: [SRC.existants, SRC.certifPdf, SRC.demarche]
+    },
+    {
+      slug: 'certificat-peb-appartement', short: 'Appartement', group: 'type', service: 'peb', bien: 'Appartement',
+      photo: ['/photos/bien-appartement.webp', 'Séjour lumineux d\'un appartement avec baie vitrée'],
+      title: `Certificat PEB appartement en Wallonie : ${P.peb} € TVAC | ${CONFIG.brand}`,
+      description: `Certificat PEB pour un appartement en Wallonie : ${P.peb} € TVAC (forfait indicatif), rapport partiel des parties communes si nécessaire, contrôle électrique possible au même rendez-vous.`,
+      h1: 'Votre appartement : <span>un certificat clair.</span>',
+      intro: 'Vendre ou louer un appartement en Wallonie demande un certificat PEB pour ce logement. On s\'occupe aussi des parties communes si l\'immeuble en a besoin.',
+      cards: ['peb', 'pebelec', 'elec'],
+      know: [
+        'Il faut <strong>un certificat par appartement</strong> vendu ou loué.',
+        'Si l\'immeuble a des <strong>installations communes</strong> (chauffage, eau chaude, ventilation, photovoltaïque), un <strong>rapport partiel</strong> des parties communes est indispensable pour certifier l\'appartement.',
+        'Le label se calcule <strong>par m² de surface chauffée</strong>, à partir des relevés faits sur place.',
+        'Sans preuve (facture, fiche technique, photo), le certificateur applique des <strong>valeurs par défaut</strong>, en général moins favorables.'
+      ],
+      tip: 'Un rapport partiel existe peut-être déjà pour votre immeuble : demandez-le au syndic avant la visite.',
+      faq: [
+        ['Faut-il certifier tout l\'immeuble ?', 'Non : on certifie votre appartement. Mais si l\'immeuble a des installations communes, un rapport partiel des parties communes est nécessaire.'],
+        ['Mon appartement est au dernier étage : ça change quelque chose ?', 'Oui, la toiture est alors une paroi de votre logement : son isolation (et ses preuves) compte dans le résultat.'],
+        ['Peut-on faire le contrôle électrique en même temps ?', `Oui : PEB + contrôle électrique lors d'un seul rendez-vous, ${P.pebelec} € ${VAT} (prix indicatif).`]
+      ],
+      sources: [SRC.existants, SRC.demarche, SRC.pieces]
+    },
+    {
+      slug: 'certificat-peb-duplex-loft', short: 'Duplex & loft', group: 'type', service: 'peb', bien: 'Duplex / loft',
+      photo: ['/photos/bien-loft.webp', 'Grand séjour en duplex avec escalier'],
+      title: `Certificat PEB duplex, triplex, loft en Wallonie | ${CONFIG.brand}`,
+      description: `Certificat PEB pour un duplex, un triplex ou un loft en Wallonie : tous les niveaux relevés, ${P.peb} € TVAC (forfait indicatif, confirmé avant intervention), certificateur agréé.`,
+      h1: 'Duplex, triplex, loft : <span>tous les niveaux comptent.</span>',
+      intro: 'Un logement sur plusieurs niveaux, c\'est un seul certificat PEB, mais des relevés sur chaque étage chauffé. On organise la visite pour que rien ne manque.',
+      cards: ['peb', 'pebelec'],
+      know: [
+        'Un duplex ou un triplex reste <strong>un seul logement</strong> : un seul certificat.',
+        'Chaque niveau chauffé est relevé : prévoyez l\'<strong>accès à tous les étages</strong>, aux combles et aux locaux techniques.',
+        'Les grands volumes et les grandes baies vitrées pèsent dans le calcul : les <strong>fiches techniques des châssis</strong> sont précieuses.',
+        'Dans un immeuble avec installations communes, un <strong>rapport partiel</strong> des parties communes est nécessaire.'
+      ],
+      tip: 'Rassemblez les fiches techniques des châssis et du système de chauffage avant la visite : sur un logement avec beaucoup de vitrages, elles font la différence.',
+      faq: [
+        ['Faut-il un certificat par niveau ?', 'Non : un duplex ou un triplex est un seul logement, donc un seul certificat.'],
+        ['Le prix est-il le même ?', `Le forfait indicatif est de ${P.peb} € ${VAT} ; pour un logement particulièrement grand, le prix vous est confirmé avant l'intervention.`],
+        ['Que préparer ?', 'L\'accès à tous les niveaux, les fiches techniques des châssis, du chauffage et de la ventilation, et les factures des travaux d\'isolation.']
+      ],
+      sources: [SRC.existants, SRC.pieces, SRC.deroulement]
+    },
+    {
+      slug: 'certificat-peb-maison', short: 'Maison', group: 'type', service: 'pebelec', bien: 'Maison',
+      photo: ['/photos/bien-maison.webp', 'Façade d\'une maison récente'],
+      title: `Certificat PEB maison en Wallonie : ${P.peb} € TVAC | ${CONFIG.brand}`,
+      description: `Certificat PEB pour une maison en Wallonie (mitoyenne, 3 ou 4 façades) : ${P.peb} € TVAC, ou ${P.pebelec} € avec le contrôle électrique en une visite. Certificateur agréé.`,
+      h1: 'Votre maison : <span>PEB et contrôle en une visite.</span>',
+      intro: 'Pour vendre une maison, il vous faut le plus souvent le certificat PEB et le contrôle électrique. On réalise les deux lors du même rendez-vous.',
+      cards: ['pebelec', 'peb', 'elec'],
+      know: [
+        'Le certificateur relève <strong>toiture, murs, sol, châssis, chauffage, eau chaude et ventilation</strong>.',
+        'Une maison <strong>4 façades</strong> a plus de parois en contact avec l\'extérieur qu\'une maison mitoyenne : l\'isolation des murs y pèse davantage.',
+        'Sans preuve (facture, fiche technique, photos de chantier), le certificateur applique des <strong>valeurs par défaut</strong>, en général moins favorables.',
+        'À la vente, le <strong>contrôle électrique</strong> est aussi demandé : procès-verbal de moins de 25 ans ou nouvelle visite par un organisme agréé.'
+      ],
+      tip: 'Vous avez isolé la toiture ou changé les châssis ? Retrouvez les factures et, si possible, des photos du chantier : c\'est ce qui permet d\'en tenir compte.',
+      faq: [
+        ['Mitoyenne ou 4 façades : quelle différence ?', 'Plus une maison a de façades en contact avec l\'extérieur, plus il y a de parois par où la chaleur peut s\'échapper : l\'isolation des murs pèse davantage dans le résultat.'],
+        ['Faut-il aussi le contrôle électrique pour vendre ?', 'Oui pour une habitation équipée d\'une installation électrique : procès-verbal de conformité de moins de 25 ans, ou nouvelle visite de contrôle par un organisme agréé.'],
+        ['Quels documents préparer ?', 'Factures et photos des travaux (isolation, châssis, chauffage, ventilation), fiches techniques, permis ou acte pour l\'année de construction, ancien procès-verbal électrique.']
+      ],
+      sources: [SRC.existants, SRC.pieces, SRC.notaireVendre, SRC.walloreno]
+    },
+    {
+      slug: 'certificat-peb-immeuble', short: 'Immeubles et copropriétés', group: 'type', service: 'autre',
       photo: ['/photos/immeuble.webp', 'Façade d\'un immeuble à appartements'],
       title: `Certificat PEB immeuble, copropriété, plusieurs logements | ${CONFIG.brand}`,
       description: `Syndics, gestionnaires, investisseurs : certificats PEB de plusieurs logements en Wallonie, rapport partiel des parties communes, planning groupé. Devis sur mesure.`,
@@ -145,10 +233,10 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
 <section class="sub-hero">
   ${GHOST}
   <div class="wrap">
-    <ol class="crumbs rise"><li><a href="/">Accueil</a></li><li><a href="/#services">Nos services</a></li><li aria-current="page">${esc(p.short)}</li></ol>
+    <ol class="crumbs rise"><li><a href="/">Accueil</a></li>${p.group === 'type' ? '<li><a href="/#biens">Type de bien</a></li>' : '<li><a href="/#services">Nos services</a></li>'}<li aria-current="page">${esc(p.short)}</li></ol>
     <h1 class="rise d1">${p.h1}</h1>
     <p class="rise d2">${p.intro}</p>
-    <div class="actions rise d3">${btn(`/?service=${p.service}#devis`, 'Devis gratuit')}<a class="btn btn-light" href="#a-savoir">Ce qu'il faut savoir</a></div>
+    <div class="actions rise d3">${btn(`/?service=${p.service}${p.bien ? '&bien=' + encodeURIComponent(p.bien) : ''}#devis`, 'Devis gratuit')}<a class="btn btn-light" href="#a-savoir">Ce qu'il faut savoir</a></div>
     <ul class="facts rise d3"><li>Certificateur agréé Région wallonne</li><li>Toute la Wallonie</li><li>Prix indicatifs ${esc(VAT)}</li></ul>
   </div>
 </section>
@@ -201,7 +289,7 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
       <div><h2>On s'occupe de votre dossier ?</h2><p>Une demande d'une minute, sans engagement. Prix confirmé avant toute intervention.</p></div>
       ${btn(`/?service=${p.service}#devis`, 'Devis gratuit')}
     </div>
-    <h3 style="font-size:17px;margin-top:44px">Selon votre situation</h3>
+    <h3 style="font-size:17px;margin-top:44px">À voir aussi</h3>
     <ul class="chips">${others(p.slug).map(o => `<li><a href="/${o.slug}">${esc(o.short)}</a></li>`).join('')}<li><a href="/certificat-peb">Certificat PEB dans votre commune</a></li></ul>
   </div>
 </section>`;
@@ -214,5 +302,5 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
     fs.writeFileSync(path.join(ROOT, p.slug + '.html'), page({ title: p.title, description: p.description, canonical: '/' + p.slug, body, ld, css: CSS }));
     urls.push('/' + p.slug);
   }
-  return { urls, links: PAGES.map(p => ({ href: '/' + p.slug, label: p.short })) };
+  return { urls, links: PAGES.map(p => ({ href: '/' + p.slug, label: p.short, group: p.group || 'situation' })) };
 };

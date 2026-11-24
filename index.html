@@ -503,7 +503,7 @@ html.intro .rise.d3{animation-delay:2.6s}
 .dd-btn:hover,.dd.open .dd-btn{opacity:1}
 .dd-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .dd.open .dd-btn svg{transform:rotate(180deg)}
-.dd-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);width:340px;display:grid;gap:2px;padding:10px;border-radius:20px;background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(11,36,65,.08),0 24px 60px rgba(11,36,65,.22);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;z-index:60}
+.dd-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);width:320px;display:grid;gap:2px;padding:10px;border-radius:20px;background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(11,36,65,.08),0 24px 60px rgba(11,36,65,.22);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;z-index:60}
 .dd-menu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
 .dd.open .dd-menu{opacity:1;visibility:visible;transform:translateX(-50%)}
 @media(hover:hover){.dd:hover .dd-menu{opacity:1;visibility:visible;transform:translateX(-50%)}.dd:hover .dd-btn svg{transform:rotate(180deg)}}
@@ -632,9 +632,31 @@ dialog .btn{margin-top:8px}
     </a>
     <nav class="nav appear" style="--d:.12s" aria-label="Navigation principale">
       <a href="#tarifs">Tarifs</a>
-      <a href="#services">PEB + contrôle</a>
       <!-- NAVPEB:START (généré par build.js) -->
 <div class="dd" data-dd>
+        <button type="button" class="dd-btn" aria-expanded="false" aria-controls="ddPresta">Prestations<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="dd-menu" id="ddPresta">
+          <a href="/certificat-peb-vente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l8-6 8 6v11"/><path d="M9 14h6M12 11v6"/></svg><span>Vendre un bien</span></a>
+          <a href="/certificat-peb-location"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg><span>Louer un bien</span></a>
+          <a href="/pack-peb-controle-electrique"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg><span>Pack PEB + contrôle électrique</span></a>
+          <a href="/controle-electrique"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg><span>Contrôle électrique</span></a>
+          <a href="/#tarifs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><span>Nos tarifs</span></a>
+          <a href="/#pros"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><span>Agences, notaires, gestionnaires</span></a>
+          
+        </div>
+      </div>
+      <div class="dd" data-dd>
+        <button type="button" class="dd-btn" aria-expanded="false" aria-controls="ddTypes">Type de bien<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="dd-menu" id="ddTypes">
+          <a href="/certificat-peb-studio"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="13" rx="1"/><path d="M4 14h16M8 14v-3h5v3"/></svg><span>Studio</span></a>
+          <a href="/certificat-peb-appartement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h14v17M3 21h18"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 21v-4h4v4"/></svg><span>Appartement</span></a>
+          <a href="/certificat-peb-duplex-loft"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M2 21h20M4 14h16"/><path d="M9 21v-3h6v3"/></svg><span>Duplex & loft</span></a>
+          <a href="/certificat-peb-maison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v11h14V10"/><path d="M10 21v-6h4v6"/></svg><span>Maison</span></a>
+          <a href="/certificat-peb-immeuble"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/></svg><span>Immeuble & copropriété</span></a>
+          <a class="dd-all" href="/#biens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Voir tous les types de bien</span></a>
+        </div>
+      </div>
+      <div class="dd" data-dd>
         <button type="button" class="dd-btn" aria-expanded="false" aria-controls="ddPeb">Le PEB<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="dd-menu" id="ddPeb">
           <a href="/guides/peb-c-est-quoi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21a2 2 0 0 1 2-2h12v2"/></svg><span>Le PEB, c'est quoi ?</span></a>
@@ -652,7 +674,6 @@ dialog .btn{margin-top:8px}
       </div>
 <!-- NAVPEB:END -->
       <a href="/certificat-peb">Nos zones</a>
-      <a href="#pros">Professionnels</a>
     </nav>
     <a class="btn btn-primary appear" style="--d:.2s" href="#devis">
       <span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span>
@@ -751,7 +772,7 @@ dialog .btn{margin-top:8px}
       <h2>Quel est votre bien ?</h2>
       <p>Certificat PEB : forfait indicatif de 250 € TVAC par logement, confirmé avant l'intervention. Plusieurs logements ? Devis groupé.</p>
     </div>
-    <div class="biens reveal"><a class="bien" href="#devis" data-pick="peb" data-bien="Studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, kot, petit logement</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Duplex / loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
+    <div class="biens reveal"><a class="bien" href="/certificat-peb-studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, petit logement</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-duplex-loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
   </div>
 </section>
 
@@ -1096,7 +1117,7 @@ dialog .btn{margin-top:8px}
       </div>
       <div>
         <h4>Votre situation</h4>
-        <a href="/certificat-peb-vente">Vendre un bien</a><a href="/certificat-peb-location">Louer un bien</a><a href="/pack-peb-controle-electrique">PEB + contrôle électrique</a><a href="/controle-electrique">Contrôle électrique</a><a href="/certificat-peb-immeuble">Immeubles et copropriétés</a><a href="#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="#faq">FAQ</a>
+        <a href="/certificat-peb-vente">Vendre un bien</a><a href="/certificat-peb-location">Louer un bien</a><a href="/pack-peb-controle-electrique">PEB + contrôle électrique</a><a href="/controle-electrique">Contrôle électrique</a><a href="/certificat-peb-studio">PEB studio</a><a href="/certificat-peb-appartement">PEB appartement</a><a href="/certificat-peb-duplex-loft">PEB duplex &amp; loft</a><a href="/certificat-peb-maison">PEB maison</a><a href="/certificat-peb-immeuble">PEB immeuble</a><a href="#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="#faq">FAQ</a>
       </div>
       <div>
         <h4>Nos zones</h4>
@@ -1140,6 +1161,7 @@ dialog .btn{margin-top:8px}
       <a href="/#tarifs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>Tarifs</a>
       <a href="/certificat-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Nos zones</a>
       <a href="/#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg>PEB + contrôle électrique</a>
+      <a href="/#biens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Type de bien</a>
       <a href="/#pros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/></svg>Professionnels</a>
       <a href="/simulateur-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg>Simulateur PEB</a>
       <a href="/#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/></svg>Questions fréquentes</a>
@@ -1345,6 +1367,8 @@ if (DLG_HASH[location.hash]) $('#dlg-' + DLG_HASH[location.hash]).showModal();
 /* ── Commune pré-remplie depuis une page locale (?commune=Liège) */
 const qCommune = new URLSearchParams(location.search).get('commune');
 if (qCommune) $('#commune').value = qCommune.slice(0, 80);
+const qBien = new URLSearchParams(location.search).get('bien');
+if (qBien && [...$('#bien').options].some(o => o.value === qBien)) $('#bien').value = qBien;
 const qService = new URLSearchParams(location.search).get('service');
 if (qService && SERVICES[qService]) { sel.value = qService; updatePrice(); }
 const qSim = new URLSearchParams(location.search).get('sim');

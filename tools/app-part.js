@@ -109,6 +109,7 @@ function html({ active = '', brand = 'Wall’PEB', whatsapp = '' } = {}) {
       <a href="/#tarifs">${svg('tarifs')}Tarifs</a>
       <a href="/certificat-peb">${svg('zones')}Nos zones</a>
       <a href="/#services">${svg('partner')}PEB + contrôle électrique</a>
+      <a href="/#biens">${svg('home')}Type de bien</a>
       <a href="/#pros">${svg('pros')}Professionnels</a>
       <a href="/simulateur-peb">${svg('simus')}Simulateur PEB</a>
       <a href="/#faq">${svg('faq')}Questions fréquentes</a>
