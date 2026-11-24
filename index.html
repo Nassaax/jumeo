@@ -378,6 +378,21 @@ footer .logo{color:#fff;margin-bottom:14px}
 .comp-us li{font-weight:600}
 .comp-us li svg{stroke:#1a7f45}
 .comp-us .btn{margin-top:18px}
+.biens{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:1000px){.biens{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.biens{grid-template-columns:1fr 1fr;gap:10px}.biens .bien:last-child{grid-column:1/-1;aspect-ratio:16/10}}
+.bien{position:relative;display:block;aspect-ratio:4/5;border-radius:24px;overflow:hidden;text-decoration:none;color:#fff;box-shadow:0 10px 30px rgba(11,36,65,.12);isolation:isolate}
+.bien img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e-out)}
+.bien::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,36,65,0) 30%,rgba(11,36,65,.55) 55%,rgba(11,36,65,.94));z-index:1}
+.bien-txt{text-shadow:0 1px 8px rgba(11,36,65,.45)}
+.bien:hover img{transform:scale(1.05)}
+.bien-txt{position:absolute;left:0;right:0;bottom:0;z-index:2;display:grid;gap:2px;padding:16px}
+.bien-txt b{font:600 19px 'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+.bien-txt small{font-size:13px;color:rgba(255,255,255,.82)}
+.bien-txt i{font-style:normal;font-size:13.5px;font-weight:600;margin-top:6px;color:#fff}
+.bien-txt i span{color:var(--accent)}
+.bien:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:620px){.bien-txt{padding:12px}.bien-txt b{font-size:16px}.bien-txt small{font-size:12px}.bien-txt i{font-size:12.5px}}
 /* APP:CSS:START (généré par build.js) */
 
 /* ═════════ BANDEAU LANCEMENT ═════════ */
@@ -696,7 +711,7 @@ dialog .btn{margin-top:8px}
         <div class="row2">
           <div class="field"><label for="commune">Commune</label><input id="commune" name="commune" placeholder="ex : Liège" autocomplete="address-level2" required /></div>
           <div class="field"><label for="bien">Type de bien</label>
-            <select id="bien" name="bien"><option>Maison</option><option>Appartement</option><option>Immeuble</option><option>Commerce / bureau</option><option>Autre</option></select>
+            <select id="bien" name="bien"><option>Maison</option><option>Appartement</option><option>Studio</option><option>Duplex / loft</option><option>Immeuble</option><option>Commerce / bureau</option><option>Autre</option></select>
           </div>
         </div>
         <div class="row2">
@@ -725,6 +740,18 @@ dialog .btn{margin-top:8px}
         </div>
       </form>
     </div>
+  </div>
+</section>
+
+<!-- ═════════ TYPE DE BIEN ═════════ -->
+<section class="sec" id="biens">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Votre bien</span>
+      <h2>Quel est votre bien ?</h2>
+      <p>Certificat PEB : forfait indicatif de 250 € TVAC par logement, confirmé avant l'intervention. Plusieurs logements ? Devis groupé.</p>
+    </div>
+    <div class="biens reveal"><a class="bien" href="#devis" data-pick="peb" data-bien="Studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, kot, petit logement</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Duplex / loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="#devis" data-pick="peb" data-bien="Maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Demander un devis <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
   </div>
 </section>
 
@@ -1269,6 +1296,7 @@ $('#qBack').addEventListener('click', () => goStep(1, svcInputs.find(i => i.chec
 $$('[data-pick]').forEach(a => a.addEventListener('click', () => {
   const k = a.dataset.pick;
   sel.value = k;
+  if (a.dataset.bien) $('#bien').value = a.dataset.bien;
   if (a.dataset.aud === 'pro') setAudience('pro');
   updatePrice();
   goStep(2);
