@@ -1,7 +1,7 @@
 // Mention « Site réalisé par … » en bas de toutes les pages (après la ligne légale).
-// Nom du studio : « NY Visuals » (confirmé par Nasser le 2026-11-24). Le changer ici, puis relancer node build.js.
+// Nom du studio : « NaYas Visuals » (NAsser YASini, confirmé par Nasser le 2026-11-24). Le changer ici, puis relancer node build.js.
 // LOGO : pastille ronde du studio (studio/ny-visuals-logo.png, 96 px ; original 512 px à côté) ; vide = texte seul.
-const STUDIO = 'NY Visuals';
+const STUDIO = 'NaYas Visuals';
 const LOGO = '/studio/ny-visuals-logo.png';
 const URL = '';   // adresse du site du studio quand il sera en ligne ; vide = pas de lien
 

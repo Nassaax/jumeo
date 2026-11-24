@@ -31,7 +31,7 @@
 - `node build.js` génère : `certificat-peb/<commune>.html` (data/communes.json), `certificat-peb/index.html`, `simulateur-peb.html` (`tools/simulateur-part.js`), `guides/` (`contenu/guides.js` via `tools/guides-part.js` : 4 articles PEB / contrôle électrique), la liste des zones, les marqueurs de `index.html` (`ZONES`, `GUIDES`, `APP:*`, `LAUNCH`, `PARTNERS`, `CREDIT`) et `sitemap.xml`. Il supprime aussi les anciennes pages Jumeo (devenir-partenaire, notre-histoire, simulateur-recharge, guides hors sujet), redirigées dans `vercel.json`.
 - **Après toute modification de CONFIG, de `data/communes.json` ou de `contenu/guides.js` : `node build.js`.** Ne jamais modifier les pages générées à la main.
 - Appli mobile (≤ 760 px) : onglets Accueil · Guides · **Devis** · Simulateur · Menu ; panneau Menu avec lien Lux. PWA : `manifest.webmanifest`, `sw.js` (cache `wallpeb-v1`), `icons/`.
-- Mention « Site réalisé par NY Visuals » + logo NY en bas de page : `tools/credit-part.js`. Nom **confirmé par Nasser le 2026-11-24 : « NY Visuals »** (pas « Nayas Visuals »).
+- Mention « Site réalisé par NaYas Visuals » + logo rond « NY » en bas de page : `tools/credit-part.js`. Nom **confirmé par Nasser le 2026-11-24 : « NaYas Visuals »** (NAsser YASini ; pas « NY Visuals »).
 - Simulateur PEB : 7 questions → fourchette A–G indicative, jamais présentée comme un label, avertissement visible. Le résultat pré-remplit le devis (`/?commune=…&sim=C-D#devis`).
 
 ## Tests et mise en ligne
