@@ -170,10 +170,10 @@ function appInfo(canonical, title) {
   return { tab, appTitle: appTitle || '' };
 }
 
-function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
+function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '', head = '', libs = [] }) {
   const app = appInfo(canonical, title);
   const link = ([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`;
-  const nav = link(['/#tarifs', 'Tarifs']) + '\n      ' + NAV.html + '\n      ' + link(['/certificat-peb', 'Nos zones']);
+  const nav = link(['/#tarifs', 'Tarifs']) + '\n      ' + NAV.html + '\n      ' + link(['/certificat-peb', 'Nos zones']) + '\n      ' + link(['/espace-client', 'Espace client']);
   return `<!DOCTYPE html>
 <html lang="fr-BE">
 <head>
@@ -198,6 +198,7 @@ ${APP.head}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
+${head}
 <style>${CSS}${css}${APP.css}${NAV.css}${PARTNERS.css}${CREDIT.css}</style>
 </head>
 <body>
@@ -226,7 +227,7 @@ ${PARTNERS.html(CONFIG.group, esc)}
         <p>Certificat PEB et contrôle électrique en Wallonie. Un service de ${esc(CONFIG.group.name)}.</p>
       </div>
       <div><h4>Votre situation</h4>${NEEDS.map(([h, l]) => `<a href="${h}">${l}</a>`).join('')}<a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a></div>
-      <div><h4>Contact</h4>${FOOT_CONTACT}<a href="/#devis">Demander un devis</a><a href="${esc(CONFIG.group.url)}" target="_blank" rel="noopener">${esc(CONFIG.group.name)} ↗</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
+      <div><h4>Contact</h4>${FOOT_CONTACT}<a href="/#devis">Demander un devis</a><a href="${esc(CONFIG.group.url)}" target="_blank" rel="noopener">${esc(CONFIG.group.name)} ↗</a><a href="/espace-client">Espace client</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
     <div class="legal">${esc(CONFIG.brand)} est un service de ${esc(CONFIG.group.name)}. Les certificats PEB sont établis par un certificateur agréé par la Région wallonne. Prix indicatifs ${esc(VAT)}, devis confirmé avant intervention.</div>
@@ -234,6 +235,7 @@ ${PARTNERS.html(CONFIG.group, esc)}
   </div>
 </footer>
 ${APP.html({ active: app.tab, brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })}
+${libs.map(l => `<script src="${l}"></script>`).join('\n')}
 <script>
 'use strict';
 const header = document.querySelector('.header');
@@ -380,6 +382,12 @@ for (const c of communes) {
 {
   const B = require('./tools/besoins-part.js')({ esc, btn, CONFIG, SITE, page, fs, path, ROOT, GHOST });
   out.unshift(...B.urls);
+}
+
+/* ── Espace client (QR code, historique, administration) ── */
+{
+  const E = require('./tools/espace-part.js')({ esc, btn, CONFIG, SITE, page, fs, path, ROOT, GHOST });
+  out.unshift(...E.urls);
 }
 
 /* ── Page « Simulateur PEB » ───────────────────────────── */

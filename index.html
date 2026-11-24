@@ -412,6 +412,29 @@ footer .logo{color:#fff;margin-bottom:14px}
 .btile input:checked+span svg{stroke:var(--ink)}
 .btile input:checked+span::after{content:"";position:absolute;top:6px;right:6px;width:16px;height:16px;border-radius:50%;background:#1a7f45 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/10px no-repeat}
 .btile input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.ecx{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:48px;border-radius:var(--r-block);background:var(--ink);color:#fff;overflow:hidden;position:relative}
+@media(max-width:900px){.ecx{grid-template-columns:1fr;padding:32px 22px;gap:32px}}
+.ecx .eyebrow{color:#fff}
+.ecx h2{color:#fff;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em;margin-bottom:14px}
+.ecx-txt>p{color:var(--w78);font-size:16.5px;max-width:36rem;margin-bottom:22px}
+.ecx-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 26px;padding:0}
+@media(max-width:560px){.ecx-list{grid-template-columns:1fr}}
+.ecx-list li{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start}
+.ecx-list span{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:rgba(242,183,5,.16)}
+.ecx-list svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ecx-list b{display:block;font:600 15.5px 'Plus Jakarta Sans',sans-serif;color:#fff}
+.ecx-list small{display:block;font-size:13.5px;color:var(--w60);line-height:1.45;margin-top:2px}
+.ecx-note{margin-top:14px;font-size:13px;color:var(--w60)}
+.ecx-phone{justify-self:center;width:min(280px,100%);aspect-ratio:9/17;border-radius:38px;padding:12px;background:#132f52;box-shadow:0 0 0 2px rgba(255,255,255,.12),0 30px 80px rgba(0,0,0,.35);transform:rotate(3deg)}
+.ecx-screen{height:100%;border-radius:28px;background:#f7f5f0;padding:18px 14px;display:flex;flex-direction:column;gap:10px;color:var(--ink)}
+.ecx-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}.ecx-top b{font:700 16px 'Plus Jakarta Sans',sans-serif}
+.ecx-qr{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#fff6d6}
+.ecx-qr svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ecx-doc{display:grid;grid-template-columns:8px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.ecx-doc i{width:8px;height:30px;border-radius:4px}
+.ecx-doc b{display:block;font:600 13px 'Inter',sans-serif}.ecx-doc small{display:block;font-size:11px;color:var(--muted)}
+.ecx-doc em{font-style:normal;font:700 10px 'Inter',sans-serif;padding:3px 7px;border-radius:999px;background:#fff6d6}
+.ecx-cta{margin-top:auto;text-align:center;padding:12px;border-radius:999px;background:var(--accent);font:600 13px 'Inter',sans-serif}
 /* APP:CSS:START (généré par build.js) */
 
 /* ═════════ BANDEAU LANCEMENT ═════════ */
@@ -697,6 +720,7 @@ dialog .btn{margin-top:8px}
       </div>
 <!-- NAVPEB:END -->
       <a href="/certificat-peb">Nos zones</a>
+      <a href="/espace-client">Espace client</a>
     </nav>
     <a class="btn btn-primary appear" style="--d:.2s" href="#devis">
       <span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span>
@@ -909,11 +933,44 @@ dialog .btn{margin-top:8px}
       </div>
       <div class="comp-col comp-us">
         <span class="comp-label"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M7 29 32 8l25 21" fill="none" stroke="#0b2441" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 27h16l4.5 4-4.5 4H15z" fill="#f2b705"/><path d="M15 38h24l4.5 4-4.5 4H15z" fill="#0b2441"/><path d="M15 49h32l4.5 4-4.5 4H15z" fill="#0b2441"/></svg>Avec Wall’PEB</span>
-        <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Le certificat PEB et le contrôle électrique, en une seule visite</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Un prix annoncé d'avance, confirmé avant l'intervention</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Rapport négatif ? Lux Energie Solution réalise la mise en conformité</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Un seul interlocuteur, du devis au certificat</li></ul>
+        <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Le certificat PEB et le contrôle électrique, en une seule visite</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Un prix annoncé d'avance, confirmé avant l'intervention</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Rapport négatif ? Lux Energie Solution réalise la mise en conformité</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Un seul interlocuteur, du devis au certificat</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L19 7"/></svg>Vos documents à vie dans l'Espace client, via un QR code</li></ul>
         <a class="btn btn-primary" href="#devis" data-pick="pebelec">
           <span class="roll"><span><span>PEB + contrôle en une visite</span><span aria-hidden="true">PEB + contrôle en une visite</span></span></span>
           <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ESPACE CLIENT ═════════ -->
+<section class="sec" id="espace">
+  <div class="wrap">
+    <div class="ecx reveal">
+      <div class="ecx-txt">
+        <span class="eyebrow">Nouveau · Espace client Wall’PEB</span>
+        <h2>Tous vos contrôles, dans un QR code.</h2>
+        <p>Après notre visite, nous collons un QR code dans votre bien (tableau électrique, local technique). Un scan, et vous retrouvez tout, à vie : plus besoin de chercher vos papiers le jour de la vente.</p>
+        <ul class="ecx-list">
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>L'historique de vos contrôles</b><small>Certificat PEB, contrôle électrique et autres interventions, avec leurs dates.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span><div><b>Vos documents en 1 clic</b><small>Téléchargez vos certificats et rapports, pour votre notaire ou votre agence.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span><div><b>Les échéances visibles</b><small>Chaque document affiche sa date de fin de validité : vous savez quand renouveler.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span><div><b>Une demande en direct</b><small>Renouvellement, nouveau contrôle, question : depuis votre téléphone.</small></div></li>
+        </ul>
+        <a class="btn btn-primary" href="/espace-client">
+          <span class="roll"><span><span>Accéder à mon espace</span><span aria-hidden="true">Accéder à mon espace</span></span></span>
+          <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </a>
+        <p class="ecx-note">Inclus pour nos clients. Accès sécurisé par lien envoyé à votre e-mail, sans mot de passe.</p>
+      </div>
+      <div class="ecx-phone" aria-hidden="true">
+        <div class="ecx-screen">
+          <div class="ecx-top"><span class="ecx-qr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/></svg></span><b>Espace client</b></div>
+          <div class="ecx-doc"><i style="background:#1a7f45"></i><div><b>Certificat PEB</b><small>Valable 10 ans</small></div><em>PDF</em></div>
+          <div class="ecx-doc"><i style="background:#d99e00"></i><div><b>Contrôle électrique</b><small>Valable 25 ans</small></div><em>PDF</em></div>
+          <div class="ecx-doc"><i style="background:#0b2441"></i><div><b>Entretien chaudière</b><small>Rapport d'intervention</small></div><em>PDF</em></div>
+          <div class="ecx-cta">Faire une demande</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1103,6 +1160,7 @@ dialog .btn{margin-top:8px}
       <details><summary>Faut-il un label minimum pour louer ?</summary><p>Aucun label minimum n'est exigé aujourd'hui en Wallonie pour mettre un logement en location. Des évolutions sont annoncées, mais elles ne sont pas toutes votées : renseignez-vous avant de vous engager dans des travaux.</p></details>
       <details><summary>Quand faut-il un contrôle électrique ?</summary><p>Notamment avant une mise en usage, après une modification ou extension importante, de façon périodique, lors d'un renforcement de puissance, et dans certains cas lors de la vente d'une habitation. Après un contrôle conforme, il est généralement à refaire tous les 25 ans.</p></details>
       <details><summary>Quels documents préparer ?</summary><p>Photos de chantier, factures et fiches techniques (isolation, châssis, chauffage, ventilation), permis ou acte pour l'année de construction. Les plans aident mais ne suffisent pas comme preuve. Voir la liste plus haut et notre <a href="/guides/preuves-certificat-peb">guide des preuves</a>.</p></details>
+      <details><summary>C'est quoi, l'Espace client Wall’PEB ?</summary><p>Après notre visite, un QR code est apposé dans votre bien. En le scannant, vous retrouvez l'historique de vos contrôles et téléchargez vos documents, en vous connectant avec votre e-mail (sans mot de passe). Vous pouvez aussi nous envoyer une demande directement. Accès inclus pour nos clients : <a href="/espace-client">accéder à mon espace</a>.</p></details>
       <details><summary>Combien coûte le contrôle électrique ?</summary><p>Il est sur devis : le prix dépend surtout de la taille de l'installation. Demandez-le avec votre certificat PEB : les deux sont alors réalisés lors du même rendez-vous, au tarif « PEB + contrôle électrique ».</p></details>
       <details><summary>Dans quelles communes intervenez-vous ?</summary><p>Partout en Wallonie, au départ de Grâce-Hollogne (province de Liège). Indiquez votre commune dans le formulaire : on confirme la faisabilité et le créneau.</p></details>
     </div>
@@ -1153,6 +1211,7 @@ dialog .btn{margin-top:8px}
         <a id="fMail" class="hide" href="#"></a>
         <a href="#devis">Demander un devis</a>
         <a href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">Lux Energie Solution ↗</a>
+        <a href="/espace-client">Espace client</a>
         <a href="#" data-open="legal">Mentions légales</a>
         <a href="#" data-open="privacy">Confidentialité</a>
       </div>
@@ -1184,6 +1243,7 @@ dialog .btn{margin-top:8px}
       <a href="/#tarifs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>Tarifs</a>
       <a href="/certificat-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Nos zones</a>
       <a href="/#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg>PEB + contrôle électrique</a>
+      <a href="/espace-client"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Espace client</a>
       <a href="/#biens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Type de bien</a>
       <a href="/#pros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/></svg>Professionnels</a>
       <a href="/simulateur-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg>Simulateur PEB</a>
@@ -1210,6 +1270,7 @@ dialog .btn{margin-top:8px}
   <h3>Confidentialité</h3>
   <p>Les informations saisies dans le formulaire (nom, téléphone, commune, type de bien, message) servent uniquement à traiter votre demande de devis et à vous recontacter.</p>
   <p>Elles sont traitées par Lux Energie Solution, qui exploite <span data-brand>Wall’PEB</span> et réalise les prestations. Elles sont transmises par le canal que vous choisissez (WhatsApp ou e-mail), ne sont pas vendues ni cédées.</p>
+  <p><b>Espace client.</b> Pour les clients qui l'utilisent, nous conservons l'adresse du bien, le nom et l'e-mail du propriétaire, et les documents de contrôle déposés après nos interventions, afin de vous les rendre accessibles. Ces données sont hébergées chez Supabase, dans l'Union européenne (Francfort). La connexion se fait par un lien envoyé à votre e-mail ; votre session est gardée dans votre navigateur. Vous pouvez demander la suppression de votre espace à tout moment.</p>
   <p>Ce site n'utilise ni cookies publicitaires ni outil de suivi. Pour fonctionner hors connexion, il peut garder dans votre navigateur une copie des pages visitées (aucune donnée personnelle). Vous pouvez demander l'accès, la correction ou la suppression de vos données en nous écrivant.</p>
   <form method="dialog"><button class="btn btn-ghost">Fermer</button></form>
 </dialog>
@@ -1235,6 +1296,8 @@ const CONFIG = {
   prices: { peb: 250, pebelec: 300 },
   vat: 'TVAC',        // prix TVA comprise
   launch: '',         // bandeau « Lancement officiel en … » ; vide = pas de bandeau
+  // Espace client (Supabase, projet « wallpeb ») : adresse et clé publique (protégée par les règles de la base).
+  espace: { url: 'https://ffvzqdxwjqrwfbprywqf.supabase.co', key: 'sb_publishable_gGLG5jb_FlHIaYQcgQH4ZQ_VAcwqJbi' },
   // Groupe : cadre « Une entreprise Lux Energie Solution » en bas de chaque page, avec lien vers son site.
   group: {
     name: 'Lux Energie Solution',
