@@ -153,12 +153,13 @@ const PARTNERS = require('./tools/partners-part.js');
 const CREDIT = require('./tools/credit-part.js');
 
 const FOOT_CONTACT = [CONFIG.phone ? `<a href="tel:${CONFIG.phone.replace(/[^\d+]/g, '')}">${esc(CONFIG.phone)}</a>` : '', CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ''].join('');
+const NEEDS = [['/certificat-peb-vente', 'Vendre un bien'], ['/certificat-peb-location', 'Louer un bien'], ['/pack-peb-controle-electrique', 'PEB + contrôle électrique'], ['/controle-electrique', 'Contrôle électrique'], ['/certificat-peb-immeuble', 'Immeubles et copropriétés']];
 const zonesLinks = () => communes.map(c => `<a href="/certificat-peb/${c.slug}">PEB à ${esc(c.name)}</a>`).join('');
 
 // Onglet actif et titre de la barre du haut (mobile), déduits de l'adresse de la page.
 function appInfo(canonical, title) {
   const tab = canonical.startsWith('/guides') ? 'guides' : canonical.startsWith('/simulateur') ? 'simus' : '';
-  const T = { '/certificat-peb': 'Nos zones', '/simulateur-peb': 'Simulateur PEB', '/guides': 'Guides' };
+  const T = { '/certificat-peb': 'Nos zones', '/simulateur-peb': 'Simulateur PEB', '/guides': 'Guides', ...Object.fromEntries(NEEDS) };
   let appTitle = T[canonical];
   if (!appTitle && canonical.startsWith('/certificat-peb/')) appTitle = title.split(' :')[0].replace(/^Certificat /, '');
   if (!appTitle && canonical.startsWith('/guides/')) appTitle = 'Guide';
@@ -220,7 +221,7 @@ ${PARTNERS.html(CONFIG.group, esc)}
         <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true">${SYM('#fff')}</svg><b>${esc(CONFIG.brand)}</b></div>
         <p>Certificat PEB et contrôle électrique en Wallonie. Un service de ${esc(CONFIG.group.name)}.</p>
       </div>
-      <div><h4>Navigation</h4><a href="/">Accueil</a><a href="/#tarifs">Tarifs</a><a href="/#services">PEB + contrôle électrique</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a></div>
+      <div><h4>Votre situation</h4>${NEEDS.map(([h, l]) => `<a href="${h}">${l}</a>`).join('')}<a href="/#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a></div>
       <div><h4>Contact</h4>${FOOT_CONTACT}<a href="/#devis">Demander un devis</a><a href="${esc(CONFIG.group.url)}" target="_blank" rel="noopener">${esc(CONFIG.group.name)} ↗</a><a href="/#mentions-legales">Mentions légales</a><a href="/#confidentialite">Confidentialité</a></div>
       <div><h4>Nos zones</h4><div class="zones">${zonesLinks()}</div></div>
     </div>
@@ -366,6 +367,12 @@ for (const c of communes) {
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Nos zones', item: SITE + '/certificat-peb' }] }]
   }));
   out.unshift('/certificat-peb');
+}
+
+/* ── Pages « selon votre situation » ───────────────────── */
+{
+  const B = require('./tools/besoins-part.js')({ esc, btn, CONFIG, SITE, page, fs, path, ROOT, GHOST });
+  out.unshift(...B.urls);
 }
 
 /* ── Page « Simulateur PEB » ───────────────────────────── */

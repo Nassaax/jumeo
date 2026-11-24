@@ -171,3 +171,6 @@ module.exports = [
     sources: [SRC.notaireVendre, SRC.notaireLexique, SRC.notaireBrochure]
   },
 ];
+
+// Sources réutilisées par les pages « selon votre situation » (tools/besoins-part.js).
+module.exports.SRC = SRC;

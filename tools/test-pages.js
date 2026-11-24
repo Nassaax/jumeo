@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
 
-const files = ['simulateur-peb.html', 'certificat-peb/index.html',
+const files = [...fs.readdirSync(root).filter(f => f.endsWith('.html') && f !== 'index.html'), 'certificat-peb/index.html',
   ...fs.readdirSync(path.join(root, 'certificat-peb')).filter(f => f !== 'index.html').map(f => 'certificat-peb/' + f),
   ...fs.readdirSync(path.join(root, 'guides')).map(f => 'guides/' + f)];
 

@@ -273,6 +273,10 @@ img,svg{display:block;max-width:100%}
 .partners{margin-top:14px;display:grid;gap:10px}
 .partner{background:rgba(255,255,255,.06);border:1px solid var(--wline);border-radius:16px;padding:14px 16px;font-size:14px;color:var(--w78)}
 .partner b{color:#fff;font-size:15px}
+.sit{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:32px}
+.sit span{width:100%;text-align:center;font-size:14px;color:var(--w60);margin-bottom:2px}
+.sit a{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--wline);color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;transition:border-color .2s,background-color .2s}
+.sit a:hover{border-color:var(--accent);background:rgba(242,183,5,.1)}
 .who-note{margin:28px auto 0;font-size:14px;color:var(--w60);max-width:760px;text-align:center}
 
 /* ═════════ DOCUMENTS ═════════ */
@@ -612,6 +616,14 @@ dialog .btn{margin-top:8px}
           </div>
         </div>
         <div class="row2">
+          <div class="field"><label for="surface">Surface approximative</label>
+            <select id="surface" name="surface"><option>Je ne sais pas</option><option>Moins de 70 m²</option><option>70 à 150 m²</option><option>150 à 250 m²</option><option>Plus de 250 m²</option></select>
+          </div>
+          <div class="field"><label for="dispo">Vos disponibilités</label>
+            <select id="dispo" name="dispo"><option>Dès que possible</option><option>En semaine, le matin</option><option>En semaine, l'après-midi</option><option>Je précise dans le message</option></select>
+          </div>
+        </div>
+        <div class="row2">
           <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required /></div>
           <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" required /></div>
         </div>
@@ -677,6 +689,7 @@ dialog .btn{margin-top:8px}
           <li>Visite et vérification de l'installation</li>
           <li>Rapport de visite remis</li>
           <li>Prix selon la taille de l'installation</li>
+          <li>Rapport négatif ? Mise en conformité possible par Lux Energie Solution</li>
         </ul>
         <a class="btn btn-ghost" href="#devis" data-pick="elec">Demander ce devis</a>
       </article>
@@ -764,6 +777,10 @@ dialog .btn{margin-top:8px}
           <div style="margin-top:12px">Vérifiez toujours les agréments sur les sites officiels : <a href="https://energie.wallonie.be" target="_blank" rel="noopener">energie.wallonie.be</a> (PEB) et <a href="https://economie.fgov.be" target="_blank" rel="noopener">economie.fgov.be</a> (contrôle électrique).</div>
         </div>
       </div>
+    </div>
+    <div class="sit reveal">
+      <span>Selon votre situation :</span>
+      <a href="/certificat-peb-vente">Je vends</a><a href="/certificat-peb-location">Je loue</a><a href="/pack-peb-controle-electrique">PEB + contrôle électrique</a><a href="/controle-electrique">Contrôle électrique seul</a><a href="/certificat-peb-immeuble">Immeuble, copropriété</a>
     </div>
     <p class="who-note"><span data-brand>Wall’PEB</span> est le service PEB et contrôle électrique de Lux Energie Solution. Une seule entreprise, du devis au certificat.</p>
   </div>
@@ -902,8 +919,8 @@ dialog .btn{margin-top:8px}
         <p>Certificat PEB et contrôle électrique en Wallonie. Un service de Lux Energie Solution.</p>
       </div>
       <div>
-        <h4>Navigation</h4>
-        <a href="#tarifs">Tarifs</a><a href="#services">PEB + contrôle électrique</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
+        <h4>Votre situation</h4>
+        <a href="/certificat-peb-vente">Vendre un bien</a><a href="/certificat-peb-location">Louer un bien</a><a href="/pack-peb-controle-electrique">PEB + contrôle électrique</a><a href="/controle-electrique">Contrôle électrique</a><a href="/certificat-peb-immeuble">Immeubles et copropriétés</a><a href="#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="#faq">FAQ</a>
       </div>
       <div>
         <h4>Nos zones</h4>
@@ -1126,7 +1143,8 @@ $('#quoteForm').addEventListener('submit', e => {
     'Profil : ' + f.who.value,
     'Service : ' + s.label + ' (' + s.price() + (/\d/.test(s.price()) ? ', indicatif' : '') + ')',
     'Commune : ' + f.commune.value.trim(),
-    'Bien : ' + f.bien.value,
+    'Bien : ' + f.bien.value + (f.surface.value !== 'Je ne sais pas' ? ' (' + f.surface.value + ')' : ''),
+    'Disponibilités : ' + f.dispo.value + ' (à confirmer)',
     'Nom : ' + f.nom.value.trim(),
     'Téléphone : ' + f.tel.value.trim(),
     f.msg.value.trim() ? 'Détail : ' + f.msg.value.trim() : ''
