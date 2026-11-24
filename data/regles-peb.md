@@ -15,6 +15,11 @@ Niveaux de confiance : ✅ confirmé par plusieurs sources dont une officielle �
 - ✅ Mazout interdit dans les logements neufs depuis le 1er janvier 2026. 🟡 Extension annoncée (2027 / 2031), calendrier à reconfirmer.
 - ✅ « Loyer chaud » dans le logement public à partir du 1er janvier 2027.
 
+## Bâtiments non résidentiels (vérifié le 24/11/2026)
+- ✅ Aujourd'hui, en Wallonie, **seuls les bâtiments résidentiels existants sont certifiés** à la vente ou à la location : les outils de certification des bâtiments non résidentiels sont « en cours de développement » (energie.wallonie.be, page « Certificat PEB : bâtiments existants »).
+- 🟡 Le décret PEB (art. 36) dispense de certificat les **unités industrielles, ateliers et bâtiments agricoles non résidentiels faibles consommateurs d'énergie**, et les bâtiments de moins de 50 m² : version du décret à reconfirmer sur Wallex avant publication.
+- 🟡 Projets du SPW (2025) : affichage et « passeport bâtiment » pour le non résidentiel. Ne pas présenter comme une obligation.
+
 ## Échelle des labels (vérifié le 24/11/2026)
 - ✅ Le label se fonde sur l'**Espec** : consommation théorique annuelle d'énergie primaire par m² de surface de plancher chauffée (kWh/m².an), calculée de façon standardisée (≠ consommation réelle). Seuils : A++ ≤ 0 ; A+ 0–45 ; A 45–85 ; B 85–170 ; C 170–255 ; D 255–340 ; E 340–425 ; F 425–510 ; G > 510. Sources : energie.wallonie.be (« Le certificat PEB », PDF), guide Walloreno 2026 (SPW Énergie), Plan wallon de rénovation (nov. 2025).
 - ✅ Priorités de rénovation selon le guide Walloreno (SPW) : régler d'abord l'humidité, puis isoler l'enveloppe (toiture, murs, sol, châssis performants), puis les systèmes (chauffage, eau chaude) ; un audit logement aide à prioriser. Ne pas publier de montants de primes (régime en transition au 1er octobre 2026).
