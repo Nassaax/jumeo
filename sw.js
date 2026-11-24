@@ -1,8 +1,8 @@
-// Service worker Jumeo : permet l'installation et une consultation hors ligne des pages déjà visitées.
+// Service worker Wall'PEB : permet l'installation et une consultation hors ligne des pages déjà visitées.
 // Stratégie « réseau d'abord » : la version en ligne est toujours prioritaire, la copie sert seulement sans connexion.
 // Aucune donnée personnelle n'est stockée (pas de formulaire, pas de cookie).
-const CACHE = 'jumeo-v1';
-const CORE = ['/', '/guides', '/simulateur-peb', '/simulateur-recharge', '/favicon.svg', '/manifest.webmanifest', '/icons/icon-192.png'];
+const CACHE = 'wallpeb-v1';
+const CORE = ['/', '/guides', '/simulateur-peb', '/favicon.svg', '/manifest.webmanifest', '/icons/icon-192.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

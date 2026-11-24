@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 // En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
 const ROOT_DIR = require('path').join(__dirname, '..');
 async function mapRoot(p) {
-  await p.addInitScript(() => { try { sessionStorage.setItem('jumeo-intro', '1'); } catch (e) {} });
+  await p.addInitScript(() => { try { sessionStorage.setItem('wallpeb-intro', '1'); } catch (e) {} });
   await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
     r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
 }
@@ -30,13 +30,14 @@ const BASE = process.env.BASE || 'http://localhost:8123/';
         defilementHorizontal: document.documentElement.scrollWidth > innerWidth,
         idsManquants: [...new Set(ids)].filter(i => !document.getElementById(i)),
         dataPickSansService: picks.filter(k => !SERVICES[k] || !opts.includes(k)),
-        ligneControleElecVisible: !document.getElementById('elecLine').classList.contains('hide'),
-        identiteCertificateur: document.getElementById('certIdentity').textContent
+        identitePEB: document.getElementById('pebIdentity').textContent,
+        identiteControle: document.getElementById('elecIdentity').textContent,
+        motsInterdits: ['Jumeo', 'apporteur', 'Devenir partenaire', 'recharge', 'photovoltaïque à installer'].filter(w => document.body.innerText.includes(w))
       };
     });
     console.log(w + 'px', JSON.stringify(r, null, 1));
 
-    // Parcours : bouton « Devenir client partenaire » -> formulaire -> envoi (mode aperçu)
+    // Parcours : bouton « Demander un devis pro » -> formulaire -> envoi (mode aperçu)
     await p.click('[data-aud="pro"][data-pick]');
     await p.waitForTimeout(500);
     console.log(w + 'px', 'service =', await p.$eval('input[name=service]:checked', e => e.value),

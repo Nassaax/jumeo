@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 // En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
 const ROOT_DIR = require('path').join(__dirname, '..');
 async function mapRoot(p) {
-  await p.addInitScript(() => { try { sessionStorage.setItem('jumeo-intro', '1'); } catch (e) {} });
+  await p.addInitScript(() => { try { sessionStorage.setItem('wallpeb-intro', '1'); } catch (e) {} });
   await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
     r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
 }

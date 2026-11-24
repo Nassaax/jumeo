@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Jumeo — PEB, électricité, photovoltaïque et rénovation en Wallonie</title>
-<meta name="description" content="Certificat PEB, contrôle électrique, panneaux photovoltaïques et rénovation en Wallonie : un devis clair, des professionnels agréés, un seul contact. Particuliers, agences, notaires, promoteurs." />
+<title>Wall’PEB — Certificat PEB et contrôle électrique en Wallonie</title>
+<meta name="description" content="Certificat PEB et contrôle électrique pour vendre ou louer en Wallonie : prix clairs, certificateur agréé, un seul rendez-vous. Particuliers, agences, notaires. Un service de Lux Energie Solution." />
 <meta name="theme-color" content="#0b2441" />
-<meta property="og:title" content="Jumeo — PEB, contrôle électrique et rénovation en Wallonie" />
-<meta property="og:description" content="Un devis clair, un certificateur agréé, un seul contact. Partout en Wallonie." />
+<meta property="og:title" content="Wall’PEB — Certificat PEB et contrôle électrique en Wallonie" />
+<meta property="og:description" content="Un prix clair, un certificateur agréé, un seul rendez-vous. Partout en Wallonie." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_BE" />
-<meta property="og:site_name" content="Jumeo" />
-<link rel="canonical" href="https://jumeo.vercel.app/" />
-<meta property="og:url" content="https://jumeo.vercel.app/" />
-<meta property="og:image" content="https://jumeo.vercel.app/og-image.jpg" />
+<meta property="og:site_name" content="Wall’PEB" />
+<link rel="canonical" href="https://wallpeb.vercel.app/" />
+<meta property="og:url" content="https://wallpeb.vercel.app/" />
+<meta property="og:image" content="https://wallpeb.vercel.app/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Jumeo : votre certificat PEB, sans prise de tête. Partout en Wallonie." />
+<meta property="og:image:alt" content="Wall’PEB : votre certificat PEB, sans prise de tête. Partout en Wallonie." />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -24,9 +24,9 @@
 <link rel="manifest" href="/manifest.webmanifest" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="Jumeo" />
+<meta name="apple-mobile-web-app-title" content="Wall’PEB" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<script>try{if(!sessionStorage.getItem('jumeo-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('jumeo-intro','1')}}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem('wallpeb-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('wallpeb-intro','1')}}catch(e){}</script>
 <!-- APP:HEAD:END -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +40,7 @@ html,body{background:#0b2441}
 :root{
   --ink:#0b2441; --navy:#12355b; --paper:#f7f5f0; --paper-2:#efebe3; --card:#fff;
   --muted:rgba(11,36,65,.66); --line:rgba(11,36,65,.12);
-  --accent:#ff7a45; --accent-d:#f0652e;
+  --accent:#f2b705; --accent-d:#d99e00;
   --w100:#fff; --w78:rgba(255,255,255,.78); --w60:rgba(255,255,255,.62); --wline:rgba(255,255,255,.14);
   --e-out:cubic-bezier(.16,1,.3,1); --e-std:cubic-bezier(.4,0,.2,1);
   --r-card:28px; --r-block:40px;
@@ -52,7 +52,7 @@ html,body{background:#0b2441}
 html{scroll-behavior:smooth;scroll-padding-top:88px;overflow-x:clip}
 body{font:400 16px/1.6 'Inter',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding-bottom:72px}
 main,footer{background:var(--paper)}
-::selection{background:rgba(255,122,69,.3)}
+::selection{background:rgba(242,183,5,.3)}
 h1,h2,h3{font-family:'Plus Jakarta Sans','Inter',sans-serif;font-weight:600;line-height:1.1;letter-spacing:-.03em}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
@@ -94,7 +94,8 @@ img,svg{display:block;max-width:100%}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
 .logo svg{width:36px;height:36px}
 .logo b{font:700 21px 'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em}
-.logo .ring-a{stroke:currentColor}
+.logo .sym-s{stroke:currentColor}
+.logo .sym-f{fill:currentColor}
 .nav{display:flex;gap:24px;margin-left:auto}
 .nav a{position:relative;text-decoration:none;font-size:14px;font-weight:500;opacity:.82;transition:opacity .2s}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--e-std)}
@@ -171,7 +172,7 @@ img,svg{display:block;max-width:100%}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
 .field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;font:15px 'Inter',sans-serif;background:#fafaf8;color:var(--ink);transition:border-color .2s,background-color .2s}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 3px rgba(255,122,69,.35)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 3px rgba(242,183,5,.35)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:480px){.row2{grid-template-columns:1fr}}
 .price-hint{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#eef2f7;border-radius:14px;padding:12px 16px;font-size:14px;color:var(--muted);margin:4px 0 12px}
@@ -201,7 +202,7 @@ img,svg{display:block;max-width:100%}
 .price.pop p{color:var(--w78)}
 .ticks{list-style:none;margin-bottom:26px;display:grid;gap:10px}
 .ticks li{display:flex;gap:10px;font-size:14.5px}
-.ticks li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:50%;background:rgba(255,122,69,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8622b' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/11px no-repeat}
+.ticks li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:50%;background:rgba(242,183,5,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8622b' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/11px no-repeat}
 .price .btn{margin-top:auto}
 .price.pop .btn{justify-content:space-between}
 .fine{margin-top:24px;font-size:13.5px;color:var(--muted);max-width:760px}
@@ -268,7 +269,7 @@ img,svg{display:block;max-width:100%}
 .who-card li::before{content:"";flex:0 0 14px;height:1.5px;margin-top:12px;background:var(--accent)}
 .who-card .id{margin-top:18px;padding-top:18px;border-top:1px solid var(--wline);font-size:14px;color:var(--w78)}
 .who-card .id b{color:#fff}
-.who-card .id a{color:#ffb394}
+.who-card .id a{color:#f7d36a}
 .partners{margin-top:14px;display:grid;gap:10px}
 .partner{background:rgba(255,255,255,.06);border:1px solid var(--wline);border-radius:16px;padding:14px 16px;font-size:14px;color:var(--w78)}
 .partner b{color:#fff;font-size:15px}
@@ -310,7 +311,8 @@ img,svg{display:block;max-width:100%}
 /* ═════════ À PROPOS ═════════ */
 .about{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:48px;border-radius:var(--r-block);background:var(--card);box-shadow:0 0 0 1px var(--line)}
 @media(max-width:700px){.about{grid-template-columns:1fr;gap:24px;padding:30px 24px}}
-.about svg{width:120px;height:120px}
+.about .lux-logo{width:220px;height:auto;padding:14px 18px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:700px){.about .lux-logo{width:180px}}
 .about h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.04em;margin-bottom:10px}
 .about p{color:var(--muted);font-size:16.5px;max-width:40rem}
 
@@ -380,7 +382,7 @@ body:has(.launch) .sub-hero .wrap{padding-top:152px}
   .tab[aria-current="page"] svg{stroke-width:2.3}
   .tab[aria-current="page"]::before{content:"";position:absolute;top:0;width:18px;height:3px;border-radius:0 0 4px 4px;background:var(--accent)}
   .tab-fab{color:var(--ink)}
-  .tab-fab .fab{display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border-radius:50%;background:var(--accent);border:4px solid #fff;box-shadow:0 10px 24px rgba(255,122,69,.45)}
+  .tab-fab .fab{display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border-radius:50%;background:var(--accent);border:4px solid #fff;box-shadow:0 10px 24px rgba(242,183,5,.45)}
   .tab-fab .fab svg{width:26px;height:26px;stroke:var(--ink);stroke-width:2.6}
   body.typing .tabbar{transform:translateY(120%)}
   /* rythme « application » : moins de vide, contenu plus vite visible */
@@ -408,6 +410,8 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 .sheet-grid svg{width:24px;height:24px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .sheet-grid .wide{grid-column:1/-1;flex-direction:row;align-items:center;background:var(--ink);color:#fff}
 .sheet-grid .wide svg{stroke:var(--accent)}
+.sheet-grid .wide-lux{background:#fff;color:var(--ink);font-weight:500}
+.sheet-grid .wide-lux svg{stroke:var(--ink)}
 .sheet-small{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
 .sheet-small a{color:rgba(11,36,65,.66);text-decoration:underline;text-underline-offset:3px}
 .sheet-legal{margin-top:14px;font-size:12px;color:rgba(11,36,65,.6)}
@@ -415,25 +419,22 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 
 /* ═════════ ÉCRAN D'OUVERTURE ═════════ */
 .intro-splash{display:none}
-html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#12355b 0%,#0b2441 60%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
+html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#16406c 0%,#0b2441 62%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
 html.intro .intro-splash.skip{animation:sp-out .3s ease forwards}
 .sp-in{display:grid;justify-items:center;gap:22px;padding:24px}
-.sp-logo{width:min(78vw,440px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
-.sp-l,.sp-r{transform-box:view-box}
-.sp-l{animation:sp-left 1s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-r{animation:sp-right 1s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-ring{stroke-dasharray:95;animation:sp-draw 1.05s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-weave{animation:sp-fade .18s ease 1.08s both}
+.sp-logo{width:min(80vw,460px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
+.sp-roof{stroke-dasharray:70;animation:sp-draw .8s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-bar{transform-box:fill-box;animation:sp-bar .55s cubic-bezier(.16,1,.3,1) both}
+.sp-b3{animation-delay:.45s}.sp-b2{animation-delay:.6s}.sp-b1{animation-delay:.78s}
 .sp-mark{transform-box:fill-box;transform-origin:center;animation:sp-pulse .55s cubic-bezier(.34,1.56,.64,1) 1.08s both}
 .sp-word{animation:sp-word .75s cubic-bezier(.16,1,.3,1) 1.3s both}
 .sp-tag{font:500 15px/1.4 'Inter',system-ui,sans-serif;color:rgba(255,255,255,.72);letter-spacing:.01em;text-align:center;animation:sp-tag .7s cubic-bezier(.16,1,.3,1) 1.55s both}
-.sp-tag b{color:#ff7a45;font-weight:600}
-@keyframes sp-left{from{transform:translateX(-48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
-@keyframes sp-right{from{transform:translateX(48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
-@keyframes sp-draw{from{stroke-dashoffset:95}to{stroke-dashoffset:0}}
+.sp-tag b{color:#f2b705;font-weight:600}
+@keyframes sp-bar{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes sp-draw{from{stroke-dashoffset:70}to{stroke-dashoffset:0}}
 @keyframes sp-fade{from{opacity:0}to{opacity:1}}
 @keyframes sp-pulse{0%{transform:none}45%{transform:scale(1.14)}100%{transform:none}}
-@keyframes sp-center{from{transform:translateX(35%)}to{transform:none}}
+@keyframes sp-center{from{transform:translateX(38%)}to{transform:none}}
 @keyframes sp-word{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 @keyframes sp-tag{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes sp-out{to{opacity:0;visibility:hidden}}
@@ -443,7 +444,7 @@ html.intro .hl>span{animation-delay:2.55s}
 html.intro .hl+.hl>span{animation-delay:2.7s}
 html.intro .swap .hl>span{animation-delay:0s}
 html.intro .swap .hl+.hl>span{animation-delay:.08s}
-html.intro .ghost-rings circle{animation-delay:2.45s}
+html.intro .ghost-rings circle,html.intro .ghost-rings path{animation-delay:2.45s}
 html.intro .ghost-rings circle+circle{animation-delay:2.7s}
 html.intro .rise{animation-delay:2.3s}
 html.intro .rise.d1{animation-delay:2.4s}
@@ -451,27 +452,23 @@ html.intro .rise.d2{animation-delay:2.5s}
 html.intro .rise.d3{animation-delay:2.6s}
 @media(prefers-reduced-motion:reduce){html.intro .intro-splash{display:none}}
 
-/* ═════════ PARTENAIRES ═════════ */
+/* ═════════ GROUPE LUX ═════════ */
 .partners-band{background:var(--paper,#f7f5f0);padding:0 0 72px}
-.pb{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding:40px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--line)}
-@media(max-width:860px){.pb{grid-template-columns:1fr;gap:24px;padding:28px 22px}}
+.pb{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:40px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:860px){.pb{grid-template-columns:1fr;gap:22px;padding:28px 22px}}
 .pb .eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
 .pb .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .pb h2{font:600 clamp(24px,3vw,34px)/1.1 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em;color:var(--ink);margin-bottom:12px}
-.pb-intro{color:rgba(11,36,65,.66);font-size:15.5px;max-width:30rem}
-.pb-list{display:grid;gap:14px}
-.pb-card{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;margin:0;padding:18px 20px;border-radius:22px;background:var(--paper,#f7f5f0)}
-@media(max-width:520px){.pb-card{grid-template-columns:1fr;gap:12px}}
-.pb-logo{display:grid;place-items:center;height:84px;padding:10px 14px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.pb-intro{color:rgba(11,36,65,.66);font-size:15.5px;max-width:34rem}
+.pb-metiers{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;list-style:none;padding:0}
+.pb-metiers li{font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--paper,#f7f5f0);color:var(--ink)}
+.pb-card{display:grid;gap:16px;justify-items:start;margin:0;padding:24px;border-radius:24px;background:var(--paper,#f7f5f0)}
+.pb-logo{display:grid;place-items:center;height:84px;padding:10px 16px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line)}
 .pb-logo img{max-width:100%;max-height:64px;width:auto;height:auto}
-.pb-card figcaption{display:grid;gap:4px}
-.pb-card b{font:600 17px 'Plus Jakarta Sans',sans-serif;color:var(--ink)}
-.pb-badge{display:inline-flex;align-items:center;gap:7px;width:max-content;font:600 12px 'Inter',sans-serif;color:var(--ink);padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line)}
-.pb-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.pb-card small{font-size:13.5px;color:rgba(11,36,65,.66)}
-.pb-join{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-radius:22px;border:1.5px dashed rgba(11,36,65,.22);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;transition:border-color .2s,background-color .2s}
-.pb-join:hover{border-color:var(--ink);background:rgba(255,255,255,.6)}
-.pb-join span{color:var(--accent-d,#f0652e)}
+.pb-go{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font:600 15px 'Inter',sans-serif;transition:transform .2s}
+.pb-go:hover{transform:translateY(-1px)}
+.pb-go span{color:var(--accent)}
+.pb-card small{font-size:13px;color:rgba(11,36,65,.6)}
 @media(max-width:760px){.partners-band{padding-bottom:48px}}
 .credit{margin-top:14px;font-size:12.5px;color:var(--w60)}
 .credit b{color:#fff;font-weight:600;letter-spacing:.01em}
@@ -503,15 +500,16 @@ dialog .btn{margin-top:8px}
 <!-- APP:SPLASH:START (généré par build.js) -->
 <div class="intro-splash" id="introSplash" aria-hidden="true">
   <div class="sp-in">
-    <svg class="sp-logo" viewBox="3 12 192 39">
+    <svg class="sp-logo" viewBox="4 5 236 54">
       <g class="sp-mark">
-        <g class="sp-l"><circle class="sp-ring" cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/></g>
-        <g class="sp-r"><circle class="sp-ring" cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/></g>
-        <path class="sp-weave" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/>
+        <path class="sp-roof" d="M7 29 32 8l25 21" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="sp-bar sp-b1" d="M15 27h16l4.5 4-4.5 4H15z" fill="#f2b705"/>
+        <path class="sp-bar sp-b2" d="M15 38h24l4.5 4-4.5 4H15z" fill="#fff"/>
+        <path class="sp-bar sp-b3" d="M15 49h32l4.5 4-4.5 4H15z" fill="#fff"/>
       </g>
-      <path class="sp-word" d="M74.93 46L73.24 46L73.24 40.74L74.93 40.74Q76.62 40.74 77.66 39.78Q78.69 38.82 78.69 37.24L78.69 37.24L78.69 18.00L84.52 18.00L84.52 36.98Q84.52 39.69 83.35 41.72Q82.19 43.74 80.02 44.87Q77.86 46 74.93 46L74.93 46ZM95.00 46.45L95.00 46.45Q92.52 46.45 90.77 45.38Q89.03 44.31 88.12 42.39Q87.22 40.48 87.22 37.92L87.22 37.92L87.22 25.48L92.86 25.48L92.86 37.47Q92.86 38.63 93.33 39.52Q93.80 40.40 94.66 40.89Q95.53 41.38 96.62 41.38L96.62 41.38Q97.74 41.38 98.59 40.89Q99.44 40.40 99.91 39.52Q100.38 38.63 100.38 37.47L100.38 37.47L100.38 25.48L106.01 25.48L106.01 46L100.75 46L100.75 41.94L101.05 42.84Q100.34 44.68 98.74 45.57Q97.14 46.45 95.00 46.45ZM114.47 46L108.83 46L108.83 25.48L114.09 25.48L114.09 30.48L113.53 29.65Q113.98 27.28 115.71 26.16Q117.44 25.03 119.84 25.03L119.84 25.03Q122.40 25.03 124.34 26.32Q126.27 27.62 126.76 29.80L126.76 29.80L125.14 29.95Q126.16 27.43 128.04 26.23Q129.92 25.03 132.43 25.03L132.43 25.03Q134.65 25.03 136.36 26.01Q138.07 26.98 139.05 28.73Q140.03 30.48 140.03 32.81L140.03 32.81L140.03 46L134.39 46L134.39 34.01Q134.39 32.81 133.96 31.94Q133.52 31.08 132.74 30.59Q131.95 30.10 130.82 30.10L130.82 30.10Q129.73 30.10 128.92 30.59Q128.11 31.08 127.68 31.94Q127.25 32.81 127.25 34.01L127.25 34.01L127.25 46L121.61 46L121.61 34.01Q121.61 32.81 121.18 31.94Q120.75 31.08 119.96 30.59Q119.17 30.10 118.04 30.10L118.04 30.10Q116.95 30.10 116.14 30.59Q115.33 31.08 114.90 31.94Q114.47 32.81 114.47 34.01L114.47 34.01L114.47 46ZM152.32 46.45L152.32 46.45Q149.05 46.45 146.64 45.00Q144.24 43.56 142.92 41.11Q141.61 38.67 141.61 35.70L141.61 35.70Q141.61 32.62 142.98 30.21Q144.35 27.81 146.68 26.42Q149.01 25.03 151.94 25.03L151.94 25.03Q154.38 25.03 156.26 25.80Q158.14 26.57 159.44 27.96Q160.74 29.35 161.41 31.17Q162.09 33.00 162.09 35.14L162.09 35.14Q162.09 35.74 162.03 36.32Q161.98 36.90 161.83 37.32L161.83 37.32L146.45 37.32L146.45 33.18L158.63 33.18L155.96 35.14Q156.34 33.52 155.92 32.26Q155.51 31.00 154.48 30.27Q153.44 29.54 151.94 29.54L151.94 29.54Q150.48 29.54 149.42 30.25Q148.37 30.97 147.84 32.36Q147.32 33.75 147.43 35.74L147.43 35.74Q147.28 37.47 147.84 38.78Q148.41 40.10 149.57 40.83Q150.74 41.57 152.39 41.57L152.39 41.57Q153.90 41.57 154.97 40.96Q156.04 40.36 156.64 39.31L156.64 39.31L161.15 41.45Q160.55 42.96 159.25 44.08Q157.95 45.21 156.19 45.83Q154.42 46.45 152.32 46.45ZM174.27 46.45L174.27 46.45Q171.22 46.45 168.72 45.06Q166.22 43.67 164.74 41.25Q163.25 38.82 163.25 35.74L163.25 35.74Q163.25 32.62 164.74 30.21Q166.22 27.81 168.72 26.42Q171.22 25.03 174.27 25.03L174.27 25.03Q177.31 25.03 179.79 26.42Q182.27 27.81 183.76 30.21Q185.24 32.62 185.24 35.74L185.24 35.74Q185.24 38.82 183.76 41.25Q182.27 43.67 179.79 45.06Q177.31 46.45 174.27 46.45ZM174.27 41.38L174.27 41.38Q175.81 41.38 176.95 40.66Q178.10 39.95 178.76 38.67Q179.41 37.39 179.41 35.74L179.41 35.74Q179.41 34.09 178.76 32.83Q178.10 31.57 176.95 30.83Q175.81 30.10 174.27 30.10L174.27 30.10Q172.72 30.10 171.56 30.83Q170.39 31.57 169.74 32.83Q169.08 34.09 169.08 35.74L169.08 35.74Q169.08 37.39 169.74 38.67Q170.39 39.95 171.56 40.66Q172.72 41.38 174.27 41.38Z" fill="#fff"/>
+      <g class="sp-word"><path d="M89.54 52L82.30 52L74.44 22.00L81.21 22.00L87.13 47.13L85.32 47.13L91.56 22.00L98 22.00L104.24 47.13L102.43 47.13L108.35 22.00L115.11 22.00L107.26 52L100.01 52L93.73 27.84L95.83 27.84L89.54 52ZM121.76 52.48L121.76 52.48Q119.38 52.48 117.65 51.72Q115.92 50.95 114.99 49.52Q114.07 48.09 114.07 46.12L114.07 46.12Q114.07 44.27 114.91 42.84Q115.76 41.41 117.51 40.44Q119.26 39.48 121.88 39.07L121.88 39.07L128.60 37.99L128.60 42.42L122.97 43.42Q121.68 43.66 120.99 44.25Q120.31 44.83 120.31 45.92L120.31 45.92Q120.31 46.93 121.07 47.49Q121.84 48.05 122.97 48.05L122.97 48.05Q124.46 48.05 125.58 47.41Q126.71 46.77 127.34 45.66Q127.96 44.55 127.96 43.22L127.96 43.22L127.96 37.50Q127.96 36.26 126.97 35.41Q125.99 34.56 124.30 34.56L124.30 34.56Q122.68 34.56 121.46 35.45Q120.23 36.34 119.66 37.79L119.66 37.79L114.83 35.49Q115.48 33.64 116.89 32.31Q118.30 30.98 120.27 30.26Q122.24 29.53 124.58 29.53L124.58 29.53Q127.36 29.53 129.49 30.54Q131.62 31.54 132.81 33.34Q134 35.13 134 37.50L134 37.50L134 52L128.36 52L128.36 48.46L129.73 48.21Q128.77 49.66 127.60 50.61Q126.43 51.56 124.98 52.02Q123.53 52.48 121.76 52.48ZM143.26 52L137.22 52L137.22 21.52L143.26 21.52L143.26 52ZM152.52 52L146.48 52L146.48 21.52L152.52 21.52L152.52 52ZM171.13 52L164.89 52L164.89 22.00L176.40 22.00Q179.50 22.00 181.90 23.09Q184.30 24.17 185.66 26.31Q187.03 28.44 187.03 31.58L187.03 31.58Q187.03 34.64 185.64 36.78Q184.26 38.91 181.86 40.02Q179.46 41.13 176.40 41.13L176.40 41.13L171.13 41.13L171.13 52ZM171.13 27.44L171.13 35.69L176.44 35.69Q177.77 35.69 178.74 35.17Q179.70 34.64 180.25 33.72Q180.79 32.79 180.79 31.58L180.79 31.58Q180.79 30.34 180.25 29.41Q179.70 28.48 178.74 27.96Q177.77 27.44 176.44 27.44L176.44 27.44L171.13 27.44ZM209.99 52L189.81 52L189.81 22.00L209.99 22.00L209.99 27.44L196.05 27.44L196.05 34.24L209.18 34.24L209.18 39.68L196.05 39.68L196.05 46.56L209.99 46.56L209.99 52ZM225.01 52L212.32 52L212.32 22.00L225.01 22.00Q228.11 22.00 230.32 23.05Q232.54 24.09 233.70 26.05Q234.87 28 234.87 30.78L234.87 30.78Q234.87 32.75 233.79 34.54Q232.70 36.34 230.20 37.54L230.20 37.54L230.20 34.48Q232.58 35.41 233.87 36.70Q235.15 37.99 235.64 39.50Q236.12 41.01 236.12 42.66L236.12 42.66Q236.12 47.09 233.18 49.54Q230.24 52 225.01 52L225.01 52ZM218.56 38.71L218.56 46.56L225.73 46.56Q227.62 46.56 228.75 45.48Q229.88 44.39 229.88 42.66L229.88 42.66Q229.88 40.89 228.75 39.80Q227.62 38.71 225.73 38.71L225.73 38.71L218.56 38.71ZM218.56 27.23L218.56 33.28L225.45 33.28Q226.90 33.28 227.77 32.45Q228.63 31.62 228.63 30.26L228.63 30.26Q228.63 28.89 227.77 28.06Q226.90 27.23 225.45 27.23L225.45 27.23L218.56 27.23Z" fill="#fff"/><path d="M155.95 34.28L155.95 34.28L155.95 31.26Q157.36 30.94 158.26 30.07Q159.17 29.21 159.45 28.04L159.45 28.04L156.75 28.04L156.75 22.00L162.79 22.00L162.79 25.50Q162.79 29.05 161.06 31.32Q159.33 33.60 155.95 34.28Z" fill="#f2b705"/></g>
     </svg>
-    <p class="sp-tag">Vous. Le bon professionnel. <b>Un seul lien.</b></p>
+    <p class="sp-tag">Certificat PEB et contrôle électrique, <b>en un seul rendez-vous.</b></p>
   </div>
 </div>
 <!-- APP:SPLASH:END -->
@@ -539,19 +537,19 @@ dialog .btn{margin-top:8px}
 <!-- ═════════ EN-TÊTE ═════════ -->
 <header class="header">
   <!-- LAUNCH:START (généré par build.js) -->
-<div class="launch" role="note"><a href="/guides"><span class="l-long"><b>Lancement officiel en janvier 2027</b> · Simulateurs et guides déjà en accès libre</span><span class="l-short"><b>Lancement en janvier 2027</b> · Découvrir les simulateurs</span><i aria-hidden="true">→</i></a></div>
+
 <!-- LAUNCH:END -->
   <div class="wrap">
-    <a class="logo appear" style="--d:.05s" href="#top" aria-label="Jumeo, accueil">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring-a" cx="23" cy="32" r="15" fill="none" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path class="ring-a" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke-width="7"/></svg>
-      <b data-brand>Jumeo</b>
+    <a class="logo appear" style="--d:.05s" href="#top" aria-label="Wall’PEB, accueil">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path class="sym-s" d="M7 29 32 8l25 21" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 27h16l4.5 4-4.5 4H15z" fill="#f2b705"/><path class="sym-f" d="M15 38h24l4.5 4-4.5 4H15z"/><path class="sym-f" d="M15 49h32l4.5 4-4.5 4H15z"/></svg>
+      <b data-brand>Wall’PEB</b>
     </a>
     <nav class="nav appear" style="--d:.12s" aria-label="Navigation principale">
       <a href="#tarifs">Tarifs</a>
-      <a href="/guides">Guides<span class="nav-slash" aria-hidden="true">/</span>Simulateurs</a>
+      <a href="#services">PEB + contrôle</a>
+      <a href="/guides">Guides<span class="nav-slash" aria-hidden="true">/</span>Simulateur</a>
       <a href="/certificat-peb">Nos zones</a>
       <a href="#pros">Professionnels</a>
-      <a href="/devenir-partenaire">Devenir partenaire</a>
     </nav>
     <a class="btn btn-primary appear" style="--d:.2s" href="#devis">
       <span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span>
@@ -564,7 +562,7 @@ dialog .btn{margin-top:8px}
 
 <!-- ═════════ HERO ═════════ -->
 <section class="hero">
-  <svg class="ghost-rings" viewBox="0 0 400 240" aria-hidden="true"><circle cx="150" cy="120" r="100"/><circle cx="250" cy="120" r="100"/></svg>
+  <svg class="ghost-rings" viewBox="0 0 400 240" aria-hidden="true"><path d="M70 118 200 12l130 106"/><path d="M118 104h96l18 16-18 16h-96z"/><path d="M118 150h132l18 16-18 16H118z"/><path d="M118 196h168l18 16-18 16H118z"/></svg>
   <div class="grain" aria-hidden="true"></div>
   <div class="wrap">
     <div>
@@ -573,9 +571,9 @@ dialog .btn{margin-top:8px}
         <button type="button" data-aud="pro" aria-pressed="false">Professionnel</button>
       </div>
       <h1 id="heroTitle"><span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span></h1>
-      <p class="lead appear" style="--d:.62s" id="heroLead">PEB, chauffage, électricité, solaire, rénovation : des professionnels compétents, un devis clair, un seul contact. Partout en Wallonie.</p>
+      <p class="lead appear" style="--d:.62s" id="heroLead">Certificat PEB et contrôle électrique pour vendre ou louer en Wallonie : un prix clair, un certificateur agréé, un seul rendez-vous.</p>
       <ul class="promise appear" style="--d:.76s">
-        <li><svg class="ico"><use href="#i-check"/></svg>Professionnels agréés Région wallonne</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Certificateur PEB agréé Région wallonne</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Devis gratuit, sans engagement</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Toute la Wallonie</li>
       </ul>
@@ -585,7 +583,7 @@ dialog .btn{margin-top:8px}
     <!-- FORMULAIRE -->
     <div class="quote appear appear--card" style="--d:.4s" id="devis">
       <div class="q-top"><h2>Votre devis en 1 minute</h2><span class="qdots" aria-hidden="true"><span class="on">1</span><span>2</span></span></div>
-      <p class="sub">Gratuit et sans engagement. On vous répond rapidement.</p>
+      <p class="sub">Gratuit et sans engagement. On vous recontacte pour fixer le rendez-vous.</p>
       <form id="quoteForm" novalidate>
         <div class="qstep on" data-n="1">
           <div class="pills" role="radiogroup" aria-label="Vous êtes">
@@ -596,15 +594,8 @@ dialog .btn{margin-top:8px}
             <legend>De quoi avez-vous besoin ?</legend>
             <label class="tile"><input type="radio" name="service" value="peb" checked /><span><svg class="ico"><use href="#i-doc"/></svg>Certificat PEB</span></label>
             <label class="tile"><input type="radio" name="service" value="pebelec" /><span><svg class="ico"><use href="#i-docbolt"/></svg>PEB + contrôle électrique</span></label>
-            <label class="tile"><input type="radio" name="service" value="chauffage" /><span><svg class="ico"><use href="#i-flame"/></svg>Chauffage</span></label>
-            <label class="tile"><input type="radio" name="service" value="pac" /><span><svg class="ico"><use href="#i-fan"/></svg>Pompe à chaleur · clim</span></label>
-            <label class="tile"><input type="radio" name="service" value="pv" /><span><svg class="ico"><use href="#i-sun"/></svg>Photovoltaïque</span></label>
-            <label class="tile"><input type="radio" name="service" value="elec" /><span><svg class="ico"><use href="#i-bolt"/></svg>Électricité</span></label>
-            <label class="tile"><input type="radio" name="service" value="ventilation" /><span><svg class="ico"><use href="#i-wind"/></svg>Ventilation</span></label>
-            <label class="tile"><input type="radio" name="service" value="borne" /><span><svg class="ico"><use href="#i-plug"/></svg>Borne de recharge</span></label>
-            <label class="tile"><input type="radio" name="service" value="depannage" /><span><svg class="ico"><use href="#i-wrench"/></svg>Dépannage</span></label>
-            <label class="tile"><input type="radio" name="service" value="reno" /><span><svg class="ico"><use href="#i-home"/></svg>Rénovation</span></label>
-            <label class="tile tile-wide"><input type="radio" name="service" value="autre" /><span><svg class="ico"><use href="#i-dots"/></svg>Autre projet immobilier</span></label>
+            <label class="tile"><input type="radio" name="service" value="elec" /><span><svg class="ico"><use href="#i-bolt"/></svg>Contrôle électrique</span></label>
+            <label class="tile"><input type="radio" name="service" value="autre" /><span><svg class="ico"><use href="#i-dots"/></svg>Autre demande</span></label>
           </fieldset>
           <div class="price-hint" aria-live="polite"><span>Tarif indicatif</span><b id="priceOut">250 €</b></div>
           <button class="btn btn-primary q-next" type="button" id="qNext">
@@ -624,7 +615,7 @@ dialog .btn{margin-top:8px}
           <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required /></div>
           <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" required /></div>
         </div>
-        <div class="field"><label for="msg">Un détail à ajouter ? (facultatif)</label><textarea id="msg" name="msg" rows="2" placeholder="Date souhaitée, urgence, adresse…"></textarea></div>
+        <div class="field"><label for="msg">Un détail à ajouter ? (facultatif)</label><textarea id="msg" name="msg" rows="2" placeholder="Date souhaitée, vente ou location, nombre de logements…"></textarea></div>
         <label class="consent"><input type="checkbox" id="ok" required /><span>J'accepte que mes données servent à traiter ma demande (voir <a href="#" data-open="privacy">confidentialité</a>).</span></label>
         <button class="btn btn-primary" type="submit">
           <span class="roll"><span><span>Recevoir mon devis</span><span aria-hidden="true">Recevoir mon devis</span></span></span>
@@ -679,25 +670,18 @@ dialog .btn{margin-top:8px}
       </article>
 
       <article class="price reveal">
-        <h3>Dépannage chauffage &amp; électricité</h3>
-        <div class="amt"><small>dès </small><span data-price="depannage">150</span> €<small> TVAC</small></div>
-        <p>Diagnostic avant réparation. La sécurité d'abord : gaz, eau, électricité.</p>
+        <h3>Contrôle électrique</h3>
+        <div class="amt" style="font-size:clamp(36px,3.8vw,48px)">Sur devis</div>
+        <p>Contrôle de conformité de l'installation électrique d'un logement, notamment avant une vente.</p>
         <ul class="ticks">
-          <li>Diagnostic + explication avant action</li>
-          <li>Compte-rendu d'intervention</li>
+          <li>Visite et vérification de l'installation</li>
+          <li>Rapport de visite remis</li>
+          <li>Prix selon la taille de l'installation</li>
         </ul>
-        <a class="btn btn-ghost" href="#devis" data-pick="depannage">Demander ce devis</a>
+        <a class="btn btn-ghost" href="#devis" data-pick="elec">Demander ce devis</a>
       </article>
     </div>
-    <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend de la commune, de l'accessibilité, de l'état de l'installation et du matériel. Le devis définitif vous est confirmé avant l'intervention.</p>
-    <div class="svc">
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Chauffage</h3><p>Installation, entretien et dépannage de chaudières, par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="chauffage">Demander un devis <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-fan"/></svg></span><h3>Pompe à chaleur &amp; climatisation</h3><p>Étude et installation adaptées à votre logement. Sur devis.</p><a href="#devis" data-pick="pac">Demander une étude <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-sun"/></svg></span><h3>Panneaux photovoltaïques</h3><p>Étude et installation par un professionnel partenaire. Sur devis.</p><a href="#devis" data-pick="pv">Demander une étude <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-bolt"/></svg></span><h3>Électricité</h3><p>Tableau électrique, mise en conformité, extension, plan électrique. Sur devis.</p><a href="#devis" data-pick="elec">Demander un devis <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-plug"/></svg></span><h3>Borne de recharge</h3><p>Une borne adaptée à votre voiture et à votre installation. Sur devis.</p><a href="#devis" data-pick="borne">Demander un devis <span>→</span></a></div>
-      <div class="s reveal"><span class="icon-disc"><svg class="ico"><use href="#i-home"/></svg></span><h3>Rénovation &amp; ventilation</h3><p>Décrivez votre projet : on vous met en relation avec le bon professionnel.</p><a href="#devis" data-pick="reno">Parler de mon projet <span>→</span></a></div>
-    </div>
+    <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend du type et de la taille du bien, de la commune et de l'installation. Le devis définitif vous est confirmé avant l'intervention.</p>
   </div>
 </section>
 
@@ -728,61 +712,60 @@ dialog .btn{margin-top:8px}
     <ol class="steps">
       <li class="step reveal"><h3>Vous demandez un devis</h3><p>Une minute, depuis votre téléphone. On vous répond rapidement.</p></li>
       <li class="step reveal"><h3>On fixe le rendez-vous</h3><p>Date, adresse et documents utiles confirmés avec vous.</p></li>
-      <li class="step reveal"><h3>Visite du bien</h3><p>Le certificateur agréé relève les informations sur place.</p></li>
-      <li class="step reveal"><h3>Vous recevez le certificat</h3><p>Avec des explications claires et des pistes d'amélioration.</p></li>
+      <li class="step reveal"><h3>Visite du bien</h3><p>Le certificateur agréé relève les informations sur place, et contrôle l'installation électrique si vous l'avez demandé.</p></li>
+      <li class="step reveal"><h3>Vous recevez vos documents</h3><p>Le certificat PEB (et le rapport de contrôle), avec des explications claires.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- ═════════ QUI FAIT QUOI ═════════ -->
+<!-- ═════════ NOS DEUX SERVICES ═════════ -->
 <div class="who-frame">
-<section class="sec who" id="transparence">
+<section class="sec who" id="services">
   <div class="grain" aria-hidden="true"></div>
   <div class="wrap" style="position:relative">
     <div class="sec-head reveal">
-      <span class="eyebrow">Transparence</span>
-      <h2>Qui fait quoi ? On vous le dit clairement.</h2>
-      <p>En Wallonie, seul un certificateur agréé peut établir un certificat PEB. Voici notre rôle, et le sien.</p>
+      <span class="eyebrow">Nos services</span>
+      <h2>Deux contrôles, un seul rendez-vous.</h2>
+      <p>Pour vendre ou louer, vous aurez souvent besoin des deux. On les planifie ensemble : une seule visite, un seul interlocuteur.</p>
     </div>
 
-    <svg class="link-diagram" viewBox="76 40 408 246" role="img" aria-label="Deux anneaux entrelacés : Jumeo, votre contact, et le professionnel agréé, le garant. Votre dossier est au croisement des deux.">
+    <svg class="link-diagram" viewBox="76 40 408 246" role="img" aria-label="Deux anneaux entrelacés : le certificat PEB et le contrôle électrique, réunis en un seul rendez-vous.">
       <circle class="ring ring-l" cx="200" cy="160" r="110"/>
       <circle class="ring ring-r" cx="360" cy="160" r="110"/>
       <path class="ring ring-l weave" d="M263.09 69.89A110 110 0 0 1 293.29 101.71"/>
-      <text class="n" x="160" y="158" text-anchor="middle" data-brand>Jumeo</text>
-      <text class="r" x="160" y="184" text-anchor="middle">votre contact</text>
-      <text class="n" x="400" y="158" text-anchor="middle">Pro agréé</text>
-      <text class="r" x="400" y="184" text-anchor="middle">le garant</text>
-      <g class="tag"><rect x="200" y="236" width="160" height="36" rx="18" fill="#fff"/><circle cx="222" cy="254" r="5" fill="#ff7a45"/><text class="t" x="292" y="260" text-anchor="middle">Votre dossier</text></g>
+      <text class="n" x="160" y="158" text-anchor="middle">PEB</text>
+      <text class="r" x="160" y="184" text-anchor="middle">certificat</text>
+      <text class="n" x="402" y="158" text-anchor="middle">Contrôle</text>
+      <text class="r" x="402" y="184" text-anchor="middle">électrique</text>
+      <g class="tag"><rect x="190" y="236" width="180" height="36" rx="18" fill="#fff"/><circle cx="212" cy="254" r="5" fill="#f2b705"/><text class="t" x="288" y="260" text-anchor="middle">Un seul rendez-vous</text></g>
     </svg>
 
     <div class="who-grid">
       <div class="who-card reveal">
-        <h3><i aria-hidden="true"></i><span><span data-brand>Jumeo</span>, votre contact</span></h3>
+        <h3><i aria-hidden="true"></i>Le certificat PEB</h3>
         <ul>
-          <li>Reçoit et prépare votre demande</li>
-          <li>Coordonne le rendez-vous et le suivi</li>
-          <li>Vous met en relation avec le bon professionnel</li>
-          <li>Reste votre point de contact du début à la fin</li>
+          <li>Visite du bien et relevés sur place</li>
+          <li>Certificat établi et signé par un certificateur agréé par la Région wallonne</li>
+          <li>Feuille de route de rénovation incluse pour les logements existants (depuis le 1er septembre 2026)</li>
+          <li>Valable 10 ans, obligatoire pour vendre ou louer</li>
         </ul>
+        <div class="id"><div id="pebIdentity">Certificat établi par le certificateur agréé de Lux Energie Solution.</div></div>
       </div>
       <div class="who-card cert reveal">
-        <h3><i aria-hidden="true"></i>Le professionnel agréé, le garant</h3>
+        <h3><i aria-hidden="true"></i>Le contrôle électrique</h3>
         <ul>
-          <li>Visite le bien et réalise les relevés</li>
-          <li>Établit et signe le certificat PEB</li>
-          <li id="elecLine" class="hide">Réalise le contrôle de l'installation électrique</li>
-          <li>Est agréé par la Région wallonne</li>
-          <li id="certNewLine" class="hide">Formé au nouveau format de certificat (depuis le 1er sept. 2026)</li>
+          <li>Contrôle de conformité de l'installation électrique</li>
+          <li>Demandé notamment lors de la vente d'une habitation</li>
+          <li>Rapport de visite remis après le contrôle</li>
+          <li>Si des points sont à corriger, on vous les explique simplement</li>
         </ul>
         <div class="id">
-          <div id="certIdentity">Certificat établi par un certificateur PEB agréé par la Région wallonne.</div>
-          <div class="partners" id="partnerList"></div>
-          <div style="margin-top:12px">Vérifiez toujours l'agrément sur le site officiel : <a href="https://energie.wallonie.be" target="_blank" rel="noopener">energie.wallonie.be</a></div>
+          <div id="elecIdentity">Contrôle réalisé par Lux Energie Solution, organisme agréé.</div>
+          <div style="margin-top:12px">Vérifiez toujours les agréments sur les sites officiels : <a href="https://energie.wallonie.be" target="_blank" rel="noopener">energie.wallonie.be</a> (PEB) et <a href="https://economie.fgov.be" target="_blank" rel="noopener">economie.fgov.be</a> (contrôle électrique).</div>
         </div>
       </div>
     </div>
-    <p class="who-note"><span data-brand>Jumeo</span> est un apporteur d'affaires indépendant. Nous ne sommes ni certificateur ni installateur : le certificat PEB, le contrôle électrique et les travaux sont réalisés par nos partenaires agréés.</p>
+    <p class="who-note"><span data-brand>Wall’PEB</span> est le service PEB et contrôle électrique de Lux Energie Solution. Une seule entreprise, du devis au certificat.</p>
   </div>
 </section>
 </div>
@@ -824,13 +807,13 @@ dialog .btn{margin-top:8px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Professionnels</span>
-      <h2>Agences, notaires, promoteurs : un seul interlocuteur.</h2>
-      <p>Moins de coordination pour vous, des dossiers suivis, des clients rassurés.</p>
+      <h2>Agences, notaires, gestionnaires&nbsp;: un seul interlocuteur.</h2>
+      <p>Vos certificats PEB et contrôles électriques planifiés ensemble, des dossiers suivis, des clients rassurés.</p>
     </div>
     <div class="pros">
       <div class="pro reveal"><span class="icon-disc"><svg class="ico"><use href="#i-agency"/></svg></span><h3>Agences immobilières</h3><p>Un PEB prêt avant la mise en annonce, pour des annonces conformes et une vente qui démarre vite.</p></div>
       <div class="pro reveal"><span class="icon-disc"><svg class="ico"><use href="#i-notary"/></svg></span><h3>Notaires</h3><p>Un certificat disponible à temps pour le compromis, et un contact réactif pour vos clients.</p></div>
-      <div class="pro reveal"><span class="icon-disc"><svg class="ico"><use href="#i-build"/></svg></span><h3>Promoteurs &amp; investisseurs</h3><p>Biens existants et rénovations : PEB, contrôle électrique et mise en relation travaux. Pour le neuf, consultez-nous.</p></div>
+      <div class="pro reveal"><span class="icon-disc"><svg class="ico"><use href="#i-build"/></svg></span><h3>Gestionnaires &amp; investisseurs</h3><p>Plusieurs logements à certifier ou à contrôler : un planning groupé et un seul interlocuteur pour tout le dossier.</p></div>
     </div>
     <div class="pro-cta reveal">
       <a class="btn btn-primary" href="#devis" data-pick="pebelec" data-aud="pro">
@@ -840,34 +823,18 @@ dialog .btn{margin-top:8px}
       <span>Conditions pour les professionnels de l'immobilier sur demande.</span>
     </div>
 
-    <div class="join reveal" id="rejoindre">
-      <div>
-        <span class="eyebrow">Entreprises</span>
-        <h3>Vous êtes entrepreneur ? Travaillons ensemble.</h3>
-        <p>Électricien, chauffagiste, installateur, certificateur, architecte, entrepreneur : nous trouvons les clients et préparons leur demande, vous réalisez la prestation. Des règles claires, fixées par un contrat écrit.</p>
-        <ul class="join-points">
-          <li>Des demandes qualifiées dans votre zone</li>
-          <li>Pas de prospection : on s'occupe du premier contact</li>
-          <li>Vous gardez la relation technique et la facturation</li>
-        </ul>
-      </div>
-      <a class="btn btn-primary" href="/devenir-partenaire">
-        <span class="roll"><span><span>Devenir partenaire</span><span aria-hidden="true">Devenir partenaire</span></span></span>
-        <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-      </a>
-    </div>
   </div>
 </section>
 
-<!-- ═════════ À PROPOS ═════════ -->
+<!-- ═════════ QUI SOMMES-NOUS ═════════ -->
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="about reveal">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="23" cy="32" r="15" fill="none" stroke="#12355b" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#12355b" stroke-width="7"/></svg>
+      <img class="lux-logo" src="/partenaires/lux-energie-solution.png" alt="Logo Lux Energie Solution" width="390" height="104" loading="lazy" decoding="async" />
       <div>
-        <h2>Deux frères jumeaux, un seul objectif.</h2>
-        <p>Nés à Seraing, installés à Liège : l'un est comptable et a été agent immobilier, l'autre est électricien et a installé des systèmes d'énergie renouvelable. On a créé <span data-brand>Jumeo</span> pour simplifier vos projets : vous nous parlez, on vous met en relation avec le bon professionnel, et on suit votre dossier jusqu'au bout.</p>
-        <a class="text-link" href="/notre-histoire">Notre histoire <span>→</span></a>
+        <h2>Une entreprise de terrain, en Wallonie.</h2>
+        <p><span data-brand>Wall’PEB</span> est le service de Lux Energie Solution dédié au certificat PEB et au contrôle électrique. Une équipe qui certifie et qui connaît les installations : vous savez à qui vous parlez, du devis au certificat.</p>
+        <a class="text-link" href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">Découvrir Lux Energie Solution <span>↗</span></a>
       </div>
     </div>
   </div>
@@ -879,9 +846,9 @@ dialog .btn{margin-top:8px}
     <div class="sec-head reveal">
       <span class="eyebrow">Nos guides</span>
       <h2>Comprendre avant de décider.</h2>
-      <p>PEB, énergie renouvelable, rénovation, électricité : des réponses claires et sourcées. Et quand vous êtes prêt, un seul interlocuteur pour trouver les bons professionnels.</p>
+      <p>Certificat PEB et contrôle électrique : des réponses claires et sourcées, pour préparer votre vente ou votre location.</p>
     </div>
-    <div class="guide-list reveal"><!-- GUIDES:START (généré par build.js) --><a class="guide-card" href="/guides/nouveau-certificat-peb-2026" data-cat="PEB"><span class="tag">Nouveauté</span><h3>Nouveau certificat PEB 2026 : la feuille de route de rénovation expliquée</h3><p>Depuis le 1er septembre 2026, le certificat PEB wallon contient une feuille de route de rénovation. Ce qui change, ce qui ne change pas, et ce que ça veut dire pour vous.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/photovoltaique-wallonie-ce-qui-a-change" data-cat="Énergie renouvelable"><span class="tag">Panneaux solaires</span><h3>Panneaux photovoltaïques en Wallonie : ce qui a changé depuis 2024</h3><p>Fin du compteur qui tourne à l&#39;envers, compteur communicant, contrôle avant mise en service : ce qu&#39;il faut savoir avant d&#39;installer des panneaux solaires en Wallonie.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/renovation-par-ou-commencer" data-cat="Rénovation"><span class="tag">Rénovation</span><h3>Rénover son logement : par où commencer sans se perdre ?</h3><p>Diagnostic, priorités, devis, choix des entreprises, démarches : une méthode simple pour lancer une rénovation en Wallonie sans se perdre entre les corps de métier.</p><small>18 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
+    <div class="guide-list reveal"><!-- GUIDES:START (généré par build.js) --><a class="guide-card" href="/guides/nouveau-certificat-peb-2026" data-cat="PEB"><span class="tag">Nouveauté</span><h3>Nouveau certificat PEB 2026 : la feuille de route de rénovation expliquée</h3><p>Depuis le 1er septembre 2026, le certificat PEB wallon contient une feuille de route de rénovation. Ce qui change, ce qui ne change pas, et ce que ça veut dire pour vous.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/controle-electrique-vente" data-cat="Électricité"><span class="tag">Vendre</span><h3>Vendre une maison : le contrôle électrique expliqué simplement</h3><p>Qui doit le faire, quand, qui paie, et que se passe-t-il si l&#39;installation n&#39;est pas conforme ? Le contrôle électrique à la vente d&#39;une habitation, en clair.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/preuves-certificat-peb" data-cat="PEB"><span class="tag">Préparer la visite</span><h3>Certificat PEB : quelles preuves préparer pour un résultat juste ?</h3><p>Photos de chantier, factures, fiches techniques, permis : ce que le certificateur PEB accepte comme preuve en Wallonie, et pourquoi les plans ne suffisent pas.</p><small>18 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
     <a class="text-link reveal" href="/guides">Tous nos guides <span>→</span></a>
   </div>
 </section>
@@ -892,15 +859,15 @@ dialog .btn{margin-top:8px}
     <div class="sec-head reveal"><span class="eyebrow">FAQ</span><h2>Vos questions, nos réponses.</h2></div>
     <div class="faq">
       <details><summary>Le certificat PEB est-il obligatoire ?</summary><p>Oui, pour vendre ou louer un logement en Wallonie. Il doit exister avant la publicité du bien, et ses indicateurs doivent apparaître dans l'annonce. Son absence est sanctionnée par une amende administrative.</p></details>
-      <details><summary>Qui peut établir le certificat ?</summary><p>Uniquement un certificateur agréé par la Région wallonne. Chez <span data-brand>Jumeo</span>, le certificat est établi et signé par notre certificateur partenaire agréé.</p></details>
-      <details><summary>Jumeo est-il certificateur ou installateur ?</summary><p>Non. <span data-brand>Jumeo</span> est un apporteur d'affaires : on reçoit votre demande, on la coordonne et on vous met en relation avec un professionnel agréé. C'est lui qui réalise la prestation et vous facture ou vous remet le document.</p></details>
+      <details><summary>Qui peut établir le certificat ?</summary><p>Uniquement un certificateur agréé par la Région wallonne. Chez <span data-brand>Wall’PEB</span>, le certificat est établi et signé par le certificateur agréé de Lux Energie Solution.</p></details>
+      <details><summary>Qui est derrière Wall’PEB ?</summary><p><span data-brand>Wall’PEB</span> est un service de Lux Energie Solution, entreprise wallonne basée à Grâce-Hollogne. C'est elle qui réalise le certificat PEB et le contrôle électrique, et qui vous facture. Pour vos autres projets (électricité, chauffage, photovoltaïque), rendez-vous sur <a href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">luxenergiesolution.com</a>.</p></details>
       <details><summary>Combien de temps est-il valable ?</summary><p>10 ans maximum, sauf travaux importants qui modifient la performance du bien.</p></details>
       <details><summary>Qu'est-ce qui change depuis septembre 2026 ?</summary><p>Le certificat des logements résidentiels existants comprend désormais une « feuille de route de rénovation » : les travaux à prévoir en priorité pour améliorer la performance. Elle ne modifie pas la note du certificat.</p></details>
       <details><summary>Faut-il un label minimum pour louer ?</summary><p>Aucun label minimum n'est exigé aujourd'hui en Wallonie pour mettre un logement en location. Des évolutions sont annoncées, mais elles ne sont pas toutes votées : renseignez-vous avant de vous engager dans des travaux.</p></details>
       <details><summary>Quand faut-il un contrôle électrique ?</summary><p>Notamment avant une mise en usage, après une modification ou extension importante, de façon périodique, lors d'un renforcement de puissance, et dans certains cas lors de la vente d'une habitation. Après un contrôle conforme, il est généralement à refaire tous les 25 ans.</p></details>
       <details><summary>Quels documents préparer ?</summary><p>Photos de chantier, factures et fiches techniques (isolation, châssis, chauffage, ventilation), permis ou acte pour l'année de construction. Les plans aident mais ne suffisent pas comme preuve. Voir la liste plus haut et notre <a href="/guides/preuves-certificat-peb">guide des preuves</a>.</p></details>
-      <details><summary>Je suis une entreprise : puis-je rejoindre le réseau ?</summary><p>Oui, nous cherchons des professionnels sérieux en Wallonie (électricité, chauffage, photovoltaïque, rénovation…). Proposez votre candidature sur la page <a href="/devenir-partenaire">Devenir partenaire</a> : on revient vers vous pour échanger sur les conditions, fixées par un contrat écrit.</p></details>
-      <details><summary>Dans quelles communes intervenez-vous ?</summary><p>Partout en Wallonie, province de Liège comprise. Indiquez votre commune dans le formulaire : on confirme rapidement la faisabilité et le créneau.</p></details>
+      <details><summary>Combien coûte le contrôle électrique ?</summary><p>Il est sur devis : le prix dépend surtout de la taille de l'installation. Demandez-le avec votre certificat PEB : les deux sont alors réalisés lors du même rendez-vous, au tarif « PEB + contrôle électrique ».</p></details>
+      <details><summary>Dans quelles communes intervenez-vous ?</summary><p>Partout en Wallonie, au départ de Grâce-Hollogne (province de Liège). Indiquez votre commune dans le formulaire : on confirme la faisabilité et le créneau.</p></details>
     </div>
   </div>
 </section>
@@ -911,21 +878,16 @@ dialog .btn{margin-top:8px}
   <div class="wrap">
     <div class="pb">
       <div>
-        <span class="eyebrow">Nos partenaires</span>
-        <h2 id="pb-title">Ils nous font confiance, on leur fait confiance.</h2>
-        <p class="pb-intro">Des professionnels sélectionnés : numéro d'entreprise, assurance professionnelle et agréments exigés pour leur métier. Vous gardez un seul contact : nous.</p>
+        <span class="eyebrow">Une entreprise Lux Energie Solution</span>
+        <h2 id="pb-title">Et pour vos autres projets énergie ?</h2>
+        <p class="pb-intro">Wall’PEB est le service PEB et contrôle électrique de Lux Energie Solution, entreprise wallonne basée à Grâce-Hollogne. Pour vos travaux, elle vous accompagne aussi :</p>
+        <ul class="pb-metiers"><li>Électricité générale</li><li>Chauffage</li><li>Pompes à chaleur</li><li>Climatisation</li><li>Photovoltaïque</li></ul>
       </div>
-      <div class="pb-list">
-        <figure class="pb-card">
-          <div class="pb-logo"><img src="/partenaires/lux-energie-solution.png" alt="Logo Lux Energie Solution" width="390" height="104" loading="lazy" decoding="async" /></div>
-          <figcaption>
-            <b>Lux Energie Solution</b>
-            <span class="pb-badge">Partenaire officiel</span>
-            <small>Agréé par la Région wallonne · PEB · électricité · chauffage · pompes à chaleur · photovoltaïque</small>
-          </figcaption>
-        </figure>
-        <a class="pb-join" href="/devenir-partenaire">Votre entreprise ici ? Rejoignez le réseau <span aria-hidden="true">→</span></a>
-      </div>
+      <figure class="pb-card">
+        <div class="pb-logo"><img src="/partenaires/lux-energie-solution.png" alt="Logo Lux Energie Solution" width="390" height="104" loading="lazy" decoding="async" /></div>
+        <a class="pb-go" href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">Découvrir Lux Energie Solution <span aria-hidden="true">↗</span></a>
+        <small>Site de Lux Energie Solution, s'ouvre dans un nouvel onglet.</small>
+      </figure>
     </div>
   </div>
 </section>
@@ -936,12 +898,12 @@ dialog .btn{margin-top:8px}
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/><circle cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/><path d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/></svg><b data-brand>Jumeo</b></div>
-        <p>PEB, électricité, photovoltaïque, rénovation et projets immobiliers en Wallonie.</p>
+        <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M7 29 32 8l25 21" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 27h16l4.5 4-4.5 4H15z" fill="#f2b705"/><path d="M15 38h24l4.5 4-4.5 4H15z" fill="#fff"/><path d="M15 49h32l4.5 4-4.5 4H15z" fill="#fff"/></svg><b data-brand>Wall’PEB</b></div>
+        <p>Certificat PEB et contrôle électrique en Wallonie. Un service de Lux Energie Solution.</p>
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="/notre-histoire">Notre histoire</a><a href="#tarifs">Tarifs</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/simulateur-recharge">Simulateur recharge</a><a href="/guides">Guides</a><a href="#transparence">Qui fait quoi</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
+        <a href="#tarifs">Tarifs</a><a href="#services">PEB + contrôle électrique</a><a href="/simulateur-peb">Simulateur PEB</a><a href="/guides">Guides</a><a href="#etapes">Comment ça marche</a><a href="#pros">Professionnels</a><a href="#faq">FAQ</a>
       </div>
       <div>
         <h4>Nos zones</h4>
@@ -953,13 +915,13 @@ dialog .btn{margin-top:8px}
         <a id="fWa" class="hide" href="#" target="_blank" rel="noopener">WhatsApp</a>
         <a id="fMail" class="hide" href="#"></a>
         <a href="#devis">Demander un devis</a>
-        <a href="/devenir-partenaire">Devenir partenaire</a>
+        <a href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">Lux Energie Solution ↗</a>
         <a href="#" data-open="legal">Mentions légales</a>
         <a href="#" data-open="privacy">Confidentialité</a>
       </div>
     </div>
     <div class="legal" id="legalLine">
-      <span data-brand>Jumeo</span> est un apporteur d'affaires indépendant et n'est pas certificateur PEB. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne. Les prestations sont réalisées par nos partenaires. Prix indicatifs TVAC, devis confirmé avant intervention.
+      <span data-brand>Wall’PEB</span> est un service de Lux Energie Solution. Les certificats PEB sont établis par un certificateur agréé par la Région wallonne. Prix indicatifs TVAC, devis confirmé avant intervention.
     </div>
     <!-- CREDIT:START (généré par build.js) -->
 <div class="credit">Site réalisé par <img src="/studio/ny-visuals-logo.png" alt="" width="24" height="24" loading="lazy" /><b>NY Visuals</b></div>
@@ -973,7 +935,7 @@ dialog .btn{margin-top:8px}
   <a class="tab" href="/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
   <a class="tab" href="/guides"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21a2 2 0 0 1 2-2h12v2"/><path d="M8 7h6M8 11h6"/></svg><span>Guides</span></a>
   <a class="tab tab-fab" href="/#devis"><span class="fab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span>Devis</span></a>
-  <a class="tab" href="/guides#simulateurs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg><span>Simus</span></a>
+  <a class="tab" href="/simulateur-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg><span>Simulateur</span></a>
   <button class="tab" type="button" id="tabMenu" aria-haspopup="dialog" aria-controls="appSheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span></button>
 </nav>
 <dialog class="sheet" id="appSheet" aria-label="Menu">
@@ -984,19 +946,18 @@ dialog .btn{margin-top:8px}
       <a class="wide" href="/#devis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Demander un devis gratuit</a>
       <a href="/#tarifs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>Tarifs</a>
       <a href="/certificat-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Nos zones</a>
-      <a href="/#transparence"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Qui fait quoi</a>
+      <a href="/#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg>PEB + contrôle électrique</a>
       <a href="/#pros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/></svg>Professionnels</a>
-      <a href="/devenir-partenaire"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/></svg>Devenir partenaire</a>
-      <a href="/notre-histoire"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>Notre histoire</a>
+      <a href="/simulateur-peb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg>Simulateur PEB</a>
       <a href="/#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/></svg>Questions fréquentes</a>
-      <a href="/guides#simulateurs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.4"/><path d="M4 19h16"/></svg>Simulateurs</a>
+      <a class="wide wide-lux" href="https://www.luxenergiesolution.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Électricité, chauffage, photovoltaïque : Lux Energie Solution</a>
     </div>
     <div class="sheet-small">
       <a href="/#mentions-legales" data-dlg="legal">Mentions légales</a>
       <a href="/#confidentialite" data-dlg="privacy">Confidentialité</a>
       <a id="mWa" class="hide" href="#" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <p class="sheet-legal">Jumeo est un apporteur d'affaires indépendant : les prestations sont réalisées par nos partenaires.</p>
+    <p class="sheet-legal">Wall’PEB est un service de Lux Energie Solution.</p>
   </div>
 </dialog>
 <!-- APP:HTML:END -->
@@ -1010,7 +971,7 @@ dialog .btn{margin-top:8px}
 <dialog id="dlg-privacy">
   <h3>Confidentialité</h3>
   <p>Les informations saisies dans le formulaire (nom, téléphone, commune, type de bien, message) servent uniquement à traiter votre demande de devis et à vous recontacter.</p>
-  <p>Elles sont transmises par le canal que vous choisissez (WhatsApp ou e-mail) et, pour réaliser la prestation, au partenaire concerné. Elles ne sont pas vendues.</p>
+  <p>Elles sont traitées par Lux Energie Solution, qui exploite <span data-brand>Wall’PEB</span> et réalise les prestations. Elles sont transmises par le canal que vous choisissez (WhatsApp ou e-mail), ne sont pas vendues ni cédées.</p>
   <p>Ce site n'utilise ni cookies publicitaires ni outil de suivi. Pour fonctionner hors connexion, il peut garder dans votre navigateur une copie des pages visitées (aucune donnée personnelle). Vous pouvez demander l'accès, la correction ou la suppression de vos données en nous écrivant.</p>
   <form method="dialog"><button class="btn btn-ghost">Fermer</button></form>
 </dialog>
@@ -1023,45 +984,34 @@ dialog .btn{margin-top:8px}
    informations et je vous renvoie le fichier final.
    ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  brand: 'Jumeo',
-  phone: '',          // ex : '+32 4xx xx xx xx'  (numéro de Jumeo, pas celui d'un partenaire)
+  brand: 'Wall’PEB',
+  // Coordonnées propres à Wall'PEB (contact dédié, fournies par Lux). Vides = formulaire en mode aperçu.
+  phone: '',          // ex : '+32 4xx xx xx xx'
   whatsapp: '',       // chiffres uniquement, ex : '324xxxxxxxx'
-  email: '',          // ex : 'contact@jumeo.be'
-  company: { legalName: '', bce: '', address: '', status: 'Structure en cours de création.' },
-  prices: { peb: 250, pebelec: 300, depannage: 150 },
-  vat: 'TVAC',        // prix TVA comprise (confirmé par Nasser)
-  launch: 'janvier 2027', // bandeau « Lancement officiel en … » en haut de page ; mettre '' le jour du lancement
-  // Réseau de partenaires : on peut en ajouter autant que nécessaire.
-  partners: [
-    {
-      id: 'lux',
-      name: 'Lux Energie Solution',
-      website: 'https://www.luxenergiesolution.com',
-      badge: 'Agréé par la Région wallonne',
-      agrement: '',          // n° d'agrément (à afficher dès qu'il est confirmé)
-      nouveauFormat: false,  // true si formé au nouveau certificat (sept. 2026)
-      // Contrôle électrique : ne s'affiche comme « réalisé par le partenaire » qu'une fois l'organisme et le n° confirmés.
-      controleElec: { organisme: '', numero: '' },
-      logo: '/partenaires/lux-energie-solution.png',
-      officiel: true,
-      metiers: ['PEB', 'électricité', 'chauffage', 'pompes à chaleur', 'photovoltaïque'],
-      services: ['Certificat PEB', 'Contrôle de l\'installation électrique', 'Électricité générale et mise en conformité', 'Chauffage : installation, entretien, dépannage', 'Pompes à chaleur et climatisation', 'Ventilation', 'Panneaux photovoltaïques']
-    }
-  ]
+  email: '',          // ex : 'contact@wallpeb.be'
+  // Exploitant du site (mentions légales) : Lux Energie Solution.
+  company: { legalName: 'Lux Energie Solution', bce: '', address: 'Rue du Pont 6, 4460 Grâce-Hollogne', status: '' },
+  // Agréments : affichés seulement une fois fournis par Lux (n° de certificateur PEB, n° d'agrément contrôle électrique).
+  agrements: { peb: '', elec: '' },
+  nouveauFormat: false,  // true quand Lux confirme être formé au nouveau certificat (sept. 2026)
+  prices: { peb: 250, pebelec: 300 },
+  vat: 'TVAC',        // prix TVA comprise
+  launch: '',         // bandeau « Lancement officiel en … » ; vide = pas de bandeau
+  // Groupe : cadre « Une entreprise Lux Energie Solution » en bas de chaque page, avec lien vers son site.
+  group: {
+    name: 'Lux Energie Solution',
+    url: 'https://www.luxenergiesolution.com',
+    city: 'Grâce-Hollogne',
+    logo: '/partenaires/lux-energie-solution.png',
+    metiers: ['Électricité générale', 'Chauffage', 'Pompes à chaleur', 'Climatisation', 'Photovoltaïque']
+  }
 };
 
 const SERVICES = {
-  peb:         { label: 'Certificat PEB',                         price: () => CONFIG.prices.peb + ' € ' + CONFIG.vat },
-  pebelec:     { label: 'PEB + contrôle électrique',              price: () => CONFIG.prices.pebelec + ' € ' + CONFIG.vat },
-  chauffage:   { label: 'Chauffage (installation, entretien)',    price: () => 'Sur devis' },
-  pac:         { label: 'Pompe à chaleur / climatisation',        price: () => 'Sur devis' },
-  pv:          { label: 'Panneaux photovoltaïques',               price: () => 'Sur devis' },
-  elec:        { label: 'Électricité (tableau, mise en conformité)', price: () => 'Sur devis' },
-  ventilation: { label: 'Ventilation',                            price: () => 'Sur devis' },
-  borne:       { label: 'Borne de recharge',                      price: () => 'Sur devis' },
-  depannage:   { label: 'Dépannage chauffage / électricité',      price: () => 'dès ' + CONFIG.prices.depannage + ' € ' + CONFIG.vat },
-  reno:        { label: 'Travaux de rénovation',                  price: () => 'Sur devis' },
-  autre:       { label: 'Autre projet immobilier',                price: () => 'Sur devis' }
+  peb:     { label: 'Certificat PEB',              price: () => CONFIG.prices.peb + ' € ' + CONFIG.vat },
+  pebelec: { label: 'PEB + contrôle électrique',   price: () => CONFIG.prices.pebelec + ' € ' + CONFIG.vat },
+  elec:    { label: 'Contrôle électrique',         price: () => 'Sur devis' },
+  autre:   { label: 'Autre demande (plusieurs logements, question…)', price: () => 'Sur devis' }
 };
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -1069,7 +1019,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 /* ── Marque + prix ─────────────────────────────────────── */
 $$('[data-brand]').forEach(e => e.textContent = CONFIG.brand);
-document.title = CONFIG.brand + ' — PEB, électricité, photovoltaïque et rénovation en Wallonie';
+document.title = CONFIG.brand + ' — Certificat PEB et contrôle électrique en Wallonie';
 $$('[data-price]').forEach(e => e.textContent = CONFIG.prices[e.dataset.price]);
 
 /* ── Coordonnées (cachées tant que non renseignées) ────── */
@@ -1078,23 +1028,14 @@ if (CONFIG.phone) { const a = $('#fPhone'); a.textContent = CONFIG.phone; a.href
 if (waNum) { ['#fWa', '#mWa'].forEach(s => { const a = $(s); a.href = 'https://wa.me/' + waNum; a.classList.remove('hide'); }); }
 if (CONFIG.email) { const a = $('#fMail'); a.textContent = CONFIG.email; a.href = 'mailto:' + CONFIG.email; a.classList.remove('hide'); }
 
-/* ── Partenaires (affichés si renseignés) ─────────────── */
-const certPartner = CONFIG.partners.find(p => p.id === 'lux') || CONFIG.partners[0];
-if (certPartner) {
-  const ce = certPartner.controleElec || {};
-  const elecOk = !!(ce.organisme && ce.numero);
-  $('#certIdentity').innerHTML = (elecOk ? 'Certificat PEB et contrôle électrique réalisés par <b>' : 'Certificat PEB réalisé par <b>') + esc(certPartner.name) + '</b>, ' +
-    (certPartner.badge ? esc(certPartner.badge.charAt(0).toLowerCase() + certPartner.badge.slice(1)) : 'professionnel agréé') +
-    (certPartner.agrement ? ' (agrément n° <b>' + esc(certPartner.agrement) + '</b>)' : '') + '.';
-  if (certPartner.nouveauFormat) $('#certNewLine').classList.remove('hide');
-  if (elecOk) {
-    $('#elecLine').textContent = 'Contrôle de l\'installation électrique (' + ce.organisme + ', n° ' + ce.numero + ')';
-    $('#elecLine').classList.remove('hide');
-  }
-}
-$('#partnerList').innerHTML = CONFIG.partners.map(p =>
-  '<div class="partner"><b>' + esc(p.name) + '</b>' + (p.badge ? ' · ' + esc(p.badge) : '') +
-  '<br>' + p.services.map(esc).join(' · ') + '</div>').join('');
+/* ── Agréments (affichés seulement s'ils sont renseignés) ── */
+(function agrements() {
+  const ag = CONFIG.agrements || {};
+  const op = esc(CONFIG.company.legalName);
+  $('#pebIdentity').innerHTML = 'Certificat établi par le certificateur agréé de <b>' + op + '</b>' + (ag.peb ? ' (n° <b>' + esc(ag.peb) + '</b>)' : '') + '.' +
+    (CONFIG.nouveauFormat ? '<br>Formé au nouveau format de certificat (depuis le 1er septembre 2026).' : '');
+  $('#elecIdentity').innerHTML = 'Contrôle réalisé par <b>' + op + '</b>, organisme agréé' + (ag.elec ? ' (n° <b>' + esc(ag.elec) + '</b>)' : '') + '.';
+})();
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
@@ -1103,17 +1044,21 @@ function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<'
   const c = CONFIG.company;
   const lines = [];
   lines.push('<p><b>' + esc(c.legalName || CONFIG.brand) + '</b>' + (c.address ? ' — ' + esc(c.address) : '') + '</p>');
+  if (!c.bce) lines.push('<p>N° d\'entreprise (BCE) : à compléter.</p>');
   if (!c.bce && c.status) lines.push('<p>' + esc(c.status) + '</p>');
   if (c.bce) lines.push('<p>N° d\'entreprise (BCE) : ' + esc(c.bce) + '</p>');
   if (CONFIG.email) lines.push('<p>Contact : ' + esc(CONFIG.email) + '</p>');
-  lines.push('<p>' + esc(CONFIG.brand) + ' agit en qualité d\'apporteur d\'affaires indépendant. Il n\'est pas certificateur PEB. Les prestations (certificat PEB, contrôle électrique, travaux) sont réalisées par des partenaires indépendants. Les certificats PEB sont établis exclusivement par un certificateur agréé par la Région wallonne.</p>');
+  lines.push('<p>' + esc(CONFIG.brand) + ' est un service de ' + esc(c.legalName) + ', qui édite ce site et réalise les prestations (certificat PEB, contrôle électrique). Les certificats PEB sont établis par un certificateur agréé par la Région wallonne.</p>');
+  const ag = CONFIG.agrements || {};
+  if (ag.peb) lines.push('<p>Certificateur PEB agréé, n° ' + esc(ag.peb) + '.</p>');
+  if (ag.elec) lines.push('<p>Contrôle électrique : organisme agréé, n° ' + esc(ag.elec) + '.</p>');
   $('#legalBody').innerHTML = lines.join('');
 })();
 
 /* ── Onglets Particulier / Pro ─────────────────────────── */
 const COPY = {
-  part: { t: '<span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span>', l: 'PEB, chauffage, électricité, solaire, rénovation : des professionnels compétents, un devis clair, un seul contact. Partout en Wallonie.' },
-  pro:  { t: '<span class="hl"><span>Un partenaire PEB</span></span><span class="hl"><span class="acc">fiable et réactif.</span></span>', l: 'Agences, notaires, promoteurs : un interlocuteur unique pour le PEB, le contrôle électrique et vos travaux. Des dossiers suivis, un planning coordonné.' }
+  part: { t: '<span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span>', l: 'Certificat PEB et contrôle électrique pour vendre ou louer en Wallonie : un prix clair, un certificateur agréé, un seul rendez-vous.' },
+  pro:  { t: '<span class="hl"><span>Un partenaire PEB</span></span><span class="hl"><span class="acc">fiable et réactif.</span></span>', l: 'Agences, notaires, gestionnaires : vos certificats PEB et contrôles électriques avec un seul interlocuteur, des dossiers suivis et un planning coordonné.' }
 };
 function setAudience(a) {
   $$('.aud button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.aud === a)));

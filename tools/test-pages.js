@@ -1,10 +1,10 @@
-// Test des pages générées par build.js (communes, « Nos zones », « Devenir partenaire »).
+// Test des pages générées par build.js (communes, « Nos zones », simulateur PEB, guides).
 // Usage : node tools/test-pages.js
 const { chromium } = require('playwright');
 // En test local (file://), les adresses « /… » pointent vers la racine du disque : on les redirige vers le projet.
 const ROOT_DIR = require('path').join(__dirname, '..');
 async function mapRoot(p) {
-  await p.addInitScript(() => { try { sessionStorage.setItem('jumeo-intro', '1'); } catch (e) {} });
+  await p.addInitScript(() => { try { sessionStorage.setItem('wallpeb-intro', '1'); } catch (e) {} });
   await p.route(u => u.protocol === 'file:' && !decodeURIComponent(u.pathname).startsWith(ROOT_DIR), r =>
     r.fulfill({ path: require('path').join(ROOT_DIR, decodeURIComponent(new URL(r.request().url()).pathname)) }).catch(() => r.abort()));
 }
@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
 
-const files = ['simulateur-recharge.html', 'notre-histoire.html', 'simulateur-peb.html', 'devenir-partenaire.html', 'certificat-peb/index.html',
+const files = ['simulateur-peb.html', 'certificat-peb/index.html',
   ...fs.readdirSync(path.join(root, 'certificat-peb')).filter(f => f !== 'index.html').map(f => 'certificat-peb/' + f),
   ...fs.readdirSync(path.join(root, 'guides')).map(f => 'guides/' + f)];
 
@@ -46,15 +46,8 @@ const files = ['simulateur-recharge.html', 'notre-histoire.html', 'simulateur-pe
         titles.set(r.title, f); descs.set(r.desc, f);
         if (r.title.length > 70) problems.push(`${f}: titre long (${r.title.length} car.)`);
       }
-      if (f === 'devenir-partenaire.html' && w === 390) {
-        await p.fill('#p-entreprise', 'Test SRL'); await p.fill('#p-nom', 'Test');
-        await p.fill('#p-zone', 'Liège'); await p.fill('#p-tel', '0470000000');
-        await p.click('#partnerForm button[type=submit]');
-        const note = await p.textContent('#p-note');
-        await p.check('#p-ok'); await p.click('#partnerForm button[type=submit]');
-        console.log('Formulaire partenaire : sans consentement ->', note);
-        console.log('Formulaire partenaire : aperçu ->', JSON.stringify(await p.inputValue('#p-previewText')));
-      }
+      const txt = await p.evaluate(() => document.body.innerText);
+      for (const w2 of ['Jumeo', 'apporteur', 'Devenir partenaire', 'recharge']) if (txt.includes(w2) && w === 1280) problems.push(`${f}: contient encore « ${w2} »`);
       await p.close();
     }
   }

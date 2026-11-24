@@ -1,5 +1,5 @@
 // Coque « application » pour mobile (≤ 760 px), commune à toutes les pages :
-// barre d'onglets en bas (Accueil · Guides · Devis · Simus · Menu), menu en panneau qui glisse du bas,
+// barre d'onglets en bas (Accueil · Guides · Devis · Simulateur · Menu), menu en panneau qui glisse du bas,
 // titre de page dans la barre du haut, enregistrement du service worker (site installable).
 // Utilisé par build.js : inséré dans les pages générées et dans index.html (marqueurs APP:*).
 'use strict';
@@ -14,7 +14,7 @@ const I = {
   zones: '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
   pros: '<path d="M4 21V5a1 1 0 0 1 1-1h9v17"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/><path d="M8 8h2M8 12h2M8 16h2M3 21h18"/>',
   partner: '<path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/>',
-  story: '<circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/>',
+  lux: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   faq: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/>',
   who: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>'
 };
@@ -53,7 +53,7 @@ body:has(.launch) .sub-hero .wrap{padding-top:152px}
   .tab[aria-current="page"] svg{stroke-width:2.3}
   .tab[aria-current="page"]::before{content:"";position:absolute;top:0;width:18px;height:3px;border-radius:0 0 4px 4px;background:var(--accent)}
   .tab-fab{color:var(--ink)}
-  .tab-fab .fab{display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border-radius:50%;background:var(--accent);border:4px solid #fff;box-shadow:0 10px 24px rgba(255,122,69,.45)}
+  .tab-fab .fab{display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border-radius:50%;background:var(--accent);border:4px solid #fff;box-shadow:0 10px 24px rgba(242,183,5,.45)}
   .tab-fab .fab svg{width:26px;height:26px;stroke:var(--ink);stroke-width:2.6}
   body.typing .tabbar{transform:translateY(120%)}
   /* rythme « application » : moins de vide, contenu plus vite visible */
@@ -81,6 +81,8 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 .sheet-grid svg{width:24px;height:24px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .sheet-grid .wide{grid-column:1/-1;flex-direction:row;align-items:center;background:var(--ink);color:#fff}
 .sheet-grid .wide svg{stroke:var(--accent)}
+.sheet-grid .wide-lux{background:#fff;color:var(--ink);font-weight:500}
+.sheet-grid .wide-lux svg{stroke:var(--ink)}
 .sheet-small{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
 .sheet-small a{color:rgba(11,36,65,.66);text-decoration:underline;text-underline-offset:3px}
 .sheet-legal{margin-top:14px;font-size:12px;color:rgba(11,36,65,.6)}
@@ -88,14 +90,14 @@ dialog.sheet[open]{animation:sheet-up .34s cubic-bezier(.32,.72,0,1)}
 `;
 
 // Barre d'onglets + panneau « Menu ». active : 'home' | 'guides' | 'simus' | ''
-function html({ active = '', brand = 'Jumeo', whatsapp = '' } = {}) {
+function html({ active = '', brand = 'Wall’PEB', whatsapp = '' } = {}) {
   const tab = (key, href, label) => `<a class="tab" href="${href}"${active === key ? ' aria-current="page"' : ''}>${svg(key)}<span>${label}</span></a>`;
   const wa = String(whatsapp || '').replace(/\D/g, '');
   return `<nav class="tabbar" aria-label="Navigation mobile">
   ${tab('home', '/', 'Accueil')}
   ${tab('guides', '/guides', 'Guides')}
   <a class="tab tab-fab" href="/#devis"><span class="fab">${svg('devis')}</span><span>Devis</span></a>
-  ${tab('simus', '/guides#simulateurs', 'Simus')}
+  ${tab('simus', '/simulateur-peb', 'Simulateur')}
   <button class="tab" type="button" id="tabMenu" aria-haspopup="dialog" aria-controls="appSheet">${svg('menu')}<span>Menu</span></button>
 </nav>
 <dialog class="sheet" id="appSheet" aria-label="Menu">
@@ -106,19 +108,18 @@ function html({ active = '', brand = 'Jumeo', whatsapp = '' } = {}) {
       <a class="wide" href="/#devis">${svg('devis')}Demander un devis gratuit</a>
       <a href="/#tarifs">${svg('tarifs')}Tarifs</a>
       <a href="/certificat-peb">${svg('zones')}Nos zones</a>
-      <a href="/#transparence">${svg('who')}Qui fait quoi</a>
+      <a href="/#services">${svg('partner')}PEB + contrôle électrique</a>
       <a href="/#pros">${svg('pros')}Professionnels</a>
-      <a href="/devenir-partenaire">${svg('partner')}Devenir partenaire</a>
-      <a href="/notre-histoire">${svg('story')}Notre histoire</a>
+      <a href="/simulateur-peb">${svg('simus')}Simulateur PEB</a>
       <a href="/#faq">${svg('faq')}Questions fréquentes</a>
-      <a href="/guides#simulateurs">${svg('simus')}Simulateurs</a>
+      <a class="wide wide-lux" href="https://www.luxenergiesolution.com" target="_blank" rel="noopener">${svg('lux')}Électricité, chauffage, photovoltaïque : Lux Energie Solution</a>
     </div>
     <div class="sheet-small">
       <a href="/#mentions-legales" data-dlg="legal">Mentions légales</a>
       <a href="/#confidentialite" data-dlg="privacy">Confidentialité</a>
       <a id="mWa" class="${wa ? '' : 'hide'}" href="${wa ? 'https://wa.me/' + wa : '#'}" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <p class="sheet-legal">${brand} est un apporteur d'affaires indépendant : les prestations sont réalisées par nos partenaires.</p>
+    <p class="sheet-legal">${brand} est un service de Lux Energie Solution.</p>
   </div>
 </dialog>`;
 }
@@ -148,7 +149,7 @@ const js = `
 const head = `<link rel="manifest" href="/manifest.webmanifest" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="Jumeo" />
+<meta name="apple-mobile-web-app-title" content="Wall’PEB" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />`;
 
 // Bandeau fin en haut de page (dans l'en-tête fixe). Vide → pas de bandeau.
@@ -161,30 +162,27 @@ function launch(text) {
 // ── Écran d'ouverture « les anneaux s'unissent » (1 fois par visite) ──
 // Le script du <head> ajoute html.intro AVANT l'affichage (pas de flash), sauf si :
 // déjà vu pendant cette visite, ou animations réduites demandées par l'appareil.
-const introHead = `<script>try{if(!sessionStorage.getItem('jumeo-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('jumeo-intro','1')}}catch(e){}</script>`;
+const introHead = `<script>try{if(!sessionStorage.getItem('wallpeb-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro');sessionStorage.setItem('wallpeb-intro','1')}}catch(e){}</script>`;
 
 const splashCss = `
 /* ═════════ ÉCRAN D'OUVERTURE ═════════ */
 .intro-splash{display:none}
-html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#12355b 0%,#0b2441 60%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
+html.intro .intro-splash{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:radial-gradient(120% 90% at 50% 40%,#16406c 0%,#0b2441 62%);cursor:pointer;animation:sp-out .6s cubic-bezier(.7,0,.3,1) 2.35s forwards}
 html.intro .intro-splash.skip{animation:sp-out .3s ease forwards}
 .sp-in{display:grid;justify-items:center;gap:22px;padding:24px}
-.sp-logo{width:min(78vw,440px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
-.sp-l,.sp-r{transform-box:view-box}
-.sp-l{animation:sp-left 1s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-r{animation:sp-right 1s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-ring{stroke-dasharray:95;animation:sp-draw 1.05s cubic-bezier(.65,0,.35,1) .15s both}
-.sp-weave{animation:sp-fade .18s ease 1.08s both}
+.sp-logo{width:min(80vw,460px);height:auto;overflow:visible;animation:sp-center .7s cubic-bezier(.65,0,.35,1) 1.2s both}
+.sp-roof{stroke-dasharray:70;animation:sp-draw .8s cubic-bezier(.65,0,.35,1) .15s both}
+.sp-bar{transform-box:fill-box;animation:sp-bar .55s cubic-bezier(.16,1,.3,1) both}
+.sp-b3{animation-delay:.45s}.sp-b2{animation-delay:.6s}.sp-b1{animation-delay:.78s}
 .sp-mark{transform-box:fill-box;transform-origin:center;animation:sp-pulse .55s cubic-bezier(.34,1.56,.64,1) 1.08s both}
 .sp-word{animation:sp-word .75s cubic-bezier(.16,1,.3,1) 1.3s both}
 .sp-tag{font:500 15px/1.4 'Inter',system-ui,sans-serif;color:rgba(255,255,255,.72);letter-spacing:.01em;text-align:center;animation:sp-tag .7s cubic-bezier(.16,1,.3,1) 1.55s both}
-.sp-tag b{color:#ff7a45;font-weight:600}
-@keyframes sp-left{from{transform:translateX(-48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
-@keyframes sp-right{from{transform:translateX(48px);opacity:0}25%{opacity:1}to{transform:none;opacity:1}}
-@keyframes sp-draw{from{stroke-dashoffset:95}to{stroke-dashoffset:0}}
+.sp-tag b{color:#f2b705;font-weight:600}
+@keyframes sp-bar{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes sp-draw{from{stroke-dashoffset:70}to{stroke-dashoffset:0}}
 @keyframes sp-fade{from{opacity:0}to{opacity:1}}
 @keyframes sp-pulse{0%{transform:none}45%{transform:scale(1.14)}100%{transform:none}}
-@keyframes sp-center{from{transform:translateX(35%)}to{transform:none}}
+@keyframes sp-center{from{transform:translateX(38%)}to{transform:none}}
 @keyframes sp-word{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 @keyframes sp-tag{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes sp-out{to{opacity:0;visibility:hidden}}
@@ -194,7 +192,7 @@ html.intro .hl>span{animation-delay:2.55s}
 html.intro .hl+.hl>span{animation-delay:2.7s}
 html.intro .swap .hl>span{animation-delay:0s}
 html.intro .swap .hl+.hl>span{animation-delay:.08s}
-html.intro .ghost-rings circle{animation-delay:2.45s}
+html.intro .ghost-rings circle,html.intro .ghost-rings path{animation-delay:2.45s}
 html.intro .ghost-rings circle+circle{animation-delay:2.7s}
 html.intro .rise{animation-delay:2.3s}
 html.intro .rise.d1{animation-delay:2.4s}
@@ -203,19 +201,20 @@ html.intro .rise.d3{animation-delay:2.6s}
 @media(prefers-reduced-motion:reduce){html.intro .intro-splash{display:none}}
 `;
 
-// wordD : tracé du mot « Jumeo » (repris de brand/jumeo-logo-blanc.svg, même repère que les anneaux)
-function splash(wordD) {
+// word : tracés du mot « Wall’PEB » (brand/wallpeb-word.json, généré par tools/make-logo-wallpeb.js, même repère que le symbole)
+function splash(word) {
   return `<div class="intro-splash" id="introSplash" aria-hidden="true">
   <div class="sp-in">
-    <svg class="sp-logo" viewBox="3 12 192 39">
+    <svg class="sp-logo" viewBox="${word.viewBox}">
       <g class="sp-mark">
-        <g class="sp-l"><circle class="sp-ring" cx="23" cy="32" r="15" fill="none" stroke="#fff" stroke-width="7"/></g>
-        <g class="sp-r"><circle class="sp-ring" cx="41" cy="32" r="15" fill="none" stroke="#ff7a45" stroke-width="7"/></g>
-        <path class="sp-weave" d="M28.13 17.9A15 15 0 0 1 35.14 23.18" fill="none" stroke="#fff" stroke-width="7"/>
+        <path class="sp-roof" d="M7 29 32 8l25 21" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="sp-bar sp-b1" d="M15 27h16l4.5 4-4.5 4H15z" fill="#f2b705"/>
+        <path class="sp-bar sp-b2" d="M15 38h24l4.5 4-4.5 4H15z" fill="#fff"/>
+        <path class="sp-bar sp-b3" d="M15 49h32l4.5 4-4.5 4H15z" fill="#fff"/>
       </g>
-      <path class="sp-word" d="${wordD}" fill="#fff"/>
+      <g class="sp-word"><path d="${word.ink}" fill="#fff"/><path d="${word.accent}" fill="#f2b705"/></g>
     </svg>
-    <p class="sp-tag">Vous. Le bon professionnel. <b>Un seul lien.</b></p>
+    <p class="sp-tag">Certificat PEB et contrôle électrique, <b>en un seul rendez-vous.</b></p>
   </div>
 </div>`;
 }

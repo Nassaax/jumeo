@@ -22,6 +22,10 @@ PHONE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2
 WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-.8.8a4 4 0 0 1-2.3-2.3l.8-.8-1-2z"/></svg>'
 
 os.chdir(ROOT)
+# Depuis le 2026-11-24, le site du dépôt est devenu Wall'PEB : la démo Lux est FIGÉE (demo-lux/ tel quel).
+# Pour la régénérer, repartir des sources Jumeo du commit 8babd68 (git worktree), puis lancer ce script dans ce dossier.
+if "brand: 'Jumeo'," not in open('index.html', encoding='utf-8').read():
+    sys.exit("Démo Lux figée : les sources Jumeo ne sont plus dans ce dossier (voir le commit 8babd68). Rien n'a été modifié.")
 subprocess.run(['node', 'build.js'], check=True, stdout=subprocess.DEVNULL)
 
 # ── 1. Copie des pages du site (sans les pages propres à Jumeo) ──────────────

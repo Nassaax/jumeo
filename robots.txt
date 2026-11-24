@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jumeo.vercel.app/sitemap.xml
+Sitemap: https://wallpeb.vercel.app/sitemap.xml

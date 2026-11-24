@@ -56,6 +56,51 @@
       "source": "/demo-lux",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/devenir-partenaire",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/notre-histoire",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/simulateur-recharge",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/guides/photovoltaique-wallonie-ce-qui-a-change",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/guides/borne-de-recharge-maison",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/guides/renovation-par-ou-commencer",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/guides/pompe-a-chaleur-adaptee",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/guides/isolation-toiture",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/guides/bien-choisir-son-artisan",
+      "destination": "/guides",
+      "permanent": true
     }
   ]
 }
