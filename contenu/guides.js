@@ -1,6 +1,7 @@
 // Articles de la rubrique « Guides » (générés par build.js en /guides/<slug>).
 // Règle : chaque affirmation PEB ou légale doit être confirmée (data/regles-peb.md) et sourcée en bas d'article.
 // « cat » : PEB · Électricité (filtres de la page /guides).
+// « image » (facultatif) : [chemin, texte alternatif], photo libre de droits (1200 × 675).
 // « seo » (facultatif) : titre court pour Google (60–70 caractères max avec « | Wall’PEB »).
 // Le corps est du HTML simple : <h2>, <p>, <ul>, <ol>, <strong>, <a>.
 'use strict';
@@ -178,6 +179,7 @@ module.exports = [
   },
   {
     slug: 'peb-c-est-quoi',
+    image: ['/photos/peb-etiquette.webp', 'Étiquette énergétique de A à G affichée devant un ordinateur portable'],
     date: '2026-11-24',
     tag: 'Les bases',
     cat: 'PEB',

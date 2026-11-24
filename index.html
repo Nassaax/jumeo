@@ -224,7 +224,7 @@ img,svg{display:block;max-width:100%}
 .sim-teaser h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em;margin-bottom:12px}
 .sim-teaser p{color:var(--muted);font-size:16.5px;margin-bottom:22px;max-width:32rem}
 .sim-mini{display:grid;gap:6px}
-.sim-mini span{width:var(--w);height:30px;border-radius:6px 15px 15px 6px;color:#fff;font:700 14px 'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;padding-left:12px}
+.sim-mini span{width:var(--w);height:24px;font-size:13px!important;border-radius:6px 15px 15px 6px;color:#fff;font:700 14px 'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;padding-left:12px}
 
 /* ═════════ ÉTAPES ═════════ */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s;list-style:none}
@@ -804,7 +804,7 @@ dialog .btn{margin-top:8px}
         <a class="btn btn-ghost" href="/simulateur-peb">Estimer mon label</a>
       </div>
       <div class="sim-mini" aria-hidden="true">
-        <span style="--w:46%;background:#1a7f45">A</span><span style="--w:56%;background:#3f8f3a">B</span><span style="--w:66%;background:#6c8f22">C</span><span style="--w:76%;background:#a07d00">D</span><span style="--w:86%;background:#c0631a">E</span><span style="--w:94%;background:#cf4a2a">F</span><span style="--w:100%;background:#b8261e">G</span>
+        <span style="--w:38%;background:#0e6b3a">A++</span><span style="--w:45%;background:#13753f">A+</span><span style="--w:52%;background:#1a7f45">A</span><span style="--w:59%;background:#3f8f3a">B</span><span style="--w:66%;background:#6c8f22">C</span><span style="--w:73%;background:#a07d00">D</span><span style="--w:80%;background:#c0631a">E</span><span style="--w:90%;background:#cf4a2a">F</span><span style="--w:100%;background:#b8261e">G</span>
       </div>
     </div>
   </div>
@@ -1014,7 +1014,7 @@ dialog .btn{margin-top:8px}
       <h2>Comprendre avant de décider.</h2>
       <p>Certificat PEB et contrôle électrique : des réponses claires et sourcées, pour préparer votre vente ou votre location.</p>
     </div>
-    <div class="guide-list reveal"><!-- GUIDES:START (généré par build.js) --><a class="guide-card" href="/guides/peb-c-est-quoi" data-cat="PEB"><span class="tag">Les bases</span><h3>Le PEB, c&#39;est quoi ? Les labels de A++ à G expliqués simplement</h3><p>Que mesure le certificat PEB, comment est calculé le label, que veulent dire A++, B ou G ? Les bases du certificat PEB en Wallonie, sans jargon.</p><small>24 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/controle-electrique-vente" data-cat="Électricité"><span class="tag">Vendre</span><h3>Vendre une maison : le contrôle électrique expliqué simplement</h3><p>Qui doit le faire, quand, qui paie, et que se passe-t-il si l&#39;installation n&#39;est pas conforme ? Le contrôle électrique à la vente d&#39;une habitation, en clair.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/amendes-certificat-peb" data-cat="PEB"><span class="tag">Amendes &amp; sanctions</span><h3>Vendre ou louer sans certificat PEB : quelles amendes en Wallonie ?</h3><p>Pas de certificat PEB, indicateurs absents de l&#39;annonce, certificat non remis : les amendes administratives prévues en Wallonie, et comment les éviter.</p><small>24 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
+    <div class="guide-list reveal"><!-- GUIDES:START (généré par build.js) --><a class="guide-card has-img" href="/guides/peb-c-est-quoi" data-cat="PEB"><img src="/photos/peb-etiquette.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /><span class="tag">Les bases</span><h3>Le PEB, c&#39;est quoi ? Les labels de A++ à G expliqués simplement</h3><p>Que mesure le certificat PEB, comment est calculé le label, que veulent dire A++, B ou G ? Les bases du certificat PEB en Wallonie, sans jargon.</p><small>24 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/controle-electrique-vente" data-cat="Électricité"><span class="tag">Vendre</span><h3>Vendre une maison : le contrôle électrique expliqué simplement</h3><p>Qui doit le faire, quand, qui paie, et que se passe-t-il si l&#39;installation n&#39;est pas conforme ? Le contrôle électrique à la vente d&#39;une habitation, en clair.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/amendes-certificat-peb" data-cat="PEB"><span class="tag">Amendes &amp; sanctions</span><h3>Vendre ou louer sans certificat PEB : quelles amendes en Wallonie ?</h3><p>Pas de certificat PEB, indicateurs absents de l&#39;annonce, certificat non remis : les amendes administratives prévues en Wallonie, et comment les éviter.</p><small>24 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
     <a class="text-link reveal" href="/guides">Tous nos guides <span>→</span></a>
   </div>
 </section>
@@ -1320,9 +1320,11 @@ if (qCommune) $('#commune').value = qCommune.slice(0, 80);
 const qService = new URLSearchParams(location.search).get('service');
 if (qService && SERVICES[qService]) { sel.value = qService; updatePrice(); }
 const qSim = new URLSearchParams(location.search).get('sim');
-if (qSim && /^[A-G](-[A-G])?$/.test(qSim)) {
+const SIM_L = '(A\\+\\+|A\\+|[A-G])';
+if (qSim && new RegExp('^' + SIM_L + '(_' + SIM_L + ')?$').test(qSim)) {
+  const [sLo, sHi] = qSim.split('_');
   sel.value = 'peb'; updatePrice();
-  $('#msg').value = 'Estimation du simulateur : ' + (qSim.length > 1 ? 'entre ' + qSim[0] + ' et ' + qSim[2] : qSim) + ' (indicatif).';
+  $('#msg').value = 'Estimation du simulateur : ' + (sHi ? 'entre ' + sLo + ' et ' + sHi : sLo) + ' (indicatif).';
 }
 
 /* APP:JS:START (généré par build.js) */

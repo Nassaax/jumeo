@@ -18,6 +18,7 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
 .sources ul{padding-left:18px;display:grid;gap:6px;margin-top:8px}.sources a{color:var(--muted)}
 .cards.two{grid-template-columns:repeat(2,1fr)}@media(max-width:900px){.cards.two{grid-template-columns:1fr}}
 .card .btn{margin-top:16px}
+.need-photo{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:28px;margin-bottom:20px}
 `;
 
   const PAGES = [
@@ -108,6 +109,7 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
     },
     {
       slug: 'certificat-peb-immeuble', short: 'Immeubles et copropriétés', service: 'autre',
+      photo: ['/photos/immeuble.webp', 'Façade d\'un immeuble à appartements'],
       title: `Certificat PEB immeuble, copropriété, plusieurs logements | ${CONFIG.brand}`,
       description: `Syndics, gestionnaires, investisseurs : certificats PEB de plusieurs logements en Wallonie, rapport partiel des parties communes, planning groupé. Devis sur mesure.`,
       h1: 'Immeubles et copropriétés : <span>un dossier, un interlocuteur.</span>',
@@ -168,7 +170,7 @@ module.exports = function besoins({ esc, btn, CONFIG, SITE, page, fs, path, ROOT
       <ul class="need-list">${p.know.map(k => `<li><span>${k}</span></li>`).join('')}</ul>
       <div class="sources"><b>Sources</b><ul>${p.sources.map(([t, u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join('')}</ul></div>
     </div>
-    <aside class="tip"><b>Notre conseil</b><p>${p.tip}</p></aside>
+    <aside>${p.photo ? `<img class="need-photo" src="${p.photo[0]}" alt="${esc(p.photo[1])}" width="800" height="1000" loading="lazy" decoding="async" />` : ''}<div class="tip"><b>Notre conseil</b><p>${p.tip}</p></div></aside>
   </div>
 </section>
 

@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Simulateur PEB gratuit : estimez votre label | Wall’PEB</title>
-<meta name="description" content="Estimez en 1 minute la fourchette de label PEB (A à G) de votre logement en Wallonie : 7 questions, des pistes d&#39;amélioration. Estimation indicative, ce n&#39;est pas un certificat." />
+<meta name="description" content="Estimez en 1 minute la fourchette de label PEB (A++ à G) de votre logement en Wallonie : 7 questions, des pistes d&#39;amélioration. Estimation indicative, ce n&#39;est pas un certificat." />
 <meta name="theme-color" content="#0b2441" />
 <link rel="canonical" href="https://wallpeb.vercel.app/simulateur-peb" />
 <meta property="og:title" content="Simulateur PEB gratuit : estimez votre label | Wall’PEB" />
-<meta property="og:description" content="Estimez en 1 minute la fourchette de label PEB (A à G) de votre logement en Wallonie : 7 questions, des pistes d&#39;amélioration. Estimation indicative, ce n&#39;est pas un certificat." />
+<meta property="og:description" content="Estimez en 1 minute la fourchette de label PEB (A++ à G) de votre logement en Wallonie : 7 questions, des pistes d&#39;amélioration. Estimation indicative, ce n&#39;est pas un certificat." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_BE" />
 <meta property="og:site_name" content="Wall’PEB" />
@@ -164,7 +164,7 @@ footer .logo{color:#fff;margin-bottom:14px}
 .sim-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .stepper .q{display:none}.stepper .q.on{display:block;animation:rise .45s var(--e-out) both}
 .result h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:22px}
-.res-scale{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.res-scale{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
 .res-scale span{height:46px;border-radius:12px;display:grid;place-items:center;font:700 17px 'Plus Jakarta Sans',sans-serif;color:#fff;background:var(--c);opacity:.28;transition:opacity .4s,transform .4s var(--e-out)}
 .res-scale span.on{opacity:1;transform:translateY(-6px);box-shadow:0 10px 24px rgba(11,36,65,.2)}
 .result h3{font-size:19px;margin:6px 0 12px}
@@ -428,7 +428,7 @@ html.intro .rise.d3{animation-delay:2.6s}
       <div class="sim-card result hide" id="simResult" tabindex="-1" aria-live="polite">
         <span class="eyebrow">Votre estimation</span>
         <h2 id="resTitle">Votre bien se situe probablement entre C et D.</h2>
-        <div class="res-scale" id="resScale"><span data-l="A" style="--c:#1a7f45">A</span><span data-l="B" style="--c:#3f8f3a">B</span><span data-l="C" style="--c:#6c8f22">C</span><span data-l="D" style="--c:#a07d00">D</span><span data-l="E" style="--c:#c0631a">E</span><span data-l="F" style="--c:#cf4a2a">F</span><span data-l="G" style="--c:#b8261e">G</span></div>
+        <div class="res-scale" id="resScale"><span data-l="A++" style="--c:#0e6b3a">A++</span><span data-l="A+" style="--c:#13753f">A+</span><span data-l="A" style="--c:#1a7f45">A</span><span data-l="B" style="--c:#3f8f3a">B</span><span data-l="C" style="--c:#6c8f22">C</span><span data-l="D" style="--c:#a07d00">D</span><span data-l="E" style="--c:#c0631a">E</span><span data-l="F" style="--c:#cf4a2a">F</span><span data-l="G" style="--c:#b8261e">G</span></div>
         <div class="warn small"><b>Estimation indicative, pas un certificat.</b> Le label réel peut être différent : il dépend de mesures précises et des preuves (factures, fiches techniques) que le certificateur relève sur place.</div>
         <h3>Ce qui pèse sur votre résultat</h3>
         <ul class="tips" id="resTips"></ul>
@@ -561,7 +561,7 @@ document.querySelectorAll('[data-dd]').forEach(dd => {
 });
 
 
-const LABELS = [['A',85],['B',170],['C',255],['D',340],['E',425],['F',510],['G',Infinity]];
+const LABELS = [['A++',0],['A+',45],['A',85],['B',170],['C',255],['D',340],['E',425],['F',510],['G',Infinity]];
 const BASE = { '1945':520, '1970':470, '1985':400, '1995':330, '2010':260, '2020':150, '2021':80 };
 const K = {
   type: { appart:.75, mitoyenne:.9, '3f':1, '4f':1.12 },
@@ -604,13 +604,13 @@ function result() {
   const a = {}; ['type','annee','toit','murs','vitrage','chauffage','pv'].forEach(k => a[k] = answer(k));
   let e = BASE[a.annee] * K.type[a.type] * K.toit[a.toit] * K.murs[a.murs] * K.vitrage[a.vitrage] * K.chauffage[a.chauffage];
   if (a.pv === 'oui') e -= 35;
-  e = Math.max(20, e);
+  e = Math.max(a.pv === 'oui' ? -10 : 20, e);
   const lo = label(e * .8), hi = label(e * 1.2);
-  const range = lo === hi ? lo : lo + '-' + hi;
+  const range = lo === hi ? lo : lo + '_' + hi;
   document.getElementById('resTitle').textContent = lo === hi
     ? 'Votre bien se situe probablement en ' + lo + '.'
     : 'Votre bien se situe probablement entre ' + lo + ' et ' + hi + '.';
-  const order = 'ABCDEFG';
+  const order = LABELS.map(([l]) => l);
   document.querySelectorAll('#resScale span').forEach(s => {
     const p = order.indexOf(s.dataset.l);
     s.classList.toggle('on', p >= order.indexOf(lo) && p <= order.indexOf(hi));
@@ -625,7 +625,7 @@ function result() {
   document.getElementById('resTips').innerHTML = tips.slice(0, 3).map(([t, d]) => '<li><b>' + t + ' :</b> ' + d + '</li>').join('');
   const cta = document.getElementById('simCta');
   const commune = document.getElementById('simCommune');
-  const upd = () => { const c = commune.value.trim(); cta.href = '/?' + (c ? 'commune=' + encodeURIComponent(c) + '&' : '') + 'sim=' + range + '#devis'; };
+  const upd = () => { const c = commune.value.trim(); cta.href = '/?' + (c ? 'commune=' + encodeURIComponent(c) + '&' : '') + 'sim=' + encodeURIComponent(range) + '#devis'; };
   commune.oninput = upd; upd();
   form.classList.add('hide');
   const r = document.getElementById('simResult');

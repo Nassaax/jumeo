@@ -22,6 +22,9 @@ const CSS = `
 .peb-scale div{display:flex;align-items:center;justify-content:space-between;gap:12px;width:var(--w);min-width:min(100%,240px);min-height:34px;padding:0 18px 0 14px;background:var(--c);color:#fff;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);border-radius:6px 0 0 6px}
 .peb-scale b{font:700 16px 'Plus Jakarta Sans',sans-serif}
 .peb-scale span{font-size:13.5px;font-weight:600;white-space:nowrap}
+.cover{margin:0 0 28px}.cover img{display:block;width:100%;height:auto;border-radius:24px}
+.guide-card.has-img{padding-top:0;overflow:hidden}
+.guide-card.has-img img{display:block;width:calc(100% + 56px);max-width:none;height:auto;margin:0 -28px 22px;aspect-ratio:16/9;object-fit:cover}
 .sources{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 .sources h2{font-size:15px;margin:0 0 10px;letter-spacing:0}
 .sources ul{padding-left:18px;display:grid;gap:6px}.sources li{font-size:14px;line-height:1.5}
@@ -73,7 +76,7 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
   const urls = [];
   const GHOST = '<svg class="ghost" viewBox="0 0 400 240" aria-hidden="true"><path d="M70 118 200 12l130 106"/><path d="M118 104h96l18 16-18 16h-96z"/><path d="M118 150h132l18 16-18 16H118z"/><path d="M118 196h168l18 16-18 16H118z"/></svg>';
   const CATS = ['PEB', 'Électricité'];
-  const card = a => `<a class="guide-card" href="/guides/${a.slug}" data-cat="${esc(a.cat || '')}"><span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
+  const card = a => `<a class="guide-card${a.image ? ' has-img' : ''}" href="/guides/${a.slug}" data-cat="${esc(a.cat || '')}">${a.image ? `<img src="${esc(a.image[0])}" alt="" width="1200" height="675" loading="lazy" decoding="async" />` : ''}<span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
 
   for (const a of articles) {
     const others = [...articles.filter(o => o.slug !== a.slug && o.cat === a.cat), ...articles.filter(o => o.slug !== a.slug && o.cat !== a.cat)].slice(0, 3);
@@ -92,6 +95,7 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
   <div class="wrap article">
     <article class="article-body">
       <p class="lead">${esc(a.lead)}</p>
+      ${a.image ? `<figure class="cover"><img src="${esc(a.image[0])}" alt="${esc(a.image[1])}" width="1200" height="675" decoding="async" /></figure>` : ''}
       ${a.body}
       <div class="contact-box">
         <h2>Vous vendez ou vous louez ?</h2>

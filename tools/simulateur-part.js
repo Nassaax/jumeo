@@ -1,11 +1,11 @@
 // Page « Simulateur PEB » : morceau de build.js, chargé par build.js (require).
-// Estimation INDICATIVE d'une fourchette de label A–G à partir de 7 questions.
+// Estimation INDICATIVE d'une fourchette de label A++ à G à partir de 7 questions.
 // Ce n'est pas un certificat : seul un certificateur agréé établit le label officiel.
 //
 // Modèle (volontairement simple, réglable ici) : une consommation de référence selon
 // l'époque de construction, multipliée par des coefficients (type de bien, toiture, murs,
 // fenêtres, chauffage), moins un bonus photovoltaïque. On affiche une fourchette ±20 %
-// convertie en labels avec l'échelle des certificats wallons (A ≤ 85 · B ≤ 170 · C ≤ 255 ·
+// convertie en labels avec l'échelle des certificats wallons (A++ ≤ 0 · A+ ≤ 45 · A ≤ 85 · B ≤ 170 · C ≤ 255 ·
 // D ≤ 340 · E ≤ 425 · F ≤ 510 · G au-delà, en kWh/m².an). Les chiffres ne sont jamais affichés.
 'use strict';
 
@@ -27,7 +27,7 @@ module.exports = function simulateur({ esc, btn, CONFIG }) {
           <div class="opts">${q.o.map(([v, l]) => `<label class="opt"><input type="radio" name="${q.id}" value="${v}" required /><span>${esc(l)}</span></label>`).join('')}</div>
         </fieldset>`).join('');
 
-  const SCALE = [['A', '#1a7f45'], ['B', '#3f8f3a'], ['C', '#6c8f22'], ['D', '#a07d00'], ['E', '#c0631a'], ['F', '#cf4a2a'], ['G', '#b8261e']];
+  const SCALE = [['A++', '#0e6b3a'], ['A+', '#13753f'], ['A', '#1a7f45'], ['B', '#3f8f3a'], ['C', '#6c8f22'], ['D', '#a07d00'], ['E', '#c0631a'], ['F', '#cf4a2a'], ['G', '#b8261e']];
 
   const body = `
 <section class="sub-hero">
@@ -106,7 +106,7 @@ module.exports = function simulateur({ esc, btn, CONFIG }) {
 .sim-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .stepper .q{display:none}.stepper .q.on{display:block;animation:rise .45s var(--e-out) both}
 .result h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:22px}
-.res-scale{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.res-scale{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
 .res-scale span{height:46px;border-radius:12px;display:grid;place-items:center;font:700 17px 'Plus Jakarta Sans',sans-serif;color:#fff;background:var(--c);opacity:.28;transition:opacity .4s,transform .4s var(--e-out)}
 .res-scale span.on{opacity:1;transform:translateY(-6px);box-shadow:0 10px 24px rgba(11,36,65,.2)}
 .result h3{font-size:19px;margin:6px 0 12px}
@@ -122,7 +122,7 @@ module.exports = function simulateur({ esc, btn, CONFIG }) {
 `;
 
   const script = `
-const LABELS = [['A',85],['B',170],['C',255],['D',340],['E',425],['F',510],['G',Infinity]];
+const LABELS = [['A++',0],['A+',45],['A',85],['B',170],['C',255],['D',340],['E',425],['F',510],['G',Infinity]];
 const BASE = { '1945':520, '1970':470, '1985':400, '1995':330, '2010':260, '2020':150, '2021':80 };
 const K = {
   type: { appart:.75, mitoyenne:.9, '3f':1, '4f':1.12 },
@@ -165,13 +165,13 @@ function result() {
   const a = {}; ['type','annee','toit','murs','vitrage','chauffage','pv'].forEach(k => a[k] = answer(k));
   let e = BASE[a.annee] * K.type[a.type] * K.toit[a.toit] * K.murs[a.murs] * K.vitrage[a.vitrage] * K.chauffage[a.chauffage];
   if (a.pv === 'oui') e -= 35;
-  e = Math.max(20, e);
+  e = Math.max(a.pv === 'oui' ? -10 : 20, e);
   const lo = label(e * .8), hi = label(e * 1.2);
-  const range = lo === hi ? lo : lo + '-' + hi;
+  const range = lo === hi ? lo : lo + '_' + hi;
   document.getElementById('resTitle').textContent = lo === hi
     ? 'Votre bien se situe probablement en ' + lo + '.'
     : 'Votre bien se situe probablement entre ' + lo + ' et ' + hi + '.';
-  const order = 'ABCDEFG';
+  const order = LABELS.map(([l]) => l);
   document.querySelectorAll('#resScale span').forEach(s => {
     const p = order.indexOf(s.dataset.l);
     s.classList.toggle('on', p >= order.indexOf(lo) && p <= order.indexOf(hi));
@@ -186,7 +186,7 @@ function result() {
   document.getElementById('resTips').innerHTML = tips.slice(0, 3).map(([t, d]) => '<li><b>' + t + ' :</b> ' + d + '</li>').join('');
   const cta = document.getElementById('simCta');
   const commune = document.getElementById('simCommune');
-  const upd = () => { const c = commune.value.trim(); cta.href = '/?' + (c ? 'commune=' + encodeURIComponent(c) + '&' : '') + 'sim=' + range + '#devis'; };
+  const upd = () => { const c = commune.value.trim(); cta.href = '/?' + (c ? 'commune=' + encodeURIComponent(c) + '&' : '') + 'sim=' + encodeURIComponent(range) + '#devis'; };
   commune.oninput = upd; upd();
   form.classList.add('hide');
   const r = document.getElementById('simResult');
@@ -205,7 +205,7 @@ show(0);`;
     file: 'simulateur-peb.html',
     url: '/simulateur-peb',
     title: `Simulateur PEB gratuit : estimez votre label | ${CONFIG.brand}`,
-    description: `Estimez en 1 minute la fourchette de label PEB (A à G) de votre logement en Wallonie : 7 questions, des pistes d'amélioration. Estimation indicative, ce n'est pas un certificat.`,
+    description: `Estimez en 1 minute la fourchette de label PEB (A++ à G) de votre logement en Wallonie : 7 questions, des pistes d'amélioration. Estimation indicative, ce n'est pas un certificat.`,
     body, css, script
   };
 };
