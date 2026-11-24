@@ -7,13 +7,18 @@ Niveaux de confiance : ✅ confirmé par plusieurs sources dont une officielle �
 - ✅ Une société peut être agréée si elle compte parmi son personnel ou ses collaborateurs au moins un certificateur agréé (personne physique).
 - ✅ Le certificat est valable 10 ans, sauf travaux modifiant la performance.
 - ✅ Il est obligatoire pour vendre ou louer ; il doit exister avant la publicité et ses indicateurs figurent dans l'annonce.
-- 🟡 Amendes administratives en cas d'absence : montants (1 000 € / 500 €) issus d'une brochure du SPW de 2016. À reconfirmer. Ne pas les afficher.
+- ✅ **Amendes administratives** (vérifié le 24/11/2026) : 1 000 € (forfait) sans certificat PEB valable au moment de la mise en vente ou en location ; 500 € si les indicateurs PEB manquent dans la publicité, 500 € si le certificat n'est pas remis à l'acheteur ou au locataire. Décret du 28/11/2013 : fourchette légale 250 € à 50 000 €. Sources : energie.wallonie.be (« Certificat PEB : quoi ? quand ? comment ? »), logement.wallonie.be (publicité et mise en location).
 
 ## Nouveautés récentes
 - ✅ Depuis le **1er septembre 2026**, le certificat des logements résidentiels existants intègre une **feuille de route de rénovation**. Seuls les certificateurs formés à ce nouveau format peuvent le délivrer. Elle ne modifie pas la note du certificat.
 - 🟡 Rénopack / Rénoprêt : depuis le 1er octobre 2026, audit logement et gain d'au moins une classe exigés. Source : un bureau de certification, donc non neutre. ❌ Ne pas publier avant vérification officielle.
 - ✅ Mazout interdit dans les logements neufs depuis le 1er janvier 2026. 🟡 Extension annoncée (2027 / 2031), calendrier à reconfirmer.
 - ✅ « Loyer chaud » dans le logement public à partir du 1er janvier 2027.
+
+## Échelle des labels (vérifié le 24/11/2026)
+- ✅ Le label se fonde sur l'**Espec** : consommation théorique annuelle d'énergie primaire par m² de surface de plancher chauffée (kWh/m².an), calculée de façon standardisée (≠ consommation réelle). Seuils : A++ ≤ 0 ; A+ 0–45 ; A 45–85 ; B 85–170 ; C 170–255 ; D 255–340 ; E 340–425 ; F 425–510 ; G > 510. Sources : energie.wallonie.be (« Le certificat PEB », PDF), guide Walloreno 2026 (SPW Énergie), Plan wallon de rénovation (nov. 2025).
+- ✅ Priorités de rénovation selon le guide Walloreno (SPW) : régler d'abord l'humidité, puis isoler l'enveloppe (toiture, murs, sol, châssis performants), puis les systèmes (chauffage, eau chaude) ; un audit logement aide à prioriser. Ne pas publier de montants de primes (régime en transition au 1er octobre 2026).
+- ❌ Calendrier de labels minimum (F en 2031, E en 2036…) : projet du Plan de rénovation, pas une loi. Formule autorisée uniquement.
 
 ## Label minimum et calendrier futur
 - ✅ **Aucun label minimum** n'est exigé aujourd'hui pour louer en Wallonie.

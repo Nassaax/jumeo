@@ -151,6 +151,10 @@ const APP = require('./tools/app-part.js');
 const WORD = JSON.parse(fs.readFileSync(path.join(ROOT, 'brand', 'wallpeb-word.json'), 'utf8'));
 const PARTNERS = require('./tools/partners-part.js');
 const CREDIT = require('./tools/credit-part.js');
+const MAP = require('./tools/map-part.js');
+const NAV = require('./tools/nav-part.js');
+const PROV_ID = { 'Liège': 'liege', 'Namur': 'namur', 'Hainaut': 'hainaut', 'Luxembourg': 'luxembourg', 'Brabant wallon': 'brabant-wallon' };
+const mapHtml = () => MAP.html({ communes, esc, ROOT });
 
 const FOOT_CONTACT = [CONFIG.phone ? `<a href="tel:${CONFIG.phone.replace(/[^\d+]/g, '')}">${esc(CONFIG.phone)}</a>` : '', CONFIG.email ? `<a href="mailto:${esc(CONFIG.email)}">${esc(CONFIG.email)}</a>` : ''].join('');
 const NEEDS = [['/certificat-peb-vente', 'Vendre un bien'], ['/certificat-peb-location', 'Louer un bien'], ['/pack-peb-controle-electrique', 'PEB + contrôle électrique'], ['/controle-electrique', 'Contrôle électrique'], ['/certificat-peb-immeuble', 'Immeubles et copropriétés']];
@@ -168,8 +172,9 @@ function appInfo(canonical, title) {
 
 function page({ title, description, canonical, body, ld = [], current = '', script = '', css = '' }) {
   const app = appInfo(canonical, title);
-  const nav = [['/#tarifs', 'Tarifs'], ['/#services', 'PEB + contrôle'], ['/guides', 'Guides<span class="nav-slash" aria-hidden="true">/</span>Simulateur'], ['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels']]
-    .map(([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`).join('\n      ');
+  const link = ([h, l]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${l}</a>`;
+  const nav = [['/#tarifs', 'Tarifs'], ['/#services', 'PEB + contrôle']].map(link).join('\n      ') + '\n      ' + NAV.html + '\n      ' +
+    [['/certificat-peb', 'Nos zones'], ['/#pros', 'Professionnels']].map(link).join('\n      ');
   return `<!DOCTYPE html>
 <html lang="fr-BE">
 <head>
@@ -194,7 +199,7 @@ ${APP.head}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet" />
 ${ld.map(jsonLd).join('\n')}
-<style>${CSS}${css}${APP.css}${PARTNERS.css}${CREDIT.css}</style>
+<style>${CSS}${css}${APP.css}${NAV.css}${PARTNERS.css}${CREDIT.css}</style>
 </head>
 <body>
 ${APP.splash(WORD)}
@@ -236,6 +241,7 @@ const header = document.querySelector('.header');
 const onScroll = () => header.classList.toggle('scrolled', scrollY > 40);
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 ${APP.js}
+${NAV.js}
 ${script}
 </script>
 </body>
@@ -356,14 +362,16 @@ for (const c of communes) {
 </section>
 <section class="sec">
   <div class="wrap">
-    ${provinces.map(pr => `<span class="eyebrow">Province de ${esc(pr)}</span><ul class="chips" style="margin-bottom:40px">${communes.filter(c => c.province === pr).map(c => `<li><a href="/certificat-peb/${c.slug}">Certificat PEB à ${esc(c.name)}</a></li>`).join('')}</ul>`).join('\n    ')}
+    ${mapHtml()}
+    <div style="margin-top:56px"></div>
+    ${provinces.map(pr => `<span class="eyebrow" id="province-${PROV_ID[pr] || ''}">Province de ${esc(pr)}</span><ul class="chips" style="margin-bottom:40px">${communes.filter(c => c.province === pr).map(c => `<li><a href="/certificat-peb/${c.slug}">Certificat PEB à ${esc(c.name)}</a></li>`).join('')}</ul>`).join('\n    ')}
     <p class="lede">Votre commune n'est pas dans la liste ? Nous intervenons dans toute la Wallonie : indiquez-la dans le formulaire, on confirme rapidement la faisabilité.</p>
   </div>
 </section>`;
   fs.writeFileSync(path.join(ROOT, 'certificat-peb', 'index.html'), page({
     title: `Certificat PEB en Wallonie : nos zones | ${CONFIG.brand}`,
     description: `Certificat PEB à Liège, Seraing, Herstal, Verviers, Namur, Charleroi, Mons et partout en Wallonie : ${P.peb} € ${VAT} indicatif, certificateur agréé, contrôle électrique au même rendez-vous.`,
-    canonical: '/certificat-peb', body, current: '/certificat-peb',
+    canonical: '/certificat-peb', body, current: '/certificat-peb', css: MAP.css, script: MAP.js,
     ld: [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Nos zones', item: SITE + '/certificat-peb' }] }]
   }));
   out.unshift('/certificat-peb');
@@ -399,12 +407,12 @@ out.unshift(...G.urls);
 const zoneBlock = `<!-- ZONES:START (généré par build.js) -->${zonesLinks()}<!-- ZONES:END -->`;
 if (!/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/.test(indexHtml)) throw new Error('Marqueurs ZONES absents de index.html');
 indexHtml = indexHtml.replace(/<!-- ZONES:START[\s\S]*?<!-- ZONES:END -->/, zoneBlock);
-for (const [k, v] of [['APP:SPLASH', APP.splash(WORD)], ['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.group, esc)], ['APP:HEAD', APP.head], ['CREDIT', CREDIT.html], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
+for (const [k, v] of [['APP:SPLASH', APP.splash(WORD)], ['LAUNCH', APP.launch(CONFIG.launch)], ['PARTNERS', PARTNERS.html(CONFIG.group, esc)], ['APP:HEAD', APP.head], ['CREDIT', CREDIT.html], ['MAP', mapHtml()], ['NAVPEB', NAV.html], ['APP:HTML', APP.html({ active: 'home', brand: esc(CONFIG.brand), whatsapp: CONFIG.whatsapp })]]) {
   const re = new RegExp(`<!-- ${k}:START[\\s\\S]*?<!-- ${k}:END -->`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, `<!-- ${k}:START (généré par build.js) -->\n${v}\n<!-- ${k}:END -->`);
 }
-for (const [k, v] of [['APP:CSS', APP.css + PARTNERS.css + CREDIT.css], ['APP:JS', APP.js]]) {
+for (const [k, v] of [['APP:CSS', APP.css + NAV.css + PARTNERS.css + CREDIT.css + MAP.css], ['APP:JS', APP.js + NAV.js + MAP.js]]) {
   const re = new RegExp(`/\\* ${k}:START[\\s\\S]*?/\\* ${k}:END \\*/`);
   if (!re.test(indexHtml)) throw new Error('Marqueurs ' + k + ' absents de index.html');
   indexHtml = indexHtml.replace(re, () => `/* ${k}:START (généré par build.js) */\n${v}\n/* ${k}:END */`);

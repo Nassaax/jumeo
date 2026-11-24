@@ -18,6 +18,10 @@ const CSS = `
 .article-body ul,.article-body ol{padding-left:22px;margin-bottom:16px;display:grid;gap:8px}
 .article-body strong{color:var(--ink)}
 .article-body a{color:var(--ink);text-decoration-color:var(--accent);text-underline-offset:3px}
+.peb-scale{display:grid;gap:6px;margin:18px 0 24px}
+.peb-scale div{display:flex;align-items:center;justify-content:space-between;gap:12px;width:var(--w);min-width:min(100%,240px);min-height:34px;padding:0 18px 0 14px;background:var(--c);color:#fff;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);border-radius:6px 0 0 6px}
+.peb-scale b{font:700 16px 'Plus Jakarta Sans',sans-serif}
+.peb-scale span{font-size:13.5px;font-weight:600;white-space:nowrap}
 .sources{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 .sources h2{font-size:15px;margin:0 0 10px;letter-spacing:0}
 .sources ul{padding-left:18px;display:grid;gap:6px}.sources li{font-size:14px;line-height:1.5}

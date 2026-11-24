@@ -27,7 +27,13 @@ const SRC = {
   notaireVendre: ['Vendre un bien (notaire.be)', 'https://www.notaire.be/immobilier/acheter-et-vendre-un-bien-immobilier/vendre-un-bien'],
   notaireLexique: ['Contrôle de l\'installation électrique, lexique (notaire.be)', 'https://notaire.be/lexique/C/controle-de-linstallation-electrique?locale=fr'],
   notaireBrochure: ['Brochure « Je vends mon bien » 2025 (notaire.be, PDF)', 'https://www.notaire.be/sites/default/files/files/2025-07/Brochure-Je-vends-2025-LD.pdf'],
-  peeters: ['Loi du 31 mai 2017 relative à l\'assurance obligatoire de la responsabilité décennale (Justel)', 'https://www.ejustice.just.fgov.be/cgi_loi/change_lg.pl?language=fr&la=F&cn=2017053102&table_name=loi']
+  peeters: ['Loi du 31 mai 2017 relative à l\'assurance obligatoire de la responsabilité décennale (Justel)', 'https://www.ejustice.just.fgov.be/cgi_loi/change_lg.pl?language=fr&la=F&cn=2017053102&table_name=loi'],
+  certifPdf: ['Le certificat PEB : quelles informations ? (SPW Énergie, PDF)', 'https://energie.wallonie.be/files/PEB/B%C3%A2timents%20r%C3%A9sidentiels/Achat-vente-location/Obligations/quelles-informations-dans-le-certificat-peb-depuis-le-3-novembre-2014.pdf'],
+  walloreno: ['Guide pratique pour rénover votre logement avec Walloreno, 2026 (SPW Énergie, PDF)', 'https://energie.wallonie.be/files/PEB/B%C3%A2timents%20r%C3%A9sidentiels/R%C3%A9novation/Outils/Publications/Walloreno/brochureWalloreno_2026.pdf'],
+  planReno: ['Plan wallon de rénovation énergétique des bâtiments, novembre 2025 (SPW Énergie, PDF)', 'https://energie.wallonie.be/files/strat%C3%A9gies%20et%20politiques/Plan%20Wallon%20de%20R%C3%A9novation%20Energ%C3%A9tique%20des%20B%C3%A2timents%20-%20Novembre%202025/20251201%20Rapport_Plan_Reno_v4_avec%20annexes.pdf'],
+  quoiQuand: ['Certificat PEB : quoi ? quand ? comment ? (L\'Énergie en Wallonie)', 'https://energie.wallonie.be/home/performance-energetique-des-batiments/batiments-residentiels/achat-vente-location/obligations/certificat-peb--quoi--quand--comment.html'],
+  pubLocation: ['Publicité et mise en location (Le site officiel du logement en Wallonie)', 'https://logement.wallonie.be/fr/bail/publicite-mise-en-location'],
+  primes: ['Prime pour son habitation (L\'Énergie en Wallonie)', 'https://energie.wallonie.be/home/soutiens-financiers/particuliers/primes-pour-la-renovation/prime-habitation/prime-pour-son-habitation-a-partir-du-14-fevrier-2025.html'],
 };
 
 module.exports = [
@@ -169,6 +175,147 @@ module.exports = [
   <li>Prévenez votre notaire : il vous dira ce qu'il lui faut et quand.</li>
 </ol>`,
     sources: [SRC.notaireVendre, SRC.notaireLexique, SRC.notaireBrochure]
+  },
+  {
+    slug: 'peb-c-est-quoi',
+    date: '2026-11-24',
+    tag: 'Les bases',
+    cat: 'PEB',
+    service: 'peb',
+    title: 'Le PEB, c\'est quoi ? Les labels de A++ à G expliqués simplement',
+    seo: 'Le PEB, c\'est quoi ? Les labels A++ à G expliqués',
+    description: "Que mesure le certificat PEB, comment est calculé le label, que veulent dire A++, B ou G ? Les bases du certificat PEB en Wallonie, sans jargon.",
+    lead: "Le certificat PEB, c'est la carte d'identité énergétique d'un logement. Il donne un label de A++ (le plus performant) à G (le plus énergivore). Voici comment le lire.",
+    body: `
+<h2>Ce que mesure le certificat</h2>
+<p>Le certificat PEB (performance énergétique des bâtiments) estime la quantité d'énergie dont le logement a besoin pour le chauffage, l'eau chaude, la ventilation et le refroidissement, <strong>dans des conditions standardisées</strong>. C'est une consommation <strong>théorique</strong> : elle permet de comparer les logements entre eux, mais elle peut différer de votre facture réelle, qui dépend aussi de vos habitudes.</p>
+
+<h2>Comment le label est calculé</h2>
+<p>Le label se base sur l'<strong>Espec</strong> : la consommation théorique annuelle d'énergie primaire, divisée par la surface de plancher chauffée. Elle s'exprime en <strong>kWh par m² et par an</strong>.</p>
+<div class="peb-scale" role="img" aria-label="Échelle des labels PEB en Wallonie, de A++ à G, en kWh par m² et par an">
+  <div style="--w:22%;--c:#0e6b3a"><b>A++</b><span>≤ 0 kWh/m².an</span></div>
+  <div style="--w:30%;--c:#1a7f45"><b>A+</b><span>0 – 45 kWh/m².an</span></div>
+  <div style="--w:38%;--c:#3f8f3a"><b>A</b><span>45 – 85 kWh/m².an</span></div>
+  <div style="--w:46%;--c:#6c8f22"><b>B</b><span>85 – 170 kWh/m².an</span></div>
+  <div style="--w:54%;--c:#8a8a12"><b>C</b><span>170 – 255 kWh/m².an</span></div>
+  <div style="--w:62%;--c:#a07d00"><b>D</b><span>255 – 340 kWh/m².an</span></div>
+  <div style="--w:70%;--c:#c0631a"><b>E</b><span>340 – 425 kWh/m².an</span></div>
+  <div style="--w:80%;--c:#cf4a2a"><b>F</b><span>425 – 510 kWh/m².an</span></div>
+  <div style="--w:90%;--c:#b8261e"><b>G</b><span>> 510 kWh/m².an</span></div>
+</div>
+<p>Si le logement a des panneaux photovoltaïques, leur production est déduite. Le nouveau certificat (depuis septembre 2026) indique le label réel <strong>et</strong> celui qu'aurait le logement sans les panneaux.</p>
+
+<h2>Quand est-il obligatoire ?</h2>
+<p>Pour <strong>vendre ou louer</strong> un logement en Wallonie. Il doit exister avant la publicité du bien, et ses indicateurs figurent dans l'annonce. Il est valable <strong>10 ans</strong>, sauf travaux qui modifient la performance.</p>
+
+<h2>Qui peut l'établir ?</h2>
+<p>Uniquement un <strong>certificateur agréé par la Région wallonne</strong>, après une visite du bien. Chez Wall’PEB, c'est le certificateur agréé de Lux Energie Solution.</p>
+
+<h2>Et demain ?</h2>
+<p>Des évolutions sont annoncées (labels minimum à terme), mais elles ne sont pas toutes votées : méfiez-vous des affirmations trop sûres et vérifiez sur les sites officiels.</p>`,
+    sources: [SRC.certifPdf, SRC.walloreno, SRC.planReno, SRC.existants, SRC.actu2026]
+  },
+  {
+    slug: 'amendes-certificat-peb',
+    date: '2026-11-24',
+    tag: 'Amendes & sanctions',
+    cat: 'PEB',
+    service: 'peb',
+    title: 'Vendre ou louer sans certificat PEB : quelles amendes en Wallonie ?',
+    seo: 'Sans certificat PEB : quelles amendes en Wallonie ?',
+    description: "Pas de certificat PEB, indicateurs absents de l'annonce, certificat non remis : les amendes administratives prévues en Wallonie, et comment les éviter.",
+    lead: "Mettre un logement en vente ou en location sans certificat PEB valable n'est pas un détail : la Wallonie prévoit des amendes administratives. Voici lesquelles, et comment rester en règle.",
+    body: `
+<h2>Les amendes prévues</h2>
+<ul>
+  <li><strong>1 000 €</strong> (forfait) : pas de certificat PEB valable au moment de la mise en vente ou en location.</li>
+  <li><strong>500 €</strong> : les indicateurs PEB ne figurent pas dans la publicité (annonce).</li>
+  <li><strong>500 €</strong> : le certificat n'est pas remis à l'acheteur ou au locataire.</li>
+</ul>
+<p>Le décret PEB prévoit une fourchette légale de 250 € à 50 000 € ; les montants ci-dessus sont ceux fixés pour ces manquements, tels que publiés par la Région (vérifiés le 24 novembre 2026).</p>
+
+<h2>Comment rester en règle</h2>
+<ol>
+  <li><strong>Commandez le certificat avant de publier l'annonce</strong>, même une simple affiche ou une annonce en ligne.</li>
+  <li><strong>Reprenez les indicateurs PEB dans l'annonce</strong> : votre agence ou le site d'annonces vous indique où les mettre.</li>
+  <li><strong>Remettez une copie du certificat</strong> à l'acheteur ou au locataire.</li>
+  <li><strong>Vérifiez la date</strong> de votre certificat : il est valable 10 ans, sauf travaux qui modifient la performance.</li>
+</ol>
+
+<h2>Bon à savoir</h2>
+<p>Ces montants peuvent évoluer : en cas de doute, consultez les sources officielles ci-dessous ou demandez à votre notaire.</p>`,
+    sources: [SRC.quoiQuand, SRC.pubLocation, SRC.demarche]
+  },
+  {
+    slug: 'ameliorer-label-peb',
+    date: '2026-11-24',
+    tag: 'Améliorer son PEB',
+    cat: 'PEB',
+    service: 'peb',
+    title: 'Améliorer son label PEB : par où commencer ?',
+    seo: 'Améliorer son label PEB : par où commencer ?',
+    description: "Humidité, isolation, châssis, chauffage : l'ordre des travaux recommandé par la Wallonie pour améliorer le label PEB de votre logement, et les preuves à garder.",
+    lead: "Votre label PEB est mauvais et vous voulez l'améliorer ? Avant de vous lancer, suivez l'ordre recommandé par la Wallonie : c'est le plus efficace, et le moins cher sur la durée.",
+    body: `
+<h2>1. Lisez votre feuille de route</h2>
+<p>Depuis le 1er septembre 2026, le certificat des logements existants comprend une <strong>feuille de route de rénovation</strong> : les travaux à prévoir en priorité. C'est le meilleur point de départ.</p>
+
+<h2>2. L'ordre recommandé</h2>
+<ol>
+  <li><strong>Réglez d'abord l'humidité</strong> : isoler un mur humide crée des problèmes.</li>
+  <li><strong>Isolez l'enveloppe</strong> : toiture, murs, sol, et des châssis performants. La chaleur qui ne s'échappe plus, c'est de l'énergie que vous n'achetez plus.</li>
+  <li><strong>Améliorez ensuite les systèmes</strong> : chauffage, eau chaude, ventilation. Un système bien dimensionné pour une maison déjà isolée coûte moins cher.</li>
+</ol>
+<p>Pour un projet important, un <strong>audit logement</strong> (réalisé par un auditeur agréé) aide à prioriser les travaux.</p>
+
+<h2>3. Gardez toutes les preuves</h2>
+<p>C'est souvent oublié : sans preuve (facture, fiche technique, photos pendant le chantier), le certificateur doit appliquer des <strong>valeurs par défaut</strong>, en général moins favorables. Des travaux bien faits mais non prouvés peuvent ne pas améliorer votre label.</p>
+
+<h2>4. Renseignez-vous sur les aides</h2>
+<p>La Wallonie soutient la rénovation énergétique, mais les primes changent régulièrement. Vérifiez les conditions en vigueur sur le site officiel avant de signer vos devis.</p>
+
+<h2>5. Faites refaire le certificat</h2>
+<p>Après des travaux qui modifient la performance, un nouveau certificat reflète votre nouveau label : utile pour vendre ou louer.</p>`,
+    sources: [SRC.walloreno, SRC.actu2026, SRC.pieces, SRC.primes]
+  },
+  {
+    slug: 'prix-certificat-peb',
+    date: '2026-11-24',
+    tag: 'Prix',
+    cat: 'PEB',
+    service: 'peb',
+    title: 'Prix d\'un certificat PEB en Wallonie : ce qui le fait varier',
+    seo: 'Prix d\'un certificat PEB en Wallonie : ce qui varie',
+    description: "Combien coûte un certificat PEB en Wallonie, qu'est-ce qui est compris, et qu'est-ce qui fait varier le prix ? Nos forfaits indicatifs et nos conseils pour bien comparer.",
+    lead: "Le prix d'un certificat PEB n'est pas fixé par la Région : chaque certificateur fixe le sien. Voici ce qui le fait varier, ce qui doit être compris, et nos tarifs.",
+    body: `
+<h2>Nos tarifs</h2>
+<ul>
+  <li><strong>Certificat PEB : 250 € TVAC</strong> (forfait indicatif)</li>
+  <li><strong>PEB + contrôle électrique : 300 € TVAC</strong>, lors d'une seule visite</li>
+  <li><strong>Contrôle électrique seul : sur devis</strong></li>
+</ul>
+<p>Prix indicatifs : le prix final dépend du bien et vous est confirmé avant l'intervention.</p>
+
+<h2>Ce qui fait varier le prix</h2>
+<ul>
+  <li><strong>La taille et le type du bien</strong> : un studio demande moins de relevés qu'une grande maison.</li>
+  <li><strong>Les installations communes</strong> : dans un immeuble, un rapport partiel des parties communes peut être nécessaire.</li>
+  <li><strong>Le nombre de logements</strong> : plusieurs certificats dans le même immeuble se planifient ensemble.</li>
+  <li><strong>Le contrôle électrique</strong> : le faire au même rendez-vous évite un second déplacement.</li>
+</ul>
+
+<h2>Ce qui doit être compris</h2>
+<ul>
+  <li>La visite sur place et les relevés.</li>
+  <li>Le certificat établi et signé par un certificateur agréé.</li>
+  <li>Pour les logements existants, la feuille de route de rénovation (depuis septembre 2026).</li>
+  <li>Des explications sur votre résultat.</li>
+</ul>
+
+<h2>Comment bien comparer</h2>
+<p>Comparez les prix <strong>TVA comprise</strong>, vérifiez ce qui est inclus, et demandez le numéro d'agrément du certificateur : la liste officielle est publiée par la Région wallonne. Et préparez vos preuves : un dossier complet, c'est un certificat plus fidèle à votre bien.</p>`,
+    sources: [SRC.existants, SRC.deroulement, SRC.pieces, SRC.actu2026]
   },
 ];
 
