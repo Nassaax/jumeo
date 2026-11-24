@@ -1,5 +1,5 @@
 // Mention « Site réalisé par … » en bas de toutes les pages (après la ligne légale).
-// Nom du studio provisoire : le changer ici, puis relancer node build.js.
+// Nom du studio : « NY Visuals » (confirmé par Nasser le 2026-11-24). Le changer ici, puis relancer node build.js.
 // LOGO : pastille ronde du studio (studio/ny-visuals-logo.png, 96 px ; original 512 px à côté) ; vide = texte seul.
 const STUDIO = 'NY Visuals';
 const LOGO = '/studio/ny-visuals-logo.png';
