@@ -37,7 +37,7 @@
 ## Tests et mise en ligne
 - Tests : `node tools/test-pages.js` (pages générées, ordinateur + 390 px, mots interdits « Jumeo », « apporteur »…), `BASE="file://$PWD/index.html" node tools/test-site.js` (accueil, formulaire), `node tools/test-simulateur.js`.
 - Avant de livrer : aucune erreur console, pas de défilement horizontal à 390 px, tous les `id` utilisés par le JS existent, tous les `data-pick` ont une entrée dans `SERVICES`.
-- Hébergement : projet Vercel **`jumeo`** (même projet, contenu remplacé par Wall’PEB), branche `claude/eager-knuth-5khb6w`. Adresse prévue `https://wallpeb.vercel.app` (`SITE` dans `build.js`, balises de `index.html`, `robots.txt`). Mode test : `vercel.json` envoie `noindex` tant que contact dédié, BCE et agréments manquent ; à retirer au lancement avec le vrai domaine (ex. wallpeb.be, à vérifier).
+- Hébergement : projet Vercel **`wallpeb`** (ex-`jumeo`, renommé le 2026-11-24, id `prj_H6crDnIHQcObrNuRty7ZFxC7vGgF`), branche `claude/eager-knuth-5khb6w`. Adresse : `https://wallpeb.vercel.app` (`SITE` dans `build.js`, balises de `index.html`, `robots.txt`) ; l'ancienne adresse `jumeo.vercel.app` affiche le même site. Mode test : `vercel.json` envoie `noindex` tant que contact dédié, BCE et agréments manquent ; à retirer au lancement avec le vrai domaine (ex. wallpeb.be, à vérifier).
 - `.vercelignore` exclut `data/`, `tools/`, `prive/`, `contenu/`, `build.js`, les `.md`.
 
 ## Démo « Lux Energie Solution » (demo-lux/) — FIGÉE
