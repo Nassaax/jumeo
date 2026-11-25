@@ -43,7 +43,7 @@
 - Simulateur PEB : 7 questions → fourchette A++ à G indicative (échelle wallonne, depuis le 2026-11-24 ; lien `sim=A%2B_A` séparateur « _ »), jamais présentée comme un label, avertissement visible. Le résultat pré-remplit le devis (`/?commune=…&sim=C-D#devis`).
 
 ## Certificateur
-- **Rachid** (présenté par Nasser le 2026-11-25) : ingénieur industriel, solide expérience et expertise en génie civil et bâtiment ; c'est lui qui visite, fait les relevés et établit le certificat PEB. Bloc « Votre certificateur » (`#certificateur`, accueil, avant « Qui sommes-nous ») avec initiale « R » (pas de photo) + ligne dans `#pebIdentity`. Ne jamais ajouter d'années d'expérience ni de chiffres. Son n° d'agrément s'affiche automatiquement dès que `CONFIG.agrements.peb` est rempli. Nom de famille et photo : seulement avec son accord.
+- **Rachid** (présenté par Nasser le 2026-11-25) : ingénieur industriel, solide expérience et expertise en génie civil et bâtiment ; c'est lui qui visite, fait les relevés et établit le certificat PEB. Bloc « Votre certificateur » (`#certificateur`, accueil, avant « Qui sommes-nous ») avec initiale « R » (pas de photo) + ligne dans `#pebIdentity`. « 20 ans d'expérience » : chiffre fourni par Nasser le 2026-11-25. N'ajouter aucun autre chiffre sans source. Son n° d'agrément s'affiche automatiquement dès que `CONFIG.agrements.peb` est rempli. Nom de famille et photo : seulement avec son accord.
 
 ## Espace client Wall’PEB (phase 2, 2026-11-24)
 - But : un QR code par bien ; le client scanne → historique de tous ses contrôles, téléchargement en 1 clic, demande directe. Coût visé : 0 €.
