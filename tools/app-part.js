@@ -16,6 +16,7 @@ const I = {
   partner: '<path d="M8 12l3 3 5-6"/><circle cx="12" cy="12" r="9"/>',
   lux: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   faq: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/>',
+  qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/>',
   who: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>'
 };
 const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${I[k]}</svg>`;
@@ -109,7 +110,7 @@ function html({ active = '', brand = 'Wall’PEB', whatsapp = '' } = {}) {
       <a href="/#tarifs">${svg('tarifs')}Tarifs</a>
       <a href="/certificat-peb">${svg('zones')}Nos zones</a>
       <a href="/#services">${svg('partner')}PEB + contrôle électrique</a>
-      <a href="/espace-client">${svg('zones')}Espace client</a>
+      <a href="/espace-client">${svg('qr')}Espace client</a>
       <a href="/#biens">${svg('home')}Type de bien</a>
       <a href="/#pros">${svg('pros')}Professionnels</a>
       <a href="/simulateur-peb">${svg('simus')}Simulateur PEB</a>
