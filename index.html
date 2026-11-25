@@ -435,6 +435,17 @@ footer .logo{color:#fff;margin-bottom:14px}
 .ecx-doc b{display:block;font:600 13px 'Inter',sans-serif}.ecx-doc small{display:block;font-size:11px;color:var(--muted)}
 .ecx-doc em{font-style:normal;font:700 10px 'Inter',sans-serif;padding:3px 7px;border-radius:999px;background:#fff6d6}
 .ecx-cta{margin-top:auto;text-align:center;padding:12px;border-radius:999px;background:var(--accent);font:600 13px 'Inter',sans-serif}
+.cert-card{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:40px;border-radius:var(--r-block);background:var(--card);box-shadow:0 0 0 1px var(--line),0 18px 40px rgba(11,36,65,.06)}
+@media(max-width:700px){.cert-card{grid-template-columns:1fr;gap:20px;padding:28px 22px}}
+.cert-avatar{display:grid;place-items:center;width:140px;height:140px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px #fff6d6}
+@media(max-width:700px){.cert-avatar{width:96px;height:96px}}
+.cert-avatar span{font:700 56px 'Plus Jakarta Sans',sans-serif;color:var(--accent)}
+@media(max-width:700px){.cert-avatar span{font-size:40px}}
+.cert-card h2{font-size:clamp(26px,3.2vw,36px);letter-spacing:-.04em;margin-bottom:10px}
+.cert-card p{color:var(--muted);font-size:16.5px;max-width:44rem}
+.cert-pts{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;padding:0}
+.cert-pts li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--paper);font:600 14px 'Inter',sans-serif}
+.cert-pts svg{width:18px;height:18px;fill:none;stroke:var(--accent-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* APP:CSS:START (généré par build.js) */
 
 /* ═════════ BANDEAU LANCEMENT ═════════ */
@@ -1007,7 +1018,7 @@ dialog .btn{margin-top:8px}
           <li>Feuille de route de rénovation incluse pour les logements existants (depuis le 1er septembre 2026)</li>
           <li>Valable 10 ans, obligatoire pour vendre ou louer</li>
         </ul>
-        <div class="id"><div id="pebIdentity">Certificat établi par le certificateur agréé de Lux Energie Solution.</div></div>
+        <div class="id"><div id="pebIdentity">Certificat établi par Rachid, ingénieur industriel et certificateur agréé de Lux Energie Solution.</div></div>
       </div>
       <div class="who-card cert reveal">
         <h3><i aria-hidden="true"></i>Le contrôle électrique</h3>
@@ -1117,6 +1128,25 @@ dialog .btn{margin-top:8px}
       <span>Conditions pour les professionnels de l'immobilier sur demande.</span>
     </div>
 
+  </div>
+</section>
+
+<!-- ═════════ VOTRE CERTIFICATEUR ═════════ -->
+<section class="sec" id="certificateur" style="padding-top:0">
+  <div class="wrap">
+    <div class="cert-card reveal">
+      <div class="cert-avatar" aria-hidden="true"><span>R</span></div>
+      <div>
+        <span class="eyebrow">Votre certificateur</span>
+        <h2>Rachid, l'œil de l'ingénieur sur votre bien.</h2>
+        <p>Ingénieur industriel, Rachid a une solide expérience et une vraie expertise en génie civil et en bâtiment. Structure, parois, isolation, techniques&nbsp;: il lit un bâtiment dans son ensemble. C'est lui qui visite votre bien, réalise les relevés et établit votre certificat PEB, en vous expliquant simplement ce qui pèse sur le résultat et par où commencer pour l'améliorer.</p>
+        <ul class="cert-pts">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Ingénieur industriel</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>Génie civil &amp; bâtiment</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span id="certAgr">Certificateur PEB agréé par la Région wallonne</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1333,7 +1363,8 @@ if (CONFIG.email) { const a = $('#fMail'); a.textContent = CONFIG.email; a.href 
 (function agrements() {
   const ag = CONFIG.agrements || {};
   const op = esc(CONFIG.company.legalName);
-  $('#pebIdentity').innerHTML = 'Certificat établi par le certificateur agréé de <b>' + op + '</b>' + (ag.peb ? ' (n° <b>' + esc(ag.peb) + '</b>)' : '') + '.' +
+  if (ag.peb) $('#certAgr').textContent = 'Certificateur PEB agréé, n° ' + ag.peb;
+  $('#pebIdentity').innerHTML = 'Certificat établi par <b>Rachid</b>, ingénieur industriel et certificateur agréé de <b>' + op + '</b>' + (ag.peb ? ' (n° <b>' + esc(ag.peb) + '</b>)' : '') + '.' +
     (CONFIG.nouveauFormat ? '<br>Formé au nouveau format de certificat (depuis le 1er septembre 2026).' : '');
   $('#elecIdentity').innerHTML = 'Contrôle réalisé par <b>' + op + '</b>, organisme agréé' + (ag.elec ? ' (n° <b>' + esc(ag.elec) + '</b>)' : '') + '.';
 })();

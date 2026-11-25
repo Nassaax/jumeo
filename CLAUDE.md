@@ -42,6 +42,9 @@
 - Mention « Site réalisé par NaYas Visuals » + logo rond « NY » en bas de page : `tools/credit-part.js`. Nom **confirmé par Nasser le 2026-11-24 : « NaYas Visuals »** (NAsser YASini ; pas « NY Visuals »).
 - Simulateur PEB : 7 questions → fourchette A++ à G indicative (échelle wallonne, depuis le 2026-11-24 ; lien `sim=A%2B_A` séparateur « _ »), jamais présentée comme un label, avertissement visible. Le résultat pré-remplit le devis (`/?commune=…&sim=C-D#devis`).
 
+## Certificateur
+- **Rachid** (présenté par Nasser le 2026-11-25) : ingénieur industriel, solide expérience et expertise en génie civil et bâtiment ; c'est lui qui visite, fait les relevés et établit le certificat PEB. Bloc « Votre certificateur » (`#certificateur`, accueil, avant « Qui sommes-nous ») avec initiale « R » (pas de photo) + ligne dans `#pebIdentity`. Ne jamais ajouter d'années d'expérience ni de chiffres. Son n° d'agrément s'affiche automatiquement dès que `CONFIG.agrements.peb` est rempli. Nom de famille et photo : seulement avec son accord.
+
 ## Espace client Wall’PEB (phase 2, 2026-11-24)
 - But : un QR code par bien ; le client scanne → historique de tous ses contrôles, téléchargement en 1 clic, demande directe. Coût visé : 0 €.
 - Base : Supabase, projet **`wallpeb`** (id `ffvzqdxwjqrwfbprywqf`, Francfort, offre gratuite). Le projet « immoradar » a été mis en pause pour libérer la place (limite : 2 projets gratuits actifs). Adresse et clé publique dans `CONFIG.espace` (index.html) : publiques par nature, la sécurité est dans les règles RLS.
