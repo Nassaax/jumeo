@@ -637,6 +637,61 @@ dialog .btn{margin-top:8px}
   .js .link-diagram .ring{stroke-dashoffset:0}
   .js .link-diagram .weave,.js .link-diagram .tag{opacity:1}
 }
+
+/* ═════════ AMÉLIORATIONS 25/11/2026 (planche Design validée) ═════════ */
+/* Héros : trois portes */
+.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 26px;max-width:600px}
+.door{display:flex;flex-direction:column;gap:4px;padding:16px;min-height:108px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--wline);color:#fff;text-decoration:none;transition:background-color .25s var(--e-std),border-color .25s var(--e-std),transform .25s var(--e-out)}
+.door:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.32);transform:translateY(-2px)}
+.door svg{width:26px;height:26px;fill:none;stroke:var(--accent);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-bottom:4px}
+.door b{font:600 16px 'Inter',sans-serif}
+.door small{font-size:13px;line-height:1.35;color:var(--w78)}
+/* Devis : service et prix toujours visibles, récapitulatif */
+.q-sum{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:14px;padding:11px 16px;margin:0 0 16px;font-size:14px;font-weight:600}
+.q-sum b{font:700 18px 'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.q-recap{display:grid;gap:6px;background:var(--paper);border-radius:14px;padding:14px 16px;margin:2px 0 14px;font-size:14px}
+.q-recap:empty{display:none}
+.q-recap b{font:600 14px 'Plus Jakarta Sans',sans-serif}
+.q-recap span{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right}
+.q-recap small{flex:none;color:var(--muted);font-size:13px;text-align:left}
+.qstep[data-n="2"] .btn{margin-top:4px}
+/* Étapes en cartes numérotées */
+.steps{gap:16px}
+.step{background:var(--card);border:0;border-radius:24px;padding:24px;box-shadow:0 0 0 1px var(--line)}
+.step::after{display:none}
+.step::before{content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;font:800 16px 'Plus Jakarta Sans',sans-serif;margin-bottom:14px}
+.step:first-child::before{background:var(--accent);color:var(--ink)}
+/* Certificateur : carte encre */
+.cert-card{background:var(--ink);color:#fff;box-shadow:0 30px 70px rgba(11,36,65,.25)}
+.cert-card .eyebrow{color:var(--w78)}
+.cert-card p{color:var(--w78)}
+.cert-card .cert-avatar{background:var(--accent);box-shadow:0 0 0 6px rgba(255,255,255,.1)}
+.cert-card .cert-avatar span{color:var(--ink)}
+.cert-pts li{background:rgba(255,255,255,.08);color:#fff}
+.cert-pts svg{stroke:var(--accent)}
+/* Bande finale */
+.fband{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px;background:var(--accent);color:var(--ink);border-radius:var(--r-block);padding:56px 48px}
+.fband h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.04em;line-height:1.04;margin-bottom:10px}
+.fband p{font-size:17px;max-width:34rem}
+.btn-ink{background:var(--ink);color:#fff;padding:8px 8px 8px 24px;min-height:56px}
+.btn-ink:hover{background:var(--navy)}
+.btn-ink .chip-arrow{background:var(--accent);color:var(--ink)}
+.btn-ink:hover .roll>span,.btn-ink:focus-visible .roll>span{transform:translateY(-50%)}
+.btn-ink:hover .chip-arrow svg{transform:rotate(-45deg)}
+/* Accès rapides : téléphone uniquement */
+.m-quick{display:none}
+@media(max-width:760px){
+  .doors{gap:8px;margin-bottom:20px}
+  .door{min-height:0;padding:12px 10px;align-items:flex-start}
+  .door small{display:none}
+  .door b{font-size:14.5px}
+  .hero .promise,.hero-sim{display:none}
+  .m-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .m-quick a{display:flex;flex-direction:column;gap:10px;min-height:100px;padding:14px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid var(--wline);color:#fff;text-decoration:none;font:600 15px/1.25 'Inter',sans-serif}
+  .m-quick a span{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--accent)}
+  .m-quick svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .fband{padding:32px 24px;border-radius:28px}
+}
 </style>
 </head>
 <body>
@@ -754,6 +809,11 @@ dialog .btn{margin-top:8px}
       </div>
       <h1 id="heroTitle"><span class="hl"><span>Votre certificat PEB,</span></span><span class="hl"><span class="acc">sans prise de tête.</span></span></h1>
       <p class="lead appear" style="--d:.62s" id="heroLead">Certificat PEB et contrôle électrique pour vendre ou louer en Wallonie : un prix clair, un certificateur agréé, un seul rendez-vous.</p>
+      <nav class="doors appear" style="--d:.7s" aria-label="Votre situation">
+        <a class="door" href="/certificat-peb-vente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><b>Je vends</b><small>PEB, contrôle électrique ou les deux</small></a>
+        <a class="door" href="/certificat-peb-location"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2 2M15 7l2 2"/></svg><b>Je loue</b><small>Le certificat avant l'annonce</small></a>
+        <a class="door" href="#pros"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg><b>Je suis pro</b><small>Agences, notaires, gestionnaires</small></a>
+      </nav>
       <ul class="promise appear" style="--d:.76s">
         <li><svg class="ico"><use href="#i-check"/></svg>Certificateur PEB agréé Région wallonne</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Devis gratuit, sans engagement</li>
@@ -764,7 +824,8 @@ dialog .btn{margin-top:8px}
 
     <!-- FORMULAIRE -->
     <div class="quote appear appear--card" style="--d:.4s" id="devis">
-      <div class="q-top"><h2>Votre devis en 1 minute</h2><span class="qdots" aria-hidden="true"><span class="on">1</span><span>2</span></span></div>
+      <div class="q-top"><h2>Votre devis en 1 minute</h2><span class="qdots" aria-hidden="true"><span class="on">1</span><span>2</span><span>3</span></span></div>
+      <div class="q-sum" aria-live="polite"><span id="qSvc">Certificat PEB</span><b id="priceOut">250 €</b></div>
       <p class="sub">Gratuit et sans engagement. On vous recontacte pour fixer le rendez-vous.</p>
       <form id="quoteForm" novalidate>
         <div class="qstep on" data-n="1">
@@ -779,7 +840,6 @@ dialog .btn{margin-top:8px}
             <label class="tile"><input type="radio" name="service" value="elec" /><span><svg class="ico"><use href="#i-bolt"/></svg>Contrôle électrique</span></label>
             <label class="tile"><input type="radio" name="service" value="autre" /><span><svg class="ico"><use href="#i-dots"/></svg>Autre demande</span></label>
           </fieldset>
-          <div class="price-hint" aria-live="polite"><span>Tarif indicatif</span><b id="priceOut">250 €</b></div>
           <button class="btn btn-primary q-next" type="button" id="qNext">
             <span class="roll"><span><span>Continuer</span><span aria-hidden="true">Continuer</span></span></span>
             <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
@@ -798,18 +858,28 @@ dialog .btn{margin-top:8px}
             <select id="dispo" name="dispo"><option>Dès que possible</option><option>En semaine, le matin</option><option>En semaine, l'après-midi</option><option>Je précise dans le message</option></select>
           </div>
         </div>
+        <p class="form-note" id="formNote2" aria-live="polite"></p>
+        <button class="btn btn-primary" type="button" id="qNext2">
+          <span class="roll"><span><span>Continuer</span><span aria-hidden="true">Continuer</span></span></span>
+          <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </button>
+        </div>
+        <div class="qstep" data-n="3">
+          <button type="button" class="q-back" id="qBack2"><span aria-hidden="true">←</span> Votre bien · modifier</button>
         <p class="fhead"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Vos coordonnées</p>
         <div class="row2">
           <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required /></div>
           <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" required /></div>
         </div>
         <div class="field"><label for="msg">Un détail à ajouter ? (facultatif)</label><textarea id="msg" name="msg" rows="2" placeholder="Date souhaitée, vente ou location, nombre de logements…"></textarea></div>
+        <div class="q-recap" id="qRecap" aria-live="polite"></div>
         <label class="consent"><input type="checkbox" id="ok" required /><span>J'accepte que mes données servent à traiter ma demande (voir <a href="#" data-open="privacy">confidentialité</a>).</span></label>
         <button class="btn btn-primary" type="submit">
           <span class="roll"><span><span>Recevoir mon devis</span><span aria-hidden="true">Recevoir mon devis</span></span></span>
           <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
         </button>
         <p class="form-note" id="formNote">Votre demande s'ouvre dans WhatsApp, prête à envoyer.</p>
+        <p class="form-note hide" id="mailAlt">Pas de WhatsApp ? <a id="mailAltLink" href="#">Envoyer par e-mail</a></p>
         <div class="preview-msg" id="previewMsg">
           <b>Mode aperçu :</b> les coordonnées de contact ne sont pas encore configurées. Voici le message qui serait envoyé :
           <textarea id="previewText" readonly></textarea>
@@ -817,18 +887,14 @@ dialog .btn{margin-top:8px}
         </div>
       </form>
     </div>
-  </div>
-</section>
 
-<!-- ═════════ TYPE DE BIEN ═════════ -->
-<section class="sec" id="biens">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Votre bien</span>
-      <h2>Quel est votre bien ?</h2>
-      <p>Certificat PEB : forfait indicatif de 250 € TVAC par logement, confirmé avant l'intervention. Plusieurs logements ? Devis groupé.</p>
-    </div>
-    <div class="biens reveal"><a class="bien" href="/certificat-peb-studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, petit logement</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-duplex-loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
+    <!-- Accès rapides (téléphone) -->
+    <nav class="m-quick" aria-label="Accès rapides">
+      <a href="/simulateur-peb"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h8M4 10h11M4 14h14M4 18h17"/></svg></span>Estimer mon label</a>
+      <a href="/espace-client"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM14 20.5h2M20.5 14v2"/></svg></span>Mes documents (QR code)</a>
+      <a href="/guides/preuves-certificat-peb"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5v4h4M10 13l2 2 3-3.5"/></svg></span>Préparer la visite</a>
+      <a href="/certificat-peb"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Ma commune</a>
+    </nav>
   </div>
 </section>
 
@@ -897,20 +963,15 @@ dialog .btn{margin-top:8px}
   </div>
 </section>
 
-<!-- ═════════ SIMULATEUR (encart) ═════════ -->
-<section class="sec" style="padding-top:0">
+<!-- ═════════ TYPE DE BIEN ═════════ -->
+<section class="sec" id="biens" style="padding-top:0">
   <div class="wrap">
-    <div class="sim-teaser reveal">
-      <div>
-        <span class="eyebrow">Simulateur PEB</span>
-        <h2>Quel label pour votre bien ?</h2>
-        <p>Sept questions, une minute, et une première idée de la fourchette de label de votre logement. Estimation indicative : ce n'est pas un certificat.</p>
-        <a class="btn btn-ghost" href="/simulateur-peb">Estimer mon label</a>
-      </div>
-      <div class="sim-mini" aria-hidden="true">
-        <span style="--w:38%;background:#0e6b3a">A++</span><span style="--w:45%;background:#13753f">A+</span><span style="--w:52%;background:#1a7f45">A</span><span style="--w:59%;background:#3f8f3a">B</span><span style="--w:66%;background:#6c8f22">C</span><span style="--w:73%;background:#a07d00">D</span><span style="--w:80%;background:#c0631a">E</span><span style="--w:90%;background:#cf4a2a">F</span><span style="--w:100%;background:#b8261e">G</span>
-      </div>
+    <div class="sec-head reveal">
+      <span class="eyebrow">Votre bien</span>
+      <h2>Quel est votre bien ?</h2>
+      <p>Certificat PEB : forfait indicatif de 250 € TVAC par logement, confirmé avant l'intervention. Plusieurs logements ? Devis groupé.</p>
     </div>
+    <div class="biens reveal"><a class="bien" href="/certificat-peb-studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, petit logement</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-duplex-loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
   </div>
 </section>
 
@@ -927,6 +988,74 @@ dialog .btn{margin-top:8px}
       <li class="step reveal"><h3>Visite du bien</h3><p>Le certificateur agréé relève les informations sur place, et contrôle l'installation électrique si vous l'avez demandé.</p></li>
       <li class="step reveal"><h3>Vous recevez vos documents</h3><p>Le certificat PEB (et le rapport de contrôle), avec des explications claires.</p></li>
     </ol>
+  </div>
+</section>
+
+<!-- ═════════ VOTRE CERTIFICATEUR ═════════ -->
+<section class="sec" id="certificateur" style="padding-top:0">
+  <div class="wrap">
+    <div class="cert-card reveal">
+      <div class="cert-avatar" aria-hidden="true"><span>R</span></div>
+      <div>
+        <span class="eyebrow">Votre certificateur</span>
+        <h2>Rachid, l'œil de l'ingénieur sur votre bien.</h2>
+        <p>Ingénieur industriel, Rachid compte 20 ans d'expérience en génie civil et en bâtiment. Structure, parois, isolation, techniques&nbsp;: il lit un bâtiment dans son ensemble. C'est lui qui visite votre bien, réalise les relevés et établit votre certificat PEB, en vous expliquant simplement ce qui pèse sur le résultat et par où commencer pour l'améliorer.</p>
+        <ul class="cert-pts">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Ingénieur industriel</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>20 ans d'expérience en génie civil &amp; bâtiment</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span id="certAgr">Certificateur PEB agréé par la Région wallonne</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ DOCUMENTS + BON À SAVOIR ═════════ -->
+<section class="sec" id="preparer" style="padding-top:0">
+  <div class="wrap two">
+    <div class="panel reveal">
+      <h3>Avant la visite : préparez ces documents</h3>
+      <p>Sans preuve, le certificateur doit appliquer des valeurs par défaut, en général moins favorables. Il vous envoie la liste exacte des preuves acceptées avant la visite.</p>
+      <ul class="check">
+        <li><label><input type="checkbox" /> Permis d'urbanisme ou acte (année de construction)</label></li>
+        <li><label><input type="checkbox" /> Factures d'isolation</label></li>
+        <li><label><input type="checkbox" /> Factures de châssis / vitrages</label></li>
+        <li><label><input type="checkbox" /> Factures de chauffage et de ventilation</label></li>
+        <li><label><input type="checkbox" /> Fiches techniques des équipements</label></li>
+        <li><label><input type="checkbox" /> Photos de chantier (isolation visible pendant les travaux)</label></li>
+        <li><label><input type="checkbox" /> Plans du bien, si vous les avez (utiles, mais pas une preuve à eux seuls)</label></li>
+      </ul>
+    </div>
+    <div class="panel reveal">
+      <h3>Bon à savoir</h3>
+      <div class="scale" aria-hidden="true">
+        <span style="background:#1a7f45">A</span><span style="background:#3f8f3a">B</span><span style="background:#6c8f22;">C</span><span style="background:#a07d00">D</span><span style="background:#c0631a">E</span><span style="background:#cf4a2a">F</span><span style="background:#b8261e">G</span>
+      </div>
+      <p class="scale-note">Illustration de l'échelle énergétique</p>
+      <ul class="ticks" style="margin:0">
+        <li>Le certificat PEB est valable 10 ans.</li>
+        <li>Il est obligatoire pour vendre ou louer, et ses indicateurs doivent figurer dans l'annonce.</li>
+        <li>Depuis le 1er septembre 2026, le certificat des logements existants inclut une feuille de route de rénovation.</li>
+        <li>Aucun label minimum n'est exigé aujourd'hui pour louer en Wallonie.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ SIMULATEUR (encart) ═════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sim-teaser reveal">
+      <div>
+        <span class="eyebrow">Simulateur PEB</span>
+        <h2>Quel label pour votre bien ?</h2>
+        <p>Sept questions, une minute, et une première idée de la fourchette de label de votre logement. Estimation indicative : ce n'est pas un certificat.</p>
+        <a class="btn btn-ghost" href="/simulateur-peb">Estimer mon label</a>
+      </div>
+      <div class="sim-mini" aria-hidden="true">
+        <span style="--w:38%;background:#0e6b3a">A++</span><span style="--w:45%;background:#13753f">A+</span><span style="--w:52%;background:#1a7f45">A</span><span style="--w:59%;background:#3f8f3a">B</span><span style="--w:66%;background:#6c8f22">C</span><span style="--w:73%;background:#a07d00">D</span><span style="--w:80%;background:#c0631a">E</span><span style="--w:90%;background:#cf4a2a">F</span><span style="--w:100%;background:#b8261e">G</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -949,39 +1078,6 @@ dialog .btn{margin-top:8px}
           <span class="roll"><span><span>PEB + contrôle en une visite</span><span aria-hidden="true">PEB + contrôle en une visite</span></span></span>
           <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
         </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ ESPACE CLIENT ═════════ -->
-<section class="sec" id="espace">
-  <div class="wrap">
-    <div class="ecx reveal">
-      <div class="ecx-txt">
-        <span class="eyebrow">Nouveau · Espace client Wall’PEB</span>
-        <h2>Tous vos contrôles, dans un QR code.</h2>
-        <p>Après notre visite, nous collons un QR code dans votre bien (tableau électrique, local technique). Un scan, et vous retrouvez tout, à vie : plus besoin de chercher vos papiers le jour de la vente.</p>
-        <ul class="ecx-list">
-          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>L'historique de vos contrôles</b><small>Certificat PEB, contrôle électrique et autres interventions, avec leurs dates.</small></div></li>
-          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span><div><b>Vos documents en 1 clic</b><small>Téléchargez vos certificats et rapports, pour votre notaire ou votre agence.</small></div></li>
-          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span><div><b>Les échéances visibles</b><small>Chaque document affiche sa date de fin de validité : vous savez quand renouveler.</small></div></li>
-          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span><div><b>Une demande en direct</b><small>Renouvellement, nouveau contrôle, question : depuis votre téléphone.</small></div></li>
-        </ul>
-        <a class="btn btn-primary" href="/espace-client">
-          <span class="roll"><span><span>Accéder à mon espace</span><span aria-hidden="true">Accéder à mon espace</span></span></span>
-          <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-        </a>
-        <p class="ecx-note">Inclus pour nos clients. Accès sécurisé par lien envoyé à votre e-mail, sans mot de passe.</p>
-      </div>
-      <div class="ecx-phone" aria-hidden="true">
-        <div class="ecx-screen">
-          <div class="ecx-top"><span class="ecx-qr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/></svg></span><b>Espace client</b></div>
-          <div class="ecx-doc"><i style="background:#1a7f45"></i><div><b>Certificat PEB</b><small>Valable 10 ans</small></div><em>PDF</em></div>
-          <div class="ecx-doc"><i style="background:#d99e00"></i><div><b>Contrôle électrique</b><small>Valable 25 ans</small></div><em>PDF</em></div>
-          <div class="ecx-doc"><i style="background:#0b2441"></i><div><b>Entretien chaudière</b><small>Rapport d'intervention</small></div><em>PDF</em></div>
-          <div class="ecx-cta">Faire une demande</div>
-        </div>
       </div>
     </div>
   </div>
@@ -1043,6 +1139,39 @@ dialog .btn{margin-top:8px}
 </section>
 </div>
 
+<!-- ═════════ ESPACE CLIENT ═════════ -->
+<section class="sec" id="espace">
+  <div class="wrap">
+    <div class="ecx reveal">
+      <div class="ecx-txt">
+        <span class="eyebrow">Nouveau · Espace client Wall’PEB</span>
+        <h2>Tous vos contrôles, dans un QR code.</h2>
+        <p>Après notre visite, nous collons un QR code dans votre bien (tableau électrique, local technique). Un scan, et vous retrouvez tout, à vie : plus besoin de chercher vos papiers le jour de la vente.</p>
+        <ul class="ecx-list">
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>L'historique de vos contrôles</b><small>Certificat PEB, contrôle électrique et autres interventions, avec leurs dates.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span><div><b>Vos documents en 1 clic</b><small>Téléchargez vos certificats et rapports, pour votre notaire ou votre agence.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></span><div><b>Les échéances visibles</b><small>Chaque document affiche sa date de fin de validité : vous savez quand renouveler.</small></div></li>
+          <li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span><div><b>Une demande en direct</b><small>Renouvellement, nouveau contrôle, question : depuis votre téléphone.</small></div></li>
+        </ul>
+        <a class="btn btn-primary" href="/espace-client">
+          <span class="roll"><span><span>Accéder à mon espace</span><span aria-hidden="true">Accéder à mon espace</span></span></span>
+          <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </a>
+        <p class="ecx-note">Inclus pour nos clients. Accès sécurisé par lien envoyé à votre e-mail, sans mot de passe.</p>
+      </div>
+      <div class="ecx-phone" aria-hidden="true">
+        <div class="ecx-screen">
+          <div class="ecx-top"><span class="ecx-qr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/></svg></span><b>Espace client</b></div>
+          <div class="ecx-doc"><i style="background:#1a7f45"></i><div><b>Certificat PEB</b><small>Valable 10 ans</small></div><em>PDF</em></div>
+          <div class="ecx-doc"><i style="background:#d99e00"></i><div><b>Contrôle électrique</b><small>Valable 25 ans</small></div><em>PDF</em></div>
+          <div class="ecx-doc"><i style="background:#0b2441"></i><div><b>Entretien chaudière</b><small>Rapport d'intervention</small></div><em>PDF</em></div>
+          <div class="ecx-cta">Faire une demande</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═════════ CARTE DES ZONES ═════════ -->
 <section class="sec" id="zones">
   <div class="wrap">
@@ -1075,38 +1204,6 @@ dialog .btn{margin-top:8px}
   </div>
 </section>
 
-<!-- ═════════ DOCUMENTS + BON À SAVOIR ═════════ -->
-<section class="sec">
-  <div class="wrap two">
-    <div class="panel reveal">
-      <h3>Avant la visite : préparez ces documents</h3>
-      <p>Sans preuve, le certificateur doit appliquer des valeurs par défaut, en général moins favorables. Il vous envoie la liste exacte des preuves acceptées avant la visite.</p>
-      <ul class="check">
-        <li><label><input type="checkbox" /> Permis d'urbanisme ou acte (année de construction)</label></li>
-        <li><label><input type="checkbox" /> Factures d'isolation</label></li>
-        <li><label><input type="checkbox" /> Factures de châssis / vitrages</label></li>
-        <li><label><input type="checkbox" /> Factures de chauffage et de ventilation</label></li>
-        <li><label><input type="checkbox" /> Fiches techniques des équipements</label></li>
-        <li><label><input type="checkbox" /> Photos de chantier (isolation visible pendant les travaux)</label></li>
-        <li><label><input type="checkbox" /> Plans du bien, si vous les avez (utiles, mais pas une preuve à eux seuls)</label></li>
-      </ul>
-    </div>
-    <div class="panel reveal">
-      <h3>Bon à savoir</h3>
-      <div class="scale" aria-hidden="true">
-        <span style="background:#1a7f45">A</span><span style="background:#3f8f3a">B</span><span style="background:#6c8f22;">C</span><span style="background:#a07d00">D</span><span style="background:#c0631a">E</span><span style="background:#cf4a2a">F</span><span style="background:#b8261e">G</span>
-      </div>
-      <p class="scale-note">Illustration de l'échelle énergétique</p>
-      <ul class="ticks" style="margin:0">
-        <li>Le certificat PEB est valable 10 ans.</li>
-        <li>Il est obligatoire pour vendre ou louer, et ses indicateurs doivent figurer dans l'annonce.</li>
-        <li>Depuis le 1er septembre 2026, le certificat des logements existants inclut une feuille de route de rénovation.</li>
-        <li>Aucun label minimum n'est exigé aujourd'hui pour louer en Wallonie.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- ═════════ PROS ═════════ -->
 <section class="sec" id="pros" style="padding-top:0">
   <div class="wrap">
@@ -1128,25 +1225,6 @@ dialog .btn{margin-top:8px}
       <span>Conditions pour les professionnels de l'immobilier sur demande.</span>
     </div>
 
-  </div>
-</section>
-
-<!-- ═════════ VOTRE CERTIFICATEUR ═════════ -->
-<section class="sec" id="certificateur" style="padding-top:0">
-  <div class="wrap">
-    <div class="cert-card reveal">
-      <div class="cert-avatar" aria-hidden="true"><span>R</span></div>
-      <div>
-        <span class="eyebrow">Votre certificateur</span>
-        <h2>Rachid, l'œil de l'ingénieur sur votre bien.</h2>
-        <p>Ingénieur industriel, Rachid compte 20 ans d'expérience en génie civil et en bâtiment. Structure, parois, isolation, techniques&nbsp;: il lit un bâtiment dans son ensemble. C'est lui qui visite votre bien, réalise les relevés et établit votre certificat PEB, en vous expliquant simplement ce qui pèse sur le résultat et par où commencer pour l'améliorer.</p>
-        <ul class="cert-pts">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>Ingénieur industriel</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>20 ans d'expérience en génie civil &amp; bâtiment</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span id="certAgr">Certificateur PEB agréé par la Région wallonne</span></li>
-        </ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1196,6 +1274,22 @@ dialog .btn{margin-top:8px}
     </div>
   </div>
 </section>
+<!-- ═════════ BANDE FINALE ═════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="fband reveal">
+      <div>
+        <h2>Deux contrôles, un seul rendez-vous.</h2>
+        <p>Une demande d'une minute. On vous répond rapidement, sans engagement.</p>
+      </div>
+      <a class="btn btn-ink" href="#devis">
+        <span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span>
+        <span class="chip-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- PARTNERS:START (généré par build.js) -->
@@ -1418,6 +1512,7 @@ const sel = {
 $$('.tile input[name="service"]').forEach(i => { const sp = i.nextElementSibling; if (SERVICES[i.value] && !sp.querySelector('small')) sp.insertAdjacentHTML('beforeend', '<small>' + SERVICES[i.value].price() + '</small>'); });
 function updatePrice() {
   $('#priceOut').textContent = SERVICES[sel.value].price();
+  $('#qSvc').textContent = SERVICES[sel.value].label;
   $('#qChosen').textContent = SERVICES[sel.value].label;
 }
 svcInputs.forEach(i => i.addEventListener('change', updatePrice));
@@ -1425,7 +1520,7 @@ updatePrice();
 
 function setBien(v) { $$('input[name="bien"]').forEach(i => { i.checked = i.value === v; }); }
 
-/* ── Formulaire en 2 étapes (sans JS : tout reste visible) ── */
+/* ── Formulaire en 3 étapes (sans JS : tout reste visible) ── */
 const qForm = $('#quoteForm');
 qForm.classList.add('stepper');
 function goStep(n, focusEl) {
@@ -1435,6 +1530,38 @@ function goStep(n, focusEl) {
 }
 $('#qNext').addEventListener('click', () => goStep(2, $('#commune')));
 $('#qBack').addEventListener('click', () => goStep(1, svcInputs.find(i => i.checked)));
+function quoteMsg(f) {
+  const s = SERVICES[f.service.value];
+  return [
+    'Bonjour, demande de devis ' + CONFIG.brand,
+    'Profil : ' + f.who.value,
+    'Service : ' + s.label + ' (' + s.price() + (/\d/.test(s.price()) ? ', indicatif' : '') + ')',
+    'Commune : ' + f.commune.value.trim(),
+    'Bien : ' + f.bien.value + (f.surface.value !== 'Je ne sais pas' ? ' (' + f.surface.value + ')' : ''),
+    'Disponibilités : ' + f.dispo.value + ' (à confirmer)',
+    'Nom : ' + f.nom.value.trim(),
+    'Téléphone : ' + f.tel.value.trim(),
+    f.msg.value.trim() ? 'Détail : ' + f.msg.value.trim() : ''
+  ].filter(Boolean).join('\n');
+}
+function fillRecap() {
+  const f = qForm, s = SERVICES[f.service.value];
+  const rows = [['Demande', s.label + ' · ' + s.price()], ['Bien', f.bien.value + ' à ' + f.commune.value.trim()],
+    ['Surface', f.surface.value], ['Disponibilités', f.dispo.value + ' (à confirmer)']];
+  $('#qRecap').innerHTML = '<b>Récapitulatif</b>' + rows.map(r => '<span><small>' + esc(r[0]) + '</small>' + esc(r[1]) + '</span>').join('');
+}
+$('#qNext2').addEventListener('click', () => {
+  if (!$('#commune').value.trim()) {
+    $('#formNote2').textContent = 'Merci d\'indiquer la commune du bien.';
+    $('#formNote2').style.color = '#c2410c';
+    $('#commune').focus();
+    return;
+  }
+  $('#formNote2').textContent = '';
+  fillRecap();
+  goStep(3, $('#nom'));
+});
+$('#qBack2').addEventListener('click', () => goStep(2, $('#commune')));
 $$('[data-pick]').forEach(a => a.addEventListener('click', () => {
   const k = a.dataset.pick;
   sel.value = k;
@@ -1450,6 +1577,7 @@ $('#quoteForm').addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target;
   const need = ['commune', 'nom', 'tel'].filter(n => !f[n].value.trim());
+  if (need[0] === 'commune') goStep(2);
   if (need.length || !$('#ok').checked) {
     (need.length ? f[need[0]] : $('#ok')).focus();
     $('#formNote').textContent = need.length ? 'Merci de compléter commune, nom et téléphone.' : 'Merci d\'accepter le traitement de vos données.';
@@ -1457,22 +1585,14 @@ $('#quoteForm').addEventListener('submit', e => {
     return;
   }
   const s = SERVICES[f.service.value];
-  const msg = [
-    'Bonjour, demande de devis ' + CONFIG.brand,
-    'Profil : ' + f.who.value,
-    'Service : ' + s.label + ' (' + s.price() + (/\d/.test(s.price()) ? ', indicatif' : '') + ')',
-    'Commune : ' + f.commune.value.trim(),
-    'Bien : ' + f.bien.value + (f.surface.value !== 'Je ne sais pas' ? ' (' + f.surface.value + ')' : ''),
-    'Disponibilités : ' + f.dispo.value + ' (à confirmer)',
-    'Nom : ' + f.nom.value.trim(),
-    'Téléphone : ' + f.tel.value.trim(),
-    f.msg.value.trim() ? 'Détail : ' + f.msg.value.trim() : ''
-  ].filter(Boolean).join('\n');
+  const msg = quoteMsg(f);
 
+  const mailHref = CONFIG.email ? 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Demande de devis — ' + s.label) + '&body=' + encodeURIComponent(msg) : '';
   if (waNum) {
     window.open('https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    if (mailHref) { $('#mailAltLink').href = mailHref; $('#mailAlt').classList.remove('hide'); }
   } else if (CONFIG.email) {
-    location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Demande de devis — ' + s.label) + '&body=' + encodeURIComponent(msg);
+    location.href = mailHref;
   } else {
     $('#previewText').value = msg;
     $('#previewMsg').style.display = 'block';

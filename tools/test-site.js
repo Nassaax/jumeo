@@ -37,13 +37,20 @@ const BASE = process.env.BASE || 'http://localhost:8123/';
     });
     console.log(w + 'px', JSON.stringify(r, null, 1));
 
-    // Parcours : bouton « Demander un devis pro » -> formulaire -> envoi (mode aperçu)
+    // Parcours : bouton « Demander un devis pro » -> formulaire en 3 étapes -> envoi (mode aperçu)
     await p.click('[data-aud="pro"][data-pick]');
     await p.waitForTimeout(500);
     console.log(w + 'px', 'service =', await p.$eval('input[name=service]:checked', e => e.value),
       '| profil =', await p.$eval('input[name=who]:checked', e => e.value),
       '| prix =', await p.textContent('#priceOut'));
+    // Étape 2 : commune obligatoire avant de passer aux coordonnées
+    await p.click('#qNext2');
+    console.log(w + 'px', 'sans commune ->', await p.textContent('#formNote2'));
     await p.fill('#commune', 'Liège');
+    await p.click('#qNext2');
+    await p.waitForTimeout(300);
+    console.log(w + 'px', 'récapitulatif ->', JSON.stringify(await p.textContent('#qRecap')));
+    console.log(w + 'px', 'bandeau service/prix ->', await p.textContent('#qSvc'), '|', await p.textContent('#priceOut'));
     await p.fill('#nom', 'Test');
     await p.fill('#tel', '0470000000');
     await p.click('#quoteForm button[type=submit]');

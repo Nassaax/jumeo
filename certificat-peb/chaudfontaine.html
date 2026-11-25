@@ -114,6 +114,19 @@ details p{padding:0 48px 20px 0;color:var(--muted)}
 @media(max-width:600px){.band{padding:30px 24px;border-radius:28px}}
 .band h2{color:#fff;font-size:clamp(24px,3vw,34px);margin-bottom:8px}.band p{color:var(--w78);max-width:36rem}
 .band.light{background:var(--paper-2);color:var(--ink)}.band.light h2{color:var(--ink)}.band.light p{color:var(--muted)}
+.loc-hero{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px;align-items:end}
+@media(max-width:980px){.loc-hero{grid-template-columns:1fr;gap:28px}}
+.loc-card{background:rgba(255,255,255,.07);border:1px solid var(--wline);border-radius:28px;padding:26px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.loc-h{display:flex;align-items:center;gap:12px;font:600 19px 'Plus Jakarta Sans',sans-serif!important;color:#fff!important;margin:0!important}
+.loc-h span{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(242,183,5,.16)}
+.loc-h svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.loc-card>p:last-child{font-size:14px!important;margin:16px 0 0!important}
+.chips-dark li{background:transparent;color:#fff;box-shadow:0 0 0 1px var(--wline)}
+.card{position:relative}
+.card-badge{position:absolute;top:-12px;left:24px;background:var(--accent);color:var(--ink);font:700 12px/1 'Inter',sans-serif;padding:6px 12px;border-radius:999px}
+.tip-local{background:#fff6d6;border-left:0;box-shadow:none}
+.tip-local b{display:flex;align-items:center;gap:8px}
+.tip-local svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}@media(max-width:900px){.why{grid-template-columns:1fr}}
 .why .card b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--paper);font:600 15px 'Plus Jakarta Sans',sans-serif;margin-bottom:16px}
 .req{list-style:none;display:grid;gap:10px;margin-top:18px}
@@ -354,12 +367,19 @@ html.intro .rise.d3{animation-delay:2.6s}
 
 <section class="sub-hero">
   <svg class="ghost" viewBox="0 0 400 240" aria-hidden="true"><path d="M70 118 200 12l130 106"/><path d="M118 104h96l18 16-18 16h-96z"/><path d="M118 150h132l18 16-18 16H118z"/><path d="M118 196h168l18 16-18 16H118z"/></svg>
-  <div class="wrap">
-    <ol class="crumbs rise"><li><a href="/">Accueil</a></li><li><a href="/certificat-peb">Nos zones</a></li><li aria-current="page">Chaudfontaine</li></ol>
-    <h1 class="rise d1">Certificat PEB à Chaudfontaine, <span>sans prise de tête.</span></h1>
-    <p class="rise d2">Chaudfontaine, Embourg, Beaufays, Vaux-sous-Chèvremont : une commune verte et résidentielle au sud-est de Liège. Un prix clair, un certificateur agréé, un seul rendez-vous.</p>
-    <div class="actions rise d3"><a class="btn btn-primary" href="/?commune=Chaudfontaine#devis"><span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span><span class="chip-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a><a class="btn btn-light" href="#peb-chaudfontaine">Le PEB à Chaudfontaine</a></div>
-    <ul class="facts rise d3"><li>4050 Chaudfontaine</li><li>Province de Liège</li><li>Certificateur agréé Région wallonne</li></ul>
+  <div class="wrap loc-hero">
+    <div>
+      <ol class="crumbs rise"><li><a href="/">Accueil</a></li><li><a href="/certificat-peb">Nos zones</a></li><li aria-current="page">Chaudfontaine</li></ol>
+      <h1 class="rise d1">Certificat PEB à Chaudfontaine, <span>sans prise de tête.</span></h1>
+      <p class="rise d2">Chaudfontaine, Embourg, Beaufays, Vaux-sous-Chèvremont : une commune verte et résidentielle au sud-est de Liège. Un prix clair, un certificateur agréé, un seul rendez-vous.</p>
+      <div class="actions rise d3"><a class="btn btn-primary" href="/?commune=Chaudfontaine#devis"><span class="roll"><span><span>Mon devis pour Chaudfontaine</span><span aria-hidden="true">Mon devis pour Chaudfontaine</span></span></span><span class="chip-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a><a class="btn btn-light" href="/simulateur-peb">Estimer mon label en 1 minute</a></div>
+      <ul class="facts rise d3"><li>4050 Chaudfontaine</li><li>Province de Liège</li><li>Certificateur agréé Région wallonne</li></ul>
+    </div>
+    <aside class="loc-card rise d2" aria-labelledby="zone-chaudfontaine">
+      <p class="loc-h" id="zone-chaudfontaine"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Sections couvertes</p>
+      <ul class="chips chips-dark"><li>Chaudfontaine</li><li>Beaufays</li><li>Embourg</li><li>Vaux-sous-Chèvremont</li></ul>
+      <p>Au départ de Grâce-Hollogne, en province de Liège. Indiquez simplement votre adresse dans la demande.</p>
+    </aside>
   </div>
 </section>
 
@@ -370,7 +390,7 @@ html.intro .rise.d3{animation-delay:2.6s}
     <p class="lede">Des tarifs indicatifs connus d'avance : le devis final vous est confirmé avant toute intervention.</p>
     <div class="cards">
       <div class="card"><h3>Certificat PEB</h3><div class="amt">250 €<small> TVAC · forfait</small></div><p>Visite, relevé du bien et remise du certificat, avec des explications simples.</p></div>
-      <div class="card dark"><h3>PEB + contrôle électrique</h3><div class="amt">300 €<small> TVAC · forfait</small></div><p>Un seul rendez-vous pour le certificat et le contrôle de l'installation électrique.</p></div>
+      <div class="card dark"><span class="card-badge">Le plus demandé</span><h3>PEB + contrôle électrique</h3><div class="amt">300 €<small> TVAC · forfait</small></div><p>Un seul rendez-vous pour le certificat et le contrôle de l'installation électrique.</p></div>
       <div class="card"><h3>Contrôle électrique</h3><div class="amt" style="font-size:40px">Sur devis</div><p>Contrôle de conformité de l'installation électrique, notamment avant une vente.</p></div>
     </div>
     <p class="fine">Tarifs indicatifs, TVA comprise. Le prix final dépend du bien, de son accessibilité et de l'installation.</p>
@@ -384,10 +404,9 @@ html.intro .rise.d3{animation-delay:2.6s}
       <h2>Ce qu'il faut savoir sur votre bien.</h2>
       <p>Villas, maisons quatre façades et quartiers résidentiels sur les coteaux : de grands biens, souvent avec jardin, où l&#39;isolation des murs et de la toiture compte beaucoup.</p>
       <p>Le certificat est obligatoire pour vendre ou louer : il doit exister avant la publication de l'annonce, et il reste valable 10 ans.</p>
-      <h3 style="font-size:17px;margin-top:26px">Sections couvertes</h3><ul class="chips"><li>Chaudfontaine</li><li>Beaufays</li><li>Embourg</li><li>Vaux-sous-Chèvremont</li></ul>
       <a class="text-link" href="/simulateur-peb">Estimer le label de mon bien en 1 minute <span>→</span></a>
     </div>
-    <aside class="tip"><b>Conseil Chaudfontaine</b><p>Plusieurs chauffages dans la maison (poêle, pompe à chaleur, chaudière) ? Listez-les dans votre demande pour que la visite soit complète.</p></aside>
+    <aside class="tip tip-local"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>Conseil Chaudfontaine</b><p>Plusieurs chauffages dans la maison (poêle, pompe à chaleur, chaudière) ? Listez-les dans votre demande pour que la visite soit complète.</p></aside>
   </div>
 </section>
 
@@ -409,6 +428,7 @@ html.intro .rise.d3{animation-delay:2.6s}
     <span class="eyebrow">FAQ Chaudfontaine</span>
     <h2>Vos questions, nos réponses.</h2>
     <div class="faq"><details><summary>Combien coûte un certificat PEB à Chaudfontaine ?</summary><p>Comptez 250 € TVAC (prix indicatif) pour un certificat PEB, ou 300 € TVAC avec le contrôle électrique. Le prix final dépend du bien et vous est confirmé avant l&#39;intervention.</p></details><details><summary>Intervenez-vous dans toutes les sections de Chaudfontaine ?</summary><p>Oui : Chaudfontaine, Beaufays, Embourg et Vaux-sous-Chèvremont. Indiquez simplement votre adresse dans la demande.</p></details><details><summary>Qui réalise le certificat ?</summary><p>Le certificateur agréé par la Région wallonne de Lux Energie Solution, qui exploite Wall’PEB. Le contrôle électrique peut être fait lors du même rendez-vous. Un seul interlocuteur, du devis au certificat.</p></details></div>
+    <h3 style="font-size:17px;margin-top:44px">Aussi près de chez vous</h3><ul class="chips"><li><a href="/certificat-peb/liege">Certificat PEB à Liège</a></li><li><a href="/certificat-peb/seraing">Certificat PEB à Seraing</a></li></ul>
   </div>
 </section>
 
@@ -418,7 +438,6 @@ html.intro .rise.d3{animation-delay:2.6s}
       <div><h2>Votre certificat PEB à Chaudfontaine ?</h2><p>Une demande d'une minute. On vous répond rapidement, sans engagement.</p></div>
       <a class="btn btn-primary" href="/?commune=Chaudfontaine#devis"><span class="roll"><span><span>Devis gratuit</span><span aria-hidden="true">Devis gratuit</span></span></span><span class="chip-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
     </div>
-    <h3 style="font-size:17px;margin-top:44px">Aussi près de chez vous</h3><ul class="chips"><li><a href="/certificat-peb/liege">Certificat PEB à Liège</a></li><li><a href="/certificat-peb/seraing">Certificat PEB à Seraing</a></li></ul>
   </div>
 </section>
 </main>
