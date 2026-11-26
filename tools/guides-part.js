@@ -23,8 +23,16 @@ const CSS = `
 .peb-scale b{font:700 16px 'Plus Jakarta Sans',sans-serif}
 .peb-scale span{font-size:13.5px;font-weight:600;white-space:nowrap}
 .cover{margin:0 0 28px}.cover img{display:block;width:100%;height:auto;border-radius:24px}
-.guide-card.has-img{padding-top:0;overflow:hidden}
-.guide-card.has-img img{display:block;width:calc(100% + 56px);max-width:none;height:auto;margin:0 -28px 22px;aspect-ratio:16/9;object-fit:cover}
+.guide-card.has-img,.guide-card.has-cover{padding-top:0;overflow:hidden}
+.guide-card.has-img img{display:block;width:calc(100% + 56px);max-width:none;height:auto;margin:0 -28px 22px;aspect-ratio:16/9;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.guide-card.has-img:hover img{transform:scale(1.04)}
+.g-cover{position:relative;display:block;width:calc(100% + 56px);margin:0 -28px 22px;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 90% at 85% 10%,rgba(242,183,5,.16),transparent 55%),linear-gradient(160deg,#0f2f55,#0b2441)}
+.g-cover .gc-ico{position:absolute;left:28px;bottom:26px;display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:rgba(242,183,5,.14);box-shadow:inset 0 0 0 1px rgba(242,183,5,.35)}
+.g-cover .gc-ico svg{width:32px;height:32px;fill:none;stroke:#f2b705;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.g-cover .gc-bars{position:absolute;right:-6%;top:50%;width:62%;transform:translateY(-50%);opacity:.9;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.g-cover .gc-bars path{fill:none;stroke:rgba(255,255,255,.16);stroke-width:2;stroke-linejoin:round}
+.g-cover .gc-bars path.y{stroke:#f2b705;stroke-width:2.4}
+.guide-card.has-cover:hover .gc-bars{transform:translate(-10px,-50%)}
 .sources{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 .sources h2{font-size:15px;margin:0 0 10px;letter-spacing:0}
 .sources ul{padding-left:18px;display:grid;gap:6px}.sources li{font-size:14px;line-height:1.5}
@@ -76,7 +84,17 @@ module.exports = function guides({ esc, btn, CONFIG, SITE, page, fs, path, ROOT 
   const urls = [];
   const GHOST = '<svg class="ghost" viewBox="0 0 400 240" aria-hidden="true"><path d="M70 118 200 12l130 106"/><path d="M118 104h96l18 16-18 16h-96z"/><path d="M118 150h132l18 16-18 16H118z"/><path d="M118 196h168l18 16-18 16H118z"/></svg>';
   const CATS = ['PEB', 'Électricité'];
-  const card = a => `<a class="guide-card${a.image ? ' has-img' : ''}" href="/guides/${a.slug}" data-cat="${esc(a.cat || '')}">${a.image ? `<img src="${esc(a.image[0])}" alt="" width="1200" height="675" loading="lazy" decoding="async" />` : ''}<span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
+  // Couverture graphique (pas une photo) pour les articles sans image : icône selon le sujet + motif de l'étiquette PEB.
+  const GC = {
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+    alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.01"/>',
+    euro: '<path d="M17 6.5A7 7 0 1 0 17 17.5"/><path d="M4 10h9M4 14h9"/>',
+    up: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+    label: '<path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h5"/>',
+  };
+  const gcKey = a => /electri/.test(a.slug) ? 'bolt' : /amende/.test(a.slug) ? 'alert' : /prix/.test(a.slug) ? 'euro' : /amelior/.test(a.slug) ? 'up' : 'label';
+  const cover = a => `<span class="g-cover" aria-hidden="true"><span class="gc-ico"><svg viewBox="0 0 24 24">${GC[gcKey(a)]}</svg></span><svg class="gc-bars" viewBox="0 0 240 150"><path d="M20 18h120l16 16-16 16H20z"/><path d="M20 62h160l16 16-16 16H20z"/><path class="y" d="M20 106h80l16 16-16 16H20z"/></svg></span>`;
+  const card = a => `<a class="guide-card${a.image ? ' has-img' : ' has-cover'}" href="/guides/${a.slug}" data-cat="${esc(a.cat || '')}">${a.image ? `<img src="${esc(a.image[0])}" alt="" width="1200" height="675" loading="lazy" decoding="async" />` : cover(a)}<span class="tag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.description)}</p><small>${dateFr(a.date)} · ${readTime(a.body)} min de lecture</small></a>`;
 
   for (const a of articles) {
     const others = [...articles.filter(o => o.slug !== a.slug && o.cat === a.cat), ...articles.filter(o => o.slug !== a.slug && o.cat !== a.cat)].slice(0, 3);

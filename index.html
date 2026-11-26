@@ -105,7 +105,7 @@ img,svg{display:block;max-width:100%}
 @media(max-width:1080px){.nav{display:none}.header .btn{margin-left:auto}}
 
 /* ═════════ HERO ═════════ */
-.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,#0b2441 0%,#0f2f55 100%)}
+.hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(46rem 34rem at 82% 46%,rgba(242,183,5,.11),transparent 66%),radial-gradient(60rem 30rem at 10% -10%,rgba(255,255,255,.06),transparent 60%),linear-gradient(180deg,#0b2441 0%,#0f2f55 100%)}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:56px;align-items:center;padding-top:136px;padding-bottom:96px}
 @media(max-width:980px){.hero .wrap{grid-template-columns:1fr;gap:44px;padding-top:112px;padding-bottom:64px}}
 .ghost-rings{position:absolute;right:-14vw;top:50%;width:min(78vw,1000px);transform:translateY(-50%);opacity:.1;pointer-events:none}
@@ -149,7 +149,9 @@ img,svg{display:block;max-width:100%}
 .pills span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:14px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
 .pills input:checked+span{border-color:var(--ink);background:#eef2f7;color:var(--ink)}
 .pills input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
-.q-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.q-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+h1,h2,h3{text-wrap:balance}
+p,li,small{text-wrap:pretty}
 .qdots{display:flex;gap:6px;flex:none}
 .qdots span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font:700 13px 'Plus Jakarta Sans',sans-serif;color:var(--muted);box-shadow:0 0 0 1px var(--line);transition:background-color .3s,color .3s}
 .qdots span.on{background:var(--ink);color:#fff;box-shadow:none}
@@ -628,12 +630,31 @@ dialog p{font-size:14.5px;color:var(--muted);margin-bottom:10px}
 dialog .btn{margin-top:8px}
 
 /* ═════════ APPARITION AU DÉFILEMENT ═════════ */
-.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--e-out),transform .8s var(--e-out)}
-.js .reveal.in{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--e-out),transform .9s var(--e-out),filter .9s var(--e-out)}
+.js .reveal.in{opacity:1;transform:none;filter:none}
+.guide-card.has-img,.guide-card.has-cover{padding-top:0;overflow:hidden}
+.guide-card.has-img img{display:block;width:calc(100% + 56px);max-width:none;height:auto;margin:0 -28px 22px;aspect-ratio:16/9;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.guide-card.has-img:hover img{transform:scale(1.04)}
+.g-cover{position:relative;display:block;width:calc(100% + 56px);margin:0 -28px 22px;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 90% at 85% 10%,rgba(242,183,5,.16),transparent 55%),linear-gradient(160deg,#0f2f55,#0b2441)}
+.g-cover .gc-ico{position:absolute;left:28px;bottom:26px;display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:rgba(242,183,5,.14);box-shadow:inset 0 0 0 1px rgba(242,183,5,.35)}
+.g-cover .gc-ico svg{width:32px;height:32px;fill:none;stroke:#f2b705;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.g-cover .gc-bars{position:absolute;right:-6%;top:50%;width:62%;transform:translateY(-50%);opacity:.9;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.g-cover .gc-bars path{fill:none;stroke:rgba(255,255,255,.16);stroke-width:2;stroke-linejoin:round}
+.g-cover .gc-bars path.y{stroke:#f2b705;stroke-width:2.4}
+.guide-card.has-cover:hover .gc-bars{transform:translate(-10px,-50%)}
+
+/* ═════════ MOUVEMENT (révélations floues, grilles en cascade, barres du simulateur) ═════════ */
+.js [data-stagger]>*{opacity:0;transform:translateY(22px);transition:opacity .75s var(--e-out) calc(var(--i,0)*85ms + .12s),transform .75s var(--e-out) calc(var(--i,0)*85ms + .12s)}
+.js .in[data-stagger]>*{opacity:1;transform:none}
+.js .sim-teaser .sim-mini span{clip-path:inset(0 100% 0 0 round 6px 15px 15px 6px);transition:clip-path .9s var(--e-out) calc(var(--i,0)*70ms + .25s)}
+.js .sim-teaser.in .sim-mini span{clip-path:inset(0 0 0 0 round 6px 15px 15px 6px)}
+
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none;filter:none}
+  .js [data-stagger]>*{opacity:1;transform:none}
+  .js .sim-teaser .sim-mini span{clip-path:none}
   .js .link-diagram .ring{stroke-dashoffset:0}
   .js .link-diagram .weave,.js .link-diagram .tag{opacity:1}
 }
@@ -920,7 +941,7 @@ dialog .btn{margin-top:8px}
       </article>
 
       <article class="price pop reveal">
-        <span class="badge">Le plus demandé</span>
+        <span class="badge">Un seul rendez-vous</span>
         <h3>PEB + contrôle électrique</h3>
         <div class="amt"><span data-price="pebelec">300</span> €<small> TVAC · forfait</small></div>
         <p>Un seul rendez-vous pour avancer plus vite : certificat PEB et contrôle électrique selon votre besoin.</p>
@@ -949,7 +970,7 @@ dialog .btn{margin-top:8px}
       </article>
     </div>
     <p class="fine">Tarifs indicatifs, TVA comprise (TVAC). Le prix final dépend du type et de la taille du bien, de la commune et de l'installation. Le devis définitif vous est confirmé avant l'intervention.</p>
-    <div class="incl reveal">
+    <div class="incl reveal" data-stagger>
       <h3>Ce qui est inclus dans votre certificat PEB</h3>
       <div class="incl-grid">
         <div><span class="incl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><b>Visite sur place</b><small>Le certificateur vient chez vous et inspecte le bien.</small></div>
@@ -971,7 +992,7 @@ dialog .btn{margin-top:8px}
       <h2>Quel est votre bien ?</h2>
       <p>Certificat PEB : forfait indicatif de 250 € TVAC par logement, confirmé avant l'intervention. Plusieurs logements ? Devis groupé.</p>
     </div>
-    <div class="biens reveal"><a class="bien" href="/certificat-peb-studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, petit logement</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-duplex-loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
+    <div class="biens reveal" data-stagger><a class="bien" href="/certificat-peb-studio"><img src="/photos/bien-studio.webp" alt="Studio aménagé avec lit et coin repas" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Studio</b><small>Studio, petit logement</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-appartement"><img src="/photos/bien-appartement.webp" alt="Séjour lumineux d'un appartement avec baie vitrée" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Appartement</b><small>Appartement, flat</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-duplex-loft"><img src="/photos/bien-loft.webp" alt="Grand séjour en duplex avec escalier" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Duplex & loft</b><small>Grands volumes, plusieurs niveaux</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-maison"><img src="/photos/bien-maison.webp" alt="Façade d'une maison récente" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Maison</b><small>Mitoyenne, 3 ou 4 façades</small><i>Prix et infos <span aria-hidden="true">→</span></i></span></a><a class="bien" href="/certificat-peb-immeuble"><img src="/photos/bien-immeuble.webp" alt="Façade d'un immeuble à appartements" width="640" height="800" loading="lazy" decoding="async" /><span class="bien-txt"><b>Immeuble</b><small>Copropriété, plusieurs logements</small><i>Devis groupé <span aria-hidden="true">→</span></i></span></a></div>
   </div>
 </section>
 
@@ -1102,7 +1123,7 @@ dialog .btn{margin-top:8px}
       <text class="r" x="160" y="184" text-anchor="middle">certificat</text>
       <text class="n" x="402" y="158" text-anchor="middle">Contrôle</text>
       <text class="r" x="402" y="184" text-anchor="middle">électrique</text>
-      <g class="tag"><rect x="190" y="236" width="180" height="36" rx="18" fill="#fff"/><circle cx="212" cy="254" r="5" fill="#f2b705"/><text class="t" x="288" y="260" text-anchor="middle">Un seul rendez-vous</text></g>
+      <g class="tag"><rect x="176" y="236" width="212" height="36" rx="18" fill="#fff"/><circle cx="200" cy="254" r="5" fill="#f2b705"/><text class="t" x="214" y="260">Un seul rendez-vous</text></g>
     </svg>
 
     <div class="who-grid">
@@ -1250,7 +1271,7 @@ dialog .btn{margin-top:8px}
       <h2>Comprendre avant de décider.</h2>
       <p>Certificat PEB et contrôle électrique : des réponses claires et sourcées, pour préparer votre vente ou votre location.</p>
     </div>
-    <div class="guide-list reveal"><!-- GUIDES:START (généré par build.js) --><a class="guide-card has-img" href="/guides/peb-c-est-quoi" data-cat="PEB"><img src="/photos/peb-etiquette.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /><span class="tag">Les bases</span><h3>Le PEB, c&#39;est quoi ? Les labels de A++ à G expliqués simplement</h3><p>Que mesure le certificat PEB, comment est calculé le label, que veulent dire A++, B ou G ? Les bases du certificat PEB en Wallonie, sans jargon.</p><small>24 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/controle-electrique-vente" data-cat="Électricité"><span class="tag">Vendre</span><h3>Vendre une maison : le contrôle électrique expliqué simplement</h3><p>Qui doit le faire, quand, qui paie, et que se passe-t-il si l&#39;installation n&#39;est pas conforme ? Le contrôle électrique à la vente d&#39;une habitation, en clair.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card" href="/guides/amendes-certificat-peb" data-cat="PEB"><span class="tag">Amendes &amp; sanctions</span><h3>Vendre ou louer sans certificat PEB : quelles amendes en Wallonie ?</h3><p>Pas de certificat PEB, indicateurs absents de l&#39;annonce, certificat non remis : les amendes administratives prévues en Wallonie, et comment les éviter.</p><small>24 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
+    <div class="guide-list reveal" data-stagger><!-- GUIDES:START (généré par build.js) --><a class="guide-card has-img" href="/guides/peb-c-est-quoi" data-cat="PEB"><img src="/photos/peb-etiquette.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" /><span class="tag">Les bases</span><h3>Le PEB, c&#39;est quoi ? Les labels de A++ à G expliqués simplement</h3><p>Que mesure le certificat PEB, comment est calculé le label, que veulent dire A++, B ou G ? Les bases du certificat PEB en Wallonie, sans jargon.</p><small>24 novembre 2026 · 2 min de lecture</small></a><a class="guide-card has-cover" href="/guides/controle-electrique-vente" data-cat="Électricité"><span class="g-cover" aria-hidden="true"><span class="gc-ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><svg class="gc-bars" viewBox="0 0 240 150"><path d="M20 18h120l16 16-16 16H20z"/><path d="M20 62h160l16 16-16 16H20z"/><path class="y" d="M20 106h80l16 16-16 16H20z"/></svg></span><span class="tag">Vendre</span><h3>Vendre une maison : le contrôle électrique expliqué simplement</h3><p>Qui doit le faire, quand, qui paie, et que se passe-t-il si l&#39;installation n&#39;est pas conforme ? Le contrôle électrique à la vente d&#39;une habitation, en clair.</p><small>18 novembre 2026 · 2 min de lecture</small></a><a class="guide-card has-cover" href="/guides/amendes-certificat-peb" data-cat="PEB"><span class="g-cover" aria-hidden="true"><span class="gc-ico"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.01"/></svg></span><svg class="gc-bars" viewBox="0 0 240 150"><path d="M20 18h120l16 16-16 16H20z"/><path d="M20 62h160l16 16-16 16H20z"/><path class="y" d="M20 106h80l16 16-16 16H20z"/></svg></span><span class="tag">Amendes &amp; sanctions</span><h3>Vendre ou louer sans certificat PEB : quelles amendes en Wallonie ?</h3><p>Pas de certificat PEB, indicateurs absents de l&#39;annonce, certificat non remis : les amendes administratives prévues en Wallonie, et comment les éviter.</p><small>24 novembre 2026 · 2 min de lecture</small></a><!-- GUIDES:END --></div>
     <a class="text-link reveal" href="/guides">Tous nos guides <span>→</span></a>
   </div>
 </section>
@@ -1697,6 +1718,13 @@ if (document.documentElement.classList.contains('js')) {
     el.style.transitionDelay = (sibs.indexOf(el) * 90) + 'ms';
     io.observe(el);
   });
+  $$('[data-stagger]').forEach(g => [...g.children].forEach((c, i) => c.style.setProperty('--i', i)));
+  $$('.sim-mini span').forEach((c, i) => c.style.setProperty('--i', i));
+  const settle = new MutationObserver(ms => ms.forEach(m => {
+    const g = m.target;
+    if (g.classList.contains('in') && g.hasAttribute('data-stagger')) setTimeout(() => g.removeAttribute('data-stagger'), 1800);
+  }));
+  $$('[data-stagger]').forEach(g => settle.observe(g, { attributes: true, attributeFilter: ['class'] }));
   const diagram = $('.link-diagram');
   const io2 = new IntersectionObserver(entries => {
     if (entries.some(en => en.isIntersecting)) { diagram.classList.add('drawn'); io2.disconnect(); }
