@@ -192,6 +192,12 @@ const css = `
 .wmap .hub circle{fill:#0b2441;stroke:var(--accent);stroke-width:3}
 .wmap-tip{position:absolute;pointer-events:none;transform:translate(-50%,-130%);background:#0b2441;color:#fff;font:600 13px 'Inter',sans-serif;padding:6px 10px;border-radius:10px;white-space:nowrap;opacity:0;transition:opacity .15s}
 .wmap-tip.on{opacity:1}
+.wmap.anim .town circle,.wmap.anim .dot:not(.hub) circle{transform-box:fill-box;transform-origin:center;transition:r .2s,fill .2s,transform .55s cubic-bezier(.34,1.56,.64,1) var(--d,0ms),opacity .3s ease var(--d,0ms)}
+.wmap.anim:not(.lit) .town circle,.wmap.anim:not(.lit) .dot:not(.hub) circle{transform:scale(0);opacity:0}
+.wmap .hub .pulse{fill:none;stroke:var(--accent);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.wmap.lit .hub .pulse{animation:hub-pulse 1.8s cubic-bezier(.16,1,.3,1) .1s 2}
+@keyframes hub-pulse{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(4.5)}}
+@media(prefers-reduced-motion:reduce){.wmap.anim:not(.lit) .town circle,.wmap.anim:not(.lit) .dot:not(.hub) circle{transform:none;opacity:1}.wmap .hub .pulse{display:none}}
 .map-side h3{font-size:22px;letter-spacing:-.03em;margin-bottom:10px}
 .map-side p{color:var(--muted);font-size:15.5px;margin-bottom:14px}
 .map-legend{list-style:none;display:grid;gap:8px;margin:0 0 18px;padding:0;font-size:14.5px}
@@ -203,6 +209,18 @@ const css = `
 `;
 
 const js = `
+/* ── Carte : les points apparaissent en vague depuis le siège ── */
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('.wmap').forEach(m => {
+  const hub = m.querySelector('.hub circle:not(.pulse)'); if (!hub) return;
+  const hx = +hub.getAttribute('cx'), hy = +hub.getAttribute('cy');
+  const cs = [...m.querySelectorAll('.town circle, .dot:not(.hub) circle')];
+  const dist = c => Math.hypot(+c.getAttribute('cx') - hx, +c.getAttribute('cy') - hy);
+  const max = Math.max(1, ...cs.map(dist));
+  cs.forEach(c => c.style.setProperty('--d', Math.round(dist(c) / max * 1100) + 'ms'));
+  m.classList.add('anim');
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { m.classList.add('lit'); io.disconnect(); } }, { threshold: .25 });
+  io.observe(m);
+});
 /* ── Carte : nom de la commune au survol ── */
 document.querySelectorAll('.wmap').forEach(m => {
   const tip = m.querySelector('.wmap-tip');
@@ -245,7 +263,7 @@ function html({ communes, esc, ROOT, hub = 'Grâce-Hollogne', hubCoords = [50.63
       <div class="wmap">
         <svg viewBox="${M.viewBox}" role="img" aria-label="Carte de la Wallonie : cliquez sur une province ou une commune">
           ${provs}
-          <g class="dot hub" aria-hidden="true"><circle cx="${hx}" cy="${hy}" r="9"/></g>
+          <g class="dot hub" aria-hidden="true"><circle class="pulse" cx="${hx}" cy="${hy}" r="9"/><circle cx="${hx}" cy="${hy}" r="9"/></g>
           ${towns}
           ${dots}
           <g aria-hidden="true">${provLabels.join('')}</g>
